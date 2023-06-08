@@ -1,5 +1,5 @@
 import MediumTitle from '../../atoms/mediumTitle/mediumTitle';
-import Review from '../../molecules/review/review';
+import Review from '../review/review';
 
 function Reviews({reviews}: any): JSX.Element {
   return (

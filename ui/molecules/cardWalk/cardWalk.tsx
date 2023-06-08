@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import GrayParagraphe from '../../atoms/grayParagraphe/grayParagraphe';
 import banner from '../../../public/images/banner.jpg';
+import TextBold from '../../atoms/textBold/textBold';
 
-function CardWalk({city, description}: {city: string, description: string}): JSX.Element {
+function CardWalk({city, description, slug}: {city: string, description: string, slug: string}): JSX.Element {
   return (
-    <div className='w-1/4 mr-10 last:mr-0'>
+    <a href={`walk/${slug}`} className='flex flex-col justify-between w-1/4 h-80 mr-10 last:mr-0'>
       <picture>
         <Image
           className='h-56 rounded-xl object-cover'
@@ -14,10 +15,10 @@ function CardWalk({city, description}: {city: string, description: string}): JSX
           quality={100}
         />
       </picture>
-      <p className='font-bold'>{city}</p>
+      <TextBold text={city} color='text-black' />
       <GrayParagraphe text={description} />
-      <button>En savoir plus</button>
-    </div>
+      <button className='w-max pr-2 pl-2 bg-primary text-white rounded-lg'>Découvrir</button>
+    </a>
   );
 }
 

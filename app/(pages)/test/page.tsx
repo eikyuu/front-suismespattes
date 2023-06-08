@@ -1,5 +1,4 @@
 import { Metadata } from 'next'
-import Block from '../../../ui/molecules/block'
 
 export const metadata: Metadata = {
   title: 'D',
@@ -10,7 +9,6 @@ export default function Test() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1 className="text-4xl font-bold text-center">Hello test</h1>
-      <Block/>
     </main>
   )
 }

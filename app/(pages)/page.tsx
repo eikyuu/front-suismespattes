@@ -4,10 +4,10 @@ import { useState } from 'react';
 import Banner from '../../ui/atoms/banner/banner';
 import ContentNavigation from '../../ui/molecules/contentNavigation/contentNavigation';
 import Presentation from '../../ui/organisms/presentation/presentation';
-import Reviews from '../../ui/organisms/reviews/reviews';
+import Reviews from '../../ui/molecules/reviews/reviews';
 import { useFetchData } from '../../@core/hooks/useFetchData';
+import LastWalk from '../../ui/organisms/lastWalk/lastWalk';
 import LargeTitle from '../../ui/atoms/largeTitle/largeTitle';
-import CardWalk from '../../ui/molecules/cardWalk/cardWalk';
 
 export default function Home() {
   const [reviews, setReviews] = useState([]);
@@ -23,19 +23,16 @@ export default function Home() {
   );
 
   return (
-    <main>
+    <main className='font-sans'>
       <ContentNavigation />
       <Banner />
       <Presentation />
       <Reviews reviews={reviews} />
-      <section className='h-full flex flex-col justify-evenly md:h-128'>
-        <LargeTitle title='Les dernieres balade' />
-        <div className='container mx-auto flex flex-col justify-around md:flex-row'>
-          {dogWalk.slice(0, 4).map((dogWalk: any) => (
-            <CardWalk key={dogWalk.id} city={dogWalk.city} description={dogWalk.description} />
-          ))}
-        </div>
+      <LastWalk dogWalk={dogWalk} />
+      <section className='bg-primary h-full mx-auto pt-4 pb-4 flex flex-col md:h-128 md:justify-evenly md:pt-0 md:pb-0'>
+        <LargeTitle title='Lorem Ipsum dolor sit amet, consecterur adpiscl ekt porin.' />
       </section>
+
     </main>
   );
 } 
