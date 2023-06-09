@@ -19,6 +19,7 @@ module.exports = {
         '128': '32rem',
         '144': '36rem',
         '160': '40rem',
+        '170': '50rem',
         'half-screen': '50vh',
         '3/4-screen': '75vh',
       },

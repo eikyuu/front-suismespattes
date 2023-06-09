@@ -3,9 +3,9 @@ import Card from '../../molecules/card/card';
 
 function Presentation() {
   return (
-    <section className='container h-full mx-auto pt-4 pb-4 flex flex-col md:h-128 md:justify-evenly md:pt-0 md:pb-0'>
+    <section className='container h-full mx-auto pt-10 pb-10 flex flex-col'>
       <LargeTitle title='Lorem Ipsum dolor sit amet, consecterur adpiscl ekt porin.' />
-      <div className='flex flex-col justify-around md:flex-row'>
+      <div className='flex flex-col justify-around pt-10 md:flex-row'>
         <div className="w-1/4 mr-10 last:mr-0">
           <Card
             title='Lorem Ipsum dolor sit amet, consecterur adpiscl ekt porin.'

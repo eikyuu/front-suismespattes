@@ -3,9 +3,9 @@ import CardWalk from '../../molecules/cardWalk/cardWalk';
 
 function LastWalk({ dogWalk }: { dogWalk: any}) {
   return (
-    <section className='h-full flex flex-col justify-evenly md:h-128'>
+    <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
       <LargeTitle title='Les dernieres balade' />
-      <div className='container mx-auto flex flex-col justify-around md:flex-row'>
+      <div className='container mx-auto flex flex-col justify-around pt-10 md:flex-row'>
         {dogWalk.slice(0, 4).map((dogWalk: any) => (
           <CardWalk
             key={dogWalk.id}
