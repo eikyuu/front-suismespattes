@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import { GeoJson, Map, Marker, Overlay } from 'pigeon-maps';
+import { GeoJson, Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 
 interface DogWalk {
   id: string;
@@ -74,6 +74,8 @@ function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
             setSelectedWalk(null);
           }}
         >
+          <ZoomControl />
+
           {dogWalk.map((walk: DogWalk, index) => (
             <GeoJson
               key={index.toString()}
