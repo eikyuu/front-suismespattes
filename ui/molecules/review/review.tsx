@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import banner from '../../../public/images/banner.jpg';
 import BoldText from '../../atoms/textBold/textBold';
-import TextWithQuote from '../../atoms/textWithQuote/textWithQuote';
+import Testing from '../../atoms/testing/testing';
 interface ReviewProps {
   name: string;
   content: string;
@@ -18,7 +18,7 @@ function Review({ name, content }: ReviewProps): JSX.Element {
       />
       <div className='pl-4'>
         <BoldText text={name} />
-        <TextWithQuote content={content} />
+        <Testing content={content} />
       </div>
     </div>
   );
