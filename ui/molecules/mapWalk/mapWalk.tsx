@@ -70,7 +70,6 @@ function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
           defaultCenter={[47.38905261221537, 0.6883621215820312]}
           center={coordinates}
           defaultZoom={12}
-          twoFingerDrag={true}
           onClick={() => {
             setSelectedWalk(null);
           }}
