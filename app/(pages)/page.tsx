@@ -37,7 +37,7 @@ export default function Home() {
           title='Lorem Ipsum dolor sit amet, consecterur adpiscl ekt porin.'
           color='text-white'
         />
-        <div className='container mx-auto pt-10 w-1/2'>
+        <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
           <MapWalk dogWalk={dogWalk}  />
         </div>
       </section>

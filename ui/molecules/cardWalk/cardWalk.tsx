@@ -6,7 +6,7 @@ import Link from 'next/link';
 function CardWalk({city, description, slug}: {city: string, description: string, slug: string}): JSX.Element {
 
   return (
-    <Link href={`walk/${slug}`}  prefetch={false} className='flex flex-col justify-between w-1/5 h-80 last:mr-0'>
+    <Link href={`walk/${slug}`}  prefetch={false} className='flex flex-col justify-between mx-auto w-11/12 h-80 mb-10 last:mb-0 md:w-1/5'>
       <picture>
         <Image
           className='h-56 rounded-xl object-cover'
