@@ -3,10 +3,10 @@ import banner from '../../../public/images/banner.jpg';
 import TextBold from '../../atoms/textBold/textBold';
 import TextGray from '../../atoms/textGray/textGray';
 import Link from 'next/link';
-
 function CardWalk({city, description, slug}: {city: string, description: string, slug: string}): JSX.Element {
+
   return (
-    <Link href={`walk/${slug}`} className='flex flex-col justify-between w-1/4 h-80 mr-10 last:mr-0' passHref>
+    <Link href={`walk/${slug}`}  prefetch={false} className='flex flex-col justify-between w-1/5 h-80 last:mr-0'>
       <picture>
         <Image
           className='h-56 rounded-xl object-cover'
