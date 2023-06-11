@@ -1,7 +1,8 @@
 import Image from 'next/image';
  import banner from '../../../public/images/banner.jpg';
- import TextWithQuote from '../../atoms/textWithQuote/textWithQuote';
+
  import BoldText from '../../atoms/textBold/textBold';
+import TextWithQuote from '../../atoms/textWithQuote/textWithQuote';
  interface ReviewProps {
    name: string;
    content: string;
