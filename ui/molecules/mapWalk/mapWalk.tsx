@@ -64,7 +64,7 @@ function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
   };
 
   return (
-    <>
+    <React.Fragment>
         <Map
           height={500}
           defaultCenter={[47.38905261221537, 0.6883621215820312]}
@@ -112,7 +112,7 @@ function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
           )}
         </Map>
       
-    </>
+    </React.Fragment>
   );
 }
 
