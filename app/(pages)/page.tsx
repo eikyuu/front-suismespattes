@@ -9,7 +9,6 @@ import 'leaflet/dist/leaflet.css';
 import MediumTitle from '../../ui/atoms/mediumTitle/mediumTitle';
 import MapWalk from '../../ui/molecules/mapWalk/mapWalk';
 
-
 export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [dogWalk, setDogWalk] = useState([]);
