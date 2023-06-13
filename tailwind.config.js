@@ -16,6 +16,7 @@ module.exports = {
         bgray: '#AAA5A4',
       },
       height: {
+        '84': '21rem',
         '128': '32rem',
         '144': '36rem',
         '160': '40rem',
@@ -24,6 +25,7 @@ module.exports = {
         '3/4-screen': '75vh',
       },
       width: {
+        '84': '20rem',
         '128': '32rem',
         '144': '36rem',
         '160': '40rem',

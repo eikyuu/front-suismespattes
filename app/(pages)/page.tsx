@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Banner from '../../ui/atoms/banner/banner';
-import ContentNavigation from '../../ui/molecules/contentNavigation/contentNavigation';
 import Presentation from '../../ui/organisms/presentation/presentation';
 import Reviews from '../../ui/molecules/reviews/reviews';
 import { useFetchData } from '../../@core/hooks/useFetchData';
@@ -20,6 +18,7 @@ export default function Home() {
     'https://my-json-server.typicode.com/eikyuu/db/review',
     setReviews
   );
+  
   useFetchData(
     'https://my-json-server.typicode.com/eikyuu/db/dogWalk',
     setDogWalk
@@ -27,8 +26,6 @@ export default function Home() {
 
   return (
     <main className='font-sans'>
-      <ContentNavigation />
-      <Banner />
       <Presentation />
       <Reviews reviews={reviews} />
       <LastWalk dogWalk={dogWalk} />
