@@ -8,7 +8,7 @@ interface ReviewProps {
 }
 function Review({ name, content }: ReviewProps): JSX.Element {
   return (
-    <div className='flex items-center'>
+    <div className='flex flex-col items-center xl:flex-row'>
       <Image
         className='w-48 h-48 rounded-full object-cover border-8 border-white'
         src={banner}
@@ -16,7 +16,7 @@ function Review({ name, content }: ReviewProps): JSX.Element {
         placeholder='blur'
         quality={100}
       />
-      <div className='pl-4'>
+      <div className='pl-4 md:w-48'>
         <BoldText text={name} />
         <TextWithQuote content={content} />
       </div>

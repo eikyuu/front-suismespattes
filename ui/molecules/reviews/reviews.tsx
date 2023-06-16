@@ -7,7 +7,7 @@ function Reviews({reviews}: any): JSX.Element {
       <MediumTitle title='Témoignages des utilisateurs' color='text-white' />
       <div className='container mx-auto flex flex-col items-center justify-around pt-10 md:flex-row'>
         {reviews.slice(0, 3).map((review: any) => (
-          <div key={review.id} className='mb-10 last:mb-0'>
+          <div key={review.id} className='mb-10 last:mb-0 md:mb-0'>
             <Review  name={review.name} content={review.content} />
           </div>
         ))}

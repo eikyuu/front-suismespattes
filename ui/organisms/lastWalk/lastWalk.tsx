@@ -1,17 +1,12 @@
 import LargeTitle from '../../atoms/largeTitle/largeTitle';
 import CardWalk from '../../molecules/cardWalk/cardWalk';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-
-// import required modules
 import { useEffect, useState } from 'react';
-function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
-  //detect if the user is on mobile or not
-  const [isMobile, setIsMobile] = useState(false);
 
-  //detect resize of the window to change the isMobile state if needed
+function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
     window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
