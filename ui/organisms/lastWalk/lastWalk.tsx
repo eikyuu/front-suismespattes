@@ -15,7 +15,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
-  }, []);
+  }, [isMobile]);
 
   return (
     <>
