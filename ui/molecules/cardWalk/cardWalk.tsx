@@ -16,7 +16,7 @@ function CardWalk({city, description, slug}: {city: string, description: string,
         />
       </picture>
       <TextBold text={city} color='text-black' />
-      <TextGray text={description} />
+      <p className='text-gray-500 truncate ...'>{description}</p>
       <button className='w-max pr-2 pl-2 bg-primary text-white rounded-lg'>Découvrir</button>
     </Link>
   );
