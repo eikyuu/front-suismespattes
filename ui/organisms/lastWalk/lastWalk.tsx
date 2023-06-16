@@ -1,12 +1,43 @@
 import LargeTitle from '../../atoms/largeTitle/largeTitle';
 import CardWalk from '../../molecules/cardWalk/cardWalk';
+import { Swiper, SwiperSlide } from 'swiper/react';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-function LastWalk({ dogWalk }: { dogWalk: any}) {
+// import required modules
+import { Pagination } from 'swiper';
+function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
+
+  //detect if the user is on mobile or not
+  const isMobile = window.innerWidth < 768;
   return (
-    <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
+    <>
+
+    {isMobile ? (
+      
+      <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
+        <Swiper
+          slidesPerView={'auto'}
+          spaceBetween={16}
+          className='w-full h-full'
+        >
+          {dogWalk.slice(0, 4).map((dogWalk: any) => (
+            <SwiperSlide key={dogWalk.id} className='!w-11/12 last:w-full'>
+              <CardWalk
+                city={dogWalk.city}
+                description={dogWalk.description}
+                slug={dogWalk.slug}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+    ) : (
+      <section className='h-full w-11/12 mx-auto flex flex-col justify-evenly pt-10 pb-10'>
       <LargeTitle title='Les dernieres balade' />
       <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
-        {dogWalk.slice(0, 5).map((dogWalk: any) => (
+        {dogWalk.slice(0, 4).map((dogWalk: any) => (
           <CardWalk
             key={dogWalk.id}
             city={dogWalk.city}
@@ -16,6 +47,13 @@ function LastWalk({ dogWalk }: { dogWalk: any}) {
         ))}
       </div>
     </section>
+    )
+    }
+
+
+
+
+    </>
   );
 }
 
