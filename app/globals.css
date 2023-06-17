@@ -16,10 +16,17 @@
   }
 }
 
-xbody {
-  font-family: 'Courier New', Courier, monospace;
+
+
+
+
+
+
+
+.mySwiper .swiper-slide {
+  opacity: 0.4;
 }
 
-.leaflet-container {
-  height: 600px;
+.mySwiper .swiper-slide-thumb-active {
+  opacity: 1;
 }
