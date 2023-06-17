@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function Balades() {
 
   return (
-    <main className='font-sans'>
+    <main className='font-sans w-11/12 mx-auto'>
       <PageWalk />
     </main>
   );
