@@ -1,12 +1,16 @@
 import Image from 'next/image';
 import banner from '../../../public/images/banner.jpg';
 import TextBold from '../../atoms/textBold/textBold';
-import TextGray from '../../atoms/textGray/textGray';
 import Link from 'next/link';
+import TextGray from '../../atoms/textGray/textGray';
 function CardWalk({city, description, slug}: {city: string, description: string, slug: string}): JSX.Element {
 
+  const elipsis = (text: string) => {
+    return text.length > 100 ? text.slice(0, 100) + '...' : text;
+  };
+
   return (
-    <Link href={`balade/${slug}`}  prefetch={true} className='flex flex-col justify-between mx-auto w-auto h-80 mb-10 last:mb-0 md:w-72'>
+    <Link href={`balade/${slug}`}  prefetch={true} className='flex flex-col justify-between mx-auto w-auto h-96 xs:last:mb-0 md:w-72'>
       <picture>
         <Image
           className='h-56 rounded-xl object-cover'
@@ -16,8 +20,8 @@ function CardWalk({city, description, slug}: {city: string, description: string,
         />
       </picture>
       <TextBold text={city} color='text-black' />
-      <p className='text-gray-500 text-ellipsis overflow-hidden whitespace-nowrap'>{description}</p>
-      <button className='w-max pr-2 pl-2 bg-primary text-white rounded-lg'>Découvrir</button>
+      <TextGray text={elipsis(description)} />
+      <button className='w-max p-2 bg-primary text-white rounded-lg'>Découvrir</button>
     </Link>
   );
 }
