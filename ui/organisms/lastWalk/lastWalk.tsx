@@ -11,7 +11,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   const handleResize = () => {
     window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
   };
-  
+
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -20,22 +20,25 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   return (
     <>
       {isMobile ? (
-        <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
-          <Swiper
-            slidesPerView={'auto'}
-            spaceBetween={16}
-            className='w-full h-full'
-          >
-            {dogWalk.slice(0, 4).map((dogWalk: any) => (
-              <SwiperSlide key={dogWalk.id} className='!w-11/12 last:w-full'>
-                <CardWalk
-                  city={dogWalk.city}
-                  description={dogWalk.description}
-                  slug={dogWalk.slug}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+        <section className='h-full w-11/12 mx-auto  pt-10 pb-10'>
+          <LargeTitle title='Les dernieres balade' />
+          <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
+            <Swiper
+              slidesPerView={'auto'}
+              spaceBetween={16}
+              className='w-full h-full'
+            >
+              {dogWalk.slice(0, 4).map((dogWalk: any) => (
+                <SwiperSlide key={dogWalk.id} className='!w-11/12 last:w-full'>
+                  <CardWalk
+                    city={dogWalk.city}
+                    description={dogWalk.description}
+                    slug={dogWalk.slug}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </section>
       ) : (
         <section className='h-full w-11/12 mx-auto flex flex-col justify-evenly pt-10 pb-10'>
