@@ -16,7 +16,7 @@ function Review({ name, content }: ReviewProps): JSX.Element {
         placeholder='blur'
         quality={100}
       />
-      <div className='pl-4 md:w-48'>
+      <div className='w-11/12 md:w-48'>
         <BoldText text={name} />
         <TextWithQuote content={content} />
       </div>
