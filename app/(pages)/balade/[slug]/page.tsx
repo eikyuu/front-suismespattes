@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFetchData } from '../../../../@core/hooks/useFetchData';
 import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
 import MapWalk from '../../../../ui/molecules/mapWalk/mapWalk';
@@ -14,8 +14,11 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
+import { FreeMode, Thumbs } from 'swiper';
 import type { Swiper as S } from 'swiper';
+import React from 'react';
+import Loader from '../../../../ui/molecules/Loader/Loader';
+import LoaderWalk from '../../../../ui/molecules/Loader/LoaderWalk';
 
 export default function Page({
   params,
@@ -27,6 +30,17 @@ export default function Page({
   const [dogWalk, setDogWalk] = useState([]);
   const [reviews, setReviews] = useState([]);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  const handleResize = () => {
+    window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  }, [isMobile]);
+
   useFetchData(
     'https://my-json-server.typicode.com/eikyuu/db/review',
     setReviews
@@ -37,14 +51,37 @@ export default function Page({
     setDogWalk
   );
 
+  const handleNote = (note: number) => {
+    switch (note) {
+      case 1:
+        return 'Trés négatif';
+      case 2:
+        return 'Négatif';
+      case 3:
+        return 'Neutre';
+      case 4:
+        return 'Positif';
+      case 5:
+        return 'Trés positif';
+      default:
+        return 'Neutre';
+    }
+  };
+
   const dogWalkFiltered = dogWalk.filter(
     (dogWalk: any) => dogWalk.slug === params.slug
   );
 
   return (
     <main className='font-sans'>
+
+              <div className='container mx-auto pt-10'>
+                {dogWalk.length !== 0 && <LoaderWalk />}
+              </div>
+              
+
       <section className='container mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
-        <div className='w-11/12 mx-auto md:w-1/2 xl:mr-10'>
+        <div className='w-11/12 mx-auto md:m-0 md:w-1/2'>
           <Swiper
             style={
               {
@@ -54,9 +91,8 @@ export default function Page({
             }
             loop={true}
             spaceBetween={10}
-            navigation={true}
             thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
+            modules={[FreeMode, Thumbs]}
             className='mySwiper2'
           >
             {dogWalk.map((dogWalk: any) => (
@@ -77,7 +113,7 @@ export default function Page({
             slidesPerView={4}
             freeMode={true}
             watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
+            modules={[FreeMode, Thumbs]}
             className='mySwiper mt-2'
           >
             {dogWalk.map((dogWalk: any) => (
@@ -97,14 +133,25 @@ export default function Page({
             <div className='h-full' key={dogWalk.id}>
               <LargeTitle title={dogWalk.city} />
               <p className='mt-4 mb-4'>{dogWalk.description}</p>
-              <p className='mt-4 mb-4'>5/5 Tres positifs !</p>
-              <p className='mt-4 mb-4'>A 20km de votre position actuelle</p>
-              <p>
-                Point deau buvable pour les chiens :{' '}
-                {dogWalk.water_point ? 'Oui' : 'Non'}
+              <p className='mt-4 mb-4'>
+                &#11088;
+                <span className='ml-2 font-bold'>5</span>/5{' '}
+                <span className='font-bold'>Trés positifs !</span>
               </p>
               <p className='mt-4 mb-4'>
-                Laisse obligatoire : {dogWalk.obligatory_leash ? 'Oui' : 'Non'}
+                &#x25AE; A 20km de votre position actuelle
+              </p>
+              <p>
+                Point deau buvable pour les chiens :{' '}
+                <span className='font-bold'>
+                  {dogWalk.water_point ? 'Oui' : 'Non'}
+                </span>
+              </p>
+              <p className='mt-4 mb-4'>
+                Laisse obligatoire :{' '}
+                <span className='font-bold'>
+                  {dogWalk.obligatory_leash ? 'Oui' : 'Non'}
+                </span>
               </p>
             </div>
           ))}

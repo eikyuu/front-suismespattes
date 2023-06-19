@@ -8,8 +8,6 @@ import LastWalk from '../../ui/organisms/lastWalk/lastWalk';
 import 'leaflet/dist/leaflet.css';
 import MediumTitle from '../../ui/atoms/mediumTitle/mediumTitle';
 import MapWalk from '../../ui/molecules/mapWalk/mapWalk';
-import Link from 'next/link';
-import Button from '../../ui/atoms/button/button';
 
 export default function Home() {
   const [reviews, setReviews] = useState([]);
