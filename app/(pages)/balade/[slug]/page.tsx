@@ -17,7 +17,7 @@ import 'swiper/css/thumbs';
 import { FreeMode, Thumbs } from 'swiper';
 import type { Swiper as S } from 'swiper';
 import React from 'react';
-import Loader from '../../../../ui/molecules/Loader/Loader';
+import Loader from '../../../../ui/molecules/Loader/LoaderReviews';
 import LoaderWalk from '../../../../ui/molecules/Loader/LoaderWalk';
 
 export default function Page({
@@ -74,11 +74,7 @@ export default function Page({
 
   return (
     <main className='font-sans'>
-
-              <div className='container mx-auto pt-10'>
-                {dogWalk.length === 0 && <LoaderWalk />}
-              </div>
-              
+      {dogWalk.length === 0 && <LoaderWalk />}
 
       <section className='container mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
         <div className='w-11/12 mx-auto md:m-0 md:w-1/2'>

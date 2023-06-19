@@ -1,29 +1,29 @@
 import React, { useId } from 'react';
-import ContentLoader from 'react-content-loader';
 
 function LoaderWalk() {
-    return ( 
-        <ContentLoader 
-        speed={2}
-        width={'100%'}
-        height={'100%'}
-        viewBox="0 0 1530 400"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-        uniqueKey={useId()}
-      >
-            <rect x="0" y="0" rx="2" ry="2" width="750" height="600" /> 
-
-            <rect x="900" y="30" rx="3" ry="3" width="450" height="6" /> 
-            <rect x="900" y="50" rx="3" ry="3" width="350" height="6" />
-            <rect x="900" y="70" rx="3" ry="3" width="380" height="6" />
-            <rect x="900" y="90" rx="3" ry="3" width="400" height="6" />
-            <rect x="900" y="110" rx="3" ry="3" width="350" height="6" />
-            <rect x="900" y="130" rx="3" ry="3" width="380" height="6" />
-            <rect x="900" y="150" rx="3" ry="3" width="400" height="6" />
-
-      </ContentLoader>
-     );
+  return (
+    <div className='container w-11/12 mx-auto flex flex-col md:flex-row md:space-x-10 pt-10 animate-pulse'>
+      <div className='flex-1 space-y-6 py-1'>
+        <div className='h-72 md:h-96 bg-slate-300 rounded'></div>
+      </div>
+      <div className='flex-1 py-1'>
+        <div className='space-y-3'>
+          <div className='grid grid-cols-3 gap-4'>
+            <div className='h-2 bg-slate-300 rounded col-span-2'></div>
+            <div className='h-2 bg-slate-300 rounded col-span-1'></div>
+          </div>
+          <div className='h-2 bg-slate-300 rounded'></div>
+          <div className='grid grid-cols-3 gap-4'>
+            <div className='h-2 bg-slate-300 rounded col-span-2'></div>
+            <div className='h-2 bg-slate-300 rounded col-span-1'></div>
+          </div>
+          <div className='h-2 bg-slate-300 rounded'></div>
+          <div className='h-2 bg-slate-300 rounded'></div>
+          <div className='h-2 bg-slate-300 rounded'></div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default LoaderWalk;

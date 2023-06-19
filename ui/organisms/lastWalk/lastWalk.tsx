@@ -7,7 +7,8 @@ import { useEffect, useId, useState } from 'react';
 import Link from 'next/link';
 import ContentLoader from 'react-content-loader';
 import React from 'react';
-import Loader from '../../molecules/Loader/Loader';
+import Loader from '../../molecules/Loader/LoaderReviews';
+import LoaderWalks from '../../molecules/Loader/LoaderWalks';
 
 function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
@@ -30,6 +31,8 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
         <section className='h-full w-11/12 mx-auto  pt-10 pb-10'>
           <LargeTitle title='Les dernières balades' />
           <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
+          {dogWalk.length === 0 && <LoaderWalks />}
+
             <Swiper
               slidesPerView={'auto'}
               spaceBetween={16}
@@ -55,8 +58,9 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
       ) : (
         <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
           <LargeTitle title='Les dernières balades' />
+
           <div className='container mx-auto mt-10 mb-10 flex flex-col flex-wrap justify-between md:flex-row'>
-          {dogWalk.length === 0 && <Loader />}
+          {dogWalk.length === 0 && <LoaderWalks />}
             {dogWalk.slice(0, 4).map((dogWalk: any) => (
               <CardWalk
                 key={dogWalk.id}
