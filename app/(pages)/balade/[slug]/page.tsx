@@ -76,7 +76,7 @@ export default function Page({
     <main className='font-sans'>
 
               <div className='container mx-auto pt-10'>
-                {dogWalk.length !== 0 && <LoaderWalk />}
+                {dogWalk.length === 0 && <LoaderWalk />}
               </div>
               
 
