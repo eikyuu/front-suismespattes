@@ -3,11 +3,9 @@ import CardWalk from '../../molecules/cardWalk/cardWalk';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import ContentLoader from 'react-content-loader';
 import React from 'react';
-import Loader from '../../molecules/Loader/LoaderReviews';
 import LoaderWalks from '../../molecules/Loader/LoaderWalks';
 
 function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
