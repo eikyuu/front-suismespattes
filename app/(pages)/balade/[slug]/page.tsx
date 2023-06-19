@@ -62,7 +62,7 @@ export default function Page({
       case 4:
         return 'Positif';
       case 5:
-        return 'Trés positif';
+        return 'Trés positif !';
       default:
         return 'Neutre';
     }
@@ -131,24 +131,29 @@ export default function Page({
               <p className='mt-4 mb-4'>{dogWalk.description}</p>
               <p className='mt-4 mb-4'>
                 &#11088;
-                <span className='ml-2 font-bold'>5</span>/5{' '}
-                <span className='font-bold'>Trés positifs !</span>
+                <span className='ml-2 font-bold'>{dogWalk.note}</span>/5{' '}
+                <span className='font-bold'>{handleNote(dogWalk.note)}</span>
               </p>
               <p className='mt-4 mb-4'>
                 &#x25AE; A 20km de votre position actuelle
               </p>
               <p>
-                Point deau buvable pour les chiens :{' '}
+                Point deau buvable pour les chiens :
                 <span className='font-bold'>
-                  {dogWalk.water_point ? 'Oui' : 'Non'}
+                  {dogWalk.water_point ? ' Oui' : ' Non'}
                 </span>
               </p>
               <p className='mt-4 mb-4'>
-                Laisse obligatoire :{' '}
+                Laisse obligatoire :
                 <span className='font-bold'>
-                  {dogWalk.obligatory_leash ? 'Oui' : 'Non'}
+                  {dogWalk.obligatory_leash ? ' Oui' : ' Non'}
                 </span>
               </p>
+              {dogWalk.cyanobacteria_alert && (
+                <p className='mt-4 mb-4 text-red-600 uppercase'>
+                 &#9888; Présence de cyanobactéries !
+                </p>
+              )}
             </div>
           ))}
         </div>
