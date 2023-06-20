@@ -11,12 +11,8 @@ interface DogWalk {
   note: number;
 }
 
-function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
+function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [number, number] }) {
   const [selectedWalk, setSelectedWalk] = useState<DogWalk | null>(null);
-
-  const [coordinates, setCoordinates] = useState<[number, number]>([
-    47.35371061951363, 0.6866455078125001,
-  ]);
 
   const createGeoJson = (longitude: number, latitude: number) => {
     return {
@@ -40,38 +36,14 @@ function MapWalk({ dogWalk }: { dogWalk: DogWalk[] }) {
     };
   };
 
-  useEffect(() => {
-    const watchId = navigator.geolocation.watchPosition(
-      (position) => {
-        setCoordinates([position.coords.latitude, position.coords.longitude]);
-      },
-      (error) => {
-        console.log(error);
-      },
-      { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
-    );
-    return () => {
-      navigator.geolocation.clearWatch(watchId);
-    };
-  }, []);
 
-  const geoJsonSample = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: { type: 'Point', coordinates: [2.0, 48.5] },
-        properties: { prop0: 'value0' },
-      },
-    ],
-  };
 
   return (
     <React.Fragment>
       <Map
         height={500}
         defaultCenter={[47.38905261221537, 0.6883621215820312]}
-        center={coordinates}
+        center={coordinates ? coordinates : dogWalk[0] ? [dogWalk[0].latitude, dogWalk[0].longitude] : [47.38905261221537, 0.6883621215820312]}
         defaultZoom={12}
         onClick={() => {
           setSelectedWalk(null);

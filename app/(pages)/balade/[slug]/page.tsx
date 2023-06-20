@@ -162,7 +162,7 @@ export default function Page({
       <Reviews reviews={reviews} />
 
       <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
-        <MapWalk dogWalk={dogWalk} />
+        <MapWalk dogWalk={dogWalkFiltered} />
       </div>
     </main>
   );

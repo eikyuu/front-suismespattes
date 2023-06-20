@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Presentation from '../../ui/organisms/presentation/presentation';
 import Reviews from '../../ui/molecules/reviews/reviews';
 import { useFetchData } from '../../@core/hooks/useFetchData';
@@ -12,6 +12,26 @@ import MapWalk from '../../ui/molecules/mapWalk/mapWalk';
 export default function Home() {
   const [reviews, setReviews] = useState([]);
   const [dogWalk, setDogWalk] = useState([]);
+
+  const [coordinates, setCoordinates] = useState<[number, number]>([
+    47.35371061951363, 0.6866455078125001,
+  ]);
+
+  useEffect(() => {
+    console.log('useEffect');
+    const watchId = navigator.geolocation.watchPosition(
+      (position) => {
+        setCoordinates([position.coords.latitude, position.coords.longitude]);
+      },
+      (error) => {
+        console.log(error);
+      },
+      { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
+    );
+    return () => {
+      navigator.geolocation.clearWatch(watchId);
+    };
+  }, []);
 
   useFetchData(
     'https://my-json-server.typicode.com/eikyuu/db/review',
@@ -35,7 +55,7 @@ export default function Home() {
           color='text-white'
         />
         <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
-          <MapWalk dogWalk={dogWalk} />
+          <MapWalk dogWalk={dogWalk} coordinates={coordinates} />
         </div>
       </section>
     </main>
