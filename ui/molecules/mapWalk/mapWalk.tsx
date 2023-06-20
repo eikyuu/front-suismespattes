@@ -9,6 +9,7 @@ interface DogWalk {
   latitude: number;
   city: string;
   note: number;
+  slug: string;
 }
 
 function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [number, number] }) {
@@ -68,7 +69,7 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
             offset={[120, 79]}
           >
             <Link
-              href='#'
+              href={`/balade/${selectedWalk.slug}`}
               className='block relative top-9 left-4 bg-white rounded-lg border-1 border-black p-1 shadow-md	'
             >
               <p>{selectedWalk.name}</p>
