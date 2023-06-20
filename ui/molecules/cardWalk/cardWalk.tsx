@@ -3,6 +3,7 @@ import banner from '../../../public/images/banner.jpg';
 import TextBold from '../../atoms/textBold/textBold';
 import Link from 'next/link';
 import TextGray from '../../atoms/textGray/textGray';
+import Button from '../../atoms/button/button';
 function CardWalk({
   city,
   description,
@@ -24,7 +25,7 @@ function CardWalk({
     >
       <picture className='mb-4'>
         <Image
-          className='h-56 rounded-xl object-cover'
+          className='h-56 rounded-lg object-cover'
           src={banner}
           alt='banner'
           placeholder='blur'
@@ -36,9 +37,7 @@ function CardWalk({
       <div className='mb-4'>
         <TextGray text={elipsis(description)} />
       </div>
-      <button className='w-max p-2 bg-primary text-white rounded-lg'>
-        Découvrir
-      </button>
+      <Button text='Découvrir' />
     </Link>
   );
 }

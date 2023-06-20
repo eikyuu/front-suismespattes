@@ -94,7 +94,7 @@ export default function Page({
             {dogWalk.map((dogWalk: any) => (
               <SwiperSlide key={dogWalk.id}>
                 <Image
-                  className='rounded-xl object-cover'
+                  className='rounded-lg object-cover'
                   src={banner}
                   alt='banner'
                   placeholder='blur'
@@ -115,7 +115,7 @@ export default function Page({
             {dogWalk.map((dogWalk: any) => (
               <SwiperSlide key={dogWalk.id}>
                 <Image
-                  className='rounded-xl object-cover'
+                  className='rounded-lg object-cover'
                   src={banner}
                   alt='banner'
                   placeholder='blur'
@@ -131,21 +131,21 @@ export default function Page({
               <p className='mt-4 mb-4'>{dogWalk.description}</p>
               <p className='mt-4 mb-4'>
                 &#11088;
-                <span className='ml-2 font-bold'>{dogWalk.note}</span>/5{' '}
-                <span className='font-bold'>{handleNote(dogWalk.note)}</span>
+                <span className='ml-2 font-semibold'>{dogWalk.note}</span>/5{' '}
+                <span className='font-semibold'>{handleNote(dogWalk.note)}</span>
               </p>
               <p className='mt-4 mb-4'>
                 &#x25AE; A 20km de votre position actuelle
               </p>
               <p>
                 Point deau buvable pour les chiens :
-                <span className='font-bold'>
+                <span className='font-semibold'>
                   {dogWalk.water_point ? ' Oui' : ' Non'}
                 </span>
               </p>
               <p className='mt-4 mb-4'>
                 Laisse obligatoire :
-                <span className='font-bold'>
+                <span className='font-semibold'>
                   {dogWalk.obligatory_leash ? ' Oui' : ' Non'}
                 </span>
               </p>

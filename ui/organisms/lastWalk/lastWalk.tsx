@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import React from 'react';
 import LoaderWalks from '../../molecules/Loader/LoaderWalks';
+import Button from '../../atoms/button/button';
 
 function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
@@ -48,9 +49,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
             </Swiper>
           </div>
           <Link className='block text-center mt-4' href='/toutes-les-balades'>
-            <button className='text-white bg-primary rounded-lg w-auto p-2'>
-              Voir toutes les balades
-            </button>
+          <Button text='Voir toutes les balades' />
           </Link>
         </section>
       ) : (
@@ -69,9 +68,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
             ))}
           </div>
           <Link className='block text-center' href='/toutes-les-balades'>
-            <button className='text-white bg-primary rounded-lg w-auto p-2'>
-              Voir toutes les balades
-            </button>
+          <Button text='Voir toutes les balades' />
           </Link>
         </section>
       )}
