@@ -16,7 +16,7 @@ function PageWalk() {
 
 // filtered dogWalk by value of input search with debounce
   const filteredDogWalk = dogWalk.filter((walk: { city: string, name: string }) => {
-    return walk.city.toLowerCase().includes(search.toLowerCase()) || walk.name.toLowerCase().includes(search.toLowerCase());
+    return walk.city.toLowerCase().includes(search.toLowerCase());
   });
 
   const handleSearch = (value: string) => {
@@ -48,7 +48,7 @@ function PageWalk() {
           type='text'
           id='search-navbar'
           className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          placeholder='Trouve une balade...'
+          placeholder='Trouve une balade par ville'
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
         />
