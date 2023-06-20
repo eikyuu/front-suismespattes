@@ -5,10 +5,23 @@ import LargeTitle from '../../atoms/largeTitle/largeTitle';
 import CardWalk from '../../molecules/cardWalk/cardWalk';
 import React from 'react';
 import LoaderWalks from '../../molecules/Loader/LoaderWalks';
+
+
 const API_ENDPOINT = 'https://my-json-server.typicode.com/eikyuu/db/dogWalk';
 function PageWalk() {
   const [dogWalk, setDogWalk] = useState([]);
+  const [search, setSearch] = useState("");
+
   useFetchData(API_ENDPOINT, setDogWalk);
+
+// filtered dogWalk by value of input search with debounce
+  const filteredDogWalk = dogWalk.filter((walk: { city: string, name: string }) => {
+    return walk.city.toLowerCase().includes(search.toLowerCase()) || walk.name.toLowerCase().includes(search.toLowerCase());
+  });
+
+  const handleSearch = (value: string) => {
+    setSearch(value);
+  };
 
   return (
     <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
@@ -35,13 +48,15 @@ function PageWalk() {
           type='text'
           id='search-navbar'
           className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-          placeholder='Rechercher une balade...'
+          placeholder='Trouve une balade...'
+          value={search}
+          onChange={(e) => handleSearch(e.target.value)}
         />
       </div>
 
       <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
-        {dogWalk.length === 0 && <LoaderWalks />}
-        {dogWalk.map(
+        {filteredDogWalk.length === 0 && <LoaderWalks />}
+        {filteredDogWalk.map(
           (walk: {
             id: number;
             city: string;
@@ -61,3 +76,7 @@ function PageWalk() {
   );
 }
 export default PageWalk;
+function debounce(arg0: (value: any) => void, arg1: number) {
+  throw new Error('Function not implemented.');
+}
+
