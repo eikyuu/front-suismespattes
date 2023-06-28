@@ -62,12 +62,14 @@ function PageWalk() {
             city: string;
             description: string;
             slug: string;
+            images: { name: string }[];
           }) => (
             <CardWalk
               key={walk.id}
               city={walk.city}
               description={walk.description}
               slug={walk.slug}
+              imageName={walk.images[0].name}
             />
           )
         )}
