@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import banner from '../../../public/images/banner.jpg';
 import TextBold from '../../atoms/textBold/textBold';
 import Link from 'next/link';
 import TextGray from '../../atoms/textGray/textGray';
@@ -8,10 +7,12 @@ function CardWalk({
   city,
   description,
   slug,
+  imageName,
 }: {
   city: string;
   description: string;
   slug: string;
+  imageName: string;
 }): JSX.Element {
   const elipsis = (text: string) => {
     return text.length > 100 ? text.slice(0, 100) + '...' : text;
@@ -25,10 +26,11 @@ function CardWalk({
     >
       <picture className='mb-4'>
         <Image
-          className='h-56 rounded-lg object-cover'
-          src={banner}
-          alt='banner'
-          placeholder='blur'
+          className='h-56 w-full rounded-lg object-cover'
+          src={`${process.env.NEXT_PUBLIC_API_URL}${imageName}`}
+          width={500}
+          height={500}
+          alt='Picture of the author'
         />
       </picture>
       <div className='mb-4'>

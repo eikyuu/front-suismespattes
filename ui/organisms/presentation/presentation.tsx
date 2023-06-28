@@ -17,21 +17,21 @@ function Presentation() {
             title='Partage tes balades'
             text='Tu as trouvé une super balade ? Partage-la avec la communauté ! Tu peux aussi noter les balades que tu as faites.'
           />
-          <p>Porchainent</p>
+          <p>Prochainement</p>
         </div>
         <div className='flex flex-col md:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
           <Card
             title='Organise tes balades avec tes amis'
             text='Tu peux créer un groupe avec tes amis et organiser des balades ensemble.'
           />
-          <p>Porchainent</p>
+          <p>Prochainement</p>
         </div>
         <div className='flex flex-col md:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
           <Card
             title='La boutique'
             text='Nous choisissons les meilleurs produits pour vous et votre chien et nous les listons en un seul endroit : dans notre boutique.'
           />
-          <p>Porchainent</p>
+          <p>Prochainement</p>
         </div>
       </div>
     </section>

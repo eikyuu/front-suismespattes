@@ -6,19 +6,15 @@ import Reviews from '../../ui/molecules/reviews/reviews';
 import { useFetchData } from '../../@core/hooks/useFetchData';
 import LastWalk from '../../ui/organisms/lastWalk/lastWalk';
 import 'leaflet/dist/leaflet.css';
-import MediumTitle from '../../ui/atoms/mediumTitle/mediumTitle';
-import MapWalk from '../../ui/molecules/mapWalk/mapWalk';
+import WalkMap from '../../ui/organisms/walkMap/walkMap';
 
 export default function Home() {
-  const [reviews, setReviews] = useState([]);
   const [dogWalk, setDogWalk] = useState([]);
-
   const [coordinates, setCoordinates] = useState<[number, number]>([
     47.35371061951363, 0.6866455078125001,
   ]);
 
   useEffect(() => {
-    console.log('useEffect');
     const watchId = navigator.geolocation.watchPosition(
       (position) => {
         setCoordinates([position.coords.latitude, position.coords.longitude]);
@@ -34,30 +30,38 @@ export default function Home() {
   }, []);
 
   useFetchData(
-    'https://my-json-server.typicode.com/eikyuu/db/review',
-    setReviews
-  );
-
-  useFetchData(
-    'https://my-json-server.typicode.com/eikyuu/db/dogWalk',
+    'walks',
     setDogWalk
   );
+
+  const reviews = [
+    {
+      id : 1,
+      name: 'Julie',
+      content:
+        'Une application qui m\'a permis de faire de belles sorties avec mon chien !',
+      image: 'https://randomuser.me/api/portraits/women/70.jpg',
+    },
+    {
+      id : 2,
+      name: 'Arielle',
+      content: 'Nouvelle sur l\'application, j\'ai hâte de decouvrir de nouvelles balades !',
+      image: 'https://randomuser.me/api/portraits/women/82.jpg'
+    },
+    {
+      id : 3,
+      name: 'John',
+      content: 'Super application, je recommande ! De belles balades à faire !',
+      image: 'https://randomuser.me/api/portraits/men/72.jpg'
+    },
+  ];
 
   return (
     <main className='font-sans'>
       <Presentation />
       <Reviews reviews={reviews} />
       <LastWalk dogWalk={dogWalk} />
-
-      <section className='bg-primary h-full mx-auto pt-10 pb-10 flex flex-col md:justify-evenly'>
-        <MediumTitle
-          title='Lorem Ipsum dolor sit amet, consecterur adpiscl ekt porin.'
-          color='text-white'
-        />
-        <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
-          <MapWalk dogWalk={dogWalk} coordinates={coordinates} />
-        </div>
-      </section>
+      <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
     </main>
   );
 }

@@ -1,5 +1,6 @@
 import Banner from '../ui/atoms/banner/banner';
 import ContentNavigation from '../ui/molecules/contentNavigation/contentNavigation';
+import Footer from '../ui/molecules/footer/footer';
 import './globals.css';
 import { Inter } from 'next/font/google';
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <ContentNavigation />
         <Banner />
         {children}
+        <Footer />
       </body>
     </html>
   );

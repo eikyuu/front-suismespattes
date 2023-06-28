@@ -37,8 +37,6 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
     };
   };
 
-
-
   return (
     <React.Fragment>
       <Map

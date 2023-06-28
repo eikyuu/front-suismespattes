@@ -7,7 +7,7 @@ import React from 'react';
 import LoaderWalks from '../../molecules/Loader/LoaderWalks';
 
 
-const API_ENDPOINT = 'https://my-json-server.typicode.com/eikyuu/db/dogWalk';
+const API_ENDPOINT = 'https://au-fil-des-pattes.up.railway.app/walks';
 function PageWalk() {
   const [dogWalk, setDogWalk] = useState([]);
   const [search, setSearch] = useState("");
@@ -76,7 +76,3 @@ function PageWalk() {
   );
 }
 export default PageWalk;
-function debounce(arg0: (value: any) => void, arg1: number) {
-  throw new Error('Function not implemented.');
-}
-
