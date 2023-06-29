@@ -59,8 +59,14 @@ export default function Home() {
     <main className='font-sans'>
       <Presentation />
       <Reviews reviews={reviews} />
-      <LastWalk dogWalk={dogWalk} />
-      <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
+
+      {dogWalk && coordinates &&
+      <>
+        <LastWalk dogWalk={dogWalk} />
+        <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
+      </>
+      }
+
     </main>
   );
 }
