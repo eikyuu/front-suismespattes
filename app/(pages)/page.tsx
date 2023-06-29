@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import WalkMap from '../../ui/organisms/walkMap/walkMap';
 
 export default function Home() {
-  const [dogWalk, setDogWalk] = useState([]);
+  const [dogWalk, setDogWalk] = useState<any>([]);
   const [coordinates, setCoordinates] = useState<any>();
 
   useEffect(() => {
@@ -58,6 +58,7 @@ export default function Home() {
   return (
     <main className='font-sans'>
       <Presentation />
+    <p>{dogWalk[0]?.city}</p>
       <Reviews reviews={reviews} />
       <LastWalk dogWalk={dogWalk} />
       <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
