@@ -22,9 +22,9 @@ function CardWalk({
     <Link
       href={`balade/${slug}`}
       prefetch={true}
-      className='flex flex-col justify-between w-auto mb-4 xs:last:mb-0 md:w-72 lg:w-52 xl:w-72'
+      className='flex flex-col justify-between w-auto mb-4 xs:last:mb-0 md:w-72 lg:w-52 xl:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
-      <picture className='mb-4'>
+      <picture className='mb-4'>    
         <Image
           className='h-56 w-full rounded-lg object-cover'
           src={`${process.env.NEXT_PUBLIC_API_URL}${imageName}`}

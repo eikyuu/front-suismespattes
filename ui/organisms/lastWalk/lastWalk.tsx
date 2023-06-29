@@ -46,9 +46,11 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
               ))}
             </Swiper>
           </div>
-          <Link className='block text-center mt-4' href='/toutes-les-balades'>
-          <Button text='Voir toutes les balades' />
-          </Link>
+          <div className='text-center'>
+            <Link className='outline-none' href='/toutes-les-balades'>
+              <Button text='Voir toutes les balades' />
+            </Link>
+          </div>
         </section>
       ) : (
         <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
@@ -65,9 +67,11 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
               />
             ))}
           </div>
-          <Link className='block text-center' href='/toutes-les-balades'>
-          <Button text='Voir toutes les balades' />
-          </Link>
+          <div className='text-center'>
+            <Link className='outline-none' href='/toutes-les-balades'>
+              <Button text='Voir toutes les balades' />
+            </Link>
+          </div>
         </section>
       )}
     </>

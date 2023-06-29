@@ -6,7 +6,7 @@ function Banner() {
   return (
     <Link href='/' prefetch={false}>
       <Image
-        className='w-full h-1/2 object-cover md:h-96 lg:h-1/2 xl:h-160'
+        className='w-full h-1/2 object-cover md:h-96 lg:h-1/2 xl:h-160 '
         src={banner}
         alt='banner'
         placeholder='blur'

@@ -10,10 +10,12 @@ module.exports = {
     extend: {
       colors: {
         primary: '#0C8892',
-        secondary: '#26B6B5',
+        secondary: '#096975',
+        tertiary: '#0badba',
         white: '#FEFEFF',
         black: '#000000',
         bgray: '#AAA5A4',
+
       },
       height: {
         '84': '21rem',

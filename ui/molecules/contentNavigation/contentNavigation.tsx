@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import LiNav from '../../atoms/liNav/liNav';
 
 function ContentNavigation() {
   const handleMenuClick = () => {
@@ -17,7 +18,7 @@ function ContentNavigation() {
   return (
     <nav className='bg-white border-gray-200 dark:bg-gray-900'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-        <Link href='/' className='flex items-center'>
+        <Link href='/' className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'>
           <span className='self-center text-primary text-2xl font-semibold whitespace-nowrap dark:text-white'>
             Au fil des pattes
           </span>
@@ -29,7 +30,7 @@ function ContentNavigation() {
             data-collapse-toggle='navbar-search'
             aria-controls='navbar-search'
             aria-expanded='false'
-            className='md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1'
+            className='md:hidden text-gray-500 hover:bg-gray-100 rounded-lg text-sm p-2.5 mr-1 focus:ring-4 focus:ring-tertiary focus:outline-none'
           >
             <svg
               className='w-5 h-5'
@@ -66,8 +67,8 @@ function ContentNavigation() {
             <input
               type='text'
               id='search-navbar'
-              className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-              placeholder='Search...'
+              className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-tertiary focus:outline-none'
+              placeholder='Trouve une balade par ville...'
             />
           </div>
 
@@ -118,52 +119,16 @@ function ContentNavigation() {
             <input
               type='text'
               id='search-navbar'
-              className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-tertiary focus:outline-none '
               placeholder='Trouve une balade par ville'
             />
           </div>
-          <ul className='flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
-            <li>
-              <Link
-                href='#'
-                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-                aria-current='page'
-              >
-                Accueil
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='/toutes-les-balades'
-                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-              >
-                Toutes les balades
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-              >
-                A propos
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-              >
-                Boutique
-              </Link>
-            </li>
-            <li>
-              <Link
-                href='#'
-                className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-primary md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700'
-              >
-                Contact
-              </Link>
-            </li>
+          <ul className='flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
+            <LiNav text='Accueil' href='/' />
+            <LiNav text='Toutes les balades' href='/toutes-les-balades' />
+            <LiNav text='A propos' href='#' />
+            <LiNav text='Boutique' href='#' />
+            <LiNav text='Contact' href='#' />
           </ul>
         </div>
       </div>

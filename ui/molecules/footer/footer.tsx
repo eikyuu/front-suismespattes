@@ -1,13 +1,12 @@
 import Link from 'next/link';
-import SmallTitle from '../../atoms/smallTitle/smallTitle';
-import Image from 'next/image';
+import LinkOutline from '../../atoms/linkOutline';
 
 function Footer() {
     return ( 
         <footer className='bg-white dark:bg-gray-900'>
         <div className='mx-auto container p-4 py-6 lg:py-8'>
-          <div className='md:flex md:justify-between'>
-            {/* <div className='mb-6 md:mb-0'>
+          {/* <div className='md:flex md:justify-between'>
+            <div className='mb-6 md:mb-0'>
               <Link href='https://flowbite.com/' className='flex items-center'>
                 <Image
                   src='https://flowbite.com/docs/images/logo.svg'
@@ -20,7 +19,7 @@ function Footer() {
                   Flowbite
                 </span>
               </Link>
-            </div> */}
+            </div>
             <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
               <div>
                 <SmallTitle title='Ressources' />
@@ -80,14 +79,12 @@ function Footer() {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
           <hr className='my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8' />
           <div className='sm:flex sm:items-center sm:justify-between'>
             <span className='text-sm text-gray-500 sm:text-center dark:text-gray-400'>
-              © 2023{' '}
-              <Link href='https://flowbite.com/' className='hover:underline'>
-                Au fil des pattes™
-              </Link>
+              © 2023
+              <LinkOutline href='https://flowbite.com/' text='Au fil des pattes™'/>
               . All Rights Reserved.
             </span>
             <div className='flex mt-4 space-x-6 sm:justify-center sm:mt-0'>
