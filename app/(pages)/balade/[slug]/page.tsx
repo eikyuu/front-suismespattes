@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useFetchData } from '../../../../@core/hooks/useFetchData';
 import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
-import MapWalk from '../../../../ui/molecules/mapWalk/mapWalk';
-import Reviews from '../../../../ui/molecules/reviews/reviews';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 

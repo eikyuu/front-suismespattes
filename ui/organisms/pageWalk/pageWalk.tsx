@@ -1,18 +1,16 @@
 'use client';
-import { useId, useState } from 'react';
+import { useState } from 'react';
 import { useFetchData } from '../../../@core/hooks/useFetchData';
 import LargeTitle from '../../atoms/largeTitle/largeTitle';
 import CardWalk from '../../molecules/cardWalk/cardWalk';
 import React from 'react';
 import LoaderWalks from '../../molecules/Loader/LoaderWalks';
 
-
-const API_ENDPOINT = 'https://au-fil-des-pattes.up.railway.app/walks';
 function PageWalk() {
   const [dogWalk, setDogWalk] = useState([]);
   const [search, setSearch] = useState("");
 
-  useFetchData(API_ENDPOINT, setDogWalk);
+  useFetchData('walks', setDogWalk);
 
 // filtered dogWalk by value of input search with debounce
   const filteredDogWalk = dogWalk.filter((walk: { city: string, name: string }) => {
@@ -69,7 +67,7 @@ function PageWalk() {
               city={walk.city}
               description={walk.description}
               slug={walk.slug}
-              imageName={walk.images[0].name}
+              imageName={walk.images[0]?.name}
             />
           )
         )}

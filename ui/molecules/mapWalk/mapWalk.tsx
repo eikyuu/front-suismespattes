@@ -41,8 +41,8 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
     <React.Fragment>
       <Map
         height={500}
-        defaultCenter={[47.38905261221537, 0.6883621215820312]}
-        center={coordinates ? coordinates : dogWalk[0] ? [dogWalk[0].latitude, dogWalk[0].longitude] : [47.38905261221537, 0.6883621215820312]}
+       // defaultCenter={[47.38905261221537, 0.6883621215820312]}
+        center={coordinates}
         defaultZoom={12}
         onClick={() => {
           setSelectedWalk(null);

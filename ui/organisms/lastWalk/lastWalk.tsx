@@ -40,7 +40,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
                     city={dogWalk.city}
                     description={dogWalk.description}
                     slug={dogWalk.slug}
-                    imageName={dogWalk.images[0].name}
+                    imageName={dogWalk.images[0]?.name}
                   />
                 </SwiperSlide>
               ))}
@@ -61,7 +61,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
                 city={dogWalk.city}
                 description={dogWalk.description}
                 slug={dogWalk.slug}
-                imageName={dogWalk.images[0].name}
+                imageName={dogWalk.images[0]?.name}
               />
             ))}
           </div>

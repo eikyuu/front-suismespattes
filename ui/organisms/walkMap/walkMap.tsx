@@ -9,7 +9,7 @@ function WalkMap({ dogWalk, coordinates, title }: { dogWalk: any; coordinates: a
         color='text-white'
       />
       <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
-        <MapWalk dogWalk={dogWalk} coordinates={coordinates} />
+        <MapWalk dogWalk={dogWalk} coordinates={coordinates}/>
       </div>
     </section>
   );

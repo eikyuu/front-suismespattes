@@ -7,12 +7,11 @@ import { useFetchData } from '../../@core/hooks/useFetchData';
 import LastWalk from '../../ui/organisms/lastWalk/lastWalk';
 import 'leaflet/dist/leaflet.css';
 import WalkMap from '../../ui/organisms/walkMap/walkMap';
+import { set } from 'lodash';
 
 export default function Home() {
   const [dogWalk, setDogWalk] = useState([]);
-  const [coordinates, setCoordinates] = useState<[number, number]>([
-    47.35371061951363, 0.6866455078125001,
-  ]);
+  const [coordinates, setCoordinates] = useState<any>();
 
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -21,6 +20,7 @@ export default function Home() {
       },
       (error) => {
         console.log(error);
+        setCoordinates([47.38905261221537, 0.6883621215820312]);
       },
       { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }
     );
