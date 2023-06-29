@@ -58,7 +58,6 @@ export default function Home() {
   return (
     <main className='font-sans'>
       <Presentation />
-    <p>{dogWalk[0]?.city}</p>
       <Reviews reviews={reviews} />
       <LastWalk dogWalk={dogWalk} />
       <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
