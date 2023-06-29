@@ -7,7 +7,6 @@ import { useFetchData } from '../../@core/hooks/useFetchData';
 import LastWalk from '../../ui/organisms/lastWalk/lastWalk';
 import 'leaflet/dist/leaflet.css';
 import WalkMap from '../../ui/organisms/walkMap/walkMap';
-import { set } from 'lodash';
 
 export default function Home() {
   const [dogWalk, setDogWalk] = useState([]);

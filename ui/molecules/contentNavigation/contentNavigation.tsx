@@ -16,10 +16,10 @@ function ContentNavigation() {
   };
 
   return (
-    <nav className='bg-white border-gray-200 dark:bg-gray-900'>
+    <nav className='bg-white border-gray-200'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
         <Link href='/' className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'>
-          <span className='self-center text-primary text-2xl font-semibold whitespace-nowrap dark:text-white'>
+          <span className='self-center text-primary text-2xl font-semibold whitespace-nowrap'>
             Au fil des pattes
           </span>
         </Link>
@@ -76,7 +76,7 @@ function ContentNavigation() {
             onClick={handleMenuClick}
             data-collapse-toggle='navbar-search'
             type='button'
-            className='inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
+            className='inline-flex items-center p-2 text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
             aria-controls='navbar-search'
             aria-expanded='false'
           >
