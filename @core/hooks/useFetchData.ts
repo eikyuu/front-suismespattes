@@ -10,7 +10,6 @@ import { useCallback, useEffect } from 'react';
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
-      console.log(data);
       setState(data);
     } catch (error) {
       console.log(error);
