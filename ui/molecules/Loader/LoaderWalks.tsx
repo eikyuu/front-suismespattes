@@ -2,7 +2,7 @@ import React, { useId } from 'react';
 
 function LoaderWalks() {
   return (
-    <div className='container mx-auto flex flex-col space-y-3 md:space-y-0 md:flex-row justify-between animate-pulse'>
+    <div className='container mx-auto flex flex-col flex-wrap space-y-3 md:space-y-0 md:flex-row justify-between animate-pulse'>
 
       <div className='flex flex-col space-y-3'>
         <div className="rounded-lg bg-slate-300 h-40 w-full md:w-60"></div>
