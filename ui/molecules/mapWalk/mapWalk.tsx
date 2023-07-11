@@ -68,6 +68,7 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
           >
             <Link
               href={`/balade/${selectedWalk.slug}`}
+               
               className='block relative top-9 left-4 bg-white rounded-lg border-1 border-black p-1 shadow-md	'
             >
               <p>{selectedWalk.name}</p>

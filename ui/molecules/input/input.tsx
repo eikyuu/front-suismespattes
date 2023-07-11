@@ -28,6 +28,7 @@ function Input({
         onChange={handleChange}
         value={value}
         required={required}
+        aria-describedby={`pour ${label}`}
       />
       {error && <p className='text-red-500'>{error}</p>}
     </>

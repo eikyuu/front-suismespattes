@@ -45,7 +45,7 @@ function ContentNavigation() {
                 clipRule='evenodd'
               ></path>
             </svg>
-            <span className='sr-only'>Search</span>
+            <span className='sr-only'>Recherche</span>
           </button>
           <div className='relative hidden md:block'>
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
@@ -62,7 +62,7 @@ function ContentNavigation() {
                   clipRule='evenodd'
                 ></path>
               </svg>
-              <span className='sr-only'>Search icon</span>
+              <span className='sr-only'>Icon recherche</span>
             </div>
             <input
               type='text'
@@ -80,7 +80,7 @@ function ContentNavigation() {
             aria-controls='navbar-search'
             aria-expanded='false'
           >
-            <span className='sr-only'>Open menu</span>
+            <span className='sr-only'>Menu ouvert</span>
             <svg
               className='w-6 h-6'
               aria-hidden='true'

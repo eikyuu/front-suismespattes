@@ -7,7 +7,6 @@ import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
@@ -39,15 +38,6 @@ export default function Page({
     handleResize();
     window.addEventListener('resize', handleResize);
   }, [isMobile]);
-
-  const reviews = [
-    {
-      id: 1,
-      name: 'John Doe',
-      content:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam eu placerat ullamcorper, odio libero placera.',
-    },
-  ];
 
   const handleNote = (note: number) => {
     switch (note) {
@@ -135,12 +125,12 @@ export default function Page({
                     {handleNote(dogWalk.note)}
                   </span>
                 </p>
-                <p className='mt-4'>
+                {/* <p className='mt-4'>
                   &#x25AE; A 20km de votre position actuelle
-                </p>
+                </p> */}
                 <BlocTextWithspan
                   dogWalk={dogWalk.waterPoint}
-                  text='Point deau buvable pour les chiens :'
+                  text='Point d&#039;eau buvable pour les chiens :'
                 />
                 <BlocTextWithspan
                   dogWalk={dogWalk.obligatoryLeash}

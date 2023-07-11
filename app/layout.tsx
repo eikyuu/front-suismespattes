@@ -9,6 +9,11 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata = {
   title: 'Au fil des pattes',
   description: 'Des promenades sur mesure pour satisfaire tous les toutous!',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
@@ -17,9 +22,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
+    <html lang='fr'>
       <body suppressHydrationWarning={true} className={inter.className}>
-        <ContentNavigation />
+        <header>
+          <ContentNavigation />
+        </header>
         <Banner />
         {children}
         <Footer />

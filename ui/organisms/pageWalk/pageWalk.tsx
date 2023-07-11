@@ -23,7 +23,7 @@ function PageWalk() {
 
   return (
     <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
-      <LargeTitle title='Les dernieres balade' />
+      <LargeTitle title='Toutes les balades' />
 
       <div className='container relative block mt-10 mx-auto'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
