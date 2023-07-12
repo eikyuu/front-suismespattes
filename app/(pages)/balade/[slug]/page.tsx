@@ -80,7 +80,7 @@ export default function Page({
                 {dogWalk.images.map((dogWalk: any) => (
                   <SwiperSlide key={dogWalk.id}>
                     <Image
-                      className='rounded-lg object-cover'
+                      className='rounded-lg object-cover h-96'
                       src={`${process.env.NEXT_PUBLIC_API_URL}${dogWalk.name}`}
                       width={500}
                       height={500}
@@ -102,7 +102,7 @@ export default function Page({
                 {dogWalk.images.map((dogWalk: any) => (
                   <SwiperSlide key={dogWalk.id}>
                     <Image
-                      className='rounded-lg object-cover'
+                      className='rounded-lg object-cover h-36'
                       src={`${process.env.NEXT_PUBLIC_API_URL}${dogWalk.name}`}
                       width={500}
                       height={500}
