@@ -7,6 +7,7 @@ const nextConfig = {
       'localhost',
       'flowbite.com',
       'randomuser.me',
+      'aufildespattes-api.up.railway.app'
     ],
   },
   // next.config.js
