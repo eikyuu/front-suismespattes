@@ -32,7 +32,7 @@ export default function Page({
     window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
   };
 
-  useFetchData(`walk/${params.slug}`, setDogWalk);
+  useFetchData(`walks/${params.slug}`, setDogWalk);
 
   useEffect(() => {
     handleResize();
@@ -81,7 +81,7 @@ export default function Page({
                   <SwiperSlide key={dogWalk.id}>
                     <Image
                       className='rounded-lg object-cover h-96'
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${dogWalk.name}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       width={500}
                       height={500}
                       alt='Picture of the author'
@@ -103,7 +103,7 @@ export default function Page({
                   <SwiperSlide key={dogWalk.id}>
                     <Image
                       className='rounded-lg object-cover h-36'
-                      src={`${process.env.NEXT_PUBLIC_API_URL}${dogWalk.name}`}
+                      src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       width={500}
                       height={500}
                       alt='Picture of the author'

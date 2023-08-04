@@ -19,18 +19,18 @@ function Input({
 }) {
   return (
     <>
-      <label htmlFor={name}>{label}</label>
-      <input
-        type={type}
-        id={name}
-        name={name}
-        placeholder={placeholder}
-        onChange={handleChange}
-        value={value}
-        required={required}
-        aria-describedby={`pour ${label}`}
-      />
-      {error && <p className='text-red-500'>{error}</p>}
+        <input
+          type={type}
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          onChange={handleChange}
+          value={value}
+          required={required}
+          aria-describedby={`pour ${label}`}
+          className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+        />
+        {error && <p className='text-red-500'>{error}</p>}
     </>
   );
 }

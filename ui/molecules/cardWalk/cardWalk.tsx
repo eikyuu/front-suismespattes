@@ -27,7 +27,7 @@ function CardWalk({
       <picture className='mb-4'>    
         <Image
           className='h-56 w-full rounded-lg object-cover'
-          src={`${process.env.NEXT_PUBLIC_API_URL}${imageName}`}
+          src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`}
           width={500}
           height={500}
           alt='Picture of the author'
