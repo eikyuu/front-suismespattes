@@ -18,6 +18,7 @@ import LoaderWalk from '../../../../ui/molecules/Loader/LoaderWalk';
 import WalkMap from '../../../../ui/organisms/walkMap/walkMap';
 import BlocTextWithspan from '../../../../ui/atoms/blocTextWithSpan/ blocTextWithSpan';
 import TextAlert from '../../../../ui/atoms/textAlerte/textAlert';
+import ScrollUp from '../../../../@core/utils/scrollUp';
 
 export default function Page({
   params,
@@ -57,7 +58,8 @@ export default function Page({
   };
 
   return (
-    <main className='font-sans'>
+    <main className='font-sans h-full'>
+      <ScrollUp />
       {!dogWalk && <LoaderWalk />}
 
       {dogWalk && (
@@ -75,12 +77,12 @@ export default function Page({
                 spaceBetween={10}
                 thumbs={{ swiper: thumbsSwiper }}
                 modules={[FreeMode, Thumbs]}
-                className='mySwiper2'
+                className='mySwiper2 w-full'
               >
-                {dogWalk.images.map((dogWalk: any) => (
-                  <SwiperSlide key={dogWalk.id}>
+                {dogWalk && dogWalk.images.map((dogWalk: any) => (
+                  <SwiperSlide key={dogWalk.id} className='w-full' >
                     <Image
-                      className='rounded-lg object-cover h-96'
+                      className='rounded-lg object-cover h-96 w-full'
                       src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       width={500}
                       height={500}
@@ -91,7 +93,7 @@ export default function Page({
               </Swiper>
               <Swiper
                 onSwiper={setThumbsSwiper}
-                loop={true}
+                loop={false}
                 spaceBetween={10}
                 slidesPerView={4}
                 freeMode={true}
