@@ -82,7 +82,7 @@ export default function Page({
                 {dogWalk && dogWalk.images.map((dogWalk: any) => (
                   <SwiperSlide key={dogWalk.id} className='w-full' >
                     <Image
-                      className='rounded-lg object-cover h-96 w-full'
+                      className='rounded-lg object-cover h-144 w-full'
                       src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       width={500}
                       height={500}
@@ -101,7 +101,7 @@ export default function Page({
                 modules={[FreeMode, Thumbs]}
                 className='mySwiper mt-2'
               >
-                {dogWalk.images.map((dogWalk: any) => (
+                {dogWalk && dogWalk.images.map((dogWalk: any) => (
                   <SwiperSlide key={dogWalk.id}>
                     <Image
                       className='rounded-lg object-cover h-36'
