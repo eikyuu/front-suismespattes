@@ -21,7 +21,6 @@ function CardWalk({
   return (
     <Link
       href={`balade/${slug}`}
-       
       className='flex flex-col justify-between w-auto mb-4 xs:last:mb-0 md:w-72 lg:w-52 xl:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
       <picture className='mb-4'>    

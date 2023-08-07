@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       'au-fil-des-pattes.up.railway.app',
       'au-fil-des-pattes-release.up.railway.app',
+      'au-fil-des-pattes-preprod.up.railway.app',
       'localhost',
       'flowbite.com',
       'randomuser.me',
