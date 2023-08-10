@@ -58,13 +58,13 @@ export default function Page({
   };
 
   return (
-    <main className='font-sans h-full'>
+    <main className='font-sans h-full	'>
       <ScrollUp />
       {!dogWalk && <LoaderWalk />}
 
       {dogWalk && (
         <>
-          <section className='container mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
+          <section className='container w-11/12 mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
             <div className='w-11/12 mx-auto md:m-0 md:w-1/2'>
               <Swiper
                 style={
@@ -114,7 +114,7 @@ export default function Page({
                 ))}
               </Swiper>
             </div>
-            <div className='mx-auto mt-4 w-11/12 md:mt-0 md:w-2/5'>
+            <div className='mt-4 w-11/12 md:mt-0 md:w-2/5'>
               <div className='h-full'>
                 <LargeTitle title={dogWalk.name} />
                 <p className='mt-4'>{dogWalk.description}</p>
