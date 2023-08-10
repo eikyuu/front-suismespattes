@@ -3,10 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useFetchData } from '../../../../@core/hooks/useFetchData';
 import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
-
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
