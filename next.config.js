@@ -17,11 +17,15 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://au-fil-des-pattes.up.railway.app/:path*',
+        destination: 'https://aufildespattes-api.up.railway.app/:path*',
       },
       {
         source: '/api/:path*',
-        destination: 'https://au-fil-des-pattes-release.up.railway.app/:path*',
+        destination: 'https://aufildespattes-api-preprod.up.railway.app/:path*',
+      },
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:3000/:path*',
       }
     ];
   }
