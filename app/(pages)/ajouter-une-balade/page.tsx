@@ -2,27 +2,15 @@
 
 import { useState } from 'react';
 import Input from '../../../ui/molecules/input/input';
-import { WalkForm } from '../../../@core/utils/walkForm';
 import Label from '../../../ui/atoms/label/label';
 import Textarea from '../../../ui/atoms/textarea/textarea';
 import MultiRadio from '../../../ui/atoms/multiRadio/multiRadio';
-
-interface IInputs {
-  name: string;
-  description: string;
-  city: string;
-  postalCode: string;
-  street: string;
-  country: string;
-  obligatoryLeash: 'YES' | 'NO' | 'RECOMMENDED';
-  waterPoint: boolean;
-  processionaryCaterpillarAlert: boolean;
-  cyanobacteriaAlert: boolean;
-  note: number;
-}
+import { IInputs } from '../../../@core/interfaces/IInput';
+import { API_URL } from '../../../@core/constants/global';
+import { formatSlug } from '../../../@core/utils/utils';
 
 export default function Page() {
-  const walkForm = new WalkForm();
+  //const walkForm = new WalkForm();
 
   const [inputs, setInputs] = useState<IInputs>({
     name: '',
@@ -36,30 +24,81 @@ export default function Page() {
     processionaryCaterpillarAlert: false,
     cyanobacteriaAlert: false,
     note: 0,
+    files: [],
   });
 
   const [submit, setSubmit] = useState<boolean>(false);
 
+  const uploadFile = async () => {
+
+    const formData = new FormData();
+    formData.append('image', inputs.files[0]);
+    formData.append('slug', formatSlug(inputs.name));
+
+    try {
+    const response = await fetch(`${API_URL}walks/images`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        console.log('error');
+      }
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setSubmit(true);
-    console.log(inputs);
+
+    fetch(`${API_URL}walks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(inputs),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        uploadFile();
+        setSubmit(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setSubmit(false);
+      });
+  };
+
+  const handleFileChange = (e: any) => {
+    const { name, files } = e.target;
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      setInputs((inputs: any) => ({
+        ...inputs,
+        [name]: [...inputs.files, file],
+      }));
+    }
   };
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
 
-    console.log(name, value);
-
     if (
       name === 'waterPoint' ||
       name === 'processionaryCaterpillarAlert' ||
-      name === 'cyanobacteriaAlert' ||
-      name === 'obligatoryLeash'
+      name === 'cyanobacteriaAlert'
     ) {
       setInputs((inputs: any) => ({
         ...inputs,
-        waterPoint: value === 'YES' ? true : false,
+        waterPoint: value === 'YES',
       }));
       return;
     }
@@ -90,7 +129,7 @@ export default function Page() {
       city: 'ville',
       postalCode: 'code postal',
       street: 'rue',
-      country : 'pays',
+      country: 'pays',
       obligatoryLeash: 'laisse obligatoire',
       waterPoint: "point d'eau",
       processionaryCaterpillarAlert: 'alerte chenille processionnaire',
@@ -213,7 +252,7 @@ export default function Page() {
                 {
                   label: 'Recommandée',
                   name: 'obligatoryLeash',
-                  value: 'RECOMMENDED',
+                  value: 'RECOMANDED',
                 },
               ]}
             />
@@ -279,22 +318,38 @@ export default function Page() {
                   required
                 />
               </div>
-
-
             </div>
 
             <Label name='country' label='Pays' />
-            <select name="country" onChange={handleChange} defaultValue={"default"} id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5">
-              <option value="default">Choissisez un pays</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
+            <select
+              name='country'
+              onChange={handleChange}
+              defaultValue={'default'}
+              id='countries'
+              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5'
+            >
+              <option value='default'>Choissisez un pays</option>
+              <option value='US'>United States</option>
+              <option value='CA'>Canada</option>
+              <option value='FR'>France</option>
+              <option value='DE'>Germany</option>
             </select>
-   
-
-
           </div>
+
+          <label
+            className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+            htmlFor='multiple_files'
+          >
+            Upload multiple files
+          </label>
+          <input
+            onChange={handleFileChange}
+            className='block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'
+            id='multiple_files'
+            type='file'
+            multiple
+          />
+
           <button
             className='w-max mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
             type='submit'
