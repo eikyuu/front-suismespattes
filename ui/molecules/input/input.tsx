@@ -1,7 +1,7 @@
 function Input({
   handleChange,
   value,
-  error,
+  errors,
   type,
   name,
   placeholder,
@@ -10,7 +10,7 @@ function Input({
 }: {
   handleChange: any;
   value: any;
-  error: any;
+  errors: any;
   type: string;
   name: string;
   placeholder: string;
@@ -30,7 +30,8 @@ function Input({
           aria-describedby={`pour ${label}`}
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
         />
-        {error && <p className='text-red-500'>{error}</p>}
+        {errors && <div className='text-red-400'>{errors[name]}</div>}
+
     </>
   );
 }

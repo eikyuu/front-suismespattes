@@ -10,7 +10,7 @@ function MultiRadio({
   }[];
 }) {
   return (
-    <ul className='w-full md:w-fit items-center w-fit text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex'>
+    <ul className='w-full md:w-fit items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex'>
       {radios.map((radio, i) => (
         <li
           key={i}
@@ -26,10 +26,11 @@ function MultiRadio({
               name={radio.name}
               onChange={handleChange}
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5'
+              required
             />
             <label
               htmlFor={`${radio.name}-${radio.value}`}
-              className='w-fit p-3 text-sm font-medium text-gray-900'
+              className='w-full p-3 text-sm font-medium text-gray-900'
             >
               {radio.label}
             </label>

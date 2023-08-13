@@ -1,4 +1,4 @@
-export interface IInputs {
+export type WalkForm = {
     name: string;
     description: string;
     city: string;
@@ -11,4 +11,6 @@ export interface IInputs {
     cyanobacteriaAlert: boolean;
     note: number;
     files: File[];
-  }
+  };
+
+export type WalkFormPick = Pick<WalkForm, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;
