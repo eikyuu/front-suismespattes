@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { API_URL } from '../constants/global';
 import { uploadImages } from '../utils/utils';
-import { WalkFormPick, WalkForm } from '../types/WalkFormPick';
+import { WalkFormPick, WalkForm } from '../types/WalkForm';
+import toast from 'react-hot-toast';
 
 export function useWalkForm() {
- 
+
   const [form, setForm] = useState<WalkForm>({
     name: '',
     description: '',
@@ -12,6 +13,8 @@ export function useWalkForm() {
     postalCode: '',
     street: '',
     country: '',
+    latitude: '',
+    longitude: '',
     obligatoryLeash: 'YES',
     waterPoint: false,
     processionaryCaterpillarAlert: false,
@@ -37,7 +40,7 @@ export function useWalkForm() {
         name === 'cyanobacteriaAlert' ? value === 'YES' : form.cyanobacteriaAlert,
     };
     setForm(updatedForm);
-    setErrors({...errors, [name]: ''});
+    setErrors({ ...errors, [name]: '' });
   };
 
   const handleSubmit = async (e: any) => {
@@ -46,9 +49,10 @@ export function useWalkForm() {
 
     const isValid = validateForm();
     if (!isValid) {
+      setSubmit(false);
       return;
     }
-  
+
     try {
       await fetch(`${API_URL}walks`, {
         method: 'POST',
@@ -58,8 +62,10 @@ export function useWalkForm() {
         body: JSON.stringify(form),
       });
       await uploadImages(form.files);
+      toast.success('Votre promenade a bien été ajoutée');
     } catch (err) {
       console.error(err);
+      toast.error('Erreur lors de l\'ajout de la promenade');
     } finally {
       setSubmit(false);
       setForm({
@@ -69,6 +75,8 @@ export function useWalkForm() {
         postalCode: '',
         street: '',
         country: '',
+        latitude: '',
+        longitude: '',
         obligatoryLeash: 'YES',
         waterPoint: false,
         processionaryCaterpillarAlert: false,
@@ -76,11 +84,11 @@ export function useWalkForm() {
         note: 0,
         files: [],
       });
+
+      console.log(form);
       setErrors({});
       e.target.reset();
     }
-
-
   };
 
   const handleFileChange = (e: any) => {
@@ -94,7 +102,7 @@ export function useWalkForm() {
 
   const validateForm = () => {
     let valid = true;
-    let errorsTemp = {...errors};
+    let errorsTemp = { ...errors };
 
     const validatorsRules = {
       name: {
@@ -145,7 +153,7 @@ export function useWalkForm() {
     });
 
     setErrors(errorsTemp);
-    
+
     return valid;
 
   };

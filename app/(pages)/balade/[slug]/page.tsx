@@ -77,17 +77,27 @@ export default function Page({
                 modules={[FreeMode, Thumbs]}
                 className='mySwiper2 w-full'
               >
-                {dogWalk && dogWalk.images.map((dogWalk: any) => (
-                  <SwiperSlide key={dogWalk.id} className='w-full' >
+                {dogWalk && dogWalk.images.length > 0 ? (
+                  dogWalk.images.map((dogWalk: any) => (
+                    <SwiperSlide key={dogWalk.id} className='w-full'>
+                      <Image
+                        className='rounded-lg object-cover h-144 w-full'
+                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
+                        width={500}
+                        height={500}
+                        alt='Picture of the author'
+                      />
+                    </SwiperSlide>
+                  ))) : (
                     <Image
                       className='rounded-lg object-cover h-144 w-full'
-                      src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
+                      
+                      src={'/images/placeholder.png'}
                       width={500}
                       height={500}
                       alt='Picture of the author'
                     />
-                  </SwiperSlide>
-                ))}
+                  )}
               </Swiper>
               <Swiper
                 onSwiper={setThumbsSwiper}
@@ -99,17 +109,27 @@ export default function Page({
                 modules={[FreeMode, Thumbs]}
                 className='mySwiper mt-2'
               >
-                {dogWalk && dogWalk.images.map((dogWalk: any) => (
-                  <SwiperSlide key={dogWalk.id}>
-                    <Image
-                      className='rounded-lg object-cover h-36'
-                      src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
-                      width={500}
-                      height={500}
-                      alt='Picture of the author'
-                    />
-                  </SwiperSlide>
-                ))}
+                {dogWalk && dogWalk.images.length > 0 ? (
+                  dogWalk.images.map((dogWalk: any) => (
+                    <SwiperSlide key={dogWalk.id}>
+                      <Image
+                        className='rounded-lg object-cover h-36'
+                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
+                        width={500}
+                        height={500}
+                        alt='Picture of the author'
+                      />
+                    </SwiperSlide>
+                  ))
+                ) : (
+                  <Image
+                    className='rounded-lg object-cover h-36'
+                    src={'/images/placeholder.png'}
+                    width={500}
+                    height={500}
+                    alt='Picture of the author'
+                  />
+                )}
               </Swiper>
             </div>
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>

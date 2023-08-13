@@ -5,6 +5,8 @@ export type WalkForm = {
     postalCode: string;
     street: string;
     country: string;
+    latitude?: number | string;
+    longitude?: number | string;
     obligatoryLeash: 'YES' | 'NO' | 'RECOMANDED';
     waterPoint: boolean;
     processionaryCaterpillarAlert: boolean;

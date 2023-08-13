@@ -5,15 +5,11 @@ import Label from '../../../ui/atoms/label/label';
 import Textarea from '../../../ui/atoms/textarea/textarea';
 import MultiRadio from '../../../ui/atoms/multiRadio/multiRadio';
 import { useWalkForm } from '../../../@core/hooks/useWalkForm';
+import Loader from '../../../ui/atoms/loader/Loader';
 
 export default function Page() {
-  const {
-    handleSubmit,
-    handleChange,
-    handleFileChange,
-    form,
-    errors
-  } = useWalkForm();
+  const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =
+    useWalkForm();
 
   return (
     <main className='font-sans'>
@@ -43,7 +39,7 @@ export default function Page() {
               />
             </div>
 
-             <Label name='description' label='Description de la balade' />
+            <Label name='description' label='Description de la balade' />
             <Textarea
               placeholder='Description de la balade'
               name='description'
@@ -53,7 +49,7 @@ export default function Page() {
               errors={errors}
             />
 
-           <div className=' flex flex-wrap justify-between'>
+            <div className=' flex flex-wrap justify-between'>
               <div className='w-full'>
                 <p className='text-sm mb-2 mt-5 font-medium text-white'>
                   Un point d&#039;eau est il disponible ?
@@ -199,6 +195,38 @@ export default function Page() {
               <option value='FR'>France</option>
               <option value='DE'>Germany</option>
             </select>
+
+            
+            <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
+              <div className='md:mr-5'>
+                <Label name='latitude' label='Latitude' />
+                <Input
+                  handleChange={handleChange}
+                  value={form.latitude}
+                  errors={errors}
+                  type='text'
+                  name='latitude'
+                  placeholder='Latitude'
+                  label='Latitude'
+                  required
+                />
+              </div>
+              <div className=''>
+                <Label name='longitude' label='Longitude' />
+                <Input
+                  handleChange={handleChange}
+                  value={form.longitude}
+                  errors={errors}
+                  type='text'
+                  name='longitude'
+                  placeholder='Longitude'
+                  label='Longitude'
+                  required
+                />
+              </div>
+            </div>
+
+
           </div>
 
           <div className='bg-primary h-auto p-10 mt-10 rounded-lg'>
@@ -222,14 +250,13 @@ export default function Page() {
               multiple
               required
             />
-
           </div>
 
           <button
-            className='w-max mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
+            className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
             type='submit'
           >
-            Ajouter
+            {submit ? <Loader /> : 'Ajouter la balade'}
           </button>
         </form>
       </section>

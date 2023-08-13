@@ -3,6 +3,7 @@ import ContentNavigation from '../ui/molecules/contentNavigation/contentNavigati
 import Footer from '../ui/molecules/footer/footer';
 import './globals.scss';
 import { Inter } from 'next/font/google';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,6 +31,7 @@ export default function RootLayout({
         <Banner />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );
