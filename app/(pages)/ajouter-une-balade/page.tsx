@@ -193,7 +193,6 @@ export default function Page() {
                   type='text'
                   name='latitude'
                   label='Latitude'
-                  required
                 />
               </div>
               <div className=''>
@@ -205,7 +204,6 @@ export default function Page() {
                   type='text'
                   name='longitude'
                   label='Longitude'
-                  required
                 />
               </div>
             </div>

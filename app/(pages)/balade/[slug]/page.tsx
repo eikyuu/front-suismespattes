@@ -55,26 +55,6 @@ export default function Page({
     }
   };
 
-  const [src, setSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk?.images[0]?.name}`)
-
-  //utile en local
-  const handleImage = (imageName: string) => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`)
-      .then((res) => {
-        if (res.status === 404) {
-          setSrc('/images/placeholder.png');
-        } else
-          setSrc(
-            `${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`
-          );
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    return src;
-  };
-
   return (
     <main className='font-sans h-full	'>
       <ScrollUp />
@@ -102,7 +82,7 @@ export default function Page({
                     <SwiperSlide key={dogWalk.id} className='w-full'>
                       <Image
                         className='rounded-lg object-cover h-144 w-full'
-                        src={handleImage(dogWalk.name)}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                         width={500}
                         height={500}
                         alt='Picture of the author'
@@ -134,7 +114,7 @@ export default function Page({
                     <SwiperSlide key={dogWalk.id}>
                       <Image
                         className='rounded-lg object-cover h-36'
-                        src={handleImage(dogWalk.name)}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                         width={500}
                         height={500}
                         alt='Picture of the author'
