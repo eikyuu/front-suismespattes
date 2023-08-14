@@ -60,7 +60,7 @@ export default function Page({
   const handleImage = (imageName: string) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`)
       .then((res) => {
-        if (res.status !== 200) {
+        if (res.status === 404) {
           setSrc('/images/placeholder.png');
         } else
           setSrc(
