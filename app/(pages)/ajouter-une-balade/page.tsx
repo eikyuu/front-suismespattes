@@ -20,28 +20,28 @@ export default function Page() {
           }}
           className='mt-10'
         >
-          <div className='bg-primary h-auto p-10 rounded-lg'>
+          <section className='bg-primary h-auto p-10 rounded-lg'>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative "'>
               Description
             </h2>
 
             <div className='w-auto md:w-1/2'>
-              <Label name='name' label='Nom de la balade' />
+              <Label name='name' label='Nom de la balade' required/>
               <Input
                 handleChange={handleChange}
                 value={form.name}
                 errors={errors}
                 type='text'
                 name='name'
-                placeholder='Nom de la balade'
+                maxLength='50'
                 label='Nom de la balade'
                 required
               />
             </div>
 
-            <Label name='description' label='Description de la balade' />
+            <Label name='description' label='Description de la balade' required />
             <Textarea
-              placeholder='Description de la balade'
+              maxLength='500'
               name='description'
               handleChange={handleChange}
               value={form.description}
@@ -51,10 +51,7 @@ export default function Page() {
 
             <div className=' flex flex-wrap justify-between'>
               <div className='w-full'>
-                <p className='text-sm mb-2 mt-5 font-medium text-white'>
-                  Un point d&#039;eau est il disponible ?
-                </p>
-
+                <Label name='waterPoint' label='Un point d&#039;eau est il disponible ?' required />
                 <MultiRadio
                   handleChange={handleChange}
                   radios={[
@@ -65,10 +62,7 @@ export default function Page() {
               </div>
 
               <div className='w-full'>
-                <p className='text-sm mb-2 mt-5 font-medium text-white'>
-                  Y a t&#039;il une alerte chenille processionnaire ?
-                </p>
-
+                <Label name='processionaryCaterpillarAlert' label='Y a t&#039;il une alerte chenille processionnaire ?' required />
                 <MultiRadio
                   handleChange={handleChange}
                   radios={[
@@ -87,10 +81,7 @@ export default function Page() {
               </div>
 
               <div className='w-full'>
-                <p className='text-sm mb-2 mt-5 font-medium text-white'>
-                  Y a t&#039;il une alerte cyanobactérie ?
-                </p>
-
+                <Label name='cyanobacteriaAlert' label='Y a t&#039;il une alerte cyanobactérie ?' required />
                 <MultiRadio
                   handleChange={handleChange}
                   radios={[
@@ -101,9 +92,7 @@ export default function Page() {
               </div>
             </div>
 
-            <p className='text-sm mb-2 mt-5 font-medium text-white'>
-              La laisse est elle obligatoire ?
-            </p>
+            <Label name='obligatoryLeash' label='La laisse est elle obligatoire ?' required />
 
             <MultiRadio
               handleChange={handleChange}
@@ -118,10 +107,7 @@ export default function Page() {
               ]}
             />
 
-            <p className='text-sm mb-2 mt-5 font-medium text-white'>
-              Quelle note donneriez vous à cette balade ?
-            </p>
-
+            <Label name='note' label='Quelle note donneriez vous à cette balade ?' required />
             <MultiRadio
               handleChange={handleChange}
               radios={[
@@ -132,21 +118,22 @@ export default function Page() {
                 { label: 'Très positif', name: 'note', value: '5' },
               ]}
             />
-          </div>
-          <div className='bg-primary h-auto p-10 mt-10 rounded-lg'>
+          </section>
+
+          <section className='bg-primary h-auto p-10 mt-10 rounded-lg'>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative'>
               Localisation
             </h2>
 
             <div className='w-full md:w-1/2 '>
-              <Label name='street' label='N et nom de la rue' />
+              <Label name='street' label='N et nom de la rue' required />
               <Input
                 handleChange={handleChange}
                 value={form.street}
                 errors={errors}
                 type='text'
                 name='street'
-                placeholder='N et nom de la rue'
+                maxLength='50'
                 label='N et nom de la rue'
                 required
               />
@@ -154,34 +141,34 @@ export default function Page() {
 
             <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
               <div className='md:mr-5'>
-                <Label name='postalCode' label='Code postal' />
+                <Label name='postalCode' label='Code postal' required />
                 <Input
                   handleChange={handleChange}
                   value={form.postalCode}
                   errors={errors}
                   type='text'
                   name='postalCode'
-                  placeholder='Code postal'
+                  maxLength='5'
                   label='Code postal'
                   required
                 />
               </div>
               <div className=''>
-                <Label name='city' label='Ville' />
+                <Label name='city' label='Ville' required/>
                 <Input
                   handleChange={handleChange}
                   value={form.city}
                   errors={errors}
                   type='text'
                   name='city'
-                  placeholder='Ville'
+                  maxLength='50'
                   label='Ville'
                   required
                 />
               </div>
             </div>
 
-            <Label name='country' label='Pays' />
+            <Label name='country' label='Pays' required/>
             <select
               name='country'
               onChange={(e) => handleChange(e)}
@@ -196,7 +183,6 @@ export default function Page() {
               <option value='DE'>Germany</option>
             </select>
 
-            
             <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
               <div className='md:mr-5'>
                 <Label name='latitude' label='Latitude' />
@@ -206,7 +192,6 @@ export default function Page() {
                   errors={errors}
                   type='text'
                   name='latitude'
-                  placeholder='Latitude'
                   label='Latitude'
                   required
                 />
@@ -219,17 +204,15 @@ export default function Page() {
                   errors={errors}
                   type='text'
                   name='longitude'
-                  placeholder='Longitude'
                   label='Longitude'
                   required
                 />
               </div>
             </div>
 
+          </section>
 
-          </div>
-
-          <div className='bg-primary h-auto p-10 mt-10 rounded-lg'>
+          <section className='bg-primary h-auto p-10 mt-10 rounded-lg'>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative'>
               Photos
             </h2>
@@ -237,6 +220,7 @@ export default function Page() {
             <Label
               name='multiple_files'
               label='Ajouter des photos de la balade'
+              required
             />
             <input
               onChange={(e) => handleFileChange(e)}
@@ -250,7 +234,7 @@ export default function Page() {
               multiple
               required
             />
-          </div>
+          </section>
 
           <button
             className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'

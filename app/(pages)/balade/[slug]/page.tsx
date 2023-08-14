@@ -57,6 +57,7 @@ export default function Page({
 
   const [src, setSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk?.images[0]?.name}`)
 
+  //utile en local
   const handleImage = (imageName: string) => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`)
       .then((res) => {
@@ -73,8 +74,6 @@ export default function Page({
 
     return src;
   };
-
-
 
   return (
     <main className='font-sans h-full	'>

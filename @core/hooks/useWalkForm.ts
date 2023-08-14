@@ -123,7 +123,7 @@ export function useWalkForm() {
       postalCode: {
         label: 'code postal',
         minLength: 3,
-        maxLength: 50,
+        maxLength: 5,
       },
       street: {
         label: 'rue',
