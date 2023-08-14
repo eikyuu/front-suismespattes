@@ -12,10 +12,10 @@ function PageWalk() {
 
   useFetchData('walks', setDogWalk);
 
-// filtered dogWalk by value of input search with debounce
   const filteredDogWalk = dogWalk.filter((walk: { city: string, name: string }) => {
     return walk.city.toLowerCase().includes(search.toLowerCase());
   });
+  
 
   const handleSearch = (value: string) => {
     setSearch(value);

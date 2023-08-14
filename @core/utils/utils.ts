@@ -6,9 +6,10 @@ export const formatSlug = (slug:any) => {
     return slug.toLowerCase();
 }
 
-  export const postImages = async (file: any) => {
+  export const postImages = async (file: any, slug:any) => {
     const formData = new FormData();
     formData.append('image', file);
+    formData.append('slug', slug);
   
     try {
       const response = await fetch(`${API_URL}walks/images`, {
@@ -27,9 +28,9 @@ export const formatSlug = (slug:any) => {
     }
   };
 
-   export const uploadImages = async (files:any) => {
+   export const uploadImages = async (form:any) => {
     try {
-      const uploadPromises = files.map((file:any) => postImages(file));
+      const uploadPromises = form.files.map((file:any) => postImages(file, form.name));
       await Promise.all(uploadPromises);
     } catch (err) {
       console.log(err);

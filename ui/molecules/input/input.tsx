@@ -13,7 +13,7 @@ function Input({
   errors: any;
   type: string;
   name: string;
-  maxLength?: string;
+  maxLength?: number;
   label: string;
   required?: boolean;
 }) {
@@ -32,8 +32,7 @@ function Input({
         />
         {maxLength && (
           <p
-            className={`absolute mt-2 mr-2 text-slate-400 ${value.length > maxLength && 'text-red-500'
-              }`}
+            className={`absolute mt-2 mr-2 ${value.length > maxLength ? 'text-red-500' : 'text-slate-400'}`}
           >
             {value.length} / {maxLength}
           </p>

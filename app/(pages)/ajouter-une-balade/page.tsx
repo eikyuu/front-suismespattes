@@ -33,8 +33,7 @@ export default function Page() {
                 errors={errors}
                 type='text'
                 name='name'
-                maxLength='50'
-                label='Nom de la balade'
+                maxLength={50}                label='Nom de la balade'
                 required
               />
             </div>
@@ -133,7 +132,7 @@ export default function Page() {
                 errors={errors}
                 type='text'
                 name='street'
-                maxLength='50'
+                maxLength={50}
                 label='N et nom de la rue'
                 required
               />
@@ -148,8 +147,7 @@ export default function Page() {
                   errors={errors}
                   type='text'
                   name='postalCode'
-                  maxLength='5'
-                  label='Code postal'
+                  maxLength={5}                  label='Code postal'
                   required
                 />
               </div>
@@ -161,8 +159,7 @@ export default function Page() {
                   errors={errors}
                   type='text'
                   name='city'
-                  maxLength='50'
-                  label='Ville'
+                  maxLength={50}                  label='Ville'
                   required
                 />
               </div>

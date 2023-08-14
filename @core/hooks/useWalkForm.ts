@@ -52,7 +52,7 @@ export function useWalkForm() {
       setSubmit(false);
       return;
     }
-
+    console.log(form);
     try {
       await fetch(`${API_URL}walks`, {
         method: 'POST',
@@ -61,7 +61,7 @@ export function useWalkForm() {
         },
         body: JSON.stringify(form),
       });
-      await uploadImages(form.files);
+      await uploadImages(form);
       toast.success('Votre promenade a bien été ajoutée');
     } catch (err) {
       console.error(err);
