@@ -10,7 +10,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import { FreeMode, Thumbs } from 'swiper';
-import type { Swiper as S } from 'swiper';
+import { Swiper as S } from 'swiper';
 import React from 'react';
 import LoaderWalk from '../../../../ui/molecules/Loader/LoaderWalk';
 import WalkMap from '../../../../ui/organisms/walkMap/walkMap';
@@ -55,6 +55,27 @@ export default function Page({
     }
   };
 
+  const [src, setSrc] = useState(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk?.images[0]?.name}`)
+
+  const handleImage = (imageName: string) => {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`)
+      .then((res) => {
+        if (res.status !== 200) {
+          setSrc('/images/placeholder.png');
+        } else
+          setSrc(
+            `${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`
+          );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    return src;
+  };
+
+
+
   return (
     <main className='font-sans h-full	'>
       <ScrollUp />
@@ -82,7 +103,7 @@ export default function Page({
                     <SwiperSlide key={dogWalk.id} className='w-full'>
                       <Image
                         className='rounded-lg object-cover h-144 w-full'
-                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
+                        src={handleImage(dogWalk.name)}
                         width={500}
                         height={500}
                         alt='Picture of the author'
@@ -114,7 +135,7 @@ export default function Page({
                     <SwiperSlide key={dogWalk.id}>
                       <Image
                         className='rounded-lg object-cover h-36'
-                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
+                        src={handleImage(dogWalk.name)}
                         width={500}
                         height={500}
                         alt='Picture of the author'
