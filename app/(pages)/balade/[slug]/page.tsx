@@ -19,6 +19,7 @@ import ScrollUp from '../../../../@core/utils/scrollUp';
 import BlurImage from '../../../../ui/molecules/blurImage/blurImage';
 import { API_URL } from '../../../../@core/constants/global';
 import { useFetch } from '../../../../@core/hooks/useFetch';
+import toast from 'react-hot-toast';
 
 export default function Page({
   params,
@@ -49,8 +50,11 @@ export default function Page({
   useEffect(() => {
     if (data) {
       setDogWalk(data);
+    } else if (error) {
+      console.error(error);
+      toast.error('Une erreur est survenue');
     }
-  }, [data]);
+  }, [data, error]);
 
   const handleNote = (note: number) => {
     switch (note) {
@@ -95,6 +99,7 @@ export default function Page({
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id} className='w-full'>
                       <BlurImage
+                        alt={dogWalk.name}
                         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />
                     </SwiperSlide>
@@ -123,6 +128,7 @@ export default function Page({
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id}>
                       <BlurImage
+                        alt={dogWalk.name}
                         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />
                     </SwiperSlide>
@@ -133,7 +139,7 @@ export default function Page({
                     src={'/images/placeholder.png'}
                     width={500}
                     height={500}
-                    alt='Picture of the author'
+                    alt='Une image par défaut'
                   />
                 )}
               </Swiper>

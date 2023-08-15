@@ -1,13 +1,13 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function BlurImage({ image } : { image: any}) {
+export default function BlurImage({ image, alt } : { image: any, alt: string}) {
     const [isLoading, setLoading] = useState(true);
   
     return (
         <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
           <Image
-            alt=""
+            alt={alt}
             src={image}
             width={500}
             height={500}

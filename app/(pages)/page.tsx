@@ -8,6 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import WalkMap from '../../ui/organisms/walkMap/walkMap';
 import { API_URL } from '../../@core/constants/global';
 import { useFetch } from '../../@core/hooks/useFetch';
+import toast from 'react-hot-toast';
 
 const reviews = [
   {
@@ -59,8 +60,11 @@ export default function Home() {
   useEffect(() => {
     if (data) {
       setDogWalk(data);
+    } else if (error) {
+      console.error(error);
+      toast.error('Une erreur est survenue');
     }
-  }, [data]);
+  }, [data, error]);
 
   return (
     <main className='font-sans'>

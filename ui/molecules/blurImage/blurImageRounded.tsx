@@ -1,14 +1,14 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function BlurImageRounded({ image } : { image: any}) {
+export default function BlurImageRounded({ image, alt } : { image: any, alt: string}) {
     const [isLoading, setLoading] = useState(true);
   
     return (
       <a href={image.href} className="group">
         <div className="rounded-full">
           <Image
-            alt=""
+            alt={alt}
             src={image}
             width={200}
             height={300}

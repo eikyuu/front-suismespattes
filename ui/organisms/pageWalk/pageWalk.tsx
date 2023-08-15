@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import LargeTitle from '../../atoms/largeTitle/largeTitle';
 import CardWalk from '../../molecules/cardWalk/cardWalk';
 import React from 'react';
@@ -8,23 +8,34 @@ import { useFetch } from '../../../@core/hooks/useFetch';
 import { API_URL } from '../../../@core/constants/global';
 
 function PageWalk() {
-  const [dogWalk, setDogWalk] = useState([]);
+  const [dogWalk, setDogWalk] = useState<any[]>([]);
+  const [filteredDogWalk, setFilteredDogWalk] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
   const url = `${API_URL}/walks`;
 
-  const { data, error } = useFetch<any>(url)
+  const { data, error } = useFetch<any[]>(url)
 
   useEffect(() => {
     if (data) {
       setDogWalk(data);
+    } else if (error) {
+      console.log(error);
     }
-  }, [data]);
+  }, [data, error]);
 
-  const filteredDogWalk = dogWalk.filter((walk: { city: string, name: string }) => {
-    return walk.city.toLowerCase().includes(search.toLowerCase());
-  });
-  
+  const filterDogWalk = useCallback(() => {
+    setFilteredDogWalk(
+      dogWalk.filter((walk) => {
+        return walk.city.toLowerCase().includes(search.toLowerCase());
+      })
+    );
+  }, [dogWalk, search]);
+
+  useEffect(() => {
+    filterDogWalk();
+  }, [search, filterDogWalk]);
+
   const handleSearch = (value: string) => {
     setSearch(value);
   };
