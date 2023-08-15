@@ -1,7 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
-import { useFetchData } from '../../../../@core/hooks/useFetchData';
+import { useEffect, useState } from 'react';
 import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Image from 'next/image';
@@ -18,6 +17,8 @@ import BlocTextWithspan from '../../../../ui/atoms/blocTextWithSpan/ blocTextWit
 import TextAlert from '../../../../ui/atoms/textAlerte/textAlert';
 import ScrollUp from '../../../../@core/utils/scrollUp';
 import BlurImage from '../../../../ui/molecules/blurImage/blurImage';
+import { API_URL } from '../../../../@core/constants/global';
+import { useFetch } from '../../../../@core/hooks/useFetch';
 
 export default function Page({
   params,
@@ -36,12 +37,20 @@ export default function Page({
   //   }
   // }, []);
 
-  useFetchData(`walks/${params.slug}`, setDogWalk);
-
   // useEffect(() => {
   //   handleResize();
   //   window.addEventListener('resize', handleResize);
   // }, [handleResize]);
+
+  const url = `${API_URL}walks/${params.slug}`;
+
+  const { data, error } = useFetch<any>(url)
+
+  useEffect(() => {
+    if (data) {
+      setDogWalk(data);
+    }
+  }, [data]);
 
   const handleNote = (note: number) => {
     switch (note) {
