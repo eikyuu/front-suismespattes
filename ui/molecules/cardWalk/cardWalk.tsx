@@ -4,6 +4,7 @@ import Link from 'next/link';
 import TextGray from '../../atoms/textGray/textGray';
 import Button from '../../atoms/button/button';
 import { useState } from 'react';
+import BlurImage from '../blurImage/blurImage';
 function CardWalk({
   city,
   description,
@@ -26,15 +27,16 @@ function CardWalk({
       href={`balade/${slug}`}
       className='flex flex-col justify-between w-auto mb-4 xs:last:mb-0 md:w-72 lg:w-52 xl:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
-      <picture className='mb-4'>    
-        <Image
+      <picture className='mb-4 max-w-xs'>    
+        {/* <Image
           className='h-56 w-full rounded-lg object-cover'
           src={src}
           width={500}
           height={500}
           alt='Picture of the author'
           onError={() => setSrc('/images/placeholder.png')}
-        />
+        /> */}
+        <BlurImage image={src} />
       </picture>
       <div className='mb-4'>
         <TextBold text={city} color='text-black' />

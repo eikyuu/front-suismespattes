@@ -17,6 +17,7 @@ import WalkMap from '../../../../ui/organisms/walkMap/walkMap';
 import BlocTextWithspan from '../../../../ui/atoms/blocTextWithSpan/ blocTextWithSpan';
 import TextAlert from '../../../../ui/atoms/textAlerte/textAlert';
 import ScrollUp from '../../../../@core/utils/scrollUp';
+import BlurImage from '../../../../ui/molecules/blurImage/blurImage';
 
 export default function Page({
   params,
@@ -80,24 +81,20 @@ export default function Page({
                 {dogWalk && dogWalk.images.length > 0 ? (
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id} className='w-full'>
-                      <Image
-                        className='rounded-lg object-cover h-144 w-full'
-                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
-                        width={500}
-                        height={500}
-                        alt='Picture of the author'
+                      <BlurImage
+                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />
                     </SwiperSlide>
-                  ))) : (
-                    <Image
-                      className='rounded-lg object-cover h-144 w-full'
-                      
-                      src={'/images/placeholder.png'}
-                      width={500}
-                      height={500}
-                      alt='Picture of the author'
-                    />
-                  )}
+                  ))
+                ) : (
+                  <Image
+                    className='rounded-lg object-cover h-144 w-full'
+                    src={'/images/placeholder.png'}
+                    width={500}
+                    height={500}
+                    alt='Picture of the author'
+                  />
+                )}
               </Swiper>
               <Swiper
                 onSwiper={setThumbsSwiper}
@@ -112,12 +109,8 @@ export default function Page({
                 {dogWalk && dogWalk.images.length > 0 ? (
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id}>
-                      <Image
-                        className='rounded-lg object-cover h-36'
-                        src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
-                        width={500}
-                        height={500}
-                        alt='Picture of the author'
+                      <BlurImage
+                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />
                     </SwiperSlide>
                   ))
