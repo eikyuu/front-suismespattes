@@ -41,7 +41,6 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
     <React.Fragment>
       <Map
         height={500}
-       // defaultCenter={[47.38905261221537, 0.6883621215820312]}
         center={coordinates}
         defaultZoom={12}
         onClick={() => {
@@ -49,7 +48,6 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
         }}
       >
         <ZoomControl />
-
         {dogWalk.map((walk: DogWalk, index) => (
           <GeoJson
             key={index.toString()}

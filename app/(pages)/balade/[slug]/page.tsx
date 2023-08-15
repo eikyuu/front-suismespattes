@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useFetchData } from '../../../../@core/hooks/useFetchData';
 import LargeTitle from '../../../../ui/atoms/largeTitle/largeTitle';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -26,18 +26,22 @@ export default function Page({
 }): JSX.Element {
   const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
   const [dogWalk, setDogWalk] = useState<any>();
-  const [isMobile, setIsMobile] = useState(false);
+  // const [isMobile, setIsMobile] = useState(false);
 
-  const handleResize = () => {
-    window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
-  };
+  // const handleResize = useCallback(() => {
+  //   if (window.innerWidth < 768) {
+  //     setIsMobile(true);
+  //   } else {
+  //     setIsMobile(false);
+  //   }
+  // }, []);
 
   useFetchData(`walks/${params.slug}`, setDogWalk);
 
-  useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-  }, [isMobile]);
+  // useEffect(() => {
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
+  // }, [handleResize]);
 
   const handleNote = (note: number) => {
     switch (note) {
