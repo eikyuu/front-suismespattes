@@ -9,6 +9,19 @@ import WalkMap from '../../ui/organisms/walkMap/walkMap';
 import { API_URL } from '../../@core/constants/global';
 import { useFetch } from '../../@core/hooks/useFetch';
 import toast from 'react-hot-toast';
+import { ErrorBoundary } from "react-error-boundary";
+
+
+function Fallback({ error, resetErrorBoundary } : any) {
+  // Call resetErrorBoundary() to reset the error boundary and retry the render.
+  resetErrorBoundary();
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre style={{ color: "red" }}>{error.message}</pre>
+    </div>
+  );
+}
 
 const reviews = [
   {
@@ -68,10 +81,12 @@ export default function Home() {
 
   return (
     <main className='font-sans'>
-      <Presentation />
-      <Reviews reviews={reviews} />
-      <LastWalk dogWalk={dogWalk} />
-      <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
+      <ErrorBoundary FallbackComponent={Fallback}>
+        <Presentation />
+        <Reviews reviews={reviews} />
+        <LastWalk dogWalk={dogWalk} />
+        <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
+      </ErrorBoundary>
     </main>
   );
 }
