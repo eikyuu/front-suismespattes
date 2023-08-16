@@ -99,6 +99,7 @@ export default function Page({
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id} className='w-full'>
                       <BlurImage
+                        height='h-144'
                         alt={dogWalk.name}
                         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />
@@ -128,6 +129,7 @@ export default function Page({
                   dogWalk.images.map((dogWalk: any) => (
                     <SwiperSlide key={dogWalk.id}>
                       <BlurImage
+                        height='h-40'
                         alt={dogWalk.name}
                         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogWalk.name}`}
                       />

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-export default function BlurImage({ image, alt } : { image: any, alt: string}) {
+export default function BlurImage({ image, alt, height } : { image: any, alt: string, height: string}) {
     const [isLoading, setLoading] = useState(true);
   
     return (
@@ -11,7 +11,7 @@ export default function BlurImage({ image, alt } : { image: any, alt: string}) {
             src={image}
             width={500}
             height={500}
-            className={`w-full
+            className={`${height} w-full object-cover object-center transform transition-
                 duration-700 ease-in-out group-hover:opacity-75
                 ${
                   isLoading

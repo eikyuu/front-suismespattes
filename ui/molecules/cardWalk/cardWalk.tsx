@@ -27,6 +27,7 @@ function CardWalk({
     >
       <picture className='mb-4 max-w-xs'>    
         <BlurImage 
+        height='h-80'
         alt={`Image de la balade ${city}`}
         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`} />
       </picture>
