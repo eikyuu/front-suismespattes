@@ -10,7 +10,7 @@ export default function Page() {
       <section className='container mx-auto mt-10'>
         <div className='flex flex-col justify-center items-center mx-auto w-11/12'>
           <p className='text-center mb-10'>Page en cours de construction !</p>
-          <BlurImage image={constuction} alt="Deux personnage en jouets qui imite un chantier" />
+          <BlurImage image={constuction} height='h-96' alt="Deux personnage en jouets qui imite un chantier" />
         </div>
       </section>
     </main>
