@@ -52,7 +52,6 @@ export function useWalkForm() {
       setSubmit(false);
       return;
     }
-    console.log(form);
     try {
       await fetch(`${API_URL}walks`, {
         method: 'POST',
@@ -84,8 +83,6 @@ export function useWalkForm() {
         note: 0,
         files: [],
       });
-
-      console.log(form);
       setErrors({});
       e.target.reset();
     }
