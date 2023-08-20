@@ -12,7 +12,7 @@ function PageWalk() {
   const [filteredDogWalk, setFilteredDogWalk] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
-  const url = `${API_URL}/walks`;
+  const url = `${API_URL}walks`;
 
   const { data, error } = useFetch<any[]>(url)
 
