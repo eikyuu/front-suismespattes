@@ -21,6 +21,11 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'randomuser.me',
             pathname: '/api/portraits/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'images.dog.ceo',
+            pathname: '/breeds/**',
           }
       ],
       domains: ['aufildespattes-api.up.railway.app', 'aufildespattes-api-preprod.up.railway.app' , 'localhost', 'randomuser.me'],

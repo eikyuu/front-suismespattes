@@ -26,22 +26,22 @@ function Fallback({ error, resetErrorBoundary } : any) {
 const reviews = [
   {
     id : 1,
-    name: 'Julie',
+    name: 'Amauna',
     content:
       'Une application qui m\'a permis de faire de belles sorties avec mon chien !',
-    image: 'https://randomuser.me/api/portraits/women/70.jpg',
+    image: 'https://images.dog.ceo/breeds/retriever-golden/n02099601_7916.jpg',
   },
   {
     id : 2,
-    name: 'Arielle',
+    name: 'Urielle',
     content: 'Nouvelle sur l\'application, j\'ai hâte de decouvrir de nouvelles balades !',
-    image: 'https://randomuser.me/api/portraits/women/82.jpg'
+    image: 'https://images.dog.ceo/breeds/poodle-medium/PXL_20210220_100624962.jpg'
   },
   {
     id : 3,
-    name: 'John',
+    name: 'Tomo',
     content: 'Super application, je recommande ! De belles balades à faire !',
-    image: 'https://randomuser.me/api/portraits/men/72.jpg'
+    image: 'https://images.dog.ceo/breeds/corgi-cardigan/n02113186_1695.jpg'
   },
 ];
 
