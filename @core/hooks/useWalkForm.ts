@@ -117,7 +117,7 @@ export function useWalkForm() {
       description: {
         label: 'description',
         minLength: 10,
-        maxLength: 500,
+        maxLength: 1000,
       },
       city: {
         label: 'ville',
