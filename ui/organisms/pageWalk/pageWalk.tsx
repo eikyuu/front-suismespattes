@@ -77,6 +77,7 @@ function PageWalk() {
           (walk: {
             id: number;
             city: string;
+            name: string;
             description: string;
             slug: string;
             images: { name: string }[];
@@ -84,6 +85,7 @@ function PageWalk() {
             <CardWalk
               key={walk.id}
               city={walk.city}
+              name={walk.name}
               description={walk.description}
               slug={walk.slug}
               imageName={walk.images[0]?.name}

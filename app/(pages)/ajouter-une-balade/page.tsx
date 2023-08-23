@@ -40,7 +40,7 @@ export default function Page() {
 
             <Label name='description' label='Description de la balade' required />
             <Textarea
-              maxLength='500'
+              maxLength='1000'
               name='description'
               handleChange={handleChange}
               value={form.description}

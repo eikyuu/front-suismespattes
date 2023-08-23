@@ -38,6 +38,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
                 <SwiperSlide key={dogWalk.id} className='!w-11/12 last:w-full'>
                   <CardWalk
                     city={dogWalk.city}
+                    name={dogWalk.name}
                     description={dogWalk.description}
                     slug={dogWalk.slug}
                     imageName={dogWalk.images[0]?.name}
@@ -61,6 +62,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
               <CardWalk
                 key={dogWalk.id}
                 city={dogWalk.city}
+                name={dogWalk.name}
                 description={dogWalk.description}
                 slug={dogWalk.slug}
                 imageName={dogWalk.images[0]?.name}
