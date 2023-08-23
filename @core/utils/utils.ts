@@ -21,10 +21,11 @@ export const formatSlug = (slug:any) => {
         const data = await response.json();
         return data;
       } else {;
-        console.error('une erreur est survenue lors de l\'upload de l\'image', response.status);
+        throw new Error(response.statusText);
       }
     } catch (err) {
       console.error('une erreur est survenue lors de l\'upload de l\'image : ', err);
+      throw new Error('une erreur est survenue lors de l\'upload de l\'image');
     }
   };
 
@@ -34,5 +35,6 @@ export const formatSlug = (slug:any) => {
       await Promise.all(uploadPromises);
     } catch (err) {
       console.log(err);
+      throw new Error('une erreur est survenue lors de l\'upload des images');
     }
   };

@@ -53,15 +53,22 @@ export function useWalkForm() {
       return;
     }
     try {
-      await fetch(`${API_URL}walks`, {
+      const response = await fetch(`${API_URL}walks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(form),
       });
+
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      
       await uploadImages(form);
+
       toast.success('Votre promenade a bien été ajoutée');
+
     } catch (err) {
       console.error(err);
       toast.error('Erreur lors de l\'ajout de la promenade');
