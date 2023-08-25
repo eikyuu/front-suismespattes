@@ -1,13 +1,13 @@
-import LargeTitle from '../../atoms/largeTitle/largeTitle';
-import CardWalk from '../../molecules/cardWalk/cardWalk';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import React from 'react';
-import LoaderWalks from '../../molecules/Loader/LoaderWalks';
-import Button from '../../atoms/button/button';
+import LargeTitle from './text/largeTitle';
+import LoaderWalks from './loader/loaderWalks';
+import Button from './button/button';
+import CardWalk from './cardWalk';
 
 function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);

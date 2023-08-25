@@ -1,11 +1,11 @@
-import Banner from '../ui/atoms/banner/banner';
-import ContentNavigation from '../ui/molecules/contentNavigation/contentNavigation';
-import Footer from '../ui/molecules/footer/footer';
 import './globals.scss';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
-import Headband from '../ui/atoms/headband/headband';
+import Banner from '../composants/banner';
+import ContentNavigation from '../composants/contentNavigation';
+import Footer from '../composants/footer';
+import Headband from '../composants/headband';
 
 const inter = Inter({ subsets: ['latin'] });
 

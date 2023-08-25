@@ -1,11 +1,11 @@
 'use client';
 
-import Input from '../../../ui/molecules/input/input';
-import Label from '../../../ui/atoms/label/label';
-import Textarea from '../../../ui/atoms/textarea/textarea';
-import MultiRadio from '../../../ui/atoms/multiRadio/multiRadio';
+import Input from '../../../composants/inputs/input';
+import Label from '../../../composants/inputs/label';
+import Textarea from '../../../composants/inputs/textarea';
+import MultiRadio from '../../../composants/inputs/multiRadio';
 import { useWalkForm } from '../../../@core/hooks/useWalkForm';
-import Loader from '../../../ui/atoms/loader/Loader';
+import Loader from '../../../composants/loader/loader';
 
 export default function Page() {
   const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =

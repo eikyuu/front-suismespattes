@@ -1,5 +1,5 @@
-import SmallTitle from '../../atoms/smallTitle/smallTitle';
-import TextGray from '../../atoms/textGray/textGray';
+import SmallTitle from './text/smallTitle';
+import TextGray from './text/textGray';
 
 function Card({ title, text }: { title: string; text: string }): JSX.Element {
   return (

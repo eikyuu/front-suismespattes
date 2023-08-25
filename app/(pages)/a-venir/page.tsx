@@ -1,7 +1,7 @@
 'use client';
 
 import constuction from '../../../public/images/en-construction.jpg';
-import BlurImage from '../../../ui/molecules/blurImage/blurImage';
+import BlurImage from '../../../composants/blurImage/blurImage';
 
 export default function Page() {
 

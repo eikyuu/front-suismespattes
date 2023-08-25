@@ -1,8 +1,7 @@
-import MediumTitle from '../../atoms/mediumTitle/mediumTitle';
-import Review from '../review/review';
 import React from 'react';
-import LoaderReviews from '../Loader/LoaderReviews';
-
+import MediumTitle from './text/mediumTitle';
+import Review from './review';
+import LoaderReviews from './loader/loaderReviews';
 function Reviews({reviews}: any): JSX.Element {
   
   return (

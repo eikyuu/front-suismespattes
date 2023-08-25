@@ -1,5 +1,5 @@
-import MediumTitle from '../../atoms/mediumTitle/mediumTitle';
-import MapWalk from '../../molecules/mapWalk/mapWalk';
+import MapWalk from './mapWalk';
+import MediumTitle from './text/mediumTitle';
 
 function WalkMap({ dogWalk, coordinates, title }: { dogWalk: any; coordinates: any; title: string }) {
   return (

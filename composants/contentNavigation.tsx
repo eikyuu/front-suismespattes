@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import LiNav from '../../atoms/liNav/liNav';
+import LiNav from './liNav';
 
 function ContentNavigation() {
   const handleMenuClick = () => {

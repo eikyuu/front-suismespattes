@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import LinkOutline from '../../atoms/linkOutline';
+import LinkOutline from './linkOutline';
 
 function Footer() {
     return ( 

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import PageWalk from '../../../ui/organisms/pageWalk/pageWalk';
+import PageWalk from '../../../composants/pageWalk';
 
 export const metadata: Metadata = {
   title: 'Toutes les balades',

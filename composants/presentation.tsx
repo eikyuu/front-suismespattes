@@ -1,5 +1,5 @@
-import LargeTitle from '../../atoms/largeTitle/largeTitle';
-import Card from '../../molecules/card/card';
+import Card from './card';
+import LargeTitle from './text/largeTitle';
 
 function Presentation() {
   return (

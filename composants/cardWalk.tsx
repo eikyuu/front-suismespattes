@@ -1,8 +1,9 @@
-import TextBold from '../../atoms/textBold/textBold';
 import Link from 'next/link';
-import TextGray from '../../atoms/textGray/textGray';
-import Button from '../../atoms/button/button';
-import BlurImage from '../blurImage/blurImage';
+import BlurImage from './blurImage/blurImage';
+import Button from './button/button';
+import TextBold from './text/textBold';
+import TextGray from './text/textGray';
+
 function CardWalk({
   city,
   name,
