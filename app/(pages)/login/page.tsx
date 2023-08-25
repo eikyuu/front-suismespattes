@@ -13,8 +13,7 @@ import { Contact } from '../../../@core/types/Contact';
 export default function Page() {
   const [form, setForm] = useState<any>({
     email: '',
-    subject: '',
-    message: '',
+    password: '',
   });
   const [submit, setSubmit] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
@@ -36,10 +35,10 @@ export default function Page() {
     }
 
     try {
-    const response =  await fetch(`${API_URL}contact`, {
+    const response =  await fetch(`${API_URL}auth/login`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(form),
       })
@@ -48,17 +47,20 @@ export default function Page() {
         throw new Error(response.statusText);
       }
 
-      toast.success('Votre message a bien été envoyé');
+      //set the token in local storage
+      const data = await response.json();
+      localStorage.setItem('token', data.token);
+
+      toast.success('Connexion réussie');
 
     } catch (error) {
       console.error(error);
-      toast.error('Une erreur est survenue lors de l\'envoi du message');
+      toast.error('Une erreur est survenue lors de la connexion');
     } finally {
       setSubmit(false);
       setForm({
         email: '',
-        subject: '',
-        message: '',
+        password: '',
       })
       setErrors({});
     }
@@ -75,16 +77,11 @@ export default function Page() {
         minLength: 3,
         maxLength: 50,
       },
-      subject: {
-        label: 'sujet',
+      password: {
+        label: 'mot de passe',
         minLength: 3,
         maxLength: 50,
-      },
-      message: {
-        label: 'message',
-        minLength: 10,
-        maxLength: 1000,
-      },
+      }
     };
 
     Object.keys(validatorsRules).forEach((key) => {
@@ -122,7 +119,7 @@ export default function Page() {
       >
         <GreenContainer>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative '>
-            Contact
+            Connexion
           </h2>
 
           <div className='w-auto md:w-1/2 mx-auto'>
@@ -138,34 +135,25 @@ export default function Page() {
               required
             />
 
-            <Label name='subject' label='Object de votre message' required />
+            <Label name='Password' label='Votre mot de passe' required />
             <Input
               handleChange={handleChange}
-              value={form.subject}
+              value={form.password}
               errors={errors}
-              type='text'
-              name='subject'
+              type='password'
+              name='password'
               maxLength={50}
-              label='Object de votre message'
+              label='Votre mot de passe'
               required
             />
 
-            <Label name='message' label='Votre message' required />
-            <Textarea
-              maxLength='1000'
-              name='message'
-              handleChange={handleChange}
-              value={form.message}
-              describedby='pour votre message'
-              errors={errors}
-            />
           </div>
         </GreenContainer>
         <button
           className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
           type='submit'
         >
-          {submit ? <Loader /> : 'Envoyer'}
+          {submit ? <Loader /> : 'Connexion'}
         </button>
       </form>
     </main>

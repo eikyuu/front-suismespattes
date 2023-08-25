@@ -14,6 +14,9 @@ export const formatSlug = (slug:any) => {
     try {
       const response = await fetch(`${API_URL}walks/images`, {
         method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
         body: formData,
       });
   

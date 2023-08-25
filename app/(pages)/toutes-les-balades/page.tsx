@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: 'Retrouve toutes les balades autours de chez toi !',
 };
 
-export default function Balades() {
+export default function Page() {
   return (
     <main className='font-sans w-11/12 mx-auto'>
       <PageWalk />
