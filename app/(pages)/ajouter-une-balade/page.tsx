@@ -6,21 +6,20 @@ import Textarea from '../../../composants/inputs/textarea';
 import MultiRadio from '../../../composants/inputs/multiRadio';
 import { useWalkForm } from '../../../@core/hooks/useWalkForm';
 import Loader from '../../../composants/loader/loader';
+import GreenContainer from '../../../composants/greenContainer';
 
 export default function Page() {
   const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =
     useWalkForm();
 
   return (
-    <main className='font-sans'>
-      <section className='container mx-auto w-11/12 '>
+    <main className='font-sans container mx-auto w-11/12 mt-10'>
         <form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
-          className='mt-10'
         >
-          <section className='bg-primary h-auto p-10 rounded-lg'>
+          <GreenContainer>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative "'>
               Description
             </h2>
@@ -33,7 +32,8 @@ export default function Page() {
                 errors={errors}
                 type='text'
                 name='name'
-                maxLength={50}                label='Nom de la balade'
+                maxLength={50}                
+                label='Nom de la balade'
                 required
               />
             </div>
@@ -117,9 +117,9 @@ export default function Page() {
                 { label: 'Très positif', name: 'note', value: '5' },
               ]}
             />
-          </section>
+          </GreenContainer>
 
-          <section className='bg-primary h-auto p-10 mt-10 rounded-lg'>
+          <GreenContainer>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative'>
               Localisation
             </h2>
@@ -204,10 +204,9 @@ export default function Page() {
                 />
               </div>
             </div>
+          </GreenContainer>
 
-          </section>
-
-          <section className='bg-primary h-auto p-10 mt-10 rounded-lg'>
+          <GreenContainer>
             <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative'>
               Photos
             </h2>
@@ -229,7 +228,7 @@ export default function Page() {
               multiple
               required
             />
-          </section>
+          </GreenContainer>
 
           <button
             className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
@@ -238,7 +237,6 @@ export default function Page() {
             {submit ? <Loader /> : 'Ajouter la balade'}
           </button>
         </form>
-      </section>
     </main>
   );
 }
