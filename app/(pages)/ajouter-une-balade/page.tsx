@@ -13,7 +13,7 @@ export default function Page() {
     useWalkForm();
 
   return (
-    <main className='font-sans container mx-auto w-11/12 mt-10'>
+    <main className='font-sans container mx-auto w-11/12'>
         <form
           onSubmit={(e) => {
             handleSubmit(e);
