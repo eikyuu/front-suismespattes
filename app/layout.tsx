@@ -5,6 +5,7 @@ import './globals.scss';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
+import Headband from '../ui/atoms/headband/headband';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang='fr'>
       <body suppressHydrationWarning={true} className={inter.className}>
         <header>
+          <Headband />
           <ContentNavigation />
         </header>
         <Banner />

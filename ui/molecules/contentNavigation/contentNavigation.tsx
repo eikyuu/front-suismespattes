@@ -129,7 +129,7 @@ function ContentNavigation() {
             <LiNav text='Ajouter une balade' href='/ajouter-une-balade' />
             <LiNav text='A propos' href='/a-venir' />
             <LiNav text='Boutique' href='/a-venir' />
-            <LiNav text='Contact' href='/a-venir' />
+            <LiNav text='Contact' href='/contact' />
           </ul>
         </div>
       </div>
