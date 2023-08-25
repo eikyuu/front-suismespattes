@@ -26,7 +26,6 @@ export default function Page() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log(form);
     setSubmit(true);
 
     try {
