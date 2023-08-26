@@ -52,7 +52,7 @@ export function useWalkForm() {
     // get token form session 
     const session = await getSession();
 
-    const token = session?.user.token;
+    const token = session?.token;
     
     const isValid = validateForm();
     if (!isValid) {

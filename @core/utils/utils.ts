@@ -14,7 +14,7 @@ export const formatSlug = (slug:any) => {
 
     const session = await getSession();
 
-    const token = session?.user.token;
+    const token = session?.token;
   
     try {
       const response = await fetch(`${API_URL}walks/images`, {
