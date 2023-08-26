@@ -82,24 +82,24 @@ export function useWalkForm() {
       toast.error('Erreur lors de l\'ajout de la promenade');
     } finally {
       setSubmit(false);
-      // setForm({
-      //   name: '',
-      //   description: '',
-      //   city: '',
-      //   postalCode: '',
-      //   street: '',
-      //   country: '',
-      //   latitude: '',
-      //   longitude: '',
-      //   obligatoryLeash: 'YES',
-      //   waterPoint: false,
-      //   processionaryCaterpillarAlert: false,
-      //   cyanobacteriaAlert: false,
-      //   note: 0,
-      //   files: [],
-      // });
+      setForm({
+        name: '',
+        description: '',
+        city: '',
+        postalCode: '',
+        street: '',
+        country: '',
+        latitude: '',
+        longitude: '',
+        obligatoryLeash: 'YES',
+        waterPoint: false,
+        processionaryCaterpillarAlert: false,
+        cyanobacteriaAlert: false,
+        note: 0,
+        files: [],
+      });
       setErrors({});
-      // e.target.reset();
+      e.target.reset();
     }
   };
 

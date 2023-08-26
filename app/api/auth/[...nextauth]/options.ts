@@ -22,7 +22,7 @@ export const authOptions: AuthOptions = {
             return null
           }
         }
-      })
+      }),
     ],
     session: { strategy: "jwt" },
     callbacks: {
