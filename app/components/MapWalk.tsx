@@ -1,5 +1,5 @@
-import React, { use, useEffect, useState } from 'react';
-import { GeoJson, Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
+import React, { useState } from 'react';
+import { GeoJson, Map, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 
 interface DogWalk {

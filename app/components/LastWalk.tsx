@@ -4,10 +4,10 @@ import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import React from 'react';
-import LargeTitle from './text/largeTitle';
-import LoaderWalks from './loader/loaderWalks';
-import Button from './button/button';
-import CardWalk from './cardWalk';
+import LargeTitle from './text/LargeTitle';
+import LoaderWalks from './loader/LoaderWalks';
+import Button from './button/Button';
+import CardWalk from './CardWalk';
 
 function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);

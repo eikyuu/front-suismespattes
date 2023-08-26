@@ -1,8 +1,10 @@
+
 import { useState } from 'react';
 import { API_URL } from '../constants/global';
 import { uploadImages } from '../utils/utils';
 import { WalkFormPick, WalkForm } from '../types/WalkForm';
 import toast from 'react-hot-toast';
+import { getSession } from 'next-auth/react';
 
 export function useWalkForm() {
 
@@ -47,6 +49,11 @@ export function useWalkForm() {
     e.preventDefault();
     setSubmit(true);
 
+    // get token form session 
+    const session = await getSession();
+
+    const token = session?.user.token;
+    
     const isValid = validateForm();
     if (!isValid) {
       setSubmit(false);
@@ -57,7 +64,7 @@ export function useWalkForm() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'authorization': 'Bearer ' + localStorage.getItem('token'),
+          'authorization': 'Bearer ' + token
         },
         body: JSON.stringify(form),
       });
@@ -75,24 +82,24 @@ export function useWalkForm() {
       toast.error('Erreur lors de l\'ajout de la promenade');
     } finally {
       setSubmit(false);
-      setForm({
-        name: '',
-        description: '',
-        city: '',
-        postalCode: '',
-        street: '',
-        country: '',
-        latitude: '',
-        longitude: '',
-        obligatoryLeash: 'YES',
-        waterPoint: false,
-        processionaryCaterpillarAlert: false,
-        cyanobacteriaAlert: false,
-        note: 0,
-        files: [],
-      });
+      // setForm({
+      //   name: '',
+      //   description: '',
+      //   city: '',
+      //   postalCode: '',
+      //   street: '',
+      //   country: '',
+      //   latitude: '',
+      //   longitude: '',
+      //   obligatoryLeash: 'YES',
+      //   waterPoint: false,
+      //   processionaryCaterpillarAlert: false,
+      //   cyanobacteriaAlert: false,
+      //   note: 0,
+      //   files: [],
+      // });
       setErrors({});
-      e.target.reset();
+      // e.target.reset();
     }
   };
 

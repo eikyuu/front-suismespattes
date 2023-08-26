@@ -2,10 +2,11 @@ import './globals.scss';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
-import Banner from '../composants/banner';
-import ContentNavigation from '../composants/contentNavigation';
-import Footer from '../composants/footer';
-import Headband from '../composants/headband';
+import Banner from './components/Banner';
+import ContentNavigation from './components/ContentNavigation';
+import Footer from './components/Footer';
+import Headband from './components/Headband';
+import AuthProvider from '../@core/context/AuthProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,15 +28,17 @@ export default function RootLayout({
   return (
     <html lang='fr'>
       <body suppressHydrationWarning={true} className={inter.className}>
-        <header>
-          <Headband />
-          <ContentNavigation />
-        </header>
-        <Banner />
-        {children}
-        <Analytics />
-        <Footer />
-        <Toaster />
+        <AuthProvider>
+          <header>
+            <Headband />
+            <ContentNavigation />
+          </header>
+          <Banner />
+          {children}
+          <Analytics />
+          <Footer />
+          <Toaster />
+        </AuthProvider>
       </body>
     </html>
   );

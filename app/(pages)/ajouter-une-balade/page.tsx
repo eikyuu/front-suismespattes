@@ -1,12 +1,12 @@
 'use client';
 
-import Input from '../../../composants/inputs/input';
-import Label from '../../../composants/inputs/label';
-import Textarea from '../../../composants/inputs/textarea';
-import MultiRadio from '../../../composants/inputs/multiRadio';
 import { useWalkForm } from '../../../@core/hooks/useWalkForm';
-import Loader from '../../../composants/loader/loader';
-import GreenContainer from '../../../composants/greenContainer';
+import GreenContainer from '../../components/GreenContainer';
+import Input from '../../components/inputs/Input';
+import Label from '../../components/inputs/Label';
+import MultiRadio from '../../components/inputs/MultiRadio';
+import Textarea from '../../components/inputs/Textarea';
+import Loader from '../../components/loader/Loader';
 
 export default function Page() {
   const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =

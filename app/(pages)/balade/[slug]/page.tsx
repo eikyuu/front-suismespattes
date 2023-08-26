@@ -10,16 +10,16 @@ import 'swiper/css/thumbs';
 import { FreeMode, Thumbs } from 'swiper';
 import { Swiper as S } from 'swiper';
 import React from 'react';
-import WalkMap from '../../../../composants/walkMap';
 import ScrollUp from '../../../../@core/utils/scrollUp';
 import { API_URL } from '../../../../@core/constants/global';
 import { useFetch } from '../../../../@core/hooks/useFetch';
 import toast from 'react-hot-toast';
-import BlocTextWithspan from '../../../../composants/text/blocTextWithSpan';
-import LoaderWalk from '../../../../composants/loader/loaderWalk';
-import BlurImage from '../../../../composants/blurImage/blurImage';
-import LargeTitle from '../../../../composants/text/largeTitle';
-import TextAlert from '../../../../composants/text/textAlert';
+import LoaderWalk from '../../../components/loader/LoaderWalk';
+import BlurImage from '../../../components/blurImage/BlurImage';
+import WalkMap from '../../../components/WalkMap';
+import BlocTextWithspan from '../../../components/text/BlocTextWithSpan';
+import LargeTitle from '../../../components/text/LargeTitle';
+import TextAlert from '../../../components/text/TextAlert';
 
 export default function Page({
   params,

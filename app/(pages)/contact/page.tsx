@@ -1,14 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import GreenContainer from '../../../composants/greenContainer';
-import Label from '../../../composants/inputs/label';
-import Textarea from '../../../composants/inputs/textarea';
-import Input from '../../../composants/inputs/input';
-import Loader from '../../../composants/loader/loader';
+
 import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { Contact } from '../../../@core/types/Contact';
+import GreenContainer from '../../components/GreenContainer';
+import Label from '../../components/inputs/Label';
+import Input from '../../components/inputs/Input';
+import Loader from '../../components/loader/Loader';
+import Textarea from '../../components/inputs/Textarea';
 
 export default function Page() {
   const [form, setForm] = useState<any>({
@@ -138,7 +139,7 @@ export default function Page() {
               required
             />
 
-            <Label name='subject' label='Object de votre message' required />
+            <Label name='subject' label='Objet de votre message' required />
             <Input
               handleChange={handleChange}
               value={form.subject}
@@ -146,7 +147,7 @@ export default function Page() {
               type='text'
               name='subject'
               maxLength={50}
-              label='Object de votre message'
+              label='Objet de votre message'
               required
             />
 

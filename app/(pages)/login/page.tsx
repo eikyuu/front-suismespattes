@@ -1,14 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import GreenContainer from '../../../composants/greenContainer';
-import Label from '../../../composants/inputs/label';
-import Textarea from '../../../composants/inputs/textarea';
-import Input from '../../../composants/inputs/input';
-import Loader from '../../../composants/loader/loader';
 import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { Contact } from '../../../@core/types/Contact';
+import GreenContainer from '../../components/GreenContainer';
+import Label from '../../components/inputs/Label';
+import Loader from '../../components/loader/Loader';
+import Input from '../../components/inputs/Input';
 
 export default function Page() {
   const [form, setForm] = useState<any>({

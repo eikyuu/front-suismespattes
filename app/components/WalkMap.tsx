@@ -1,5 +1,5 @@
-import MapWalk from './mapWalk';
-import MediumTitle from './text/mediumTitle';
+import MapWalk from './MapWalk';
+import MediumTitle from './text/MediumTitle';
 
 function WalkMap({ dogWalk, coordinates, title }: { dogWalk: any; coordinates: any; title: string }) {
   return (

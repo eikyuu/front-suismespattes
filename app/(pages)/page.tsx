@@ -1,15 +1,15 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Reviews from '../../composants/reviews';
 import 'leaflet/dist/leaflet.css';
-import WalkMap from '../../composants/walkMap';
 import { API_URL } from '../../@core/constants/global';
 import { useFetch } from '../../@core/hooks/useFetch';
 import toast from 'react-hot-toast';
 import { ErrorBoundary } from "react-error-boundary";
-import Presentation from '../../composants/presentation';
-import LastWalk from '../../composants/lastWalk';
+import LastWalk from '../components/LastWalk';
+import Presentation from '../components/Presentation';
+import Reviews from '../components/Reviews';
+import WalkMap from '../components/WalkMap';
 
 function Fallback({ error, resetErrorBoundary } : any) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.

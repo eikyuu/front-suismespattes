@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import BlurImage from './blurImage/blurImage';
-import Button from './button/button';
-import TextBold from './text/textBold';
-import TextGray from './text/textGray';
+import BlurImage from './blurImage/BlurImage';
+import Button from './button/Button';
+import TextBold from './text/TextBold';
+import TextGray from './text/TextGray';
 
 function CardWalk({
   city,

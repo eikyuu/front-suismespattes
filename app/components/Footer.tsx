@@ -1,4 +1,4 @@
-import LinkOutline from './linkOutline';
+import LinkOutline from './LinkOutline';
 
 function Footer() {
     return ( 

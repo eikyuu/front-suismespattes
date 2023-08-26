@@ -1,3 +1,4 @@
+import { getSession } from 'next-auth/react';
 import { API_URL } from '../constants/global';
 
 export const formatSlug = (slug:any) => {
@@ -10,12 +11,16 @@ export const formatSlug = (slug:any) => {
     const formData = new FormData();
     formData.append('image', file);
     formData.append('slug', slug);
+
+    const session = await getSession();
+
+    const token = session?.user.token;
   
     try {
       const response = await fetch(`${API_URL}walks/images`, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+          'Authorization': 'Bearer ' + token,
         },
         body: formData,
       });

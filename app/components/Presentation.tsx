@@ -1,5 +1,5 @@
-import Card from './card';
-import LargeTitle from './text/largeTitle';
+import Card from './Card';
+import LargeTitle from './text/LargeTitle';
 
 function Presentation() {
   return (

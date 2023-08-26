@@ -1,11 +1,11 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 import React from 'react';
-import { API_URL } from '../@core/constants/global';
-import { useFetch } from '../@core/hooks/useFetch';
-import CardWalk from './cardWalk';
-import LoaderWalks from './loader/loaderWalks';
-import LargeTitle from './text/largeTitle';
+import CardWalk from './CardWalk';
+import LoaderWalks from './loader/LoaderWalks';
+import LargeTitle from './text/LargeTitle';
+import { useFetch } from '../../@core/hooks/useFetch';
+import { API_URL } from '../../@core/constants/global';
 
 function PageWalk() {
   const [dogWalk, setDogWalk] = useState<any[]>([]);

@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import LiNav from './liNav';
+import LiNav from './LiNav';
+import LoginBtn from './button/LoginBtn';
 
 function ContentNavigation() {
   const handleMenuClick = () => {
@@ -123,13 +124,14 @@ function ContentNavigation() {
               placeholder='Trouve une balade par ville'
             />
           </div> */}
-          <ul className='flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
+          <ul className='flex flex-col items-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
             <LiNav text='Accueil' href='/' />
             <LiNav text='Toutes les balades' href='/toutes-les-balades' />
             <LiNav text='Ajouter une balade' href='/ajouter-une-balade' />
             <LiNav text='A propos' href='/a-venir' />
             <LiNav text='Boutique' href='/a-venir' />
             <LiNav text='Contact' href='/contact' />
+            <LoginBtn />
           </ul>
         </div>
       </div>
