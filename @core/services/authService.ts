@@ -8,6 +8,10 @@ export const authenticate = async (email: string, password: string) => {
         },
         body: JSON.stringify({ email, password })
       })
-    const data = await res.json();
-    return data;
+    if (res.ok) {
+        const data = await res.json()
+        return data
+    } else {
+        throw new Error(res.statusText)
+    }
 }

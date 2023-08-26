@@ -131,7 +131,7 @@ function ContentNavigation() {
             <LiNav text='A propos' href='/a-venir' />
             <LiNav text='Boutique' href='/a-venir' />
             <LiNav text='Contact' href='/contact' />
-            {/* <LoginBtn /> */}
+            <LoginBtn />
           </ul>
         </div>
       </div>
