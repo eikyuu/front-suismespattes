@@ -13,8 +13,8 @@ export const authOptions: AuthOptions = {
         async authorize (credentials, req) {
           if (typeof credentials !== "undefined") {
             const res = await authenticate(credentials.email, credentials.password)
-            if (typeof res !== "undefined") {
-              return { ...res.user, token: res.token }
+            if (res && res.user) {
+              return res.user
             } else {
               return null
             }
