@@ -77,7 +77,7 @@ export default function Page() {
         maxLength: 50,
       },
       subject: {
-        label: 'sujet',
+        label: 'subject',
         minLength: 3,
         maxLength: 50,
       },

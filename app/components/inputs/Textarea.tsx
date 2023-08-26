@@ -37,8 +37,8 @@ function Textarea({
         </p>
       </div>
 
-      {errors.description && (
-        <div className='text-red-400'>{errors.description}</div>
+      {errors && (
+        <div className='text-red-400'>{errors[name]}</div>
       )}
     </>
   );
