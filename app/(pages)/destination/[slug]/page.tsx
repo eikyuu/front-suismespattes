@@ -178,7 +178,7 @@ export default function Page({
                 </p> */}
                 <BlocTextWithspan
                   dogWalk={dogWalk.waterPoint}
-                  text='Point d&#039;eau buvable pour les chiens :'
+                  text='Point d&#039;eau buvable pour les chiens : '
                 />
                 
                 <BlocTextWithspan
