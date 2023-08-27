@@ -232,7 +232,7 @@ export default function Page() {
                 handleChange={handleChange}
                 value={form.latitude}
                 errors={errors}
-                type='text'
+                type='number'
                 name='latitude'
                 label='Latitude'
               />
@@ -243,7 +243,7 @@ export default function Page() {
                 handleChange={handleChange}
                 value={form.longitude}
                 errors={errors}
-                type='text'
+                type='number'
                 name='longitude'
                 label='Longitude'
               />
