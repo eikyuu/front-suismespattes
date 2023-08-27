@@ -33,13 +33,13 @@ const reviews = [
   {
     id : 2,
     name: 'Urielle',
-    content: 'Nouvelle sur l\'application, j\'ai hâte de decouvrir de nouvelles balades !',
+    content: 'Nouvelle sur l\'application, j\'ai hâte de decouvrir de nouvelles sorties !',
     image: 'https://images.dog.ceo/breeds/poodle-medium/PXL_20210220_100624962.jpg'
   },
   {
     id : 3,
     name: 'Tomo',
-    content: 'Super application, je recommande ! De belles balades à faire !',
+    content: 'Super application, je recommande ! De belles sorties à faire !',
     image: 'https://images.dog.ceo/breeds/corgi-cardigan/n02113186_1695.jpg'
   },
 ];
@@ -79,12 +79,12 @@ export default function Home() {
   }, [data, error]);
 
   return (
-    <main className='font-sans'>
+    <main>
       <ErrorBoundary FallbackComponent={Fallback}>
         <Presentation />
         <Reviews reviews={reviews} />
         <LastWalk dogWalk={dogWalk} />
-        <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les balades autours de chez toi !' />
+        <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
       </ErrorBoundary>
     </main>
   );

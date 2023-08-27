@@ -25,7 +25,7 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
     <>
       {isMobile ? (
         <section className='h-full w-11/12 mx-auto  pt-10 pb-10'>
-          <LargeTitle title='Les dernières balades' />
+          <LargeTitle title='Les dernières destinations' />
           <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
           {dogWalk.length === 0 && <LoaderWalks />}
 
@@ -48,14 +48,14 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
             </Swiper>
           </div>
           <div className='text-center'>
-            <Link className='outline-none' href='/toutes-les-balades'>
-              <Button text='Voir toutes les balades' />
+            <Link className='outline-none' href='/toutes-les-destinations'>
+              <Button text='Voir toutes les lieux' />
             </Link>
           </div>
         </section>
       ) : (
         <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
-          <LargeTitle title='Les dernières balades' />
+          <LargeTitle title='Les dernièrs lieux' />
           <div className='container mx-auto mt-10 mb-10 flex flex-col flex-wrap justify-between md:flex-row'>
           {dogWalk.length === 0 && <LoaderWalks />}
             {dogWalk.slice(0, 4).map((dogWalk: any) => (
@@ -70,8 +70,8 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
             ))}
           </div>
           <div className='text-center'>
-            <Link className='outline-none' href='/toutes-les-balades'>
-              <Button text='Voir toutes les balades' />
+            <Link className='outline-none' href='/toutes-les-destinations'>
+              <Button text='Voir toutes les destinations' />
             </Link>
           </div>
         </section>

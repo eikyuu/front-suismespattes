@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='fr'>
-      <body suppressHydrationWarning={true} className={inter.className}>
+      <body suppressHydrationWarning={true} className={inter.className + ' font-sans leading-relaxed'}>
         <AuthProvider>
           <header>
             <Headband />

@@ -42,7 +42,7 @@ function PageWalk() {
 
   return (
     <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
-      <LargeTitle title='Toutes les balades' />
+      <LargeTitle title='Toutes les destinations' />
 
       <div className='container relative block mt-10 mx-auto'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
@@ -65,7 +65,7 @@ function PageWalk() {
           type='text'
           id='search-navbar'
           className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
-          placeholder='Trouve une balade par ville'
+          placeholder='Trouve une destination par ville'
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
         />

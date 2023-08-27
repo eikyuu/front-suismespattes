@@ -69,7 +69,7 @@ function ContentNavigation() {
               type='text'
               id='search-navbar'
               className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-tertiary focus:outline-none'
-              placeholder='Trouve une balade par ville...'
+              placeholder='Trouve une destination par ville...'
             />
           </div> */}
 
@@ -121,13 +121,13 @@ function ContentNavigation() {
               type='text'
               id='search-navbar'
               className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-4 focus:ring-tertiary focus:outline-none '
-              placeholder='Trouve une balade par ville'
+              placeholder='Trouve une destination par ville'
             />
           </div> */}
-          <ul className='flex flex-col items-center p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
+          <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
             <LiNav text='Accueil' href='/' />
-            <LiNav text='Toutes les balades' href='/toutes-les-balades' />
-            <LiNav text='Ajouter une balade' href='/ajouter-une-balade' />
+            <LiNav text='Toutes les destinations' href='/toutes-les-destinations' />
+            <LiNav text='Ajouter une destination' href='/ajouter-une-destination' />
             <LiNav text='A propos' href='/a-venir' />
             <LiNav text='Boutique' href='/a-venir' />
             <LiNav text='Contact' href='/contact' />

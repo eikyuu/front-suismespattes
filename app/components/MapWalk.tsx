@@ -65,7 +65,7 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
             offset={[120, 79]}
           >
             <Link
-              href={`/balade/${selectedWalk.slug}`}
+              href={`/destination/${selectedWalk.slug}`}
                
               className='block relative top-9 left-4 bg-white rounded-lg border-1 border-black p-1 shadow-md	'
             >

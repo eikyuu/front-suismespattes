@@ -110,7 +110,7 @@ export default function Page() {
   };
 
   return (
-    <main className='font-sans container mx-auto w-11/12 mt-10'>
+    <main className='container mx-auto w-11/12 mt-10'>
       <form
         onSubmit={(e) => {
           handleSubmit(e);

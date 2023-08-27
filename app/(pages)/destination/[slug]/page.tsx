@@ -74,7 +74,7 @@ export default function Page({
   };
 
   return (
-    <main className='font-sans h-full	'>
+    <main className='h-full	'>
       <ScrollUp />
       {!dogWalk && <LoaderWalk />}
 
@@ -170,7 +170,7 @@ export default function Page({
                   dogWalk={dogWalk.obligatoryLeash}
                   text='Laisse obligatoire :'
                 />
-                <p className='mt-4'>Adresse de la balade : <span className='font-semibold'>{dogWalk.street}, {dogWalk.postalCode}, {dogWalk.city}</span></p>
+                <p className='mt-4'>Adresse de la destination : <span className='font-semibold'>{dogWalk.street}, {dogWalk.postalCode}, {dogWalk.city}</span></p>
                 <p className='mt-4'>Coordonnées GPS :  <span className='font-semibold'>{dogWalk.latitude}, {dogWalk.longitude} </span></p>
                 <a className='block mt-4' href={`https://www.google.com/maps?q=${dogWalk.latitude},${dogWalk.longitude}`} target="_blank" rel="noreferrer"> <span className='font-semibold'>Lien direct Google maps</span></a>
                 {dogWalk.cyanobacteriaAlert && (

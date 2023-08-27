@@ -42,7 +42,7 @@ export const formatSlug = (slug:any) => {
       const uploadPromises = form.files.map((file:any) => postImages(file, form.name));
       await Promise.all(uploadPromises);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       throw new Error('une erreur est survenue lors de l\'upload des images');
     }
   };
