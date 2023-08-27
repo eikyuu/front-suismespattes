@@ -73,6 +73,20 @@ export default function Page({
     }
   };
 
+
+  const handleObligatoryLeash = (obligatoryLeash: 'RECOMANDED' | 'YES' | 'NO' ) => {
+    switch (obligatoryLeash) {
+      case 'RECOMANDED':
+        return 'Recommandé';
+      case 'YES':
+        return 'Oui';
+      case 'NO':
+        return 'Non';
+      default:
+        return 'Non';
+    }
+  }
+
   return (
     <main className='h-full	'>
       <ScrollUp />
@@ -166,9 +180,10 @@ export default function Page({
                   dogWalk={dogWalk.waterPoint}
                   text='Point d&#039;eau buvable pour les chiens :'
                 />
+                
                 <BlocTextWithspan
-                  dogWalk={dogWalk.obligatoryLeash}
-                  text='Laisse obligatoire :'
+                  dogWalk={handleObligatoryLeash(dogWalk.obligatoryLeash)}
+                  text='Laisse obligatoire : '
                 />
                 <p className='mt-4'>Adresse de la destination : <span className='font-semibold'>{dogWalk.street}, {dogWalk.postalCode}, {dogWalk.city}</span></p>
                 <p className='mt-4'>Coordonnées GPS :  <span className='font-semibold'>{dogWalk.latitude}, {dogWalk.longitude} </span></p>
