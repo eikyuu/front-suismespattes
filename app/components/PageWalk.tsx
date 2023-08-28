@@ -6,6 +6,7 @@ import LoaderWalks from './loader/LoaderWalks';
 import LargeTitle from './text/LargeTitle';
 import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
+import toast from 'react-hot-toast';
 
 function PageWalk() {
   const [dogWalk, setDogWalk] = useState<any[]>([]);
@@ -20,7 +21,8 @@ function PageWalk() {
     if (data) {
       setDogWalk(data);
     } else if (error) {
-      console.log(error);
+      console.error(error);
+      toast.error('Une erreur est survenue');
     }
   }, [data, error]);
 

@@ -59,7 +59,6 @@ export default function Home() {
         setCoordinates([position.coords.latitude, position.coords.longitude]);
       },
       (error) => {
-        console.log(error);
         setCoordinates([47.38905261221537, 0.6883621215820312]);
       },
       { enableHighAccuracy: true, maximumAge: 30000, timeout: 27000 }

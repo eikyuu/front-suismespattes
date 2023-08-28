@@ -1,10 +1,10 @@
 
 import { useState } from 'react';
 import { API_URL } from '../constants/global';
-import { uploadImages } from '../utils/utils';
 import { WalkFormPick, WalkForm } from '../types/WalkForm';
 import toast from 'react-hot-toast';
 import { getSession } from 'next-auth/react';
+import { uploadImages } from '../services/destinationService';
 
 export function useWalkForm() {
 
@@ -105,8 +105,6 @@ export function useWalkForm() {
 
   const handleFileChange = (e: any) => {
     const { files } = e.target;
-    console.log(files);
-
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
       if (files[i].size > 3000000) {
