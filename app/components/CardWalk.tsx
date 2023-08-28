@@ -33,10 +33,10 @@ function CardWalk({
         image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`} />
       </picture>
       <div className='mb-2'>
-        <TextBold text={elipsis(name, 30)} color='text-black' />
+        <TextBold text={elipsis(name, 30)} color='text-black lowercase first-letter:uppercase' />
       </div>
       <div className="mb-2">
-        <TextBold text={elipsis(city, 30)} color='text-black' />
+        <TextBold text={elipsis(city, 30)} color='text-black lowercase first-letter:uppercase' />
       </div>
       <div className='mb-2'>
         <TextGray text={elipsis(description, 100)} />

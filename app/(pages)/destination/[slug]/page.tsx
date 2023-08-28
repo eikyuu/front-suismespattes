@@ -161,9 +161,9 @@ export default function Page({
               </Swiper>
             </div>
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
-              <div className='h-full'>
+              <div className='h-full '>
                 <LargeTitle title={dogWalk.name} />
-                <p className='mt-4'>{dogWalk.description}</p>
+                <p className='mt-4 lowercase first-letter:uppercase'>{dogWalk.description}</p>
                 <p className='mt-4'>
                   &#11088;
                   <span className='ml-2 font-semibold'>
