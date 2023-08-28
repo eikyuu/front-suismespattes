@@ -4,7 +4,7 @@ import { API_URL } from '../constants/global';
 import { WalkFormPick, WalkForm } from '../types/WalkForm';
 import toast from 'react-hot-toast';
 import { getSession } from 'next-auth/react';
-import { uploadImages } from '../services/destinationService';
+import { postDestination, uploadImages } from '../services/destinationService';
 
 export function useWalkForm() {
 
@@ -48,11 +48,6 @@ export function useWalkForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setSubmit(true);
-
-    // get token form session 
-    const session = await getSession();
-
-    const token = session?.token;
     
     const isValid = validateForm();
     if (!isValid) {
@@ -60,23 +55,9 @@ export function useWalkForm() {
       return;
     }
     try {
-      const response = await fetch(`${API_URL}walks`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify(form),
-      });
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-      
+      await postDestination(form);
       await uploadImages(form);
-
       toast.success('Votre promenade a bien été ajoutée');
-
     } catch (err) {
       console.error(err);
       toast.error('Erreur lors de l\'ajout de la promenade');

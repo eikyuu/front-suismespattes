@@ -37,20 +37,8 @@ export default function Page() {
     }
 
     try {
-    const response =  await fetch(`${API_URL}contact`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(form),
-      })
-
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
-
+      postMessage(form);
       toast.success('Votre message a bien été envoyé');
-
     } catch (error) {
       console.error(error);
       toast.error('Une erreur est survenue lors de l\'envoi du message');
