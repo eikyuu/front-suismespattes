@@ -256,6 +256,14 @@ export default function Page() {
             Photos
           </h2>
 
+
+          <p className='block mb-2 mt-5 text-sm font-medium text-white'>
+            Vous pouvez ajouter jusqu&apos;à 5 photos.
+          </p>
+          <p className='block mb-2 mt-5 text-sm font-medium text-white'>
+            Les photos doivent être au format PNG, JPEG ou JPG.
+          </p>
+
           <Label
             name='multiple_files'
             label='Ajouter des photos de la destination'
@@ -270,9 +278,11 @@ export default function Page() {
               hover:file:bg-tertiary'
             id='multiple_files'
             type='file'
+            accept='image/png, image/jpeg, image/jpg'
             multiple
             required
           />
+          {errors && <div className='text-red-400'>{errors.files}</div>}
         </GreenContainer>
 
         <button

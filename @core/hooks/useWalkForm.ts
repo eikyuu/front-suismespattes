@@ -105,6 +105,34 @@ export function useWalkForm() {
 
   const handleFileChange = (e: any) => {
     const { files } = e.target;
+    console.log(files);
+
+    // si la taille du fichier est supérieur à 3mb
+    for (let i = 0; i < files.length; i++) {
+      if (files[i].size > 3000000) {
+        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
+        return
+      }
+      if (files[i].type !== 'image/jpeg' && files[i].type !== 'image/png' && files[i].type !== 'image/jpg') {
+        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être au format jpg ou png` });
+     }
+    }
+
+    if (files.length === 0) {
+      setErrors({ ...errors, files: 'Veuillez ajouter au moins un fichier' });
+      return
+    }
+
+    if (files.length > 5) {
+      setErrors({ ...errors, files: 'Veuillez ajouter au maximum 5 fichiers' });
+      return
+    }
+
+    if (files.length > 0) {
+      setErrors({ ...errors, files: '' });
+    }
+
+    
     let inputsTemp = { ...form };
     for (let i = 0; i < files.length; i++) {
       inputsTemp.files.push(files[i]);
