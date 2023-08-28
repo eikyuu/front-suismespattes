@@ -282,7 +282,7 @@ export default function Page() {
             multiple
             required
           />
-          {errors && <div className='text-red-400'>{errors.files}</div>}
+          {errors && <div className='text-red-400 mt-2'>{errors.files}</div>}
         </GreenContainer>
 
         <button
