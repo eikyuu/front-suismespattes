@@ -6,10 +6,10 @@ import { API_URL } from '../../@core/constants/global';
 import { useFetch } from '../../@core/hooks/useFetch';
 import toast from 'react-hot-toast';
 import { ErrorBoundary } from "react-error-boundary";
-import LastWalk from '../components/LastWalk';
+import LastDestinations from '../components/LastDestinations';
 import Presentation from '../components/Presentation';
-import Reviews from '../components/Reviews';
-import WalkMap from '../components/WalkMap';
+import MapContainer from '../components/map/MapContainer';
+import Reviews from '../components/review/Reviews';
 
 function Fallback({ error, resetErrorBoundary } : any) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -46,7 +46,7 @@ const reviews = [
 
 export default function Home() {
   const [coordinates, setCoordinates] = useState<any>();
-  const [dogWalk, setDogWalk] = useState<any[]>([]);
+  const [dogDestination, setDogDestination] = useState<any[]>([]);
 
 
   const url = `${API_URL}walks`;
@@ -70,7 +70,7 @@ export default function Home() {
 
   useEffect(() => {
     if (data) {
-      setDogWalk(data);
+      setDogDestination(data);
     } else if (error) {
       console.error(error);
       toast.error('Une erreur est survenue');
@@ -82,8 +82,8 @@ export default function Home() {
       <ErrorBoundary FallbackComponent={Fallback}>
         <Presentation />
         <Reviews reviews={reviews} />
-        <LastWalk dogWalk={dogWalk} />
-        <WalkMap dogWalk={dogWalk} coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
+        <LastDestinations dogDestination={dogDestination} />
+        <MapContainer dogDestination={dogDestination} coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
       </ErrorBoundary>
     </main>
   );

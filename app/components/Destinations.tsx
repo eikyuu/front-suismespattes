@@ -1,16 +1,16 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 import React from 'react';
-import CardWalk from './CardWalk';
-import LoaderWalks from './loader/LoaderWalks';
+import CardDestination from './CardDestination';
+import LoaderDestinations from './loader/LoaderDestinations';
 import LargeTitle from './text/LargeTitle';
 import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
 
-function PageWalk() {
-  const [dogWalk, setDogWalk] = useState<any[]>([]);
-  const [filteredDogWalk, setFilteredDogWalk] = useState<any[]>([]);
+function Destinations() {
+  const [dogDestination, setDogDestination] = useState<any[]>([]);
+  const [filteredDogDestination, setFilteredDogDestination] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
   const url = `${API_URL}walks`;
@@ -19,24 +19,24 @@ function PageWalk() {
 
   useEffect(() => {
     if (data) {
-      setDogWalk(data);
+      setDogDestination(data);
     } else if (error) {
       console.error(error);
       toast.error('Une erreur est survenue');
     }
   }, [data, error]);
 
-  const filterDogWalk = useCallback(() => {
-    setFilteredDogWalk(
-      dogWalk.filter((walk) => {
+  const filterDogDestination = useCallback(() => {
+    setFilteredDogDestination(
+      dogDestination.filter((walk) => {
         return walk.city.toLowerCase().includes(search.toLowerCase());
       })
     );
-  }, [dogWalk, search]);
+  }, [dogDestination, search]);
 
   useEffect(() => {
-    filterDogWalk();
-  }, [search, filterDogWalk]);
+    filterDogDestination();
+  }, [search, filterDogDestination]);
 
   const handleSearch = (value: string) => {
     setSearch(value);
@@ -61,7 +61,7 @@ function PageWalk() {
               clipRule='evenodd'
             ></path>
           </svg>
-          <span className='sr-only'>Search icon</span>
+          <span className='sr-only'>Icon de recherche</span>
         </div>
         <input
           type='text'
@@ -74,8 +74,8 @@ function PageWalk() {
       </div>
 
       <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
-        {filteredDogWalk.length === 0 && <LoaderWalks />}
-        {filteredDogWalk.map(
+        {filteredDogDestination.length === 0 && <LoaderDestinations />}
+        {filteredDogDestination.map(
           (walk: {
             id: number;
             city: string;
@@ -84,7 +84,7 @@ function PageWalk() {
             slug: string;
             images: { name: string }[];
           }) => (
-            <CardWalk
+            <CardDestination
               key={walk.id}
               city={walk.city}
               name={walk.name}
@@ -98,4 +98,4 @@ function PageWalk() {
     </section>
   );
 }
-export default PageWalk;
+export default Destinations;

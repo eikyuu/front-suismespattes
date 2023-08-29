@@ -1,12 +1,13 @@
 import React from 'react';
-import MediumTitle from './text/MediumTitle';
 import Review from './Review';
-import LoaderReviews from './loader/LoaderReviews';
+import LoaderReviews from '../loader/LoaderReviews';
+import MediumTitle from '../text/MediumTitle';
 function Reviews({reviews}: any): JSX.Element {
   
   return (
     <section className='h-full flex flex-col justify-evenly bg-primary pt-10 pb-10'>
-      <MediumTitle title='Témoignages des utilisateurs' color='text-white' />
+      <MediumTitle title='L&apos;avis des cani&apos;potes' color='text-white' />
+      
       {reviews.length === 0 && <LoaderReviews />}
 
       <div className='container mx-auto w-11/12 flex flex-col items-center justify-between pt-10 md:flex-row'>

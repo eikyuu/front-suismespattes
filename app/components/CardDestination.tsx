@@ -4,7 +4,7 @@ import Button from './button/Button';
 import TextBold from './text/TextBold';
 import TextGray from './text/TextGray';
 
-function CardWalk({
+function CardDestination({
   city,
   name,
   description,
@@ -46,4 +46,4 @@ function CardWalk({
   );
 }
 
-export default CardWalk;
+export default CardDestination;

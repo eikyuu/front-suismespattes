@@ -1,14 +1,14 @@
 
 import { useState } from 'react';
 import { API_URL } from '../constants/global';
-import { WalkFormPick, WalkForm } from '../types/WalkForm';
+import { DestinationFormPick, DestinationForm } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { getSession } from 'next-auth/react';
 import { postDestination, uploadImages } from '../services/destinationService';
 
-export function useWalkForm() {
+export function useDestinationForm() {
 
-  const [form, setForm] = useState<WalkForm>({
+  const [form, setForm] = useState<DestinationForm>({
     name: '',
     description: '',
     city: '',
@@ -154,15 +154,15 @@ export function useWalkForm() {
     Object.keys(validatorsRules).forEach((key) => {
       const { label, minLength, maxLength } = validatorsRules[key as keyof typeof validatorsRules];
       switch (true) {
-        case form[key as keyof WalkFormPick].length === 0:
+        case form[key as keyof DestinationFormPick].length === 0:
           errorsTemp = { ...errorsTemp, [key]: `Le ${label} est obligatoire` };
           valid = false;
           break;
-        case form[key as keyof WalkFormPick].length < minLength:
+        case form[key as keyof DestinationFormPick].length < minLength:
           errorsTemp = { ...errorsTemp, [key]: `Le ${label} doit contenir au minimum ${minLength} caractères` };
           valid = false;
           break;
-        case form[key as keyof WalkFormPick].length > maxLength:
+        case form[key as keyof DestinationFormPick].length > maxLength:
           errorsTemp = { ...errorsTemp, [key]: `Le ${label} doit contenir au maximum ${maxLength} caractères` };
           valid = false;
           break;

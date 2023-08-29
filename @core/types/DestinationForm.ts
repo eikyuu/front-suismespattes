@@ -1,4 +1,4 @@
-export type WalkForm = {
+export type DestinationForm = {
     name: string;
     description: string;
     city: string;
@@ -15,4 +15,4 @@ export type WalkForm = {
     files: File[];
   };
 
-export type WalkFormPick = Pick<WalkForm, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;
+export type DestinationFormPick = Pick<DestinationForm, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;

@@ -1,6 +1,6 @@
-import BlurImageRounded from './blurImage/BlurImageRounded';
-import TextBold from './text/TextBold';
-import TextWithQuote from './text/TextWithQuote';
+import BlurImageRounded from '../blurImage/BlurImageRounded';
+import TextBold from '../text/TextBold';
+import TextWithQuote from '../text/TextWithQuote';
 
 interface ReviewProps {
   name: string;

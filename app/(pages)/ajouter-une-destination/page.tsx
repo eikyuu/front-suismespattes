@@ -1,6 +1,6 @@
 'use client';
 
-import { useWalkForm } from '../../../@core/hooks/useWalkForm';
+import { useDestinationForm } from '../../../@core/hooks/useDestinationForm';
 import GreenContainer from '../../components/GreenContainer';
 import Input from '../../components/inputs/Input';
 import Label from '../../components/inputs/Label';
@@ -11,7 +11,7 @@ import LargeTitle from '../../components/text/LargeTitle';
 
 export default function Page() {
   const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =
-    useWalkForm();
+    useDestinationForm();
 
   return (
     <main className='container mx-auto w-11/12'>

@@ -11,7 +11,7 @@ import AuthProvider from '../@core/context/AuthProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Au fil des pattes',
+  title: 'AuFilDesPattes.com : une application pour voyager avec ton chien !',
   description: 'Au fil des pattes, une application pour voyager avec ton chien ! Trouve ta destination idéale. Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.',
   viewport: {
     width: 'device-width',
@@ -29,10 +29,8 @@ export default function RootLayout({
     <html lang='fr'>
       <body suppressHydrationWarning={true} className={inter.className + ' font-sans leading-relaxed'}>
         <AuthProvider>
-          <header>
-            <Headband />
-            <ContentNavigation />
-          </header>
+          <Headband />
+          <ContentNavigation />
           <Banner />
           {children}
           <Analytics />

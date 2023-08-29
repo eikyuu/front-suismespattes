@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoaderWalks() {
+function LoaderDestinations() {
   return (
     <div className='container mx-auto flex flex-col flex-wrap md:flex-row justify-between animate-pulse'>
 
@@ -49,4 +49,4 @@ function LoaderWalks() {
   );
 }
 
-export default LoaderWalks;
+export default LoaderDestinations;

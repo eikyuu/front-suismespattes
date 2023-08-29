@@ -5,11 +5,11 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import React from 'react';
 import LargeTitle from './text/LargeTitle';
-import LoaderWalks from './loader/LoaderWalks';
+import LoaderDestinations from './loader/LoaderDestinations';
 import Button from './button/Button';
-import CardWalk from './CardWalk';
+import CardDestination from './CardDestination';
 
-function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
+function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
 
   const handleResize = () => {
@@ -27,21 +27,21 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
         <section className='h-full w-11/12 mx-auto  pt-10 pb-10'>
           <LargeTitle title='Les dernières destinations' />
           <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
-          {dogWalk.length === 0 && <LoaderWalks />}
+          {dogDestination.length === 0 && <LoaderDestinations />}
 
             <Swiper
               slidesPerView={'auto'}
               spaceBetween={16}
               className='w-full h-full'
             >
-              {dogWalk.slice(0, 4).map((dogWalk: any) => (
-                <SwiperSlide key={dogWalk.id} className='!w-11/12 last:w-full'>
-                  <CardWalk
-                    city={dogWalk.city}
-                    name={dogWalk.name}
-                    description={dogWalk.description}
-                    slug={dogWalk.slug}
-                    imageName={dogWalk.images[0]?.name}
+              {dogDestination.slice(0, 4).map((dogDestination: any) => (
+                <SwiperSlide key={dogDestination.id} className='!w-11/12 last:w-full'>
+                  <CardDestination
+                    city={dogDestination.city}
+                    name={dogDestination.name}
+                    description={dogDestination.description}
+                    slug={dogDestination.slug}
+                    imageName={dogDestination.images[0]?.name}
                   />
                 </SwiperSlide>
               ))}
@@ -57,15 +57,15 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
         <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
           <LargeTitle title='Les dernières destinations' />
           <div className='container mx-auto mt-10 mb-10 flex flex-col flex-wrap justify-between md:flex-row'>
-          {dogWalk.length === 0 && <LoaderWalks />}
-            {dogWalk.slice(0, 4).map((dogWalk: any) => (
-              <CardWalk
-                key={dogWalk.id}
-                city={dogWalk.city}
-                name={dogWalk.name}
-                description={dogWalk.description}
-                slug={dogWalk.slug}
-                imageName={dogWalk.images[0]?.name}
+          {dogDestination.length === 0 && <LoaderDestinations />}
+            {dogDestination.slice(0, 4).map((dogDestination: any) => (
+              <CardDestination
+                key={dogDestination.id}
+                city={dogDestination.city}
+                name={dogDestination.name}
+                description={dogDestination.description}
+                slug={dogDestination.slug}
+                imageName={dogDestination.images[0]?.name}
               />
             ))}
           </div>
@@ -80,4 +80,4 @@ function LastWalk({ dogWalk }: { dogWalk: any }): JSX.Element {
   );
 }
 
-export default LastWalk;
+export default LastDestinations;

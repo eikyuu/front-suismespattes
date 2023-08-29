@@ -1,10 +1,10 @@
-function BlocTextWithspan({ dogWalk, text }: { dogWalk: boolean | string; text: string }) {
+function BlocTextWithspan({ dogDestination, text }: { dogDestination: boolean | string; text: string }) {
 
   const handleReturn = () => {
-    if (typeof dogWalk === 'string') {
-      return dogWalk
+    if (typeof dogDestination === 'string') {
+      return dogDestination
     } else {
-      return dogWalk ? 'Oui' : 'Non'
+      return dogDestination ? 'Oui' : 'Non'
     }
   }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GeoJson, Map, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 
-interface DogWalk {
+interface DogDestination {
   id: string;
   name: string;
   longitude: number;
@@ -12,8 +12,8 @@ interface DogWalk {
   slug: string;
 }
 
-function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [number, number] }) {
-  const [selectedWalk, setSelectedWalk] = useState<DogWalk | null>(null);
+function MapContent({ dogDestination, coordinates }: { dogDestination: DogDestination[], coordinates?: [number, number] }) {
+  const [selectedDestination, setSelectedDestination] = useState<DogDestination | null>(null);
 
   const createGeoJson = (longitude: number, latitude: number) => {
     return {
@@ -44,36 +44,36 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
         center={coordinates}
         defaultZoom={12}
         onClick={() => {
-          setSelectedWalk(null);
+          setSelectedDestination(null);
         }}
       >
         <ZoomControl />
-        {dogWalk.map((walk: DogWalk, index) => (
+        {dogDestination.map((walk: DogDestination, index) => (
           <GeoJson
             key={index.toString()}
             data={createGeoJson(Number(walk.longitude), Number(walk.latitude))}
             styleCallback={styleCallback}
             onClick={() => {
-              setSelectedWalk(walk);
+              setSelectedDestination(walk);
             }}
           />
         ))}
 
-        {selectedWalk && (
+        {selectedDestination && (
           <Overlay
-            anchor={[selectedWalk.latitude, selectedWalk.longitude]}
+            anchor={[selectedDestination.latitude, selectedDestination.longitude]}
             offset={[120, 79]}
           >
             <Link
-              href={`/destination/${selectedWalk.slug}`}
+              href={`/destination/${selectedDestination.slug}`}
                
               className='block relative top-9 left-4 bg-white rounded-lg border-1 border-black p-1 shadow-md	'
             >
-              <p>{selectedWalk.name}</p>
-              <p>{selectedWalk.city}</p>
+              <p>{selectedDestination.name}</p>
+              <p>{selectedDestination.city}</p>
               <p>
                 &#11088;
-                <span className='ml-2 font-semibold'>{selectedWalk.note}</span>
+                <span className='ml-2 font-semibold'>{selectedDestination.note}</span>
                 /5{' '}
               </p>
             </Link>
@@ -84,4 +84,4 @@ function MapWalk({ dogWalk, coordinates }: { dogWalk: DogWalk[], coordinates?: [
   );
 }
 
-export default MapWalk;
+export default MapContent;

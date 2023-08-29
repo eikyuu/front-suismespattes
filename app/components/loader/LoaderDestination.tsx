@@ -1,6 +1,6 @@
 import React from 'react';
 
-function LoaderWalk() {
+function LoaderDestination() {
   return (
     <div className='container w-11/12 mx-auto flex flex-col md:flex-row md:space-x-10 pt-10 animate-pulse'>
       <div className='flex-1 space-y-6 py-1'>
@@ -26,4 +26,4 @@ function LoaderWalk() {
   );
 }
 
-export default LoaderWalk;
+export default LoaderDestination;
