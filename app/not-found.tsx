@@ -16,7 +16,7 @@ export default function NotFound() {
       <BlurImage
         height='h-96'
         image={'/images/corgi.jpg'}
-        alt='Deux personnage en jouets qui imite un chantier'
+        alt='Une image de corgi'
       />
 
       <Link className='mt-10' href='/'>
