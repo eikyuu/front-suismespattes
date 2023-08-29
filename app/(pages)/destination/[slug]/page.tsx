@@ -55,7 +55,7 @@ export default function Page({
       case 5:
         return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733);
       default:
-        return 'pas de note';
+        return String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);
     }
   };
 

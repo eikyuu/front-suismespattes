@@ -153,11 +153,11 @@ export default function Page() {
           <MultiRadio
             handleChange={handleChange}
             radios={[
-              { label: 'Très négatif', name: 'note', value: '1' },
-              { label: 'Négatif', name: 'note', value: '2' },
-              { label: 'Neutre', name: 'note', value: '3' },
-              { label: 'Positif', name: 'note', value: '4' },
-              { label: 'Très positif', name: 'note', value: '5' },
+              { label: 'Très négatif', name: 'note', value: '0' },
+              { label: 'Négatif', name: 'note', value: '1' },
+              { label: 'Neutre', name: 'note', value: '2' },
+              { label: 'Positif', name: 'note', value: '3' },
+              { label: 'Très positif', name: 'note', value: '4' },
             ]}
           />
         </GreenContainer>
