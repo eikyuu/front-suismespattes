@@ -70,7 +70,6 @@ function MapContent({ dogDestination, coordinates }: { dogDestination: any[], co
                 <p className='text-sm'>&#x2691; {selectedDestination.street} {selectedDestination.postalCode} {selectedDestination.city}</p>
               </div>
 
-
             </Link>
           </Overlay>
         )}
