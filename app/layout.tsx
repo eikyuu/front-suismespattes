@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Au fil des pattes',
-  description: 'Des promenades sur mesure pour satisfaire tous les toutous!',
+  description: 'Au fil des pattes, une application pour voyager avec ton chien ! Trouve ta destination idéale. Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.',
   viewport: {
     width: 'device-width',
     initialScale: 1,
