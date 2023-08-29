@@ -1,4 +1,4 @@
-import Card from './Card';
+import PresentationContent from './PresentationContent';
 import LargeTitle from './text/LargeTitle';
 
 function Presentation() {
@@ -7,27 +7,27 @@ function Presentation() {
       <LargeTitle title='Au fil des pattes, une application pour voyager avec ton chien !' />
       <div className='w-11/12 mx-auto flex flex-col items-center space-y-4 md:space-y-0 justify-between text-center pt-10 md:flex-row'>
         <div className='flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
-          <Card
+          <PresentationContent
             title='Trouve ta destination idéale'
             text='Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.'
           />
         </div>
         <div className=' flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
-          <Card
+          <PresentationContent
             title='Partage tes destinations'
             text='Tu as trouvé une super destination ? Partage-la avec la communauté ! Tu peux aussi noter les destinations que tu as faites.'
           />
           <p>Prochainement</p>
         </div>
         <div className='flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
-          <Card
+          <PresentationContent
             title='Organise tes sorties avec tes amis'
             text='Tu peux créer un groupe avec tes amis et organiser des sorties ensemble.'
           />
           <p>Prochainement</p>
         </div>
         <div className='flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
-          <Card
+          <PresentationContent
             title='La boutique'
             text='Nous choisissons les meilleurs produits pour vous et votre chien et nous les listons en un seul endroit : dans notre boutique.'
           />

@@ -1,9 +1,7 @@
 
 import { useState } from 'react';
-import { API_URL } from '../constants/global';
 import { DestinationFormPick, DestinationForm } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
-import { getSession } from 'next-auth/react';
 import { postDestination, uploadImages } from '../services/destinationService';
 
 export function useDestinationForm() {

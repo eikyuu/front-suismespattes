@@ -45,17 +45,17 @@ export default function Page({
   const handleNote = (note: number) => {
     switch (note) {
       case 1:
-        return 'Trés négatif';
+        return String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);  
       case 2:
-        return 'Négatif';
+        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);
       case 3:
-        return 'Neutre';
+        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734);
       case 4:
-        return 'Positif';
+        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734);
       case 5:
-        return 'Trés positif !';
+        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733);
       default:
-        return 'Neutre';
+        return 'pas de note';
     }
   };
 
@@ -151,11 +151,8 @@ export default function Page({
                 <LargeTitle title={dogDestination.name} />
                 <p className='mt-4 lowercase first-letter:uppercase'>{dogDestination.description}</p>
                 <p className='mt-4'>
-                  &#11088;
-                  <span className='ml-2 font-semibold'>
-                    {dogDestination.note}
-                  </span>/5{' '}
-                  <span className='font-semibold'>
+                  Note :{' '}
+                  <span className='font-semibold text-yellow-400'>
                     {handleNote(dogDestination.note)}
                   </span>
                 </p>

@@ -1,7 +1,7 @@
 import SmallTitle from './text/SmallTitle';
 import TextGray from './text/TextGray';
 
-function Card({ title, text }: { title: string; text: string }): JSX.Element {
+function PresentationContent({ title, text }: { title: string; text: string }): JSX.Element {
   return (
     <div className=''>
       <SmallTitle title={title} />
@@ -10,4 +10,4 @@ function Card({ title, text }: { title: string; text: string }): JSX.Element {
   );
 }
 
-export default Card;
+export default PresentationContent;
