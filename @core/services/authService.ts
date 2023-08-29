@@ -11,6 +11,6 @@ export const authenticate = async (email: string, password: string) => {
     });
     return await response.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
