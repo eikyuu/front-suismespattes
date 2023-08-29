@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import { GeoJson, Map, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
+import BlurImage from '../blurImage/BlurImage';
+import { Destination } from '../../../@core/types/DestinationForm';
 
-interface DogDestination {
-  id: string;
-  name: string;
-  longitude: number;
-  latitude: number;
-  city: string;
-  note: number;
-  slug: string;
-}
-
-function MapContent({ dogDestination, coordinates }: { dogDestination: DogDestination[], coordinates?: [number, number] }) {
-  const [selectedDestination, setSelectedDestination] = useState<DogDestination | null>(null);
+function MapContent({ dogDestination, coordinates }: { dogDestination: any[], coordinates?: [number, number] }) {
+  const [selectedDestination, setSelectedDestination] = useState<any | null>(null);
 
   const createGeoJson = (longitude: number, latitude: number) => {
     return {
@@ -48,7 +40,7 @@ function MapContent({ dogDestination, coordinates }: { dogDestination: DogDestin
         }}
       >
         <ZoomControl />
-        {dogDestination.map((walk: DogDestination, index) => (
+        {dogDestination.map((walk: Destination, index) => (
           <GeoJson
             key={index.toString()}
             data={createGeoJson(Number(walk.longitude), Number(walk.latitude))}
@@ -67,15 +59,18 @@ function MapContent({ dogDestination, coordinates }: { dogDestination: DogDestin
             <Link
               href={`/destination/${selectedDestination.slug}`}
                
-              className='block relative top-9 left-4 bg-white rounded-lg border-1 border-black p-1 shadow-md	'
+              className='block bg-white rounded-lg shadow-md w-96 h-40'
             >
-              <p>{selectedDestination.name}</p>
-              <p>{selectedDestination.city}</p>
-              <p>
-                &#11088;
-                <span className='ml-2 font-semibold'>{selectedDestination.note}</span>
-                /5{' '}
-              </p>
+              <div className="brightness-50">
+                    <BlurImage height='h-40' alt={selectedDestination.name} image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${selectedDestination.images[0].name}`} />
+              </div>
+
+              <div className='absolute bottom-0 left-0 p-4 text-white'>
+                <p className='font-bold'>{selectedDestination.name}</p>
+                <p className='text-sm'>&#x2691; {selectedDestination.street} {selectedDestination.postalCode} {selectedDestination.city}</p>
+              </div>
+
+
             </Link>
           </Overlay>
         )}
