@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GeoJson, Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
+import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 import BlurImage from '../blurImage/BlurImage';
 import { Destination } from '../../../@core/types/DestinationForm';
