@@ -1,33 +1,21 @@
 import React, { useState } from 'react';
-import { GeoJson, Map, Overlay, ZoomControl } from 'pigeon-maps';
+import { GeoJson, Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 import BlurImage from '../blurImage/BlurImage';
 import { Destination } from '../../../@core/types/DestinationForm';
 
-function MapContent({ dogDestination, coordinates }: { dogDestination: any[], coordinates?: [number, number] }) {
-  const [selectedDestination, setSelectedDestination] = useState<any | null>(null);
-
-  const createGeoJson = (longitude: number, latitude: number) => {
-    return {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          geometry: { type: 'Point', coordinates: [longitude, latitude] },
-          properties: { prop0: 'value0' },
-        },
-      ],
-    };
-  };
-
-  const styleCallback = () => {
-    return {
-      fill: '#0C889299',
-      strokeWidth: '1',
-      stroke: 'white',
-      r: '25',
-    };
-  };
+function MapContent({
+  dogDestination,
+  coordinates,
+}: {
+  dogDestination: any[];
+  coordinates?: [number, number];
+}) {
+  const [selectedDestination, setSelectedDestination] = useState<any | null>(
+    null
+  );
+  const [hue, setHue] = useState(0);
+  const color = `hsl(${hue % 360}deg 39% 70%)`;
 
   return (
     <React.Fragment>
@@ -41,11 +29,13 @@ function MapContent({ dogDestination, coordinates }: { dogDestination: any[], co
       >
         <ZoomControl />
         {dogDestination.map((walk: Destination, index) => (
-          <GeoJson
+          <Marker
             key={index.toString()}
-            data={createGeoJson(Number(walk.longitude), Number(walk.latitude))}
-            styleCallback={styleCallback}
+            width={50}
+            anchor={[walk.latitude!, walk.longitude!]}
+            color={color}
             onClick={() => {
+              setHue(hue + 20);
               setSelectedDestination(walk);
             }}
           />
@@ -53,23 +43,31 @@ function MapContent({ dogDestination, coordinates }: { dogDestination: any[], co
 
         {selectedDestination && (
           <Overlay
-            anchor={[selectedDestination.latitude, selectedDestination.longitude]}
+            anchor={[
+              selectedDestination.latitude,
+              selectedDestination.longitude,
+            ]}
             offset={[120, 79]}
           >
             <Link
               href={`/destination/${selectedDestination.slug}`}
-               
               className='block bg-white rounded-lg shadow-md w-96 h-40'
             >
-              <div className="brightness-50">
-                    <BlurImage height='h-40' alt={selectedDestination.name} image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${selectedDestination.images[0].name}`} />
+              <div className='brightness-50'>
+                <BlurImage
+                  height='h-40'
+                  alt={selectedDestination.name}
+                  image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${selectedDestination.images[0].name}`}
+                />
               </div>
 
               <div className='absolute bottom-0 left-0 p-4 text-white'>
                 <p className='font-bold'>{selectedDestination.name}</p>
-                <p className='text-sm'>&#x2691; {selectedDestination.street} {selectedDestination.postalCode} {selectedDestination.city}</p>
+                <p className='text-sm'>
+                  &#x2691; {selectedDestination.street}{' '}
+                  {selectedDestination.postalCode} {selectedDestination.city}
+                </p>
               </div>
-
             </Link>
           </Overlay>
         )}
