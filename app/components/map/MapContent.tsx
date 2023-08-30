@@ -14,8 +14,6 @@ function MapContent({
   const [selectedDestination, setSelectedDestination] = useState<any | null>(
     null
   );
-  const [hue, setHue] = useState(0);
-  const color = `hsl(${hue % 360}deg 39% 70%)`;
 
   return (
     <React.Fragment>
@@ -33,9 +31,8 @@ function MapContent({
             key={index.toString()}
             width={50}
             anchor={[walk.latitude!, walk.longitude!]}
-            color={color}
+            color={'#0c8892'}
             onClick={() => {
-              setHue(hue + 20);
               setSelectedDestination(walk);
             }}
           />
