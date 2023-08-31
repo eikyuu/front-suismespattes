@@ -1,13 +1,15 @@
 
 import {  useEffect, useState } from 'react';
-import { DestinationFormPick, DestinationForm } from '../types/DestinationForm';
+import { DestinationFormPick, Destination } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
 import { formatSlug } from '../utils/utils';
 
 export function useDestinationForm(slug?: string) {
-  const [form, setForm] = useState<DestinationForm>({
+  const router = useRouter();
+
+  const [form, setForm] = useState<any>({
     name: '',
     description: '',
     city: '',
@@ -22,34 +24,31 @@ export function useDestinationForm(slug?: string) {
     cyanobacteriaAlert: false,
     note: 0
   });
+  const [files, setFiles] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
-
+  useEffect(() => {
+    if (slug) {
+      fetchDestination();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug])
 
   const fetchDestination = async () => {
     try {
       const res = await fetchDestinationBySlug(slug!);
+      console.log(res);
+      // delete res.images;
+      console.log(res);
+      setForm(res); 
 
-      delete res.images;
-
-     setForm(res);
-
-     console.log(res);
     }
     catch (err) {
       console.error(err);
       toast.error('Une erreur est survenue lors de la récupération de la promenade');
     }
   };
-
-  useEffect(() => {
-    
-    if (slug) {
-      fetchDestination();
-    }
-
-  }, [slug])
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
@@ -68,35 +67,33 @@ export function useDestinationForm(slug?: string) {
     setForm(updatedForm);
     setErrors({ ...errors, [name]: '' });
   };
-  const router = useRouter();
+  
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-
-    if (slug) {
-
-      await updateDestination(form, slug);
-
-      
-      router.push(`/destination/${formatSlug(form.name)}/edit`);
-
-
-      toast.success('Votre promenade a bien été modifiée');
-
-      return;
-    }
-
-
     setSubmit(true);
-    
     const isValid = validateForm();
     if (!isValid) {
       setSubmit(false);
       return;
     }
+
+    if (slug) {
+      try {
+        await updateDestination(form, slug);
+        await uploadImages(files, form);
+        toast.success('Votre promenade a bien été modifiée');
+        router.push(`/destination/${formatSlug(form.name)}/edit`);
+      }
+      catch (err) {
+        toast.error('Une erreur est survenue lors de la modification de la promenade');
+      } finally {
+        setSubmit(false);
+      }
+    }
+
     try {
       await postDestination(form);
-      await uploadImages(form);
+      await uploadImages(files, form);
       toast.success('Votre promenade a bien été ajoutée');
     } catch (err) {
       console.error(err);
@@ -117,47 +114,47 @@ export function useDestinationForm(slug?: string) {
         processionaryCaterpillarAlert: false,
         cyanobacteriaAlert: false,
         note: 0,
-        images: [],
       });
+      setFiles([]);
       setErrors({});
       e.target.reset();
     }
   };
 
   const handleFileChange = (e: any) => {
-    console.log('je passe');
     const { files } = e.target;
+    console.log(files);
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
       if (files[i].size > 3000000) {
-        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
+        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
         return
       }
       if (files[i].type !== 'image/jpeg' && files[i].type !== 'image/png' && files[i].type !== 'image/jpg') {
-        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être au format jpg ou png` });
+        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être au format jpg ou png` });
      }
     }
 
     if (files.length === 0) {
-      setErrors({ ...errors, files: 'Veuillez ajouter au moins un fichier' });
+      setErrors({ ...errors, images: 'Veuillez ajouter au moins un fichier' });
       return
     }
 
     if (files.length > 5) {
-      setErrors({ ...errors, files: 'Veuillez ajouter au maximum 5 fichiers' });
+      setErrors({ ...errors, images: 'Veuillez ajouter au maximum 5 fichiers' });
       return
     }
 
     if (files.length > 0) {
-      setErrors({ ...errors, files: '' });
+      setErrors({ ...errors, images: '' });
     }
 
     
-    let inputsTemp = { ...form };
+    let inputsTemp = [];
     for (let i = 0; i < files.length; i++) {
-      inputsTemp.images?.push(files[i]);
+      inputsTemp.push(files[i]);
     }
-    setForm(inputsTemp);
+    setFiles(inputsTemp);
   };
 
   const validateForm = () => {
@@ -219,5 +216,5 @@ export function useDestinationForm(slug?: string) {
   };
 
 
-  return { form, submit, handleChange, handleSubmit, handleFileChange, errors };
+  return { form, submit, handleChange, handleSubmit, handleFileChange, errors, files };
 }

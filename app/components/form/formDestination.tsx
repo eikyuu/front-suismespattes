@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useDestinationForm } from '../../../@core/hooks/useDestinationForm';
 import GreenContainer from '../GreenContainer';
 import Input from '../inputs/Input';
@@ -7,12 +8,13 @@ import Label from '../inputs/Label';
 import MultiRadio from '../inputs/MultiRadio';
 import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
+import BlurImage from '../blurImage/BlurImage';
 
 function FormDestination({slug}: {slug?: string}) {
-    const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =
+    const { handleSubmit, handleChange, handleFileChange, form, errors, submit, files } =
     useDestinationForm(slug);
-    return ( 
-        <form
+    return (
+      <form
         onSubmit={(e) => {
           handleSubmit(e);
         }}
@@ -36,7 +38,11 @@ function FormDestination({slug}: {slug?: string}) {
             />
           </div>
 
-          <Label name='description' label='Description de la destination' required />
+          <Label
+            name='description'
+            label='Description de la destination'
+            required
+          />
           <Textarea
             maxLength='1000'
             name='description'
@@ -192,7 +198,7 @@ function FormDestination({slug}: {slug?: string}) {
 
           <Label name='country' label='Pays' required />
           <select
-            value={form.country }
+            value={form.country}
             required
             name='country'
             onChange={(e) => handleChange(e)}
@@ -237,7 +243,6 @@ function FormDestination({slug}: {slug?: string}) {
             Photos
           </h2>
 
-
           <p className='block mb-2 mt-5 text-sm font-medium text-white'>
             Vous pouvez ajouter jusqu&apos;à 5 photos.
           </p>
@@ -263,7 +268,28 @@ function FormDestination({slug}: {slug?: string}) {
             multiple
             required
           />
-          {errors && <div className='text-red-400 mt-2'>{errors.files}</div>}
+          {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
+
+          {files.map((file: any, index: number) => (
+            <Image
+              key={index}
+              src={URL.createObjectURL(file)}
+              alt={file.name}
+              width={200}
+              height={300}
+            />
+          ))}
+
+          {form.images &&
+            form.images.map((image: any, index: number) => (
+              <Image
+                key={index}
+                src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${image.name}`}
+                alt={image.name}
+                width={200}
+                height={300}
+              />
+            ))}
         </GreenContainer>
 
         <button
@@ -273,7 +299,7 @@ function FormDestination({slug}: {slug?: string}) {
           {submit ? <Loader /> : 'Ajouter'}
         </button>
       </form>
-     );
+    );
 }
 
 export default FormDestination;
