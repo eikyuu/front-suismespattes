@@ -1,6 +1,7 @@
 function MultiRadio({
   radios,
   handleChange,
+  value,
 }: {
   handleChange: any;
   radios: {
@@ -8,6 +9,7 @@ function MultiRadio({
     name: string;
     value: string;
   }[];
+  value: string;
 }) {
   return (
     <ul className='w-full md:w-fit items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex'>
@@ -22,11 +24,13 @@ function MultiRadio({
             <input
               id={`${radio.name}-${radio.value}`}
               type='radio'
-              value={radio.value}
               name={radio.name}
               onChange={handleChange}
               className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5'
               required
+              value={radio.value}
+              checked={value === radio.value}
+
             />
             <label
               htmlFor={`${radio.name}-${radio.value}`}

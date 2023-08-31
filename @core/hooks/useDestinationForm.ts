@@ -1,11 +1,12 @@
 
-import { useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { DestinationFormPick, DestinationForm } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
-import { postDestination, uploadImages } from '../services/destinationService';
+import { fetchDestinationBySlug, postDestination, updateDestination, uploadImages } from '../services/destinationService';
+import { useRouter } from 'next/navigation'
+import { formatSlug } from '../utils/utils';
 
-export function useDestinationForm() {
-
+export function useDestinationForm(slug?: string) {
   const [form, setForm] = useState<DestinationForm>({
     name: '',
     description: '',
@@ -19,11 +20,36 @@ export function useDestinationForm() {
     waterPoint: false,
     processionaryCaterpillarAlert: false,
     cyanobacteriaAlert: false,
-    note: 0,
-    files: [],
+    note: 0
   });
   const [submit, setSubmit] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
+
+
+
+  const fetchDestination = async () => {
+    try {
+      const res = await fetchDestinationBySlug(slug!);
+
+      delete res.images;
+
+     setForm(res);
+
+     console.log(res);
+    }
+    catch (err) {
+      console.error(err);
+      toast.error('Une erreur est survenue lors de la récupération de la promenade');
+    }
+  };
+
+  useEffect(() => {
+    
+    if (slug) {
+      fetchDestination();
+    }
+
+  }, [slug])
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
@@ -42,9 +68,25 @@ export function useDestinationForm() {
     setForm(updatedForm);
     setErrors({ ...errors, [name]: '' });
   };
-
+  const router = useRouter();
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+
+    if (slug) {
+
+      await updateDestination(form, slug);
+
+      
+      router.push(`/destination/${formatSlug(form.name)}/edit`);
+
+
+      toast.success('Votre promenade a bien été modifiée');
+
+      return;
+    }
+
+
     setSubmit(true);
     
     const isValid = validateForm();
@@ -75,7 +117,7 @@ export function useDestinationForm() {
         processionaryCaterpillarAlert: false,
         cyanobacteriaAlert: false,
         note: 0,
-        files: [],
+        images: [],
       });
       setErrors({});
       e.target.reset();
@@ -83,6 +125,7 @@ export function useDestinationForm() {
   };
 
   const handleFileChange = (e: any) => {
+    console.log('je passe');
     const { files } = e.target;
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
@@ -112,7 +155,7 @@ export function useDestinationForm() {
     
     let inputsTemp = { ...form };
     for (let i = 0; i < files.length; i++) {
-      inputsTemp.files.push(files[i]);
+      inputsTemp.images?.push(files[i]);
     }
     setForm(inputsTemp);
   };

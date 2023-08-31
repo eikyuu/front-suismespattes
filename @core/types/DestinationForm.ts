@@ -12,7 +12,7 @@ export type DestinationForm = {
     processionaryCaterpillarAlert: boolean;
     cyanobacteriaAlert: boolean;
     note: number;
-    files: File[];
+    images?: File[];
   };
 
 export type DestinationFormPick = Pick<DestinationForm, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;

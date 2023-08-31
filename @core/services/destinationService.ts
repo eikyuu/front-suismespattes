@@ -41,6 +41,61 @@ export const postDestination = async (form: any) => {
   }
 }
 
+export const updateDestination = async (form: any, slug: string) => {
+  const token = await tokenFromSession();
+
+  try {
+    const response = await fetch(`${API_URL}walks/${slug}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(form),
+    });
+
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDestination = async () => {
+  const token = await tokenFromSession();
+
+  try {
+    const response = await fetch(`${API_URL}walks`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const fetchDestinationBySlug = async (slug: string) => {
+  const token = await tokenFromSession();
+
+  try {
+    const response = await fetch(`${API_URL}walks/${slug}`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    return response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export const postImages = async (file: File, slug: string) => {
   const formData = new FormData();
   formData.append('image', file);

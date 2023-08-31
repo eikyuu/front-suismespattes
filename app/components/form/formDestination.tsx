@@ -8,9 +8,9 @@ import MultiRadio from '../inputs/MultiRadio';
 import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
 
-function FormDestination() {
+function FormDestination({slug}: {slug?: string}) {
     const { handleSubmit, handleChange, handleFileChange, form, errors, submit } =
-    useDestinationForm();
+    useDestinationForm(slug);
     return ( 
         <form
         onSubmit={(e) => {
@@ -18,7 +18,7 @@ function FormDestination() {
         }}
       >
         <GreenContainer>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative "'>
+          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative'>
             Description
           </h2>
 
@@ -59,6 +59,7 @@ function FormDestination() {
                   { label: 'Oui', name: 'waterPoint', value: 'YES' },
                   { label: 'Non', name: 'waterPoint', value: 'NO' },
                 ]}
+                value={form.waterPoint ? 'YES' : 'NO'}
               />
             </div>
 
@@ -82,6 +83,7 @@ function FormDestination() {
                     value: 'NO',
                   },
                 ]}
+                value={form.processionaryCaterpillarAlert ? 'YES' : 'NO'}
               />
             </div>
 
@@ -97,6 +99,7 @@ function FormDestination() {
                   { label: 'Oui', name: 'cyanobacteriaAlert', value: 'YES' },
                   { label: 'Non', name: 'cyanobacteriaAlert', value: 'NO' },
                 ]}
+                value={form.cyanobacteriaAlert ? 'YES' : 'NO'}
               />
             </div>
           </div>
@@ -118,6 +121,7 @@ function FormDestination() {
                 value: 'RECOMANDED',
               },
             ]}
+            value={form.obligatoryLeash}
           />
 
           <Label
@@ -134,6 +138,7 @@ function FormDestination() {
               { label: 'Positif', name: 'note', value: '3' },
               { label: 'Très positif', name: 'note', value: '4' },
             ]}
+            value={form.note.toString()}
           />
         </GreenContainer>
 
@@ -187,9 +192,10 @@ function FormDestination() {
 
           <Label name='country' label='Pays' required />
           <select
+            value={form.country }
+            required
             name='country'
             onChange={(e) => handleChange(e)}
-            defaultValue={'default'}
             id='countries'
             className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5'
           >
