@@ -59,7 +59,7 @@ function MapContent({
               </div>
 
               <div className='absolute bottom-0 left-0 p-4 text-white'>
-                <p className='font-bold'>{selectedDestination.name}</p>
+                <p className='font-bold first-letter:uppercase'>{selectedDestination.name}</p>
                 <p className='text-sm'>
                   &#x2691; {selectedDestination.street}{' '}
                   {selectedDestination.postalCode} {selectedDestination.city}
