@@ -52,7 +52,7 @@ export function useDestinationForm(slug?: string) {
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-
+    console.log(name, value, type, checked);
     const updatedForm = {
       ...form,
       [name]: type === 'checkbox' ? checked : value,
@@ -64,6 +64,7 @@ export function useDestinationForm(slug?: string) {
       cyanobacteriaAlert:
         name === 'cyanobacteriaAlert' ? value === 'YES' : form.cyanobacteriaAlert,
     };
+    console.log(updatedForm);
     setForm(updatedForm);
     setErrors({ ...errors, [name]: '' });
   };
@@ -79,12 +80,14 @@ export function useDestinationForm(slug?: string) {
 
     if (slug) {
       try {
-        await updateDestination(form, slug);
-        await uploadImages(files, form);
+        const updatePromise = updateDestination(form, slug);
+        const uploadPromise = uploadImages(files, form);
+        
+        await Promise.all([updatePromise, uploadPromise]);
+        
         toast.success('Votre promenade a bien été modifiée');
-        router.push(`/destination/${formatSlug(form.name)}/edit`);
-      }
-      catch (err) {
+        return router.push(`/destination/${formatSlug(form.name)}/edit`);
+      } catch (err) {
         toast.error('Une erreur est survenue lors de la modification de la promenade');
       } finally {
         setSubmit(false);
@@ -93,8 +96,7 @@ export function useDestinationForm(slug?: string) {
 
     try {
       const res = await postDestination(form);
-      const resImage = await uploadImages(files, form);
-     if (res.ok && resImage) {
+     if (res.ok) {
       toast.success('Votre promenade a bien été ajoutée');
       setForm({
         name: '',
@@ -115,11 +117,12 @@ export function useDestinationForm(slug?: string) {
       setErrors({});
       e.target.reset();
      } else {
-      toast.error(`Une erreur est survenue lors de l\'ajout de la promenade ${res.error.message}`);
+      toast.error(`${res.error.message}`);
      }
+     await uploadImages(files, form);
     } catch (err) {
       console.error(err);
-      toast.error('Erreur lors de l\'ajout de la promenade');
+      toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur'); 
     } finally {
       setSubmit(false);
     }

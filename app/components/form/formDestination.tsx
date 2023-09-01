@@ -61,11 +61,12 @@ function FormDestination({slug}: {slug?: string}) {
               />
               <MultiRadio
                 handleChange={handleChange}
-                radios={[
+                options={[
                   { label: 'Oui', name: 'waterPoint', value: 'YES' },
                   { label: 'Non', name: 'waterPoint', value: 'NO' },
                 ]}
-                value={form.waterPoint ? 'YES' : 'NO'}
+                selectedValue={form.waterPoint ? 'YES' : 'NO'}
+                
               />
             </div>
 
@@ -77,7 +78,7 @@ function FormDestination({slug}: {slug?: string}) {
               />
               <MultiRadio
                 handleChange={handleChange}
-                radios={[
+                options={[
                   {
                     label: 'Oui',
                     name: 'processionaryCaterpillarAlert',
@@ -89,7 +90,7 @@ function FormDestination({slug}: {slug?: string}) {
                     value: 'NO',
                   },
                 ]}
-                value={form.processionaryCaterpillarAlert ? 'YES' : 'NO'}
+                selectedValue={form.processionaryCaterpillarAlert ? 'YES' : 'NO'}
               />
             </div>
 
@@ -101,11 +102,11 @@ function FormDestination({slug}: {slug?: string}) {
               />
               <MultiRadio
                 handleChange={handleChange}
-                radios={[
+                options={[
                   { label: 'Oui', name: 'cyanobacteriaAlert', value: 'YES' },
                   { label: 'Non', name: 'cyanobacteriaAlert', value: 'NO' },
                 ]}
-                value={form.cyanobacteriaAlert ? 'YES' : 'NO'}
+                selectedValue={form.cyanobacteriaAlert ? 'YES' : 'NO'}
               />
             </div>
           </div>
@@ -118,7 +119,7 @@ function FormDestination({slug}: {slug?: string}) {
 
           <MultiRadio
             handleChange={handleChange}
-            radios={[
+            options={[
               { label: 'Oui', name: 'obligatoryLeash', value: 'YES' },
               { label: 'Non', name: 'obligatoryLeash', value: 'NO' },
               {
@@ -127,7 +128,7 @@ function FormDestination({slug}: {slug?: string}) {
                 value: 'RECOMANDED',
               },
             ]}
-            value={form.obligatoryLeash}
+            selectedValue={form.obligatoryLeash}
           />
 
           <Label
@@ -137,14 +138,14 @@ function FormDestination({slug}: {slug?: string}) {
           />
           <MultiRadio
             handleChange={handleChange}
-            radios={[
+            options={[
               { label: 'Très négatif', name: 'note', value: '0' },
               { label: 'Négatif', name: 'note', value: '1' },
               { label: 'Neutre', name: 'note', value: '2' },
               { label: 'Positif', name: 'note', value: '3' },
               { label: 'Très positif', name: 'note', value: '4' },
             ]}
-            value={form.note.toString()}
+            selectedValue={form.note.toString()}
           />
         </GreenContainer>
 

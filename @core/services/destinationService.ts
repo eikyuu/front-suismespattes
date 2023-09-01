@@ -82,7 +82,6 @@ export const uploadImages = async (files: any, form : any) => {
   try {
     const uploadPromises = files.map((file: any) => postImages(file, form.name));
     await Promise.all(uploadPromises);
-    return true;
   } catch (err) {
     console.error(err);
     throw new Error('une erreur est survenue lors de l\'upload des images');
@@ -93,8 +92,6 @@ export const postImages = async (file: File, slug: string) => {
   const formData = new FormData();
   formData.append('image', file);
   formData.append('slug', slug);
-
-  console.log(formData);
   return await postDestinationImage(formData);
 };
 
