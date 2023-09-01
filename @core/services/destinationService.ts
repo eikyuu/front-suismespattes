@@ -8,7 +8,7 @@ export const postDestination = async (form: any) => {
   const token = await tokenFromSession();
 
   try {
-    const response = await fetch(`${API_URL}walks`, {
+    const response = await fetch(`${API_URL}destination`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const updateDestination = async (form: any, slug: string) => {
   const token = await tokenFromSession();
 
   try {
-    const response = await fetch(`${API_URL}walks/${slug}`, {
+    const response = await fetch(`${API_URL}destination/${slug}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const fetchDestination = async () => {
   const token = await tokenFromSession();
 
   try {
-    const response = await fetch(`${API_URL}walks`, {
+    const response = await fetch(`${API_URL}destination`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export const fetchDestinationBySlug = async (slug: string) => {
   const token = await tokenFromSession();
 
   try {
-    const response = await fetch(`${API_URL}walks/${slug}`, {
+    const response = await fetch(`${API_URL}destination/${slug}`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
@@ -82,6 +82,7 @@ export const uploadImages = async (files: any, form : any) => {
   try {
     const uploadPromises = files.map((file: any) => postImages(file, form.name));
     await Promise.all(uploadPromises);
+    return true;
   } catch (err) {
     console.error(err);
     throw new Error('une erreur est survenue lors de l\'upload des images');
@@ -101,7 +102,7 @@ export const postDestinationImage = async (formData: any) => {
   const token = await tokenFromSession();
 
   try {
-    const response = await fetch(`${API_URL}walks/images`, {
+    const response = await fetch(`${API_URL}destination/images`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,

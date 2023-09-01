@@ -1,6 +1,6 @@
 
 import {  useEffect, useState } from 'react';
-import { DestinationFormPick, Destination } from '../types/DestinationForm';
+import { DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
@@ -92,14 +92,10 @@ export function useDestinationForm(slug?: string) {
     }
 
     try {
-      await postDestination(form);
-      await uploadImages(files, form);
-      toast.success('Votre promenade a bien été ajoutée');
-    } catch (err) {
-      console.error(err);
-      toast.error('Erreur lors de l\'ajout de la promenade');
-    } finally {
-      setSubmit(false);
+      const res = await postDestination(form);
+      const resImage = await uploadImages(files, form);
+     if (res.ok && resImage) {
+      toast.success('Votre promenade a bien été ajoutée');
       setForm({
         name: '',
         description: '',
@@ -118,6 +114,14 @@ export function useDestinationForm(slug?: string) {
       setFiles([]);
       setErrors({});
       e.target.reset();
+     } else {
+      toast.error(`Une erreur est survenue lors de l\'ajout de la promenade ${res.error.message}`);
+     }
+    } catch (err) {
+      console.error(err);
+      toast.error('Erreur lors de l\'ajout de la promenade');
+    } finally {
+      setSubmit(false);
     }
   };
 

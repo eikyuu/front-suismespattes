@@ -30,7 +30,7 @@ function CardDestination({
         <BlurImage 
         height='h-72'
         alt={`Image de la destination ${name} a ${city}`}
-        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${imageName}`} />
+        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${imageName}`} />
       </picture>
       <div className='mb-2'>
         <TextBold text={elipsis(name, 30)} color='text-black lowercase first-letter:uppercase' />

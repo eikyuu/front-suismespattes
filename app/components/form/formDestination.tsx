@@ -270,7 +270,7 @@ function FormDestination({slug}: {slug?: string}) {
           />
           {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
 
-          {files.map((file: any, index: number) => (
+          {/* {files.map((file: any, index: number) => (
             <Image
               key={index}
               src={URL.createObjectURL(file)}
@@ -284,12 +284,12 @@ function FormDestination({slug}: {slug?: string}) {
             form.images.map((image: any, index: number) => (
               <Image
                 key={index}
-                src={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${image.name}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
                 alt={image.name}
                 width={200}
                 height={300}
               />
-            ))}
+            ))} */}
         </GreenContainer>
 
         <button

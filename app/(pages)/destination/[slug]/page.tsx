@@ -29,7 +29,7 @@ export default function Page({
   const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
   const [dogDestination, setDogDestination] = useState<any>();
 
-  const url = `${API_URL}walks/${params.slug}`;
+  const url = `${API_URL}destination/${params.slug}`;
 
   const { data, error } = useFetch<any>(url)
 
@@ -101,7 +101,7 @@ export default function Page({
                       <BlurImage
                         height='h-144'
                         alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogDestination.name}`}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
                       />
                     </SwiperSlide>
                   ))
@@ -131,7 +131,7 @@ export default function Page({
                       <BlurImage
                         height='h-40'
                         alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogDestination.name}`}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
                       />
                     </SwiperSlide>
                   ))
