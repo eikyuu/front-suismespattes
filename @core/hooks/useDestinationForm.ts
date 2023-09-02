@@ -1,5 +1,5 @@
 
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, uploadImages } from '../services/destinationService';
@@ -18,11 +18,11 @@ export function useDestinationForm(slug?: string) {
     country: '',
     latitude: '',
     longitude: '',
-    obligatoryLeash: 'YES',
-    waterPoint: false,
-    processionaryCaterpillarAlert: false,
-    cyanobacteriaAlert: false,
-    note: 0
+    obligatoryLeash: '',
+    waterPoint: '',
+    processionaryCaterpillarAlert: '',
+    cyanobacteriaAlert: '',
+    note: ''
   });
   const [files, setFiles] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
@@ -32,7 +32,7 @@ export function useDestinationForm(slug?: string) {
     if (slug) {
       fetchDestination();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug])
 
   const fetchDestination = async () => {
@@ -41,7 +41,12 @@ export function useDestinationForm(slug?: string) {
       console.log(res);
       // delete res.images;
       console.log(res);
-      setForm(res); 
+      setForm({
+        ...res,
+        waterPoint: res.waterPoint ? 'YES' : 'NO  ',
+        processionaryCaterpillarAlert: res.processionaryCaterpillarAlert ? 'YES' : 'NO  ',
+        cyanobacteriaAlert: res.cyanobacteriaAlert ? 'YES' : 'NO  ',
+      });
 
     }
     catch (err) {
@@ -51,26 +56,26 @@ export function useDestinationForm(slug?: string) {
   };
 
   const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    console.log(name, value, type, checked);
+    const { value, name } = e.target;
+    console.log(name, value);
     const updatedForm = {
       ...form,
-      [name]: type === 'checkbox' ? checked : value,
-      waterPoint: name === 'waterPoint' ? value === 'YES' : form.waterPoint,
-      processionaryCaterpillarAlert:
-        name === 'processionaryCaterpillarAlert'
-          ? value === 'YES'
-          : form.processionaryCaterpillarAlert,
-      cyanobacteriaAlert:
-        name === 'cyanobacteriaAlert' ? value === 'YES' : form.cyanobacteriaAlert,
+      [name]: value
     };
-    console.log(updatedForm);
     setForm(updatedForm);
     setErrors({ ...errors, [name]: '' });
   };
-  
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    const formTemp = {
+      ...form,
+      waterPoint: form.waterPoint === 'YES' ? true : false,
+      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES' ? true : false,
+      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES' ? true : false
+    };
+
     setSubmit(true);
     const isValid = validateForm();
     if (!isValid) {
@@ -80,13 +85,13 @@ export function useDestinationForm(slug?: string) {
 
     if (slug) {
       try {
-        const updatePromise = updateDestination(form, slug);
-        const uploadPromise = uploadImages(files, form);
-        
+        const updatePromise = updateDestination(formTemp, slug);
+        const uploadPromise = uploadImages(files, formTemp);
+
         await Promise.all([updatePromise, uploadPromise]);
-        
+
         toast.success('Votre promenade a bien été modifiée');
-        return router.push(`/destination/${formatSlug(form.name)}/edit`);
+        return router.push(`/destination/${formatSlug(formTemp.name)}/edit`);
       } catch (err) {
         toast.error('Une erreur est survenue lors de la modification de la promenade');
       } finally {
@@ -95,34 +100,34 @@ export function useDestinationForm(slug?: string) {
     }
 
     try {
-      const res = await postDestination(form);
-     if (res.ok) {
-      toast.success('Votre promenade a bien été ajoutée');
-      setForm({
-        name: '',
-        description: '',
-        city: '',
-        postalCode: '',
-        street: '',
-        country: '',
-        latitude: '',
-        longitude: '',
-        obligatoryLeash: 'YES',
-        waterPoint: false,
-        processionaryCaterpillarAlert: false,
-        cyanobacteriaAlert: false,
-        note: 0,
-      });
-      setFiles([]);
-      setErrors({});
-      e.target.reset();
-     } else {
-      toast.error(`${res.error.message}`);
-     }
-     await uploadImages(files, form);
+      const res = await postDestination(formTemp);
+      if (res.ok) {
+        toast.success('Votre promenade a bien été ajoutée');
+        setForm({
+          name: '',
+          description: '',
+          city: '',
+          postalCode: '',
+          street: '',
+          country: '',
+          latitude: '',
+          longitude: '',
+          obligatoryLeash: '',
+          waterPoint: '',
+          processionaryCaterpillarAlert: '',
+          cyanobacteriaAlert: '',
+          note: '',
+        });
+        setFiles([]);
+        setErrors({});
+        e.target.reset();
+      } else {
+        toast.error(`${res.error.message}`);
+      }
+      await uploadImages(files, form);
     } catch (err) {
       console.error(err);
-      toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur'); 
+      toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur');
     } finally {
       setSubmit(false);
     }
@@ -139,7 +144,7 @@ export function useDestinationForm(slug?: string) {
       }
       if (files[i].type !== 'image/jpeg' && files[i].type !== 'image/png' && files[i].type !== 'image/jpg') {
         setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être au format jpg ou png` });
-     }
+      }
     }
 
     if (files.length === 0) {
@@ -156,7 +161,7 @@ export function useDestinationForm(slug?: string) {
       setErrors({ ...errors, images: '' });
     }
 
-    
+
     let inputsTemp = [];
     for (let i = 0; i < files.length; i++) {
       inputsTemp.push(files[i]);
