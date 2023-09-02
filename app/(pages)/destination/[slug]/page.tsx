@@ -257,7 +257,6 @@ export default function Page({
                 {dogDestination.processionaryCaterpillarAlert && (
                   <TextAlert text='Présence de chenilles processionnaire !' />
                 )}
-                blllL
               </div>
             </div>
           </section>

@@ -9,16 +9,18 @@ import MultiRadio from '../inputs/MultiRadio';
 import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
 import BlurImage from '../blurImage/BlurImage';
+import React from 'react';
 
 function FormDestination({ slug }: { slug?: string }) {
   const {
     handleSubmit,
     handleChange,
     handleFileChange,
+    deleteImage,
     form,
     errors,
     submit,
-    files,
+    images,
     loading,
   } = useDestinationForm(slug);
 
@@ -280,30 +282,27 @@ function FormDestination({ slug }: { slug?: string }) {
           type='file'
           accept='image/png, image/jpeg, image/jpg'
           multiple
-          required
+          required={!slug || images.length === 0 ? true : false}
         />
         {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
 
-        {/* {files.map((file: any, index: number) => (
-            <Image
-              key={index}
-              src={URL.createObjectURL(file)}
-              alt={file.name}
-              width={200}
-              height={300}
-            />
-          ))}
-
-          {form.images &&
-            form.images.map((image: any, index: number) => (
+        <div className='flex justify-center flex-col flex-wrap md:flex-row mt-10'>
+          {images.map((file: any, index: number) => (
+            <React.Fragment key={index}>
               <Image
                 key={index}
-                src={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
-                alt={image.name}
-                width={200}
+                className='mt-5 md:mr-5 rounded-lg shadow-lg'
+                src={URL.createObjectURL(file)}
+                alt={file.name}
+                width={300}
                 height={300}
               />
-            ))} */}
+              <div className='postion relative right-11 mt-1 bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow' onClick={() => deleteImage(index)}>
+                <p className='-mt-1 text-xl'>&#x10102;</p>
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
       </GreenContainer>
 
       <button

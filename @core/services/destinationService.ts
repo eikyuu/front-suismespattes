@@ -112,3 +112,18 @@ export const postDestinationImage = async (formData: any) => {
     console.error(err);
   }
 };
+
+export const deleteDestinationImage = async (slug : string) => {
+  const token = await tokenFromSession();
+  try {
+    const response = await fetch(`${API_URL}destination/images/${slug}`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    })
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
