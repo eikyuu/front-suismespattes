@@ -62,7 +62,6 @@ export function useDestinationForm(slug?: string) {
 
   const handleChange = (e: any) => {
     const { value, name } = e.target;
-    console.log(name, value);
     const updatedForm = {
       ...form,
       [name]: value
@@ -132,7 +131,6 @@ export function useDestinationForm(slug?: string) {
 
   const handleFileChange = (e: any) => {
     const { files } = e.target;
-    console.log(files);
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
       if (files[i].size > 3000000) {
@@ -223,7 +221,6 @@ export function useDestinationForm(slug?: string) {
     return valid;
 
   };
-
 
   return { form, submit, handleChange, handleSubmit, handleFileChange, errors, files };
 }
