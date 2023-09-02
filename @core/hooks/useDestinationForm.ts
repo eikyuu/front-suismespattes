@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
 import { formatSlug } from '../utils/utils';
+import { set } from 'lodash';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -26,6 +27,7 @@ export function useDestinationForm(slug?: string) {
   });
   const [files, setFiles] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
   const formTemp = (form: any) => {
@@ -45,6 +47,7 @@ export function useDestinationForm(slug?: string) {
   }, [slug])
 
   const fetchDestination = async () => {
+    setLoading(true);
     try {
       const res = await fetchDestinationBySlug(slug!);
       setForm({
@@ -57,6 +60,8 @@ export function useDestinationForm(slug?: string) {
     catch (err) {
       console.error(err);
       toast.error('Une erreur est survenue lors de la récupération de la promenade');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -222,5 +227,5 @@ export function useDestinationForm(slug?: string) {
 
   };
 
-  return { form, submit, handleChange, handleSubmit, handleFileChange, errors, files };
+  return { form, submit, handleChange, handleSubmit, handleFileChange, errors, files, loading };
 }

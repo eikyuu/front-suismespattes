@@ -7,6 +7,7 @@ import ContentNavigation from './components/ContentNavigation';
 import Footer from './components/Footer';
 import Headband from './components/Headband';
 import AuthProvider from '../@core/context/AuthProvider';
+import Session from '../@core/context/Session';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,10 +26,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang='fr'>
       <body suppressHydrationWarning={true} className={inter.className + ' font-sans leading-relaxed'}>
         <AuthProvider>
+          <Session>
           <Headband />
           <ContentNavigation />
           <Banner />
@@ -36,6 +39,7 @@ export default function RootLayout({
           <Analytics />
           <Footer />
           <Toaster />
+          </Session>
         </AuthProvider>
       </body>
     </html>

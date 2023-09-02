@@ -19,7 +19,12 @@ function FormDestination({ slug }: { slug?: string }) {
     errors,
     submit,
     files,
+    loading,
   } = useDestinationForm(slug);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <form
