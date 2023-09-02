@@ -28,6 +28,15 @@ export function useDestinationForm(slug?: string) {
   const [submit, setSubmit] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
+  const formTemp = (form: any) => {
+    return {
+      ...form,
+      waterPoint: form.waterPoint === 'YES' ? true : false,
+      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES' ? true : false,
+      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES' ? true : false
+    };
+  }
+
   useEffect(() => {
     if (slug) {
       fetchDestination();
@@ -38,16 +47,12 @@ export function useDestinationForm(slug?: string) {
   const fetchDestination = async () => {
     try {
       const res = await fetchDestinationBySlug(slug!);
-      console.log(res);
-      // delete res.images;
-      console.log(res);
       setForm({
         ...res,
-        waterPoint: res.waterPoint ? 'YES' : 'NO  ',
-        processionaryCaterpillarAlert: res.processionaryCaterpillarAlert ? 'YES' : 'NO  ',
-        cyanobacteriaAlert: res.cyanobacteriaAlert ? 'YES' : 'NO  ',
+        waterPoint: res.waterPoint ? 'YES' : 'NO',
+        processionaryCaterpillarAlert: res.processionaryCaterpillarAlert ? 'YES' : 'NO',
+        cyanobacteriaAlert: res.cyanobacteriaAlert ? 'YES' : 'NO',
       });
-
     }
     catch (err) {
       console.error(err);
@@ -68,14 +73,6 @@ export function useDestinationForm(slug?: string) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    const formTemp = {
-      ...form,
-      waterPoint: form.waterPoint === 'YES' ? true : false,
-      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES' ? true : false,
-      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES' ? true : false
-    };
-
     setSubmit(true);
     const isValid = validateForm();
     if (!isValid) {
@@ -85,13 +82,13 @@ export function useDestinationForm(slug?: string) {
 
     if (slug) {
       try {
-        const updatePromise = updateDestination(formTemp, slug);
-        const uploadPromise = uploadImages(files, formTemp);
+        const updatePromise = updateDestination(formTemp(form), slug);
+        const uploadPromise = uploadImages(files, formTemp(form));
 
         await Promise.all([updatePromise, uploadPromise]);
 
         toast.success('Votre promenade a bien été modifiée');
-        return router.push(`/destination/${formatSlug(formTemp.name)}/edit`);
+        return router.push(`/destination/${formatSlug(form.name)}/edit`);
       } catch (err) {
         toast.error('Une erreur est survenue lors de la modification de la promenade');
       } finally {
@@ -100,7 +97,7 @@ export function useDestinationForm(slug?: string) {
     }
 
     try {
-      const res = await postDestination(formTemp);
+      const res = await postDestination(formTemp(form));
       if (res.ok) {
         toast.success('Votre promenade a bien été ajoutée');
         setForm({
