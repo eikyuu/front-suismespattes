@@ -309,7 +309,7 @@ function FormDestination({ slug }: { slug?: string }) {
         className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
         type='submit'
       >
-        {submit ? <Loader /> : 'Ajouter'}
+        {submit ? <Loader /> : { slug } ? 'Modifier' : 'Ajouter'}
       </button>
     </form>
   );

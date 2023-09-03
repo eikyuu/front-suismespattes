@@ -9,7 +9,7 @@ function Page({
     return ( 
         <main className='container mx-auto w-11/12'>
             <section className='mt-10'>
-                <LargeTitle title='EDITER UN LIEU TESTÉ AVEC MON CHIEN' />
+                <LargeTitle title='Modifier un lieu testé avec mon chien' />
                 <FormDestination slug={params.slug} />
             </section>
         </main>
