@@ -6,7 +6,6 @@ function Page({
   }: {
     params: { slug: string };
   }): JSX.Element {
-    console.log(params.slug);
     return ( 
         <main className='container mx-auto w-11/12'>
             <section className='mt-10'>

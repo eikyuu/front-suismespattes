@@ -108,7 +108,6 @@ export function useDestinationForm(slug?: string) {
     }
 
     if (slug) {
-      console.log('slug');
       try {
         const updatePromise = updateDestination(formTemp(form), slug);
         const deleteDestinationPromise = deleteDestinationImage(slug);
@@ -164,7 +163,6 @@ export function useDestinationForm(slug?: string) {
   const deleteImage = (index: number) => {
     const newImages = [...images];
     newImages.splice(index, 1);
-    console.log(newImages);
     setImages(newImages);
   };
 
@@ -194,7 +192,6 @@ export function useDestinationForm(slug?: string) {
     }
 
     if (files.length > 0) {
-      console.log('je trouve les fichiers');
       setErrors({ ...errors, images: '' });
     }
 
