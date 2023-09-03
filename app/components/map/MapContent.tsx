@@ -26,7 +26,7 @@ function MapContent({
         }}
       >
         <ZoomControl />
-        {dogDestination.map((walk: Destination, index) => (
+        {dogDestination.map((walk: any, index) => (
           <Marker
             key={index.toString()}
             width={50}
@@ -54,7 +54,7 @@ function MapContent({
                 <BlurImage
                   height='h-40'
                   alt={selectedDestination.name}
-                  image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${selectedDestination.images[0].name}`}
+                  image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${selectedDestination.images[0].name}`}
                 />
               </div>
 

@@ -49,7 +49,7 @@ export default function Home() {
   const [dogDestination, setDogDestination] = useState<any[]>([]);
 
 
-  const url = `${API_URL}walks`;
+  const url = `${API_URL}destination`;
 
   const { data, error } = useFetch<any[]>(url)
   

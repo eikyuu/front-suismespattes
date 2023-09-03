@@ -5,17 +5,17 @@ const nextConfig = {
           {
             protocol: 'https',
             hostname: 'aufildespattes-api.up.railway.app',
-            pathname: '/walks/images/**',
+            pathname: '/destination/images/**',
           },
           {
             protocol: 'https',
             hostname: 'aufildespattes-api-preprod.up.railway.app',
-            pathname: '/walks/images/**',
+            pathname: '/destination/images/**',
           },
           {
             protocol: 'http',
             hostname: 'localhost:9000',
-            pathname: '/walks/images/**',
+            pathname: '/destination/images/**',
           },
           {
             protocol: 'https',

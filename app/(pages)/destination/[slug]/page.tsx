@@ -20,6 +20,9 @@ import BlocTextWithspan from '../../../components/text/BlocTextWithSpan';
 import LargeTitle from '../../../components/text/LargeTitle';
 import TextAlert from '../../../components/text/TextAlert';
 import LoaderDestination from '../../../components/loader/LoaderDestination';
+import Link from 'next/link';
+import Button from '../../../components/button/Button';
+import { useSession } from 'next-auth/react';
 
 export default function Page({
   params,
@@ -29,9 +32,11 @@ export default function Page({
   const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
   const [dogDestination, setDogDestination] = useState<any>();
 
-  const url = `${API_URL}walks/${params.slug}`;
+  const url = `${API_URL}destination/${params.slug}`;
 
-  const { data, error } = useFetch<any>(url)
+  const { data, error } = useFetch<any>(url);
+
+  //get user connected
 
   useEffect(() => {
     if (data) {
@@ -45,22 +50,59 @@ export default function Page({
   const handleNote = (note: number) => {
     switch (note) {
       case 1:
-        return String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);  
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734)
+        );
       case 2:
-        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734)
+        );
       case 3:
-        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734) + String.fromCharCode(9734);
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734)
+        );
       case 4:
-        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9734);
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9734)
+        );
       case 5:
-        return String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733) + String.fromCharCode(9733);
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733)
+        );
       default:
-        return String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734) + String.fromCharCode(9734);
+        return (
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734)
+        );
     }
   };
 
-
-  const handleObligatoryLeash = (obligatoryLeash: 'RECOMANDED' | 'YES' | 'NO' ) => {
+  const handleObligatoryLeash = (
+    obligatoryLeash: 'RECOMANDED' | 'YES' | 'NO'
+  ) => {
     switch (obligatoryLeash) {
       case 'RECOMANDED':
         return 'Recommandé';
@@ -71,15 +113,30 @@ export default function Page({
       default:
         return 'Non';
     }
-  }
+  };
 
+  const { data: session, status } = useSession();
+
+  if (status === 'loading' || !dogDestination) {
+    return <LoaderDestination />;
+  }
   return (
     <main className='h-full	'>
       <ScrollUp />
-      {!dogDestination && <LoaderDestination />}
 
       {dogDestination && (
         <>
+          {session?.user?.roles?.includes('ROLE_ADMIN') && (
+            <div className='flex justify-end items-end pt-10 w-11/12 mx-auto '>
+              <Link
+                className='block relative top-0 right-0'
+                href={`/destination/${dogDestination.slug}/edit`}
+              >
+                <Button text='Modifier' />
+              </Link>
+            </div>
+          )}
+
           <section className='container w-11/12 mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
             <div className='w-11/12 mx-auto md:m-0 md:w-1/2'>
               <Swiper
@@ -101,7 +158,7 @@ export default function Page({
                       <BlurImage
                         height='h-144'
                         alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogDestination.name}`}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
                       />
                     </SwiperSlide>
                   ))
@@ -131,7 +188,7 @@ export default function Page({
                       <BlurImage
                         height='h-40'
                         alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}walks/images/${dogDestination.name}`}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
                       />
                     </SwiperSlide>
                   ))
@@ -149,7 +206,9 @@ export default function Page({
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
               <div className='h-full '>
                 <LargeTitle title={dogDestination.name} />
-                <p className='mt-4 lowercase first-letter:uppercase'>{dogDestination.description}</p>
+                <p className='mt-4 lowercase first-letter:uppercase'>
+                  {dogDestination.description}
+                </p>
                 <p className='mt-4'>
                   Note :{' '}
                   <span className='font-semibold text-yellow-400'>
@@ -160,15 +219,37 @@ export default function Page({
                   dogDestination={dogDestination.waterPoint}
                   text='Point d&#039;eau buvable pour les chiens : '
                 />
-                
                 <BlocTextWithspan
-                  dogDestination={handleObligatoryLeash(dogDestination.obligatoryLeash)}
+                  dogDestination={handleObligatoryLeash(
+                    dogDestination.obligatoryLeash
+                  )}
                   text='Laisse obligatoire : '
                 />
-                <p className='mt-4'>Adresse de la destination : <span className='font-semibold'>{dogDestination.street}, {dogDestination.postalCode}, {dogDestination.city}</span></p>
-                <p className='mt-4'>Coordonnées GPS :  <span className='font-semibold'>{dogDestination.latitude}, {dogDestination.longitude} </span></p>
+                <p className='mt-4'>
+                  Adresse de la destination :{' '}
+                  <span className='font-semibold'>
+                    {dogDestination.street}, {dogDestination.postalCode},{' '}
+                    {dogDestination.city}
+                  </span>
+                </p>
+                <p className='mt-4'>
+                  Coordonnées GPS :{' '}
+                  <span className='font-semibold'>
+                    {dogDestination.latitude}, {dogDestination.longitude}{' '}
+                  </span>
+                </p>
                 {dogDestination.latitude && dogDestination.longitude && (
-                      <a className='block mt-4' href={`https://www.google.com/maps?q=${dogDestination.latitude},${dogDestination.longitude}`} target="_blank" rel="noreferrer"> <span className='font-semibold'>Lien direct Google maps</span></a>
+                  <a
+                    className='block mt-4'
+                    href={`https://www.google.com/maps?q=${dogDestination.latitude},${dogDestination.longitude}`}
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    {' '}
+                    <span className='font-semibold'>
+                      Lien direct Google maps
+                    </span>
+                  </a>
                 )}
                 {dogDestination.cyanobacteriaAlert && (
                   <TextAlert text='Présence de cyanobactéries !' />

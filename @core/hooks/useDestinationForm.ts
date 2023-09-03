@@ -1,12 +1,16 @@
 
-import { useState } from 'react';
-import { DestinationFormPick, DestinationForm } from '../types/DestinationForm';
+import { useEffect, useState } from 'react';
+import { DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
-import { postDestination, uploadImages } from '../services/destinationService';
+import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
+import { useRouter } from 'next/navigation'
+import { formatSlug } from '../utils/utils';
+import { set } from 'lodash';
 
-export function useDestinationForm() {
+export function useDestinationForm(slug?: string) {
+  const router = useRouter();
 
-  const [form, setForm] = useState<DestinationForm>({
+  const [form, setForm] = useState<any>({
     name: '',
     description: '',
     city: '',
@@ -15,29 +19,83 @@ export function useDestinationForm() {
     country: '',
     latitude: '',
     longitude: '',
-    obligatoryLeash: 'YES',
-    waterPoint: false,
-    processionaryCaterpillarAlert: false,
-    cyanobacteriaAlert: false,
-    note: 0,
-    files: [],
+    obligatoryLeash: '',
+    waterPoint: '',
+    processionaryCaterpillarAlert: '',
+    cyanobacteriaAlert: '',
+    note: ''
   });
+  const [images, setImages] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+  const formTemp = (form: any) => {
+    return {
+      ...form,
+      waterPoint: form.waterPoint === 'YES' ? true : false,
+      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES' ? true : false,
+      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES' ? true : false
+    };
+  }
 
+  useEffect(() => {
+    if (slug) {
+      fetchDestination();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slug])
+
+
+  async function fetchImage(url: string) {
+    const response = await fetch(url);
+    const blob = await response.blob();
+    return new File([blob], 'image.png', { type: 'image/png' });
+  }
+
+
+  const fetchDestination = async () => {
+    setLoading(true);
+    try {
+      const res = await fetchDestinationBySlug(slug!);
+      setForm({
+        ...res,
+        waterPoint: res.waterPoint ? 'YES' : 'NO',
+        processionaryCaterpillarAlert: res.processionaryCaterpillarAlert ? 'YES' : 'NO',
+        cyanobacteriaAlert: res.cyanobacteriaAlert ? 'YES' : 'NO',
+      });
+      //convert path image to file
+
+      let imageTemp : any = [];
+      const convertUrlToImageFile = async (url: string) => {
+        try {
+          const imageFile = await fetchImage(url);
+          imageTemp.push(imageFile);
+          setImages([...imageTemp]);
+        } catch (error) {
+          console.error('Erreur lors de la conversion de l\'URL en objet File :', error);
+        }
+      }
+
+      
+      res.images.map(async (image: any) => {
+         convertUrlToImageFile(`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`);
+      })
+
+    }
+    catch (err) {
+      console.error(err);
+      toast.error('Une erreur est survenue lors de la récupération de la promenade');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleChange = (e: any) => {
+    const { value, name } = e.target;
     const updatedForm = {
       ...form,
-      [name]: type === 'checkbox' ? checked : value,
-      waterPoint: name === 'waterPoint' ? value === 'YES' : form.waterPoint,
-      processionaryCaterpillarAlert:
-        name === 'processionaryCaterpillarAlert'
-          ? value === 'YES'
-          : form.processionaryCaterpillarAlert,
-      cyanobacteriaAlert:
-        name === 'cyanobacteriaAlert' ? value === 'YES' : form.cyanobacteriaAlert,
+      [name]: value
     };
     setForm(updatedForm);
     setErrors({ ...errors, [name]: '' });
@@ -46,75 +104,108 @@ export function useDestinationForm() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setSubmit(true);
-    
     const isValid = validateForm();
     if (!isValid) {
       setSubmit(false);
       return;
     }
+
+    if (slug) {
+      console.log('slug');
+      try {
+        const updatePromise = updateDestination(formTemp(form), slug);
+        const deleteDestinationPromise = deleteDestinationImage(slug);
+        const uploadPromise = uploadImages(images, formTemp(form));
+
+        await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
+
+        toast.success('Votre promenade a bien été modifiée');
+        return router.push(`/destination/${formatSlug(form.name)}/edit`);
+      } catch (err) {
+        toast.error('Une erreur est survenue lors de la modification de la promenade');
+      } finally {
+        setSubmit(false);
+      }
+    }
+
     try {
-      await postDestination(form);
-      await uploadImages(form);
-      toast.success('Votre promenade a bien été ajoutée');
+      const res = await postDestination(formTemp(form));
+      if (res.ok) {
+        toast.success('Votre promenade a bien été ajoutée');
+        setForm({
+          name: '',
+          description: '',
+          city: '',
+          postalCode: '',
+          street: '',
+          country: '',
+          latitude: '',
+          longitude: '',
+          obligatoryLeash: '',
+          waterPoint: '',
+          processionaryCaterpillarAlert: '',
+          cyanobacteriaAlert: '',
+          note: '',
+        });
+        setImages([]);
+        setErrors({});
+        e.target.reset();
+      } else {
+        toast.error(`${res.error.message}`);
+      }
+      await uploadImages(images, form);
     } catch (err) {
       console.error(err);
-      toast.error('Erreur lors de l\'ajout de la promenade');
+      toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur');
     } finally {
       setSubmit(false);
-      setForm({
-        name: '',
-        description: '',
-        city: '',
-        postalCode: '',
-        street: '',
-        country: '',
-        latitude: '',
-        longitude: '',
-        obligatoryLeash: 'YES',
-        waterPoint: false,
-        processionaryCaterpillarAlert: false,
-        cyanobacteriaAlert: false,
-        note: 0,
-        files: [],
-      });
-      setErrors({});
-      e.target.reset();
     }
   };
 
+  const deleteImage = (index: number) => {
+    const newImages = [...images];
+    newImages.splice(index, 1);
+    console.log(newImages);
+    setImages(newImages);
+  };
+
   const handleFileChange = (e: any) => {
+    console.log('files');
     const { files } = e.target;
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
       if (files[i].size > 3000000) {
-        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
-        return
+        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
+        return;
       }
       if (files[i].type !== 'image/jpeg' && files[i].type !== 'image/png' && files[i].type !== 'image/jpg') {
-        setErrors({ ...errors, files: `Le fichier ${files[i].name} doit être au format jpg ou png` });
-     }
+        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être au format jpg ou png` });
+        return;
+      }
     }
 
     if (files.length === 0) {
-      setErrors({ ...errors, files: 'Veuillez ajouter au moins un fichier' });
-      return
+      setErrors({ ...errors, images: 'Veuillez ajouter au moins un fichier' });
+      return;
     }
 
     if (files.length > 5) {
-      setErrors({ ...errors, files: 'Veuillez ajouter au maximum 5 fichiers' });
-      return
+      setErrors({ ...errors, images: 'Veuillez ajouter au maximum 5 fichiers' });
+      return;
     }
 
     if (files.length > 0) {
-      setErrors({ ...errors, files: '' });
+      console.log('je trouve les fichiers');
+      setErrors({ ...errors, images: '' });
     }
 
-    
-    let inputsTemp = { ...form };
+
+    let inputsTemp = [...images];
     for (let i = 0; i < files.length; i++) {
-      inputsTemp.files.push(files[i]);
+      inputsTemp.push(files[i]);
     }
-    setForm(inputsTemp);
+    console.log(inputsTemp);
+    setImages(inputsTemp);
   };
 
   const validateForm = () => {
@@ -175,6 +266,5 @@ export function useDestinationForm() {
 
   };
 
-
-  return { form, submit, handleChange, handleSubmit, handleFileChange, errors };
+  return { form, submit, handleChange, handleSubmit, handleFileChange, deleteImage,  errors, images, loading };
 }

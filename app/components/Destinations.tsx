@@ -13,7 +13,7 @@ function Destinations() {
   const [filteredDogDestination, setFilteredDogDestination] = useState<any[]>([]);
   const [search, setSearch] = useState("");
 
-  const url = `${API_URL}walks`;
+  const url = `${API_URL}destination`;
 
   const { data, error } = useFetch<any[]>(url)
 

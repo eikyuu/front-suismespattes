@@ -13,7 +13,7 @@ export default function BlurImage({ image, alt, height } : { image: any, alt: st
             src={image}
             width={500}
             height={500}
-            className={`${height} w-full object-cover object-center transform transition-
+            className={`${height}  w-full object-cover object-center transform transition-
                 duration-700 ease-in-out group-hover:opacity-75
                 ${
                   isLoading
