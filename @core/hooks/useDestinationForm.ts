@@ -167,7 +167,6 @@ export function useDestinationForm(slug?: string) {
   };
 
   const handleFileChange = (e: any) => {
-    console.log('files');
     const { files } = e.target;
     // si la taille du fichier est supérieur à 3mb
     for (let i = 0; i < files.length; i++) {
@@ -199,7 +198,6 @@ export function useDestinationForm(slug?: string) {
     for (let i = 0; i < files.length; i++) {
       inputsTemp.push(files[i]);
     }
-    console.log(inputsTemp);
     setImages(inputsTemp);
   };
 
