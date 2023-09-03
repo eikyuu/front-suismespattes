@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
 import { formatSlug } from '../utils/utils';
-import { set } from 'lodash';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -47,12 +46,11 @@ export function useDestinationForm(slug?: string) {
   }, [slug])
 
 
-  async function fetchImage(url: string) {
+  const fetchImage = async (url: string) => {
     const response = await fetch(url);
     const blob = await response.blob();
     return new File([blob], 'image.png', { type: 'image/png' });
   }
-
 
   const fetchDestination = async () => {
     setLoading(true);
@@ -76,7 +74,6 @@ export function useDestinationForm(slug?: string) {
           console.error('Erreur lors de la conversion de l\'URL en objet File :', error);
         }
       }
-
       
       res.images.map(async (image: any) => {
          convertUrlToImageFile(`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`);
@@ -123,6 +120,7 @@ export function useDestinationForm(slug?: string) {
         return router.push(`/destination/${formatSlug(form.name)}/edit`);
       } catch (err) {
         toast.error('Une erreur est survenue lors de la modification de la promenade');
+        return;
       } finally {
         setSubmit(false);
       }
@@ -152,6 +150,7 @@ export function useDestinationForm(slug?: string) {
         e.target.reset();
       } else {
         toast.error(`${res.error.message}`);
+        return;
       }
       await uploadImages(images, form);
     } catch (err) {
@@ -184,7 +183,7 @@ export function useDestinationForm(slug?: string) {
       }
     }
 
-    if (files.length === 0) {
+    if (files.length === 0 && images.length === 0) {
       setErrors({ ...errors, images: 'Veuillez ajouter au moins un fichier' });
       return;
     }
@@ -198,7 +197,6 @@ export function useDestinationForm(slug?: string) {
       console.log('je trouve les fichiers');
       setErrors({ ...errors, images: '' });
     }
-
 
     let inputsTemp = [...images];
     for (let i = 0; i < files.length; i++) {
