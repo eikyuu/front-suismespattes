@@ -103,6 +103,7 @@ export const postDestinationImage = async (formData: any) => {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
       body: formData,
     });
@@ -120,6 +121,7 @@ export const deleteDestinationImage = async (slug : string) => {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
       },
     })
     return await response.json();
