@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
 import { formatSlug } from '../utils/utils';
+import { format } from 'path';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -109,11 +110,11 @@ export function useDestinationForm(slug?: string) {
 
     if (slug) {
       try {
-        const updatePromise = updateDestination(formTemp(form), slug);
-        const deleteDestinationPromise = deleteDestinationImage(slug);
-        const uploadPromise = uploadImages(images, formTemp(form));
+        await updateDestination(formTemp(form), slug);
+        await deleteDestinationImage(formatSlug(form.name));
+        await uploadImages(images, formTemp(form));
 
-        await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
+        // await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
 
         toast.success('Votre promenade a bien été modifiée');
         return router.push(`/destination/${formatSlug(form.name)}/edit`);
