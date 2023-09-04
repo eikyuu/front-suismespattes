@@ -1,88 +1,36 @@
+import Link from 'next/link';
 import LinkOutline from './LinkOutline';
+import Image from 'next/image';
+import SmallTitle from './text/SmallTitle';
 
 function Footer() {
     return ( 
         <footer className='bg-white'>
         <div className='mx-auto container p-4 py-6 lg:py-8'>
-          {/* <div className='md:flex md:justify-between'>
-            <div className='mb-6 md:mb-0'>
-              <Link href='https://flowbite.com/' className='flex items-center'>
-                <Image
-                  src='https://flowbite.com/docs/images/logo.svg'
-                  className='h-8 mr-3'
-                  alt='FlowBite Logo'
-                  width={32}
-                  height={32}
-                />
-                <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
-                  Flowbite
-                </span>
-              </Link>
-            </div>
-            <div className='grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3'>
-              <div>
-                <SmallTitle title='Ressources' />
-                <ul className='text-gray-600 dark:text-gray-400 font-medium'>
-                  <li className='mb-4'>
-                    <Link
-                      href='https://flowbite.com/'
-                      className='hover:underline'
-                    >
-                      Flowbite
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href='https://tailwindcss.com/'
-                      className='hover:underline'
-                    >
-                      Tailwind CSS
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <SmallTitle title='Follow us' />
-                <ul className='text-gray-600 dark:text-gray-400 font-medium'>
-                  <li className='mb-4'>
-                    <Link
-                      href='https://github.com/themesberg/flowbite'
-                      className='hover:underline '
-                    >
-                      Github
-                    </Link>
-                  </li>
-                  <li>
-                    <a
-                      href='https://discord.gg/4eeurUVvTy'
-                      className='hover:underline'
-                    >
-                      Discord
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div>
-              <SmallTitle title='legal' />
-                <ul className='text-gray-600 dark:text-gray-400 font-medium'>
-                  <li className='mb-4'>
-                    <Link href='#' className='hover:underline'>
-                      Privacy Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <a href='#' className='hover:underline'>
-                      Terms &amp; Conditions
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> */}
+          <div className='md:flex md:justify-between'>
+          {/* <SmallTitle title='Au fil des pattes' /> */}
+          <ul className='flex flex-col md:flex-row md:space-x-6'>
+            <li>
+              <LinkOutline href='https://au-fil-des-pattes.vercel.app' text=' Au fil des pattes™'/>
+            </li>
+            <li>
+              <LinkOutline href='/contact' text='Contact'/>
+            </li>
+            <li>
+              <LinkOutline href='/mentions-legales' text='Mentions légales'/>
+            </li>
+            <li>
+              <LinkOutline href='/conditions-generales-utilisatiom' text='CGU'/>
+            </li>
+            <li>
+              <LinkOutline href='/plan-du-site' text='Plan du site'/>
+            </li>
+          </ul>
+          </div>
           <hr className='my-6 border-gray-200 sm:mx-auto lg:my-8' />
           <div className='sm:flex sm:items-center sm:justify-between'>
             <span className='text-sm text-gray-500 sm:text-center'>
-              © 2023
+              © Copyright 2023
               <LinkOutline href='https://au-fil-des-pattes.vercel.app' text=' Au fil des pattes™'/>
               . Tous droits réservés.
             </span>
