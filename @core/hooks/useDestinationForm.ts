@@ -81,7 +81,6 @@ const fetchImage = async (url: string): Promise<File> => {
         const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
         return await fetchImage(imageUrl);
       }));
-      console.log(imageFiles);
       setImages(imageFiles);
     }
     catch (err) {
@@ -92,7 +91,7 @@ const fetchImage = async (url: string): Promise<File> => {
     }
   };
 
-const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+const handleChange = (event: any) => {
   const { value, name } = event.target;
   const updatedForm = { ...form, [name]: value };
   setForm(updatedForm);
