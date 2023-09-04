@@ -286,18 +286,18 @@ function FormDestination({ slug }: { slug?: string }) {
         />
         {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
 
-        <div className='flex justify-center flex-col flex-wrap md:flex-row mt-10'>
+        <div className='flex justify-center items-center flex-col flex-wrap md:flex-row mt-10'>
           {images.map((file: any, index: number) => (
             <React.Fragment key={index}>
               <Image
                 key={index}
-                className='mt-5 md:mr-5 rounded-lg shadow-lg'
+                className='mt-5 md:mr-5 rounded-lg shadow-lg h-60 w-60 object-cover object-center'
                 src={URL.createObjectURL(file)}
                 alt={file.name}
                 width={300}
                 height={300}
               />
-              <div className='postion relative right-11 mt-1 bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow' onClick={() => deleteImage(index)}>
+              <div className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-24  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow' onClick={() => deleteImage(index)}>
                 <p className='-mt-1 text-xl'>&#x10102;</p>
               </div>
             </React.Fragment>
