@@ -56,34 +56,24 @@ export function useDestinationForm(slug?: string) {
   const fetchDestination = async () => {
     setLoading(true);
     try {
-      const res = await fetchDestinationBySlug(slug!);
+      const destination = await fetchDestinationBySlug(slug!);
       setForm({
-        ...res,
-        waterPoint: res.waterPoint ? 'YES' : 'NO',
-        processionaryCaterpillarAlert: res.processionaryCaterpillarAlert ? 'YES' : 'NO',
-        cyanobacteriaAlert: res.cyanobacteriaAlert ? 'YES' : 'NO',
+        ...destination,
+        waterPoint: destination.waterPoint ? 'YES' : 'NO',
+        processionaryCaterpillarAlert: destination.processionaryCaterpillarAlert ? 'YES' : 'NO',
+        cyanobacteriaAlert: destination.cyanobacteriaAlert ? 'YES' : 'NO',
       });
-      //convert path image to file
 
-      let imageTemp : any = [];
-      const convertUrlToImageFile = async (url: string) => {
-        try {
-          const imageFile = await fetchImage(url);
-          imageTemp.push(imageFile);
-          setImages([...imageTemp]);
-        } catch (error) {
-          console.error('Erreur lors de la conversion de l\'URL en objet File :', error);
-        }
-      }
+      const imageFiles = await Promise.all(destination.images.map(async (image: any) => {
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
+        return await fetchImage(imageUrl);
+      }));
       
-      res.images.map(async (image: any) => {
-         convertUrlToImageFile(`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`);
-      })
-
+      setImages(imageFiles);
     }
     catch (err) {
-      console.error(err);
-      toast.error('Une erreur est survenue lors de la récupération de la promenade');
+      console.error('Erreur lors de la récupération de la destination', err);
+      toast.error('Une erreur est survenue lors de la récupération de la destination');
     } finally {
       setLoading(false);
     }
