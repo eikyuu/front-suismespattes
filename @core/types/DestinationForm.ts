@@ -13,7 +13,7 @@ export type Destination = {
     cyanobacteriaAlert: boolean;
     note: number;
     files?: File[];
-    images?: string[];
+    images: string[];
   };
 
 export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;

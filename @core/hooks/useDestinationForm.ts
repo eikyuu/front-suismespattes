@@ -1,11 +1,10 @@
 
 import { useEffect, useState } from 'react';
-import { DestinationFormPick } from '../types/DestinationForm';
+import { Destination, DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
 import { formatSlug } from '../utils/utils';
-import { format } from 'path';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -30,33 +29,47 @@ export function useDestinationForm(slug?: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
-  const formTemp = (form: any) => {
+const formTemp = (form: {
+  waterPoint: 'YES' | 'NO',
+  processionaryCaterpillarAlert: 'YES' | 'NO',
+  cyanobacteriaAlert: 'YES' | 'NO'
+}): {
+  waterPoint: boolean,
+  processionaryCaterpillarAlert: boolean,
+  cyanobacteriaAlert: boolean
+} => {
     return {
       ...form,
-      waterPoint: form.waterPoint === 'YES' ? true : false,
-      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES' ? true : false,
-      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES' ? true : false
+      waterPoint: form.waterPoint === 'YES',
+      processionaryCaterpillarAlert: form.processionaryCaterpillarAlert === 'YES',
+      cyanobacteriaAlert: form.cyanobacteriaAlert === 'YES'
     };
   }
 
   useEffect(() => {
     if (slug) {
-      fetchDestination();
+      fetchDestination(slug);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug])
 
 
-  const fetchImage = async (url: string) => {
+const fetchImage = async (url: string): Promise<File> => {
+  try {
     const response = await fetch(url);
     const blob = await response.blob();
-    return new File([blob], 'image.png', { type: 'image/png' });
+    const file = new File([blob], 'image.png', { type: 'image/png' });
+    return file;
+  } catch (error) {
+    console.error('Erreur lors de la récupération de l\'image:', error);
+    throw error;
   }
+}
 
-  const fetchDestination = async () => {
+  const fetchDestination = async (slug: string): Promise<void> => {
     setLoading(true);
     try {
-      const destination = await fetchDestinationBySlug(slug!);
+      const destination: Destination = await fetchDestinationBySlug(slug);
       setForm({
         ...destination,
         waterPoint: destination.waterPoint ? 'YES' : 'NO',
@@ -64,7 +77,7 @@ export function useDestinationForm(slug?: string) {
         cyanobacteriaAlert: destination.cyanobacteriaAlert ? 'YES' : 'NO',
       });
 
-      const imageFiles = await Promise.all(destination.images.map(async (image: any) => {
+      const imageFiles: File[] = await Promise.all(destination.images.map(async (image: any) => {
         const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
         return await fetchImage(imageUrl);
       }));
@@ -79,22 +92,19 @@ export function useDestinationForm(slug?: string) {
     }
   };
 
-  const handleChange = (e: any) => {
-    const { value, name } = e.target;
-    const updatedForm = {
-      ...form,
-      [name]: value
-    };
-    setForm(updatedForm);
-    setErrors({ ...errors, [name]: '' });
-  };
+const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const { value, name } = event.target;
+  const updatedForm = { ...form, [name]: value };
+  setForm(updatedForm);
+  setErrors({ ...errors, [name]: '' });
+};
 
 const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
   e.preventDefault();
   
   setSubmit(true);
   
-  const isValid = validateForm();
+  const isValid: boolean = validateForm(form, errors);
   
   if (!isValid) {
     setSubmit(false);
@@ -103,9 +113,9 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> 
   
   try {
     if (slug) {
-      const updatePromise = updateDestination(formTemp(form), slug);
-      const deleteDestinationPromise = deleteDestinationImage(formatSlug(form.name));
-      const uploadPromise = uploadImages(images, formTemp(form));
+      const updatePromise: Promise<void> = updateDestination(formTemp(form), slug);
+      const deleteDestinationPromise: Promise<void> = deleteDestinationImage(formatSlug(form.name));
+      const uploadPromise: Promise<void> = uploadImages(images, formTemp(form));
       
       await Promise.all([updatePromise, deleteDestinationPromise, uploadPromise]);
       
@@ -157,98 +167,95 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> 
     setImages(newImages);
   };
 
-  const handleFileChange = (e: any) => {
-    const { files } = e.target;
-    // si la taille du fichier est supérieur à 3mb
-    for (let i = 0; i < files.length; i++) {
-      if (files[i].size > 3000000) {
-        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être inférieur à 3 Mo` });
-        return;
-      }
-      if (files[i].type !== 'image/jpeg' && files[i].type !== 'image/png' && files[i].type !== 'image/jpg') {
-        setErrors({ ...errors, images: `Le fichier ${files[i].name} doit être au format jpg ou png` });
-        return;
-      }
-    }
+const handleFileChange = (e: any) => {
+  const { files } = e.target;
 
-    if (files.length === 0 && images.length === 0) {
-      setErrors({ ...errors, images: 'Veuillez ajouter au moins un fichier' });
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+
+    if (file.size > 3000000) {
+      setErrors({ ...errors, images: `Le fichier ${file.name} doit être inférieur à 3 Mo` });
       return;
     }
 
-    if (files.length > 5) {
-      setErrors({ ...errors, images: 'Veuillez ajouter au maximum 5 fichiers' });
+    if (!['image/jpeg', 'image/png', 'image/jpg'].includes(file.type)) {
+      setErrors({ ...errors, images: `Le fichier ${file.name} doit être au format jpg ou png` });
       return;
     }
+  }
 
-    if (files.length > 0) {
-      setErrors({ ...errors, images: '' });
-    }
+  if (files.length === 0 && images.length === 0) {
+    setErrors({ ...errors, images: 'Veuillez ajouter au moins un fichier' });
+    return;
+  }
 
-    let inputsTemp = [...images];
-    for (let i = 0; i < files.length; i++) {
-      inputsTemp.push(files[i]);
+  if (files.length > 5) {
+    setErrors({ ...errors, images: 'Veuillez ajouter au maximum 5 fichiers' });
+    return;
+  }
+
+  if (files.length > 0) {
+    setErrors({ ...errors, images: '' });
+  }
+
+  setImages([...images, ...files]);
+};
+
+const validateForm = (
+  form: DestinationFormPick,
+  errors: Record<keyof DestinationFormPick, string>
+): boolean => {
+  let isValid = true;
+  let updatedErrors = { ...errors };
+
+  const validationRules = {
+    name: {
+      label: 'nom de la promenade',
+      minLength: 3,
+      maxLength: 50,
+    },
+    description: {
+      label: 'description',
+      minLength: 10,
+      maxLength: 1000,
+    },
+    city: {
+      label: 'ville',
+      minLength: 3,
+      maxLength: 50,
+    },
+    postalCode: {
+      label: 'code postal',
+      minLength: 3,
+      maxLength: 5,
+    },
+    street: {
+      label: 'rue',
+      minLength: 3,
+      maxLength: 50,
     }
-    setImages(inputsTemp);
   };
 
-  const validateForm = () => {
-    let valid = true;
-    let errorsTemp = { ...errors };
+  Object.keys(validationRules).forEach((key) => {
+    const { label, minLength, maxLength } = validationRules[key as keyof typeof validationRules];
+    const fieldValue = form[key as keyof DestinationFormPick];
 
-    const validatorsRules = {
-      name: {
-        label: 'nom de la promenade',
-        minLength: 3,
-        maxLength: 50,
-      },
-      description: {
-        label: 'description',
-        minLength: 10,
-        maxLength: 1000,
-      },
-      city: {
-        label: 'ville',
-        minLength: 3,
-        maxLength: 50,
-      },
-      postalCode: {
-        label: 'code postal',
-        minLength: 3,
-        maxLength: 5,
-      },
-      street: {
-        label: 'rue',
-        minLength: 3,
-        maxLength: 50,
-      }
-    };
+    if (fieldValue.length === 0) {
+      updatedErrors = { ...updatedErrors, [key]: `Le ${label} est obligatoire` };
+      isValid = false;
+    } else if (fieldValue.length < minLength) {
+      updatedErrors = { ...updatedErrors, [key]: `Le ${label} doit contenir au minimum ${minLength} caractères` };
+      isValid = false;
+    } else if (fieldValue.length > maxLength) {
+      updatedErrors = { ...updatedErrors, [key]: `Le ${label} doit contenir au maximum ${maxLength} caractères` };
+      isValid = false;
+    }
+  });
 
-    Object.keys(validatorsRules).forEach((key) => {
-      const { label, minLength, maxLength } = validatorsRules[key as keyof typeof validatorsRules];
-      switch (true) {
-        case form[key as keyof DestinationFormPick].length === 0:
-          errorsTemp = { ...errorsTemp, [key]: `Le ${label} est obligatoire` };
-          valid = false;
-          break;
-        case form[key as keyof DestinationFormPick].length < minLength:
-          errorsTemp = { ...errorsTemp, [key]: `Le ${label} doit contenir au minimum ${minLength} caractères` };
-          valid = false;
-          break;
-        case form[key as keyof DestinationFormPick].length > maxLength:
-          errorsTemp = { ...errorsTemp, [key]: `Le ${label} doit contenir au maximum ${maxLength} caractères` };
-          valid = false;
-          break;
-        default:
-          break;
-      }
-    });
+  setErrors(updatedErrors);
 
-    setErrors(errorsTemp);
-
-    return valid;
-
-  };
+  return isValid;
+};
 
   return { form, submit, handleChange, handleSubmit, handleFileChange, deleteImage,  errors, images, loading };
 }
