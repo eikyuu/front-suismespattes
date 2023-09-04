@@ -130,6 +130,7 @@ export function useDestinationForm(slug?: string) {
     try {
       const res = await postDestination(formTemp(form));
       if (res.ok) {
+        await uploadImages(images, form);
         toast.success('Votre promenade a bien été ajoutée');
         setForm({
           name: '',
@@ -153,7 +154,7 @@ export function useDestinationForm(slug?: string) {
         toast.error(`${res.error.message}`);
         return;
       }
-      await uploadImages(images, form);
+      return router.push(`/destination/${formatSlug(form.name)}`);
     } catch (err) {
       console.error(err);
       toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur');
