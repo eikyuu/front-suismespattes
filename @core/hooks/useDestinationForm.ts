@@ -68,7 +68,7 @@ export function useDestinationForm(slug?: string) {
         const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
         return await fetchImage(imageUrl);
       }));
-      
+      console.log(imageFiles);
       setImages(imageFiles);
     }
     catch (err) {
@@ -89,39 +89,36 @@ export function useDestinationForm(slug?: string) {
     setErrors({ ...errors, [name]: '' });
   };
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setSubmit(true);
-    const isValid = validateForm();
-    if (!isValid) {
-      setSubmit(false);
-      return;
-    }
-
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  e.preventDefault();
+  
+  setSubmit(true);
+  
+  const isValid = validateForm();
+  
+  if (!isValid) {
+    setSubmit(false);
+    return;
+  }
+  
+  try {
     if (slug) {
-      try {
-        const updatePromise = updateDestination(formTemp(form), slug);
-        const deleteDestinationPromise = deleteDestinationImage(formatSlug(form.name));
-        const uploadPromise = uploadImages(images, formTemp(form));
-
-        await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
-
-        toast.success('Votre promenade a bien été modifiée');
-        return router.push(`/destination/${formatSlug(form.name)}`);
-      } catch (err) {
-        toast.error('Une erreur est survenue lors de la modification de la promenade');
-        return;
-      } finally {
-        setImages([]);
-        setSubmit(false);
-      }
-    }
-
-    try {
+      const updatePromise = updateDestination(formTemp(form), slug);
+      const deleteDestinationPromise = deleteDestinationImage(formatSlug(form.name));
+      const uploadPromise = uploadImages(images, formTemp(form));
+      
+      await Promise.all([updatePromise, deleteDestinationPromise, uploadPromise]);
+      
+      toast.success('Votre promenade a bien été modifiée');
+      router.push(`/destination/${formatSlug(form.name)}`);
+    } else {
       const res = await postDestination(formTemp(form));
+      
       if (res.ok) {
         await uploadImages(images, form);
+        
         toast.success('Votre promenade a bien été ajoutée');
+        
         setForm({
           name: '',
           description: '',
@@ -137,21 +134,22 @@ export function useDestinationForm(slug?: string) {
           cyanobacteriaAlert: '',
           note: '',
         });
+        
         setImages([]);
         setErrors({});
-        e.target.reset();
+        router.push(`/destination/${formatSlug(form.name)}`);
       } else {
         toast.error(`${res.error.message}`);
-        return;
       }
-      return router.push(`/destination/${formatSlug(form.name)}`);
-    } catch (err) {
-      console.error(err);
-      toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur');
-    } finally {
-      setSubmit(false);
     }
-  };
+  } catch (err) {
+    console.error(err);
+    toast.error('Erreur lors de l\'ajout de la promenade veuillez réessayer plus tard ou contacter l\'administrateur');
+  } finally {
+    setImages([]);
+    setSubmit(false);
+  }
+};
 
   const deleteImage = (index: number) => {
     const newImages = [...images];
