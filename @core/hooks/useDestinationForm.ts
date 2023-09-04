@@ -110,18 +110,19 @@ export function useDestinationForm(slug?: string) {
 
     if (slug) {
       try {
-        await updateDestination(formTemp(form), slug);
-        await deleteDestinationImage(formatSlug(form.name));
-        await uploadImages(images, formTemp(form));
+        const updatePromise = updateDestination(formTemp(form), slug);
+        const deleteDestinationPromise = deleteDestinationImage(formatSlug(form.name));
+        const uploadPromise = uploadImages(images, formTemp(form));
 
-        // await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
+        await Promise.all([updatePromise,deleteDestinationPromise, uploadPromise]);
 
         toast.success('Votre promenade a bien été modifiée');
-        return router.push(`/destination/${formatSlug(form.name)}/edit`);
+        return router.push(`/destination/${formatSlug(form.name)}`);
       } catch (err) {
         toast.error('Une erreur est survenue lors de la modification de la promenade');
         return;
       } finally {
+        setImages([]);
         setSubmit(false);
       }
     }
