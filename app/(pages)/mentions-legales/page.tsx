@@ -15,7 +15,7 @@ export default function Page() {
           </h2>
           <p className='text-white text-lg mt-10'>
             Le site <span className='font-semibold'>aufildespattes.com</span>{' '}
-            est édité par <span className='font-semibold'>Vincent Duguet</span>
+            est édité par <span className='font-semibold'>Vincent Duguet</span>.
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
@@ -27,9 +27,9 @@ export default function Page() {
             2. DIRECTEUR DE LA PUBLICATION
           </h2>
           <p className='text-white text-lg mt-10'>
-            Le directeur de la publication du site{' '}
+            Le directeur de la publication du site
             <span className='font-semibold'>aufildespattes.com</span> est
-            Vincent Duguet.
+            <span className='font-semibold'>Vincent Duguet</span>.
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
@@ -64,7 +64,7 @@ export default function Page() {
             4. PROPRIÉTÉ INTELLECTUELLE
           </h2>
           <p className='text-white text-lg mt-10'>
-            Tous les contenus présents sur le site aufildespattes.com (textes,
+            Tous les contenus présents sur le site <span className='font-semibold'>aufildespattes.com</span> (textes,
             images, vidéos, logos, etc.) sont protégés par le droit
             d&apos;auteur et/ou d&apos;autres droits de propriété
             intellectuelle. Toute reproduction, diffusion ou utilisation de ces
@@ -75,7 +75,7 @@ export default function Page() {
             5. COLLECTE DE DONNÉES PERSONNELLES
           </h2>
           <p className='text-white text-lg mt-10'>
-            Lors de l&apos;utilisation du site aufildespattes.com, des données
+            Lors de l&apos;utilisation du site <span className='font-semibold'>aufildespattes.com</span>, des données
             personnelles peuvent être collectées. Le Site assure à l’Utilisateur
             une collecte et un traitement d’informations personnelles dans le
             respect de la vie privée conformément à la loi n°78-17 du 6 janvier
@@ -101,7 +101,7 @@ export default function Page() {
             6. COOKIES
           </h2>
           <p className='text-white text-lg mt-10'>
-            Le site aufildespattes.com utilise des cookies permettent
+            Le site <span className='font-semibold'>aufildespattes.com</span>  utilise des cookies permettent
             d’optimiser la connexion et de personnaliser l’utilisation du site.
             L’internaute peut refuser l’utilisation des cookies en configurant
             les paramètres de son navigateur Internet. Cependant le fait de ne
@@ -134,7 +134,7 @@ export default function Page() {
             9. CONTACT
           </h2>
           <p className='text-white text-lg mt-10'>
-            Pour toute question ou demande concernant le site aufildespattes.com
+            Pour toute question ou demande concernant le site <span className='font-semibold'>aufildespattes.com</span> 
             ou ces mentions légales, veuillez nous contacter:
           </p>
           <ul>
@@ -145,7 +145,7 @@ export default function Page() {
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>
                 Par le formulaire de contact:
-              </span>{' '}
+              </span>
               <Link href='/contact'>Contact</Link>
             </li>
           </ul>
