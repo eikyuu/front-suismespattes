@@ -1,6 +1,7 @@
-function LargeTitle({ title } : { title: string } ): JSX.Element {
+function LargeTitle({ title, color } : { title: string, color?: string } ): JSX.Element {
+    color = color ? color : "text-primary";
     return ( 
-        <h1 className="text-4xl font-semibold text-center text-primary lowercase first-letter:uppercase">{title}</h1>
+        <h1 className={`text-4xl font-semibold text-center lowercase first-letter:uppercase ${color}`} >{title}</h1>
      );
 }
 
