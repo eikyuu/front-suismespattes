@@ -109,7 +109,7 @@ export default function Page() {
             certaines parties du site.
           </p>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            7. VERSION DU NAVIGATEUR ET AFFCHAGE
+            7. VERSION DU NAVIGATEUR ET AFFICHAGE
           </h2>
           <p className='text-white text-lg mt-10'>
             Le site a été conçu en responsive design afin de s’adapter aux
