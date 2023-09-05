@@ -20,10 +20,10 @@ function Footer() {
               <LinkOutline href='/mentions-legales' text='Mentions légales'/>
             </li>
             <li>
-              <LinkOutline href='/conditions-generales-utilisatiom' text='CGU'/>
+              <LinkOutline href='/a-venir' text='CGU'/>
             </li>
             <li>
-              <LinkOutline href='/plan-du-site' text='Plan du site'/>
+              <LinkOutline href='/a-venir' text='Plan du site'/>
             </li>
           </ul>
           </div>

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import GreenContainer from '../../components/GreenContainer';
 import LargeTitle from '../../components/text/LargeTitle';
-import MediumTitle from '../../components/text/MediumTitle';
 
 export default function Page() {
   return (
