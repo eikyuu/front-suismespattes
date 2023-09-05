@@ -14,8 +14,8 @@ export default function Page() {
             1. ÉDITEUR DU SITE
           </h2>
           <p className='text-white text-lg mt-10'>
-            Le site <span className='font-semibold'>aufildespattes.com</span>{' '}
-            est édité par <span className='font-semibold'>Vincent Duguet</span>.
+            Le site <span className='font-semibold'>aufildespattes.com</span>
+            est édité par <span className='font-semibold'> Vincent Duguet</span>.
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
@@ -28,8 +28,8 @@ export default function Page() {
           </h2>
           <p className='text-white text-lg mt-10'>
             Le directeur de la publication du site
-            <span className='font-semibold'>aufildespattes.com</span> est
-            <span className='font-semibold'>Vincent Duguet</span>.
+            <span className='font-semibold'> aufildespattes.com</span> est
+            <span className='font-semibold'> Vincent Duguet</span>.
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
