@@ -20,7 +20,7 @@ export default function Page() {
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>Email:</span>{' '}
-              v.duguet.dev@gmail.com
+              <a className='underline' href="mailto:v.duguet.dev@gmail.com">v.duguet.dev@gmail.com</a>
             </li>
           </ul>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
@@ -34,7 +34,7 @@ export default function Page() {
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>Email:</span>{' '}
-              v.duguet.dev@gmail.com
+              <a className='underline' href="mailto:v.duguet.dev@gmail.com">v.duguet.dev@gmail.com</a>
             </li>
           </ul>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
@@ -46,7 +46,7 @@ export default function Page() {
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
-              <span className='font-semibold'>Email:</span> privacy@vercel.comm
+              <span className='font-semibold'>Email:</span> <a className='underline' href="mailto:privacy@vercel.com">privacy@vercel.com</a>
             </li>
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>Téléphone:</span> 347-757-2499
@@ -61,44 +61,7 @@ export default function Page() {
             </li>
           </ul>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            4. PROPRIÉTÉ INTELLECTUELLE
-          </h2>
-          <p className='text-white text-lg mt-10'>
-            Tous les contenus présents sur le site <span className='font-semibold'>aufildespattes.com</span> (textes,
-            images, vidéos, logos, etc.) sont protégés par le droit
-            d&apos;auteur et/ou d&apos;autres droits de propriété
-            intellectuelle. Toute reproduction, diffusion ou utilisation de ces
-            contenus sans autorisation écrite préalable de l&apos;éditeur est
-            strictement interdite.
-          </p>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            5. COLLECTE DE DONNÉES PERSONNELLES
-          </h2>
-          <p className='text-white text-lg mt-10'>
-            Lors de l&apos;utilisation du site <span className='font-semibold'>aufildespattes.com</span>, des données
-            personnelles peuvent être collectées. Le Site assure à l’Utilisateur
-            une collecte et un traitement d’informations personnelles dans le
-            respect de la vie privée conformément à la loi n°78-17 du 6 janvier
-            1978 relative à l’informatique, aux fichiers et aux libertés. En
-            vertu de la loi Informatique et Libertés, en date du 6 janvier 1978,
-            l’Utilisateur dispose d’un droit d’accès, de rectification, de
-            suppression et d’opposition de ses données personnelles.
-            L’Utilisateur exerce ce droit :
-          </p>
-          <ul>
-            <li className='text-white text-lg list-disc ml-10'>
-              <span className='font-semibold'>Email:</span>{' '}
-              v.duguet.dev@gmail.com
-            </li>
-            <li className='text-white text-lg list-disc ml-10'>
-              <span className='font-semibold'>
-                Par le formulaire de contact:
-              </span>{' '}
-              <Link href='/contact'>Contact</Link>
-            </li>
-          </ul>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            6. COOKIES
+            4. COOKIES
           </h2>
           <p className='text-white text-lg mt-10'>
             Le site <span className='font-semibold'>aufildespattes.com</span>  utilise des cookies permettent
@@ -109,21 +72,7 @@ export default function Page() {
             certaines parties du site.
           </p>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            7. VERSION DU NAVIGATEUR ET AFFICHAGE
-          </h2>
-          <p className='text-white text-lg mt-10'>
-            Le site a été conçu en responsive design afin de s’adapter aux
-            différents types de supports actuels (smartphone, tablette et
-            ordinateur…), à partir des navigateurs suivants : Firefox, Chrome,
-            Safari & Edge. Cependant, les divergences d’interprétation des codes
-            d’un navigateur à l’autre peuvent entraîner des différences de
-            présentation et de navigation. Si votre navigateur ne correspond pas
-            à ces critères, vous pouvez télécharger les dernières versions des
-            navigateurs précités sur le site. Nous ne garantissons pas le
-            fonctionnement du site avec d’autres versions de navigateurs
-          </p>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            8. LOI APPLICABLE ET JURIDICTION COMPÉTENTE
+            5. LOI APPLICABLE ET JURIDICTION COMPÉTENTE
           </h2>
           <p className='text-white text-lg mt-10'>
             Les présentes mentions légales sont soumises au droit applicable
@@ -131,24 +80,28 @@ export default function Page() {
             ceux de Tours.
           </p>
           <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            9. CONTACT
+            6 . CONTACT
           </h2>
           <p className='text-white text-lg mt-10'>
-            Pour toute question ou demande concernant le site <span className='font-semibold'>aufildespattes.com</span> 
+            Pour toute question ou demande concernant le site <span className='font-semibold'>aufildespattes.com </span> 
             ou ces mentions légales, veuillez nous contacter:
           </p>
           <ul>
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>Email:</span>{' '}
-              v.duguet.dev@gmail.com
+              <a  className='underline' href="mailto:v.duguet.dev@gmail.com">v.duguet.dev@gmail.com</a>
             </li>
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>
-                Par le formulaire de contact:
+                Formulaire de contact:{' '}
               </span>
-              <Link href='/contact'>Contact</Link>
+              <Link className='underline' href='/contact'>Contact</Link>
             </li>
           </ul>
+
+          <p className='text-white text-lg mt-10'>
+            <span className='font-semibold'>Conditions générales d&apos;utilisation</span> : <Link className='underline' href='/conditions-generales-utilisation'>Lire les CGU</Link>
+          </p>
         </div>
       </GreenContainer>
     </main>
