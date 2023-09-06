@@ -14,7 +14,7 @@ export default function Page() {
             1. ÉDITEUR DU SITE
           </h2>
           <p className='text-white text-lg mt-10'>
-            Le site <span className='font-semibold'>aufildespattes.com</span>
+            Le site <span className='font-semibold'>aufildespattes.com </span>
             est édité par <span className='font-semibold'> Vincent Duguet</span>.
           </p>
           <ul>
