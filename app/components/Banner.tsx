@@ -9,9 +9,7 @@ function Banner() {
         className='w-full h-1/2 object-cover md:h-96 lg:h-1/2 xl:h-160 '
         src={banner}
         alt='Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts.'
-        placeholder='blur'
-        height={640}
-        width={1490}
+        loading='eager'
       />
     </Link>
   );
