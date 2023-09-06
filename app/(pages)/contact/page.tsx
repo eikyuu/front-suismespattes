@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { Contact } from '../../../@core/types/Contact';
 import GreenContainer from '../../components/GreenContainer';
@@ -10,6 +9,7 @@ import Label from '../../components/inputs/Label';
 import Input from '../../components/inputs/Input';
 import Loader from '../../components/loader/Loader';
 import Textarea from '../../components/inputs/Textarea';
+import { postMessage } from '../../../@core/services/contactService';
 
 export default function Page() {
   const [form, setForm] = useState<any>({
