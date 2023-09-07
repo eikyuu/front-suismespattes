@@ -30,22 +30,18 @@ export default function Page({
   params: { slug: string };
 }): JSX.Element {
   const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
-  const [dogDestination, setDogDestination] = useState<any>();
-
   const url = `${API_URL}destination/${params.slug}`;
-
+  const { data: session, status } = useSession();
   const { data, error } = useFetch<any>(url);
 
-  //get user connected
+  if (status === 'loading' || !data) {
+    return <LoaderDestination />;
+  }
 
-  useEffect(() => {
-    if (data) {
-      setDogDestination(data);
-    } else if (error) {
-      console.error(error);
-      toast.error('Une erreur est survenue');
-    }
-  }, [data, error]);
+  if (error) {
+    toast.error('Une erreur est survenue');
+    return <p>Une erreur est survenue.</p>
+  }
 
   const handleNote = (note: number) => {
     switch (note) {
@@ -115,22 +111,17 @@ export default function Page({
     }
   };
 
-  const { data: session, status } = useSession();
-
-  if (status === 'loading' || !dogDestination) {
-    return <LoaderDestination />;
-  }
   return (
     <main className='h-full	'>
       <ScrollUp />
 
-      {dogDestination && (
+      {data && (
         <>
           {session?.user?.roles?.includes('ROLE_ADMIN') && (
             <div className='flex justify-end items-end pt-10 w-11/12 mx-auto '>
               <Link
                 className='block relative top-0 right-0'
-                href={`/destination/${dogDestination.slug}/edit`}
+                href={`/destination/${data.slug}/edit`}
               >
                 <Button text='Modifier' />
               </Link>
@@ -152,13 +143,13 @@ export default function Page({
                 modules={[FreeMode, Thumbs]}
                 className='mySwiper2 w-full'
               >
-                {dogDestination && dogDestination.images.length > 0 ? (
-                  dogDestination.images.map((dogDestination: any) => (
-                    <SwiperSlide key={dogDestination.id} className='w-full'>
+                {data && data.images.length > 0 ? (
+                  data.images.map((data: any) => (
+                    <SwiperSlide key={data.id} className='w-full'>
                       <BlurImage
                         height='h-144'
-                        alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
+                        alt={data.name}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
                       />
                     </SwiperSlide>
                   ))
@@ -182,13 +173,13 @@ export default function Page({
                 modules={[FreeMode, Thumbs]}
                 className='mySwiper mt-2'
               >
-                {dogDestination && dogDestination.images.length > 0 ? (
-                  dogDestination.images.map((dogDestination: any) => (
-                    <SwiperSlide key={dogDestination.id}>
+                {data && data.images.length > 0 ? (
+                  data.images.map((data: any) => (
+                    <SwiperSlide key={data.id}>
                       <BlurImage
                         height='h-40'
-                        alt={dogDestination.name}
-                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${dogDestination.name}`}
+                        alt={data.name}
+                        image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
                       />
                     </SwiperSlide>
                   ))
@@ -205,43 +196,43 @@ export default function Page({
             </div>
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
               <div className='h-full '>
-                <LargeTitle title={dogDestination.name} />
+                <LargeTitle title={data.name} />
                 <p className='mt-4 lowercase first-letter:uppercase'>
-                  {dogDestination.description}
+                  {data.description}
                 </p>
                 <p className='mt-4'>
                   Note :{' '}
                   <span className='font-semibold text-yellow-400'>
-                    {handleNote(dogDestination.note)}
+                    {handleNote(data.note)}
                   </span>
                 </p>
                 <BlocTextWithspan
-                  dogDestination={dogDestination.waterPoint}
+                  dogDestination={data.waterPoint}
                   text='Point d&#039;eau buvable pour les chiens : '
                 />
                 <BlocTextWithspan
                   dogDestination={handleObligatoryLeash(
-                    dogDestination.obligatoryLeash
+                    data.obligatoryLeash
                   )}
                   text='Laisse obligatoire : '
                 />
                 <p className='mt-4'>
                   Adresse de la destination :{' '}
                   <span className='font-semibold'>
-                    {dogDestination.street}, {dogDestination.postalCode},{' '}
-                    {dogDestination.city}
+                    {data.street}, {data.postalCode},{' '}
+                    {data.city}
                   </span>
                 </p>
                 <p className='mt-4'>
                   Coordonnées GPS :{' '}
                   <span className='font-semibold'>
-                    {dogDestination.latitude}, {dogDestination.longitude}{' '}
+                    {data.latitude}, {data.longitude}{' '}
                   </span>
                 </p>
-                {dogDestination.latitude && dogDestination.longitude && (
+                {data.latitude && data.longitude && (
                   <a
                     className='block mt-4'
-                    href={`https://www.google.com/maps?q=${dogDestination.latitude},${dogDestination.longitude}`}
+                    href={`https://www.google.com/maps?q=${data.latitude},${data.longitude}`}
                     target='_blank'
                     rel='noreferrer'
                   >
@@ -251,14 +242,14 @@ export default function Page({
                     </span>
                   </a>
                 )}
-                {dogDestination.cyanobacteriaAlert && (
+                {data.cyanobacteriaAlert && (
                   <TextAlert text='Présence de cyanobactéries ! *' />
                 )}
-                {dogDestination.processionaryCaterpillarAlert && (
+                {data.processionaryCaterpillarAlert && (
                   <TextAlert text='Présence de chenilles processionnaire ! *' />
                 )}
-                {dogDestination.cyanobacteriaAlert ||
-                  (dogDestination.processionaryCaterpillarAlert && (
+                {data.cyanobacteriaAlert ||
+                  (data.processionaryCaterpillarAlert && (
                     <p className='mt-4 italic font-semibold text-sm'>
                       * La responsabilité de la destination ne saurait être
                       engagée pour tout dommage ou danger, chaque personne est
@@ -269,9 +260,9 @@ export default function Page({
             </div>
           </section>
           <MapContainer
-            dogDestination={[dogDestination]}
-            coordinates={[dogDestination.latitude, dogDestination.longitude]}
-            title={`${dogDestination.name}`}
+            dogDestination={[data]}
+            coordinates={[data.latitude, data.longitude]}
+            title={`${data.name}`}
           />
         </>
       )}
