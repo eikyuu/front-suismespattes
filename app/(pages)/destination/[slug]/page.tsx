@@ -252,11 +252,19 @@ export default function Page({
                   </a>
                 )}
                 {dogDestination.cyanobacteriaAlert && (
-                  <TextAlert text='Présence de cyanobactéries !' />
+                  <TextAlert text='Présence de cyanobactéries ! *' />
                 )}
                 {dogDestination.processionaryCaterpillarAlert && (
-                  <TextAlert text='Présence de chenilles processionnaire !' />
+                  <TextAlert text='Présence de chenilles processionnaire ! *' />
                 )}
+                {dogDestination.cyanobacteriaAlert ||
+                  (dogDestination.processionaryCaterpillarAlert && (
+                    <p className='mt-4 italic font-semibold text-sm'>
+                      * La responsabilité de la destination ne saurait être
+                      engagée pour tout dommage ou danger, chaque personne est
+                      responsable de son propre bien et de leurs animaux
+                    </p>
+                  ))}
               </div>
             </div>
           </section>
