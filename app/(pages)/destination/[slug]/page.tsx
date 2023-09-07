@@ -248,14 +248,13 @@ export default function Page({
                 {data.processionaryCaterpillarAlert && (
                   <TextAlert text='Présence de chenilles processionnaire ! *' />
                 )}
-                {data.cyanobacteriaAlert ||
-                  (data.processionaryCaterpillarAlert && (
+                {data.processionaryCaterpillarAlert || data.cyanobacteriaAlert ? (
                     <p className='mt-4 italic font-semibold text-sm'>
                       * La responsabilité de la destination ne saurait être
                       engagée pour tout dommage ou danger, chaque personne est
                       responsable de son propre bien et de leurs animaux
                     </p>
-                  ))}
+                  ) : null}
               </div>
             </div>
           </section>
