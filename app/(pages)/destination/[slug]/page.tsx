@@ -40,7 +40,7 @@ export default function Page({
 
   if (error) {
     toast.error('Une erreur est survenue');
-    return <p>Une erreur est survenue.</p>
+    return <p>Une erreur est survenue.</p>;
   }
 
   const handleNote = (note: number) => {
@@ -112,7 +112,7 @@ export default function Page({
   };
 
   return (
-    <main className='h-full	'>
+    <main className='h-full'>
       <ScrollUp />
 
       {data && (
@@ -195,66 +195,70 @@ export default function Page({
               </Swiper>
             </div>
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
-              <div className='h-full '>
-                <LargeTitle title={data.name} />
-                <p className='mt-4 lowercase first-letter:uppercase'>
-                  {data.description}
-                </p>
-                <p className='mt-4'>
-                  Note :{' '}
-                  <span className='font-semibold text-yellow-400'>
-                    {handleNote(data.note)}
-                  </span>
-                </p>
-                <BlocTextWithspan
-                  dogDestination={data.waterPoint}
-                  text='Point d&#039;eau buvable pour les chiens : '
-                />
-                <BlocTextWithspan
-                  dogDestination={handleObligatoryLeash(
-                    data.obligatoryLeash
-                  )}
-                  text='Laisse obligatoire : '
-                />
-                <p className='mt-4'>
-                  Adresse de la destination :{' '}
-                  <span className='font-semibold'>
-                    {data.street}, {data.postalCode},{' '}
-                    {data.city}
-                  </span>
-                </p>
-                <p className='mt-4'>
-                  Coordonnées GPS :{' '}
-                  <span className='font-semibold'>
-                    {data.latitude}, {data.longitude}{' '}
-                  </span>
-                </p>
-                {data.latitude && data.longitude && (
-                  <a
-                    className='block mt-4'
-                    href={`https://www.google.com/maps?q=${data.latitude},${data.longitude}`}
-                    target='_blank'
-                    rel='noreferrer'
-                  >
-                    {' '}
-                    <span className='font-semibold'>
-                      Lien direct Google maps
+              <div className='h-full flex flex-col justify-between '>
+                <div>
+                  <LargeTitle title={data.name} />
+                  <p className='mt-4 lowercase first-letter:uppercase'>
+                    {data.description}
+                  </p>
+                  <p className='mt-4'>
+                    Note :{' '}
+                    <span className='font-semibold text-yellow-400'>
+                      {handleNote(data.note)}
                     </span>
-                  </a>
-                )}
-                {data.cyanobacteriaAlert && (
-                  <TextAlert text='Présence de cyanobactéries ! *' />
-                )}
-                {data.processionaryCaterpillarAlert && (
-                  <TextAlert text='Présence de chenilles processionnaire ! *' />
-                )}
-                {data.processionaryCaterpillarAlert || data.cyanobacteriaAlert ? (
-                    <p className='mt-4 italic font-semibold text-sm'>
-                      * La responsabilité de la destination ne saurait être
-                      engagée pour tout dommage ou danger, chaque personne est
-                      responsable de son propre bien et de leurs animaux
-                    </p>
-                  ) : null}
+                  </p>
+                  <BlocTextWithspan
+                    dogDestination={data.waterPoint}
+                    text='Point d&#039;eau buvable pour les chiens : '
+                  />
+                  <BlocTextWithspan
+                    dogDestination={handleObligatoryLeash(data.obligatoryLeash)}
+                    text='Laisse obligatoire : '
+                  />
+                  <p className='mt-4'>
+                    Adresse de la destination :{' '}
+                    <span className='font-semibold'>
+                      {data.street}, {data.postalCode}, {data.city}
+                    </span>
+                  </p>
+                  <p className='mt-4'>
+                    Coordonnées GPS :{' '}
+                    <span className='font-semibold'>
+                      {data.latitude}, {data.longitude}{' '}
+                    </span>
+                  </p>
+                  {data.latitude && data.longitude && (
+                    <a
+                      className='block mt-4'
+                      href={`https://www.google.com/maps?q=${data.latitude},${data.longitude}`}
+                      target='_blank'
+                      rel='noreferrer'
+                    >
+                      {' '}
+                      <span className='font-semibold'>
+                        Lien direct Google maps
+                      </span>
+                    </a>
+                  )}
+                  {data.cyanobacteriaAlert && (
+                    <TextAlert text='Présence de cyanobactéries ! *' />
+                  )}
+                  {data.processionaryCaterpillarAlert && (
+                    <TextAlert text='Présence de chenilles processionnaire ! *' />
+                  )}
+                </div>
+                <div>
+                  <p className='mt-4 italic font-semibold text-xs'>
+                    La responsabilité de la destination ne peut être encourue
+                    pour aucun dommage ou danger, chacun est responsable de son
+                    propre bien-être et de ses animaux. *
+                  </p>
+
+                  <p className='mt-4 italic font-semibold text-xs'>
+                    Merci de respecter les lieux et de ne pas laisser de déchets
+                    derrière vous. **
+                  </p>
+                </div>
               </div>
             </div>
           </section>
