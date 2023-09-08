@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
-import { FreeMode, Thumbs } from 'swiper';
+import { FreeMode, Navigation, Thumbs } from 'swiper';
 import { Swiper as S } from 'swiper';
 import React from 'react';
 import ScrollUp from '../../../../@core/utils/scrollUp';
@@ -139,8 +139,9 @@ export default function Page({
                 }
                 loop={true}
                 spaceBetween={10}
+                navigation={true}
                 thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Thumbs]}
+                modules={[FreeMode, Thumbs, Navigation]}
                 className='mySwiper2 w-full'
               >
                 {data && data.images.length > 0 ? (
@@ -165,12 +166,12 @@ export default function Page({
               </Swiper>
               <Swiper
                 onSwiper={setThumbsSwiper}
-                loop={false}
+                loop={true}
                 spaceBetween={10}
                 slidesPerView={4}
                 freeMode={true}
                 watchSlidesProgress={true}
-                modules={[FreeMode, Thumbs]}
+                modules={[FreeMode, Thumbs, Navigation]}
                 className='mySwiper mt-2'
               >
                 {data && data.images.length > 0 ? (
