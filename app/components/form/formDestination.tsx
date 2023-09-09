@@ -89,7 +89,7 @@ function FormDestination({ slug }: { slug?: string }) {
           required
         />
         <Textarea
-          maxLength='1000'
+          maxLength='5000'
           name='description'
           handleChange={handleChange}
           value={form.description}
@@ -99,7 +99,7 @@ function FormDestination({ slug }: { slug?: string }) {
 
         <Label name='category' label='Type de destination' required />
         <select
-          value={form.category}
+          value={form.category.id}
           required
           name='category'
           onChange={(e) => handleChange(e)}

@@ -199,8 +199,8 @@ export default function Page({
               <div className='h-full flex flex-col justify-between '>
                 <div>
                   <LargeTitle title={data.name} />
-                  <p className='mt-4 lowercase first-letter:uppercase'>
-                    {data.description}
+                  <p className='mt-4 lowercase first-letter:uppercase whitespace-pre-wrap	'>
+                    {data.description} 
                   </p>
                   <p className='mt-4'>
                     Note :{' '}
