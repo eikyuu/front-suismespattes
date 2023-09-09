@@ -17,10 +17,10 @@ declare module "next-auth" {
   }
 
   interface User {
-    pseudo?: string;
-    email?: string | null;
+    pseudo: string;
+    email: string;
     id?: string;
-    roles?: string[];
+    roles: string[];
   }
 }
 

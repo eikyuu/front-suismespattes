@@ -4,7 +4,8 @@ import { Destination, DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
-import { formatSlug } from '../utils/utils';
+import { formatSlug, userFromSession } from '../utils/utils';
+import { set } from 'lodash';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -22,12 +23,24 @@ export function useDestinationForm(slug?: string) {
     waterPoint: '',
     processionaryCaterpillarAlert: '',
     cyanobacteriaAlert: '',
-    note: ''
+    note: '',
+    category: '',
+    user: '',
   });
   const [images, setImages] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
+
+  const getUser = async () => {
+    const user = await userFromSession();
+    setForm({ ...form, user: user?.email });
+  }
+
+  useEffect(() => {
+    getUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
 const formTemp = (form: {
   waterPoint: 'YES' | 'NO',
@@ -142,6 +155,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> 
           processionaryCaterpillarAlert: '',
           cyanobacteriaAlert: '',
           note: '',
+          category: '',
         });
         
         setImages([]);

@@ -255,7 +255,7 @@ export default function Page({
                     propre bien-être et de ses animaux. *
                   </p>
 
-                  <p className='mt-4 italic font-semibold text-xs'>
+                  <p className='mt-1 italic font-semibold text-xs'>
                     Merci de respecter les lieux et de ne pas laisser de déchets
                     derrière vous. **
                   </p>

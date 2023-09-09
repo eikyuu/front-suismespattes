@@ -9,7 +9,11 @@ import MultiRadio from '../inputs/MultiRadio';
 import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
 import BlurImage from '../blurImage/BlurImage';
-import React from 'react';
+import React, { use, useEffect, useState } from 'react';
+import { useFetch } from '../../../@core/hooks/useFetch';
+import { API_URL } from '../../../@core/constants/global';
+import toast from 'react-hot-toast';
+import { TypeCategory } from '../../../@core/enum/TypeCategory';
 
 function FormDestination({ slug }: { slug?: string }) {
   const {
@@ -23,6 +27,25 @@ function FormDestination({ slug }: { slug?: string }) {
     images,
     loading,
   } = useDestinationForm(slug);
+
+  // FETCH CATEGORIES
+  const { data: categories, error } = useFetch<any>(`${API_URL}category`);
+  const [typeCategory, setTypeCategory] = useState<any[]>([]);
+
+  useEffect(() => {
+    categories && categories.map((category: any) => {
+      setTypeCategory([...typeCategory, category.type]);
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
+
+  const filterCategories = (categories: any, typeCategory: keyof typeof TypeCategory) => {
+    return categories.filter((category: any) => category.type === typeCategory);
+  }
+
+  if (error) {
+    toast.error('Une erreur est survenue lors de la récupération des catégories');
+  }
 
   if (loading) {
     return <Loader />;
@@ -66,6 +89,50 @@ function FormDestination({ slug }: { slug?: string }) {
           describedby='pour la description'
           errors={errors}
         />
+
+        <Label name='category' label='Type de destination' required />
+        <select
+          value={form.category}
+          required
+          name='category'
+          onChange={(e) => handleChange(e)}
+          id='categories'
+          className='mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5'
+        >
+          <option value=''>Sélectionnez un type de destination</option>
+          {typeCategory && typeCategory.map((type: any, index: number) => (
+            <optgroup key={index} label={type}>
+              {categories && filterCategories(categories, type).map((category: any) => (
+                <option key={category.id} value={category.id}>{category.name}</option>
+              ))}
+            </optgroup>
+          ))}
+
+          {/* <optgroup label='Hébergement'>
+            <option value='13be1c48-0b5c-4535-97a0-fd1ca8c28fa4'>Gite et location de vacances</option>
+            <option value='13be1c48-0b5c-4535-97a0-fd1ca8c28fa4'>Camping</option>
+            <option value='29712'>Village et résidence vacances</option>
+            <option value='29711'>Hotel</option>
+            <option value='29713'>Chambre d’hôtes</option>
+            <option value='29714'>Hébergement insolite</option>
+            <option value='29715'>Gite de groupe</option>
+            <option value='29716'>Appart-hotel</option>
+            <option value='29725'>Auberge</option>
+            <option value='29726'>Camping à la ferme</option>
+            <option value='29717'>Autre</option>
+          </optgroup> */}
+
+          {/* <optgroup label='Activité'>
+            <option value='29721'>Loisir</option>
+            <option value='29718'>Visite</option>
+            <option value='29720'>Plage</option>
+            <option value='29723'>Restaurant</option>
+            <option value='29719'>Balade et rando</option>
+            <option value='29724'>Professionnels canins</option>
+            <option value='29722'>Transport</option>
+            <option value='29727'>Autre</option>
+          </optgroup> */}
+        </select>
 
         <div className=' flex flex-wrap justify-between'>
           <div className='w-full'>
@@ -297,7 +364,10 @@ function FormDestination({ slug }: { slug?: string }) {
                 width={300}
                 height={300}
               />
-              <div className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-24  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow' onClick={() => deleteImage(index)}>
+              <div
+                className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-24  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
+                onClick={() => deleteImage(index)}
+              >
                 <p className='-mt-1 text-xl'>&#x10102;</p>
               </div>
             </React.Fragment>
@@ -309,7 +379,7 @@ function FormDestination({ slug }: { slug?: string }) {
         className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
         type='submit'
       >
-        {submit ? <Loader /> : slug  ? 'Modifier' : 'Ajouter'}
+        {submit ? <Loader /> : slug ? 'Modifier' : 'Ajouter'}
       </button>
     </form>
   );

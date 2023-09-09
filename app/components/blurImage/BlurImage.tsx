@@ -11,8 +11,9 @@ export default function BlurImage({ image, alt, height } : { image: any, alt: st
           <Image
             alt={alt}
             src={image}
-            width={500}
-            height={500}
+            width={1140}
+            height={760}
+            quality={100}
             className={`${height}  w-full object-cover object-center transform transition-
                 duration-700 ease-in-out group-hover:opacity-75
                 ${
