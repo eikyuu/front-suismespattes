@@ -1,5 +1,5 @@
 export enum TypeCategory {
     'AUTRE' = 'Autre',
-    'HEBERGEMENT' = 'hébergement',
-    'ACTIVITY' = 'activité',
+    'HEBERGEMENT' = 'Hébergement',
+    'ACTIVITY' = 'Activité',
 }
