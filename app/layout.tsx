@@ -39,7 +39,6 @@ export default function RootLayout({
           <Session>
           <Headband />
           <ContentNavigation />
-          <Banner />
           {children}
           <Analytics />
           <Footer />

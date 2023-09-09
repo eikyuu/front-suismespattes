@@ -36,13 +36,13 @@ function ContentNavigation() {
 
   return (
     <header>
-      <nav className='bg-white border-gray-200'>
+      <nav className='bg-primary border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
           <Link
             href='/'
             className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'
           >
-            <span className='self-center text-primary text-2xl font-semibold whitespace-nowrap'>
+            <span className='self-center text-white text-2xl font-semibold whitespace-nowrap'>
               Au fil des pattes
             </span>
           </Link>
@@ -51,7 +51,7 @@ function ContentNavigation() {
               onClick={handleMenuClick}
               data-collapse-toggle='navbar'
               type='button'
-              className='inline-flex items-center p-2 text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
+              className='inline-flex items-center p-2 text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
               aria-controls='navbar'
               aria-expanded='false'
             >
@@ -75,7 +75,7 @@ function ContentNavigation() {
             className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
             id='navbar'
           >
-            <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white'>
+            <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary'>
               <LiNav text='Accueil' href='/' />
               <LiNav
                 text='Toutes les destinations'

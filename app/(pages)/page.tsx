@@ -10,6 +10,7 @@ import LastDestinations from '../components/LastDestinations';
 import Presentation from '../components/Presentation';
 import MapContainer from '../components/map/MapContainer';
 import Reviews from '../components/review/Reviews';
+import Banner from '../components/Banner';
 
 function Fallback({ error, resetErrorBoundary } : any) {
   // Call resetErrorBoundary() to reset the error boundary and retry the render.
@@ -80,6 +81,7 @@ export default function Home() {
   return (
     <main>
       <ErrorBoundary FallbackComponent={Fallback}>
+        <Banner />
         <Presentation />
         <Reviews reviews={reviews} />
         <LastDestinations dogDestination={dogDestination} />

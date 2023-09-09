@@ -5,8 +5,8 @@ export default function Component() {
 
     return ( 
       <>
-      {session && <Button text='Déconnexion'  onClick={() => signOut()} />}
-      {!session && <Button text='Connexion'  onClick={() => signIn()} />}
+      {session && <Button text='Déconnexion' className='text-white bg-primary hover:bg-secondary md:bg-secondary md:hover:bg-primary' onClick={() => signOut()} />}
+      {!session && <Button text='Connexion' className='text-white bg-primary hover:bg-secondary md:bg-secondary md:hover:bg-primary'  onClick={() => signIn()} />}
       </>
 
     )

@@ -8,13 +8,11 @@ import Label from '../inputs/Label';
 import MultiRadio from '../inputs/MultiRadio';
 import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
-import BlurImage from '../blurImage/BlurImage';
 import React, { use, useEffect, useState } from 'react';
 import { useFetch } from '../../../@core/hooks/useFetch';
 import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { TypeCategory } from '../../../@core/enum/TypeCategory';
-import { set } from 'lodash';
 
 function FormDestination({ slug }: { slug?: string }) {
   const {
