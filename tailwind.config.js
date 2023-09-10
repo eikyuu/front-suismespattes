@@ -19,6 +19,8 @@ module.exports = {
 
       },
       height: {
+        '74': '18rem',
+        '80': '20rem',
         '84': '21rem',
         '128': '32rem',
         '144': '36rem',
@@ -28,6 +30,7 @@ module.exports = {
         '3/4-screen': '75vh',
       },
       width: {
+        '74': '19rem',
         '84': '20rem',
         '128': '32rem',
         '144': '36rem',
@@ -37,6 +40,16 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      spacing: {
+        '21': '5.20rem',
+        '22': '5.5rem',
+        '23': '5.60rem',
+        '24': '5.80rem',
+        '25': '6rem',
+        '26': '6.20rem',
+        '27': '6.40rem',
+        '28': '7rem',
       },
     },
   },

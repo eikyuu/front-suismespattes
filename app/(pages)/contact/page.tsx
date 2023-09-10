@@ -10,6 +10,7 @@ import Input from '../../components/inputs/Input';
 import Loader from '../../components/loader/Loader';
 import Textarea from '../../components/inputs/Textarea';
 import { postMessage } from '../../../@core/services/contactService';
+import Button from '../../components/button/Button';
 
 export default function Page() {
   const [form, setForm] = useState<any>({
@@ -150,12 +151,12 @@ export default function Page() {
             />
           </div>
         </GreenContainer>
-        <button
-          className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
+        <Button
+          className='mt-10'
           type='submit'
         >
           {submit ? <Loader /> : 'Envoyer'}
-        </button>
+        </Button>
       </form>
     </main>
   );

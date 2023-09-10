@@ -13,6 +13,9 @@ import { useFetch } from '../../../@core/hooks/useFetch';
 import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { TypeCategory } from '../../../@core/enum/TypeCategory';
+import Button from '../button/Button';
+import { TrashIcon } from '@heroicons/react/24/outline';
+
 
 function FormDestination({ slug }: { slug?: string }) {
   const {
@@ -347,22 +350,24 @@ function FormDestination({ slug }: { slug?: string }) {
                 height={300}
               />
               <div
-                className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-24  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
+                className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-27  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
                 onClick={() => deleteImage(index)}
               >
-                <p className='-mt-1 text-xl'>&#x10102;</p>
+                <p className='-mt-1 text-xl'>
+                <TrashIcon className='w-5 h-5' />
+                </p>
               </div>
             </React.Fragment>
           ))}
         </div>
       </GreenContainer>
 
-      <button
-        className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
+      <Button
+        className='mt-10'
         type='submit'
       >
         {submit ? <Loader /> : slug ? 'Modifier' : 'Ajouter'}
-      </button>
+      </Button>
     </form>
   );
 }

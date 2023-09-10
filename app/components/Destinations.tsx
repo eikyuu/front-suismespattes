@@ -77,25 +77,10 @@ function Destinations() {
       <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
         {filteredDogDestination.length === 0 && <LoaderDestinations />}
         {filteredDogDestination.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(
-          (walk: {
-            id: number;
-            city: string;
-            name: string;
-            postalCode: string;
-            country: keyof typeof Country;
-            slug: string;
-            images: { name: string }[];
-            category: { name: string };
-          }) => (
+          (destination: any) => (
             <CardDestination
-              key={walk.id}
-              city={walk.city}
-              name={walk.name}
-              postalCode={walk.postalCode}
-              country={walk.country}
-              slug={walk.slug}
-              imageName={walk.images[0]?.name}
-              category={walk.category.name}
+              key={destination.id}
+              destination={destination}
             />
           )
         )}

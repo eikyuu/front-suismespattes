@@ -123,7 +123,9 @@ export default function Page({
                 className='block relative top-0 right-0'
                 href={`/destination/${data.slug}/edit`}
               >
-                <Button text='Modifier' />
+                <Button>
+                  MODIFIER
+                </Button>
               </Link>
             </div>
           )}

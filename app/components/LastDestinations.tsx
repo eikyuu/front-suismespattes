@@ -37,13 +37,7 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
               {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
                 <SwiperSlide key={dogDestination.id} className='!w-11/12 last:w-full'>
                   <CardDestination
-                    city={dogDestination.city}
-                    name={dogDestination.name}
-                    country={dogDestination.country}
-                    postalCode={dogDestination.postalCode}
-                    slug={dogDestination.slug}
-                    imageName={dogDestination.images[0]?.name}
-                    category={dogDestination.category.name}
+                    destination={dogDestination}
                   />
                 </SwiperSlide>
               ))}
@@ -51,7 +45,9 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
           </div>
           <div className='text-center'>
             <Link className='outline-none' href='/toutes-les-destinations'>
-              <Button text='Voir toutes les destinations' />
+              <Button>
+                Voir toutes les destinations
+              </Button>
             </Link>
           </div>
         </section>
@@ -63,19 +59,15 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
             {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
               <CardDestination
                 key={dogDestination.id}
-                city={dogDestination.city}
-                name={dogDestination.name}
-                country={dogDestination.country}
-                postalCode={dogDestination.postalCode}
-                slug={dogDestination.slug}
-                imageName={dogDestination.images[0]?.name}
-                category={dogDestination.category.name}
+                destination={dogDestination}
               />
             ))}
           </div>
           <div className='text-center'>
             <Link className='outline-none' href='/toutes-les-destinations'>
-              <Button text='Voir toutes les destinations' />
+              <Button>
+                Voir toutes les destinations
+              </Button>
             </Link>
           </div>
         </section>

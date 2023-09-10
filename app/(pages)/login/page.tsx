@@ -8,6 +8,7 @@ import GreenContainer from '../../components/GreenContainer';
 import Label from '../../components/inputs/Label';
 import Loader from '../../components/loader/Loader';
 import Input from '../../components/inputs/Input';
+import Button from '../../components/button/Button';
 
 export default function Page() {
   const [form, setForm] = useState<any>({
@@ -148,12 +149,12 @@ export default function Page() {
 
           </div>
         </GreenContainer>
-        <button
-          className='w-44 mt-10 text-white bg-primary hover:bg-secondary rounded-lg px-5 py-2.5 focus:ring-4 focus:ring-tertiary focus:outline-none'
+        <Button
+          className='mt-10'
           type='submit'
         >
           {submit ? <Loader /> : 'Connexion'}
-        </button>
+        </Button>
       </form>
     </main>
   );
