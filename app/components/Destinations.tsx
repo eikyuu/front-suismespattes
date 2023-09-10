@@ -95,7 +95,7 @@ function Destinations() {
               country={walk.country}
               slug={walk.slug}
               imageName={walk.images[0]?.name}
-              category={'walk.category.name'}
+              category={walk.category.name}
             />
           )
         )}
