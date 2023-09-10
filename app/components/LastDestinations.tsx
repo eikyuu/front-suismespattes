@@ -43,7 +43,7 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
                     postalCode={dogDestination.postalCode}
                     slug={dogDestination.slug}
                     imageName={dogDestination.images[0]?.name}
-                    category={'dogDestination.category.name'}
+                    category={dogDestination.category.name}
                   />
                 </SwiperSlide>
               ))}
