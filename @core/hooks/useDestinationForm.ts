@@ -89,7 +89,6 @@ const fetchImage = async (url: string): Promise<File> => {
         processionaryCaterpillarAlert: destination.processionaryCaterpillarAlert ? 'YES' : 'NO',
         cyanobacteriaAlert: destination.cyanobacteriaAlert ? 'YES' : 'NO',
       });
-      console.log(destination);
       const imageFiles: File[] = await Promise.all(destination.images.map(async (image: any) => {
         const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
         return await fetchImage(imageUrl);
