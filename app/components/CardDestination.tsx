@@ -3,24 +3,29 @@ import BlurImage from './blurImage/BlurImage';
 import Button from './button/Button';
 import TextBold from './text/TextBold';
 import TextGray from './text/TextGray';
+import { Country } from '../../@core/enum/Country';
 
 function CardDestination({
   city,
   name,
-  description,
+  postalCode,
+  country,
   slug,
   imageName,
+  category
 }: {
   city: string;
   name: string;
-  description: string;
+  postalCode: string;
+  country: keyof typeof Country;
   slug: string;
   imageName: string;
+  category: string;
 }): JSX.Element {
   const elipsis = (text: string, length: number) => {
     return text.length > length ? text.slice(0, length) + '...' : text;
   };
-
+console.log(category);
   return (
     <Link
       href={`destination/${slug}`}
@@ -32,15 +37,11 @@ function CardDestination({
         alt={`Image de la destination ${name} a ${city}`}
         image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${imageName}`} />
       </picture>
-      <div className='mb-2'>
+      <div className='mb-1'>
         <TextBold text={elipsis(name, 30)} color='text-black lowercase first-letter:uppercase' />
+        <TextGray text={`${city}, (${postalCode.slice(0, 2)}), ${Country[country]}`} /> 
+        <TextGray text={category} /> 
       </div>
-      <div className="mb-2">
-        <TextBold text={elipsis(city, 30)} color='text-black lowercase first-letter:uppercase' />
-      </div>
-      <div className='mb-2'>
-        <TextGray text={elipsis(description, 100)} />
-      </div>      
       <Button text='Découvrir' />
     </Link>
   );

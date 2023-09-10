@@ -39,9 +39,11 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
                   <CardDestination
                     city={dogDestination.city}
                     name={dogDestination.name}
-                    description={dogDestination.description}
+                    country={dogDestination.country}
+                    postalCode={dogDestination.postalCode}
                     slug={dogDestination.slug}
                     imageName={dogDestination.images[0]?.name}
+                    category={'dogDestination.category.name'}
                   />
                 </SwiperSlide>
               ))}
@@ -63,9 +65,11 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
                 key={dogDestination.id}
                 city={dogDestination.city}
                 name={dogDestination.name}
-                description={dogDestination.description}
+                country={dogDestination.country}
+                postalCode={dogDestination.postalCode}
                 slug={dogDestination.slug}
                 imageName={dogDestination.images[0]?.name}
+                category={dogDestination.category.name}
               />
             ))}
           </div>

@@ -7,6 +7,7 @@ import LargeTitle from './text/LargeTitle';
 import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
+import { Country } from '../../@core/enum/Country';
 
 function Destinations() {
   const [dogDestination, setDogDestination] = useState<any[]>([]);
@@ -80,17 +81,21 @@ function Destinations() {
             id: number;
             city: string;
             name: string;
-            description: string;
+            postalCode: string;
+            country: keyof typeof Country;
             slug: string;
             images: { name: string }[];
+            category: { name: string };
           }) => (
             <CardDestination
               key={walk.id}
               city={walk.city}
               name={walk.name}
-              description={walk.description}
+              postalCode={walk.postalCode}
+              country={walk.country}
               slug={walk.slug}
               imageName={walk.images[0]?.name}
+              category={'walk.category.name'}
             />
           )
         )}
