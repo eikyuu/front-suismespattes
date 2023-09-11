@@ -84,6 +84,7 @@ function ContentNavigation() {
               <LiNav
                 text='Ajouter une destination'
                 href='/ajouter-une-destination'
+                prefetch={false}
               />
               <LiNav text='A propos' href='/a-venir' />
               <LiNav text='Boutique' href='/a-venir' />
