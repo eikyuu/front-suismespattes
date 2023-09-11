@@ -363,7 +363,7 @@ function FormDestination({ slug }: { slug?: string }) {
       </GreenContainer>
 
       <Button
-        className='mt-10'
+        className='mt-10 !w-24 ' 
         type='submit'
       >
         {submit ? <Loader /> : slug ? 'Modifier' : 'Ajouter'}

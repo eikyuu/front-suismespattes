@@ -1,10 +1,16 @@
+import { Country } from '../enum/Country';
+
 export type Destination = {
     name: string;
     description: string;
     city: string;
     postalCode: string;
     street: string;
-    country: string;
+    country: keyof typeof Country;
+    slug: string;
+    category: {
+      name: string;
+    };
     latitude?: number | string;
     longitude?: number | string;
     obligatoryLeash: 'YES' | 'NO' | 'RECOMANDED';
@@ -13,7 +19,9 @@ export type Destination = {
     cyanobacteriaAlert: boolean;
     note: number;
     files?: File[];
-    images: string[];
+    images: {
+      name: string;
+    }[];
   };
 
 export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;

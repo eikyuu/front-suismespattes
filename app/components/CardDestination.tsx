@@ -67,12 +67,13 @@ function CardDestination({
           color='text-black lowercase first-letter:uppercase'
         />
         <TextGray
+          className='uppercase'
           text={`${destination.city}, (${destination.postalCode.slice(
             0,
             2
           )}), ${Country[destination.country]}`}
         />
-        <TextGray text={destination.category.name} />
+        <TextGray className='uppercase' text={destination.category.name} />
       </div>
       <Button>DÉCOUVRIR</Button>
     </Link>

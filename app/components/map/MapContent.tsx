@@ -3,15 +3,16 @@ import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 import BlurImage from '../blurImage/BlurImage';
 import { Destination } from '../../../@core/types/DestinationForm';
+import { Country } from '../../../@core/enum/Country';
 
 function MapContent({
   dogDestination,
   coordinates,
 }: {
-  dogDestination: any[];
+  dogDestination: Destination[];
   coordinates?: [number, number];
 }) {
-  const [selectedDestination, setSelectedDestination] = useState<any | null>(
+  const [selectedDestination, setSelectedDestination] = useState<Destination | null>(
     null
   );
 
@@ -41,8 +42,8 @@ function MapContent({
         {selectedDestination && (
           <Overlay
             anchor={[
-              selectedDestination.latitude,
-              selectedDestination.longitude,
+                Number(selectedDestination.latitude) || 0,
+                Number(selectedDestination.longitude) || 0,
             ]}
             offset={[120, 79]}
           >
@@ -61,9 +62,9 @@ function MapContent({
               <div className='absolute bottom-0 left-0 p-4 text-white'>
                 <p className='font-bold lowercase first-letter:uppercase'>{selectedDestination.name}</p>
                 <p className='text-sm'>
-                  &#x2691; {selectedDestination.street}{' '}
-                  {selectedDestination.postalCode} {selectedDestination.city}
+                  &#x2691; {selectedDestination.street} {selectedDestination.postalCode}
                 </p>
+                <p className='text-sm uppercase'>{selectedDestination.city} {Country[selectedDestination.country]}</p>
               </div>
             </Link>
           </Overlay>

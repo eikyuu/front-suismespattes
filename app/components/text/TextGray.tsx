@@ -1,6 +1,6 @@
-function TextGray({text}: {text: string}): JSX.Element {
+function TextGray({text, className}: {text: string, className?: string}): JSX.Element {
     return ( 
-        <p className="text-bgray">{text}</p>
+        <p className={`${className} text-bgray`}>{text}</p>
      );
 }
 

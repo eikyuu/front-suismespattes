@@ -30,6 +30,7 @@ module.exports = {
         '3/4-screen': '75vh',
       },
       width: {
+        '64': '18rem',
         '74': '19rem',
         '84': '20rem',
         '128': '32rem',

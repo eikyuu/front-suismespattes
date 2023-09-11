@@ -23,6 +23,8 @@ import LoaderDestination from '../../../components/loader/LoaderDestination';
 import Link from 'next/link';
 import Button from '../../../components/button/Button';
 import { useSession } from 'next-auth/react';
+import { Country } from '../../../../@core/enum/Country';
+import { Destination } from '../../../../@core/types/DestinationForm';
 
 export default function Page({
   params,
@@ -32,7 +34,7 @@ export default function Page({
   const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
   const url = `${API_URL}destination/${params.slug}`;
   const { data: session, status } = useSession();
-  const { data, error } = useFetch<any>(url);
+  const { data, error } = useFetch<Destination>(url);
 
   if (status === 'loading' || !data) {
     return <LoaderDestination />;
@@ -201,7 +203,7 @@ export default function Page({
               <div className='h-full flex flex-col justify-between '>
                 <div>
                   <LargeTitle title={data.name} />
-                  <p className='mt-4 lowercase first-letter:uppercase whitespace-pre-wrap	'>
+                  <p className='mt-4 whitespace-pre-wrap	'>
                     {data.description} 
                   </p>
                   <p className='mt-4'>
@@ -221,7 +223,7 @@ export default function Page({
                   <p className='mt-4'>
                     Adresse de la destination :{' '}
                     <span className='font-semibold'>
-                      {data.street}, {data.postalCode}, {data.city}
+                      {data.street}, {data.postalCode}, <span className='uppercase'>{data.city} {Country[data.country]}</span> 
                     </span>
                   </p>
                   <p className='mt-4'>
