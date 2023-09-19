@@ -6,7 +6,7 @@ function Reviews({reviews}: any): JSX.Element {
   
   return (
     <section className='h-full flex flex-col justify-evenly bg-primary pt-10 pb-10'>
-      <MediumTitle title='L&apos;avis des cani&apos;potes' color='text-white' />
+      <MediumTitle title='L&apos;avis des canipotes' color='text-white' />
       
       {reviews.length === 0 && <LoaderReviews />}
 

@@ -13,7 +13,7 @@ export default function BlurImageRounded({ image, alt } : { image: any, alt: str
             width={200}
             height={300}
             className={`w-48 h-48 rounded-full object-cover border-8 border-white
-                duration-700 ease-in-out group-hover:opacity-75
+                duration-700 ease-in-out 
                 ${
                   isLoading
                     ? "scale-110 blur-2xl grayscale"

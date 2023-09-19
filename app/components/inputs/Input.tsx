@@ -10,7 +10,7 @@ function Input({
 }: {
   handleChange: any;
   value: any;
-  errors: any;
+  errors?: any;
   type: string;
   name: string;
   maxLength?: number;

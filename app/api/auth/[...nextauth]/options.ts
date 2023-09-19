@@ -24,6 +24,11 @@ export const authOptions: AuthOptions = {
     ],
     session: { strategy: "jwt" },
     callbacks: {
+      redirect: async ({ url, baseUrl }) => {
+        return url.startsWith(baseUrl)
+        ? Promise.resolve(url)
+        : Promise.resolve(baseUrl)
+      },
       jwt: async ({ token, user }: { token: JWT, user?: User }) => {
         if (user) {
           return { ...token, ...user };
@@ -37,5 +42,8 @@ export const authOptions: AuthOptions = {
         }
         return session
       }
+    },
+    pages: {
+      signIn: '/login',
     }
   }

@@ -3,40 +3,39 @@
 import Link from 'next/link';
 import LiNav from './LiNav';
 import LoginBtn from './button/LoginBtn';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import Modal from './Modal';
+import MediumTitle from './text/MediumTitle';
+import Login from './form/login';
 
 function ContentNavigation() {
+  const { data: session } = useSession();
+  const [modal, setModal] = useState(false);
+  const [navbar, setNavbar] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', clickOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  })
+
   const handleMenuClick = () => {
-    const menu = document.getElementById('navbar');
-    const menuButton = document.querySelector(
-      '[data-collapse-toggle="navbar"]'
-    );
-    if (menu && menuButton) {
-      menu.classList.toggle('hidden');
-      menuButton.classList.toggle('active');
-    }
+    setNavbar(!navbar);
   };
 
   const clickOutside = (e: any) => {
-    if (!e.target.closest('#navbar')) {
-      const menu = document.getElementById('navbar');
-      const menuButton = document.querySelector(
-        '[data-collapse-toggle="navbar"]'
-      );
-      if (menu && menuButton) {
-        menu.classList.add('hidden');
-        menuButton.classList.remove('active');
-      }
+    if (ref.current && !ref.current.contains(e.target)) {
+      setNavbar(false);
     }
   };
-
-  useEffect(() => {
-    document.addEventListener('click', clickOutside, true);
-  });
-
+  
   return (
     <header>
-      <nav className='bg-primary border-gray-200'>
+      <nav className='bg-primary border-gray-200' ref={ref}>
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
           <Link
             href='/'
@@ -72,7 +71,9 @@ function ContentNavigation() {
             </button>
           </div>
           <div
-            className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
+            className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
+              navbar ? '' : 'hidden'
+            }`}
             id='navbar'
           >
             <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary'>
@@ -81,10 +82,17 @@ function ContentNavigation() {
                 text='Toutes les destinations'
                 href='/toutes-les-destinations'
               />
+
               <LiNav
                 text='Ajouter une destination'
                 href='/ajouter-une-destination'
-                prefetch={false}
+                onClick={(e: any) => {
+                  if (!session?.user) {
+                    e.preventDefault();
+                    setModal(true);
+                    return;
+                  }
+                }}
               />
               <LiNav text='A propos' href='/a-venir' />
               <LiNav text='Boutique' href='/a-venir' />
@@ -94,6 +102,12 @@ function ContentNavigation() {
           </div>
         </div>
       </nav>
+      {modal && (
+        <Modal setModal={setModal}>
+          <MediumTitle color='white' title='Connexion' />
+          <Login />
+        </Modal>
+      )}
     </header>
   );
 }

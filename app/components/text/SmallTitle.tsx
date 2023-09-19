@@ -1,6 +1,6 @@
 function SmallTitle({title}: {title: string}): JSX.Element {
     return ( 
-        <h3 className='text-primary font-semibold text-2xl'>{title}</h3>
+        <h3 className='text-primary font-semibold text-2xl uppercase'>{title}</h3>
      );
 }
 
