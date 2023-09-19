@@ -108,7 +108,7 @@ export default function Component() {
             <Button className='mt-5 mb-1 bg-tertiary !w-full' type='submit'>
               {loading ? <Loader /> : 'Connexion'}
             </Button>
-            <Link className='block text-right mt-2' href='/forgot-password'>
+            <Link prefetch={false} className='block text-right mt-2' href='/forgot-password'>
               Mot de passe oublié ?
             </Link>
           </form>

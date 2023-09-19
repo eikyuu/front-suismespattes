@@ -86,6 +86,7 @@ function ContentNavigation() {
               <LiNav
                 text='Ajouter une destination'
                 href='/ajouter-une-destination'
+                prefetch={false}
                 onClick={(e: any) => {
                   if (!session?.user) {
                     e.preventDefault();
