@@ -1,12 +1,12 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import Button from './Button';
-import { use, useEffect, useState } from 'react';
-import MediumTitle from '../text/MediumTitle';
+import { useEffect, useState } from 'react';
 import Label from '../inputs/Label';
 import Input from '../inputs/Input';
 import Link from 'next/link';
 import Modal from '../Modal';
 import Loader from '../loader/Loader';
+import Title from '../text/Title';
 export default function Component() {
   const { data: session } = useSession();
 
@@ -77,7 +77,7 @@ export default function Component() {
       )}
 
       {modal && <Modal setModal={setModal}>
-        <MediumTitle color='white' title='Connexion' />
+        <Title className='text-white' title='Connexion' balise='h2' />
           <form
             className=''
             onSubmit={(e) => {

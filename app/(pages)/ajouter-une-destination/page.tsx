@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import FormDestination from '../../components/form/formDestination';;
-import LargeTitle from '../../components/text/LargeTitle';
+import Title from '../../components/text/Title';
 
 export const metadata: Metadata = {
   title: 'Partage une destination testée avec mon chien - AuFilDesPattes.com',
@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <main className='container mx-auto w-11/12'>
       <section className='mt-10'>
-        <LargeTitle title='AJOUTER UN LIEU TESTÉ AVEC MON CHIEN' />
+        <Title title='AJOUTER UN LIEU TESTÉ AVEC MON CHIEN' className='text-center' balise='h1' />
         <p className='mt-10'>
           <b>Les moments partagés avec nos fidèles compagnons à quatre pattes sont
           parmi les plus précieux de nos vies.</b> Chaque sortie devient une

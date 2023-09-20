@@ -2,17 +2,16 @@
 
 import Link from 'next/link';
 import GreenContainer from '../../components/GreenContainer';
-import LargeTitle from '../../components/text/LargeTitle';
+import TitleUnderline from '../../components/text/TitleUnderline';
+import Title from '../../components/text/Title';
 
 export default function Page() {
   return (
     <main className='container mx-auto w-11/12 mt-10'>
       <GreenContainer>
-        <LargeTitle title='Mentions légales' color='text-white' />
+        <Title title='Mentions légales' className='text-white text-center' balise='h1' />
         <div className='text-white text-start'>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            1. ÉDITEUR DU SITE
-          </h2>
+          <TitleUnderline title='1. EDITEUR DU SITE' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Le site <span className='font-semibold'>aufildespattes.com </span>
             est édité par <span className='font-semibold'> Vincent Duguet</span>.
@@ -23,9 +22,7 @@ export default function Page() {
               <a className='underline' href="mailto:v.duguet.dev@gmail.com">v.duguet.dev@gmail.com</a>
             </li>
           </ul>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            2. DIRECTEUR DE LA PUBLICATION
-          </h2>
+          <TitleUnderline title='2. DIRECTEUR DE LA PUBLICATION' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Le directeur de la publication du site
             <span className='font-semibold'> aufildespattes.com</span> est
@@ -37,9 +34,7 @@ export default function Page() {
               <a className='underline' href="mailto:v.duguet.dev@gmail.com">v.duguet.dev@gmail.com</a>
             </li>
           </ul>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            3. HÉBERGEUR DU SITE
-          </h2>
+          <TitleUnderline title='3. HÉBERGEUR DU SITE' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Le site <span className='font-semibold'>aufildespattes.com</span>{' '}
             est hébergé par <span className='font-semibold'>Vercel Inc</span>
@@ -60,9 +55,7 @@ export default function Page() {
               <a href='https://www.vercel.com'>Vercel Inc</a>
             </li>
           </ul>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            4. COOKIES
-          </h2>
+          <TitleUnderline title='4. COOKIES' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Le site <span className='font-semibold'>aufildespattes.com</span>  utilise des cookies permettent
             d’optimiser la connexion et de personnaliser l’utilisation du site.
@@ -71,17 +64,13 @@ export default function Page() {
             pas autoriser les cookies peut rendre indisponibles toutes ou
             certaines parties du site.
           </p>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            5. LOI APPLICABLE ET JURIDICTION COMPÉTENTE
-          </h2>
+          <TitleUnderline title='5. LOI APPLICABLE ET JURIDICTION COMPÉTENTE' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Les présentes mentions légales sont soumises au droit applicable
             dans votre pays. En cas de litige, les tribunaux compétents sont
             ceux de Tours.
           </p>
-          <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative mt-10'>
-            6 . CONTACT
-          </h2>
+          <TitleUnderline title='6. CONTACT' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Pour toute question ou demande concernant le site <span className='font-semibold'>aufildespattes.com </span> 
             ou ces mentions légales, veuillez nous contacter:

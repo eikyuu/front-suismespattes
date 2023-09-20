@@ -1,12 +1,12 @@
 import React from 'react';
 import Review from './Review';
 import LoaderReviews from '../loader/LoaderReviews';
-import MediumTitle from '../text/MediumTitle';
+import Title from '../text/Title';
 function Reviews({reviews}: any): JSX.Element {
   
   return (
     <section className='h-full flex flex-col justify-evenly bg-primary pt-10 pb-10'>
-      <MediumTitle title='L&apos;avis des canipotes' color='text-white' />
+      <Title title='L&apos;avis des canipotes' className='text-white text-center' balise='h2' />
       
       {reviews.length === 0 && <LoaderReviews />}
 

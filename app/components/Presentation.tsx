@@ -1,10 +1,10 @@
 import PresentationContent from './PresentationContent';
-import LargeTitle from './text/LargeTitle';
+import Title from './text/Title';
 
 function Presentation() {
   return (
     <section className='container h-full w-11/12 md:w-full mx-auto pt-10 pb-10 flex flex-col'>
-      <LargeTitle title='Au fil des pattes, une plateforme collaborative gratuite pour voyager avec ton chien !' />
+      <Title title='Au fil des pattes, une plateforme collaborative gratuite pour voyager avec ton chien !' balise='h1' className='text-center' />
       <div className='w-11/12 mx-auto flex flex-col items-center space-y-4 md:space-y-0 justify-between text-center pt-10 md:flex-row'>
         <div className='flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>
           <PresentationContent

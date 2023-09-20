@@ -17,7 +17,6 @@ import toast from 'react-hot-toast';
 import BlurImage from '../../../components/blurImage/BlurImage';
 import MapContainer from '../../../components/map/MapContainer';
 import BlocTextWithspan from '../../../components/text/BlocTextWithSpan';
-import LargeTitle from '../../../components/text/LargeTitle';
 import TextAlert from '../../../components/text/TextAlert';
 import LoaderDestination from '../../../components/loader/LoaderDestination';
 import Link from 'next/link';
@@ -25,6 +24,7 @@ import Button from '../../../components/button/Button';
 import { useSession } from 'next-auth/react';
 import { Country } from '../../../../@core/enum/Country';
 import { Destination } from '../../../../@core/types/DestinationForm';
+import Title from '../../../components/text/Title';
 
 export default function Page({
   params,
@@ -202,7 +202,7 @@ export default function Page({
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
               <div className='h-full flex flex-col justify-between '>
                 <div>
-                  <LargeTitle title={data.name} />
+                  <Title title={data.name} balise='h1' className='text-center' />
                   <p className='mt-4 whitespace-pre-wrap	'>
                     {data.description} 
                   </p>

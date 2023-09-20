@@ -6,8 +6,8 @@ import LoginBtn from './button/LoginBtn';
 import { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Modal from './Modal';
-import MediumTitle from './text/MediumTitle';
 import Login from './form/login';
+import Title from './text/Title';
 
 function ContentNavigation() {
   const { data: session } = useSession();
@@ -105,7 +105,7 @@ function ContentNavigation() {
       </nav>
       {modal && (
         <Modal setModal={setModal}>
-          <MediumTitle color='white' title='Connexion' />
+          <Title className='text-white' title='Connexion' balise='h2' />
           <Login />
         </Modal>
       )}

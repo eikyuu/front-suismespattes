@@ -1,12 +1,13 @@
 import MapContent from './MapContent';
-import MediumTitle from '../text/MediumTitle';
+import Title from '../text/Title';
 
 function MapContainer({ dogDestination, coordinates, title }: { dogDestination: any; coordinates: any; title: string }) {
   return (
     <section className='bg-primary h-full mx-auto pt-10 pb-10 flex flex-col md:justify-evenly'>
-      <MediumTitle
+      <Title
         title={title}
-        color='text-white'
+        className='text-white text-center'
+        balise='h2'
       />
       <div className='container mx-auto pt-10 w-11/12 md:w-1/2'>
         <MapContent dogDestination={dogDestination} coordinates={coordinates}/>

@@ -9,35 +9,6 @@ function MultiRadio({
 })  {
   return (
 
-  //   <div className='App'>
-  //   <h3>waterPoint</h3>
-
-  //   <input
-  //     type='radio'
-  //     name='waterPoint'
-  //     value='YES'
-  //     id='waterPoint'
-  //     checked={form.waterPoint === 'YES'}
-  //     onChange={handleChange}
-  //   />
-  //   <label htmlFor='waterPoint'>YES</label>
-
-  //   <input
-  //     type='radio'
-  //     name='waterPoint'
-  //     value='NO'
-  //     id='waterPoint'
-  //     checked={form.waterPoint === 'NO'}
-  //     onChange={handleChange}
-  //   />
-  //   <label htmlFor='waterPoint'>NO</label>
-
-  //   <p>
-  //     Select waterPoint <strong>{form.waterPoint}</strong>
-  //   </p>
-  // </div>
-
-
 <ul className='w-full md:w-fit items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex'>
 {options.map((option, i) => (
   <li

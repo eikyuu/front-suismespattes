@@ -1,5 +1,5 @@
 import FormDestination from '../../../../components/form/formDestination';
-import LargeTitle from '../../../../components/text/LargeTitle';
+import Title from '../../../../components/text/Title';
 
 function Page({
     params,
@@ -9,7 +9,7 @@ function Page({
     return ( 
         <main className='container mx-auto w-11/12'>
             <section className='mt-10'>
-                <LargeTitle title='Modifier un lieu testé avec mon chien' />
+                <Title title='Modifier un lieu testé avec mon chien' className='text-center' balise='h1' />
                 <FormDestination slug={params.slug} />
             </section>
         </main>

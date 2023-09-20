@@ -3,11 +3,10 @@ import { useCallback, useEffect, useState } from 'react';
 import React from 'react';
 import CardDestination from './CardDestination';
 import LoaderDestinations from './loader/LoaderDestinations';
-import LargeTitle from './text/LargeTitle';
 import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
-import { Country } from '../../@core/enum/Country';
+import Title from './text/Title';
 
 function Destinations() {
   const [dogDestination, setDogDestination] = useState<any[]>([]);
@@ -45,7 +44,7 @@ function Destinations() {
 
   return (
     <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
-      <LargeTitle title='Toutes les destinations' />
+      <Title title='Toutes les destinations' balise='h1' className='text-center' />
 
       <div className='container relative block mt-10 mx-auto'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
