@@ -69,7 +69,7 @@ function FormDestination({ slug }: { slug?: string }) {
       }}
     >
       <GreenContainer>
-        <TitleUnderline title='Description' balise='h2' />
+        <TitleUnderline title='Description' balise='h2' className='mt-0'/>
 
         <div className='w-auto md:w-1/2'>
           <Label name='name' label='Nom de la destination' required />
