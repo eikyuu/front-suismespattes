@@ -69,7 +69,7 @@ function FormDestination({ slug }: { slug?: string }) {
       }}
     >
       <GreenContainer>
-        <TitleUnderline title='Description' balise='h2' className='mt-0'/>
+        <TitleUnderline title='Description' balise='h2' className='!mt-0'/>
 
         <div className='w-auto md:w-1/2'>
           <Label name='name' label='Nom de la destination' required />
@@ -216,7 +216,7 @@ function FormDestination({ slug }: { slug?: string }) {
       </GreenContainer>
 
       <GreenContainer>
-        <TitleUnderline title='Localisation' balise='h2' />
+        <TitleUnderline title='Localisation' balise='h2' className='!mt-0' />
 
         <div className='w-full md:w-1/2 '>
           <Label name='street' label='N et nom de la rue' required />
@@ -304,7 +304,7 @@ function FormDestination({ slug }: { slug?: string }) {
       </GreenContainer>
 
       <GreenContainer>
-        <TitleUnderline title='Photos' balise='h2' />
+        <TitleUnderline title='Photos' balise='h2' className='!mt-0' />
 
         <p className='block mb-2 mt-5 text-sm font-medium text-white'>
           Vous pouvez ajouter jusqu&apos;à 5 photos.
@@ -333,28 +333,30 @@ function FormDestination({ slug }: { slug?: string }) {
         />
         {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
 
-        <div className='flex justify-center items-center flex-col flex-wrap md:flex-row mt-10'>
-          {images.map((file: any, index: number) => (
-            <React.Fragment key={index}>
-              <Image
-                key={index}
-                className='mt-5 md:mr-5 rounded-lg shadow-lg h-60 w-60 object-cover object-center'
-                src={URL.createObjectURL(file)}
-                alt={file.name}
-                width={300}
-                height={300}
-              />
-              <div
-                className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-27  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
-                onClick={() => deleteImage(index)}
-              >
-                <p className='-mt-1 text-xl'>
-                <TrashIcon className='w-5 h-5' />
-                </p>
-              </div>
-            </React.Fragment>
-          ))}
-        </div>
+        {images.length > 1 && (
+          <div className='flex justify-center items-center flex-col flex-wrap md:flex-row mt-10'>
+            {images.map((file: any, index: number) => (
+              <React.Fragment key={index}>
+                <Image
+                  key={index}
+                  className='mt-5 md:mr-5 rounded-lg shadow-lg h-60 w-60 object-cover object-center'
+                  src={URL.createObjectURL(file)}
+                  alt={file.name}
+                  width={300}
+                  height={300}
+                />
+                <div
+                  className='postion relative -top-64 left-28 md:right-0 md:-left-10 md:-top-27  bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
+                  onClick={() => deleteImage(index)}
+                >
+                  <p className='-mt-1 text-xl'>
+                  <TrashIcon className='w-5 h-5' />
+                  </p>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        )}
       </GreenContainer>
 
       <Button
