@@ -254,7 +254,7 @@ export default function Page({
                 </div>
                 <div>
                   <p className='mt-4 italic font-semibold text-xs'>
-                    La responsabilité de la destination ne peut être encourue
+                    La responsabilité du site ne peut être encourue
                     pour aucun dommage ou danger, chacun est responsable de son
                     propre bien-être et de ses animaux. *
                   </p>
