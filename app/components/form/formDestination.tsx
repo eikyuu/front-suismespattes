@@ -15,6 +15,7 @@ import toast from 'react-hot-toast';
 import { TypeCategory } from '../../../@core/enum/TypeCategory';
 import Button from '../button/Button';
 import { TrashIcon } from '@heroicons/react/24/outline';
+import TitleUnderline from '../text/TitleUnderline';
 
 
 function FormDestination({ slug }: { slug?: string }) {
@@ -68,9 +69,7 @@ function FormDestination({ slug }: { slug?: string }) {
       }}
     >
       <GreenContainer>
-        <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative'>
-          Description
-        </h2>
+        <TitleUnderline title='Description' balise='h2' />
 
         <div className='w-auto md:w-1/2'>
           <Label name='name' label='Nom de la destination' required />
@@ -217,9 +216,7 @@ function FormDestination({ slug }: { slug?: string }) {
       </GreenContainer>
 
       <GreenContainer>
-        <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-32 before:-bottom-1 before:bg-white relative'>
-          Localisation
-        </h2>
+        <TitleUnderline title='Localisation' balise='h2' />
 
         <div className='w-full md:w-1/2 '>
           <Label name='street' label='N et nom de la rue' required />
@@ -307,9 +304,7 @@ function FormDestination({ slug }: { slug?: string }) {
       </GreenContainer>
 
       <GreenContainer>
-        <h2 className='text-4xl font-semibold text-white before:block before:absolute before:h-1 before:w-20 before:-bottom-1 before:bg-white relative'>
-          Photos
-        </h2>
+        <TitleUnderline title='Photos' balise='h2' />
 
         <p className='block mb-2 mt-5 text-sm font-medium text-white'>
           Vous pouvez ajouter jusqu&apos;à 5 photos.
