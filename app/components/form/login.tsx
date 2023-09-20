@@ -5,6 +5,7 @@ import Label from '../inputs/Label';
 import Loader from '../loader/Loader';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
+import Title from '../text/Title';
 
 function Login({ redirect }: { redirect?: boolean }) {
 
@@ -14,47 +15,39 @@ function Login({ redirect }: { redirect?: boolean }) {
     password: '',
   });
 
-  const [errors, setErrors] = useState({
-    email: '',
-    password: '',
-  });
+  const [errors, setErrors] = useState<string | null>(null);
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: '' });
+    setErrors(null);
   };
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoading(true);
+
     try {
-      const res = await signIn('credentials', {
+      const res = await signIn("credentials", {
         email: form.email,
         password: form.password,
-        redirect: redirect,
-        callbackUrl: '/',
+        redirect: false,
       });
-
+  
       if (res && res.error) {
-        setErrors({ ...errors, email: res.error });
+        setErrors('Email ou mot de passe incorrect');
       }
+
     } catch (error) {
-      console.error(error);
+      console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
-  // useEffect(() => {
-  //   if (!modal) {
-  //     setErrors({ ...errors, email: '', password: '' });
-  //     setForm({ ...form, email: '', password: '' });
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [modal]);
 
   return (
+    <>
+    <Title className='text-white' title='Connexion' balise='h2' />
     <form
       className=''
       onSubmit={(e) => {
@@ -65,7 +58,6 @@ function Login({ redirect }: { redirect?: boolean }) {
       <Input
         handleChange={handleChange}
         value={form.email}
-        errors={errors}
         type='email'
         name='email'
         label='Votre email'
@@ -75,19 +67,22 @@ function Login({ redirect }: { redirect?: boolean }) {
       <Input
         handleChange={handleChange}
         value={form.password}
-        errors={errors}
         type='password'
         name='password'
         label='Votre mot de passe'
         required
       />
+
+      {errors && <div className='text-red-400 mt-2'>{errors}</div>}
+
       <Button className='mt-5 mb-1 bg-tertiary !w-full' type='submit'>
         {loading ? <Loader /> : 'Connexion'}
       </Button>
-      <Link prefetch={false} className='block text-right' href='/forgot-password'>
+      <Link prefetch={false} className='block text-right mt-2' href='/forgot-password'>
         Mot de passe oublié ?
       </Link>
     </form>
+    </>
   );
 }
 

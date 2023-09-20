@@ -105,7 +105,6 @@ function ContentNavigation() {
       </nav>
       {modal && (
         <Modal setModal={setModal}>
-          <Title className='text-white' title='Connexion' balise='h2' />
           <Login />
         </Modal>
       )}
