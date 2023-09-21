@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import BlurImage from './blurImage/BlurImage';
 import Button from './button/Button';
-import TextBold from './text/TextBold';
-import TextGray from './text/TextGray';
 import { Country } from '../../@core/enum/Country';
-import { HeartIcon } from '@heroicons/react/24/outline';
+import Text from './text/Text';
+//import { HeartIcon } from '@heroicons/react/24/outline';
 
 function CardDestination({
   destination,
@@ -62,18 +61,24 @@ function CardDestination({
         />
       </picture>
       <div className='mb-1'>
-        <TextBold
+        <Text
+          type='bold'
           text={elipsis(destination.name, 30)}
-          color='text-black lowercase first-letter:uppercase'
+          className='text-black lowercase first-letter:uppercase'
         />
-        <TextGray
+        <Text
+          type='gray'
           className='uppercase'
           text={`${destination.city}, (${destination.postalCode.slice(
             0,
             2
           )}), ${Country[destination.country]}`}
         />
-        <TextGray className='uppercase' text={destination.category.name} />
+        <Text 
+          type='gray' 
+          className='uppercase' 
+          text={destination.category.name} 
+        />
       </div>
       <Button>DÉCOUVRIR</Button>
     </Link>

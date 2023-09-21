@@ -7,7 +7,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Modal from './Modal';
 import Login from './form/login';
-import Title from './text/Title';
 
 function ContentNavigation() {
   const { data: session } = useSession();

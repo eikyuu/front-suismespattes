@@ -1,3 +1,4 @@
+import React from 'react';
 
 type ModalProps = {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ function Modal({ children, setModal }: ModalProps): JSX.Element {
   document.addEventListener('click', clickOutside, true);
 
   return (
-    <>
+    <React.Fragment>
       <div className='!-ml-0 w-full h-full fixed top-0 left-0 z-50 bg-black bg-opacity-40'>
         <div className='fixed z-50 top-0 left-0 w-full h-full flex items-center justify-center'>
           <div
@@ -31,7 +32,7 @@ function Modal({ children, setModal }: ModalProps): JSX.Element {
           </div>
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 }
 

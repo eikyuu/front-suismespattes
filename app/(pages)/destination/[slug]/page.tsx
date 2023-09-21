@@ -17,7 +17,6 @@ import toast from 'react-hot-toast';
 import BlurImage from '../../../components/blurImage/BlurImage';
 import MapContainer from '../../../components/map/MapContainer';
 import BlocTextWithspan from '../../../components/text/BlocTextWithSpan';
-import TextAlert from '../../../components/text/TextAlert';
 import LoaderDestination from '../../../components/loader/LoaderDestination';
 import Link from 'next/link';
 import Button from '../../../components/button/Button';
@@ -25,6 +24,7 @@ import { useSession } from 'next-auth/react';
 import { Country } from '../../../../@core/enum/Country';
 import { Destination } from '../../../../@core/types/DestinationForm';
 import Title from '../../../components/text/Title';
+import Text from '../../../components/text/Text';
 
 export default function Page({
   params,
@@ -246,10 +246,10 @@ export default function Page({
                     </a>
                   )}
                   {data.cyanobacteriaAlert && (
-                    <TextAlert text='Présence de cyanobactéries ! *' />
+                    <Text type='alert' text='Présence de cyanobactéries ! *' className='mt-4' />
                   )}
                   {data.processionaryCaterpillarAlert && (
-                    <TextAlert text='Présence de chenilles processionnaire ! *' />
+                    <Text type='alert' text='Présence de chenilles processionnaire ! *' className='mt-4' />
                   )}
                 </div>
                 <div>
