@@ -16,13 +16,11 @@ interface ComponentProps {
  * @returns {JSX.Element} - The rendered text component.
  */
   function Text({ type, text, className }: ComponentProps): JSX.Element {
-
-    const baseStyle: string = 'font-semibold uppercase text-primary';
   
     const style: Record<string, string> = {
-      alert: `text-red-600 uppercase ${baseStyle} ${className}`,
-      bold: `font-semibold ${baseStyle} ${className}`,
-      gray: `text-bgray ${baseStyle} ${className}`,
+      alert: `text-red-600 uppercase ${className}`,
+      bold: `font-semibold ${className}`,
+      gray: `text-bgray ${className}`,
     };
   
     return <p className={style[type]}>{text}</p>;
