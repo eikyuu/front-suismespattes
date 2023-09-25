@@ -13,28 +13,28 @@ function ContentNavigation() {
   const [modal, setModal] = useState(false);
   const [navbar, setNavbar] = useState(false);
 
-  const ref = useRef<HTMLDivElement>(null);
+  // const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    document.addEventListener('mousedown', clickOutside);
-    return () => {
-      document.removeEventListener('mousedown', clickOutside);
-    };
-  })
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', clickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', clickOutside);
+  //   };
+  // })
 
   const handleMenuClick = () => {
     setNavbar(!navbar);
   };
 
-  const clickOutside = (e: any) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      setNavbar(false);
-    }
-  };
+  // const clickOutside = (e: any) => {
+  //   if (ref.current && !ref.current.contains(e.target)) {
+  //     setNavbar(false);
+  //   }
+  // };
   
   return (
     <header>
-      <nav className='bg-primary border-gray-200' ref={ref}>
+      <nav className='bg-primary border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
           <Link
             href='/'
@@ -86,12 +86,15 @@ function ContentNavigation() {
                 text='Ajouter une destination'
                 href='/ajouter-une-destination'
                 prefetch={false}
-                onClick={(e: any) => {
-                  if (!session?.user) {
-                    e.preventDefault();
-                    setModal(true);
-                    return;
-                  }
+                // onClick={(e: any) => {
+                //   if (!session?.user) {
+                //     e.preventDefault();
+                //     setModal(true);
+                //     return;
+                //   }
+                // }}
+                onClick={() => {
+                  console.log('top');
                 }}
               />
               <LiNav text='A propos' href='/a-venir' />

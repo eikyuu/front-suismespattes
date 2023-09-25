@@ -2,7 +2,6 @@ import './globals.scss';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
-import Banner from './components/Banner';
 import ContentNavigation from './components/ContentNavigation';
 import Footer from './components/Footer';
 import Headband from './components/Headband';
