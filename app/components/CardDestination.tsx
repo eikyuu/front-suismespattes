@@ -66,7 +66,7 @@ function CardDestination({
           type='bold'
           className='text-black lowercase first-letter:uppercase'
         >
-          elipsis(destination.name, 30)
+          {elipsis(destination.name, 30)}
         </Text>
         <Text
           type='gray'
