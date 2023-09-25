@@ -7,33 +7,35 @@ import { useEffect, useRef, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import Modal from './Modal';
 import Login from './form/auth/Login';
+import { useHandleModal } from '../../@core/hooks/useHandleModal';
 
 function ContentNavigation() {
   const { data: session } = useSession();
-  const [modal, setModal] = useState(false);
   const [navbar, setNavbar] = useState(false);
 
-  // const ref = useRef<HTMLDivElement>(null);
+  const {isOpen, toggle} = useHandleModal();
 
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', clickOutside);
-  //   return () => {
-  //     document.removeEventListener('mousedown', clickOutside);
-  //   };
-  // })
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.addEventListener('mousedown', clickOutside);
+    return () => {
+      document.removeEventListener('mousedown', clickOutside);
+    };
+  })
 
   const handleMenuClick = () => {
     setNavbar(!navbar);
   };
 
-  // const clickOutside = (e: any) => {
-  //   if (ref.current && !ref.current.contains(e.target)) {
-  //     setNavbar(false);
-  //   }
-  // };
+  const clickOutside = (e: any) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setNavbar(false);
+    }
+  };
   
   return (
-    <header>
+    <header ref={ref}>
       <nav className='bg-primary border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
           <Link
@@ -86,15 +88,12 @@ function ContentNavigation() {
                 text='Ajouter une destination'
                 href='/ajouter-une-destination'
                 prefetch={false}
-                // onClick={(e: any) => {
-                //   if (!session?.user) {
-                //     e.preventDefault();
-                //     setModal(true);
-                //     return;
-                //   }
-                // }}
-                onClick={() => {
-                  console.log('top');
+                onClick={(e: any) => {
+                  if (!session?.user) {
+                    e.preventDefault();
+                    toggle();
+                    return;
+                  }
                 }}
               />
               <LiNav text='A propos' href='/a-venir' />
@@ -105,11 +104,11 @@ function ContentNavigation() {
           </div>
         </div>
       </nav>
-      {modal && (
-        <Modal setModal={setModal}>
-          <Login />
-        </Modal>
-      )}
+
+      <Modal isOpen={isOpen} onOpenChange={toggle}>
+        <Login />
+      </Modal>
+
     </header>
   );
 }
