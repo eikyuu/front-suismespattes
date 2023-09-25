@@ -52,7 +52,7 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
           </div>
         </section>
       ) : (
-        <section className='h-full w-11/12 mx-auto pt-10 pb-10'>
+        <section className='h-full md:h-166 w-11/12 mx-auto flex flex-col justify-center bg-map bg-center bg-cover bg-no-repeat bg-opacity-80'>
           <Title title='Les dernières destinations' balise='h2' className='text-center' />
           <div className='container mx-auto mt-10 mb-10 flex flex-col flex-wrap justify-between md:flex-row'>
           {dogDestination.length === 0 && <LoaderDestinations />}

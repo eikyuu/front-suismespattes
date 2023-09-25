@@ -1,13 +1,8 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import Button from './Button';
-import { useEffect, useState } from 'react';
-import Label from '../inputs/Label';
-import Input from '../inputs/Input';
-import Link from 'next/link';
+import { useState } from 'react';
 import Modal from '../Modal';
-import Loader from '../loader/Loader';
-import Title from '../text/Title';
-import Login from '../form/login';
+import Login from '../form/auth/Login';
 export default function Component() {
   const { data: session } = useSession();
   const [modal, setModal] = useState(false);

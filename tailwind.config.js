@@ -21,9 +21,11 @@ module.exports = {
         '74': '18rem',
         '80': '20rem',
         '84': '21rem',
+        '100': '26rem',
         '128': '32rem',
         '144': '36rem',
         '160': '40rem',
+        '166': '45rem',
         '170': '50rem',
         'half-screen': '50vh',
         '3/4-screen': '75vh',
@@ -37,9 +39,7 @@ module.exports = {
         '160': '40rem',
       },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'map': 'linear-gradient( rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)), url("../public/images/map.png")',
       },
       spacing: {
         '21': '5.20rem',
