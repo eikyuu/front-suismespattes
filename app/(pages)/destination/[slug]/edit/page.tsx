@@ -1,4 +1,4 @@
-import FormDestination from '../../../../components/form/FormDestination';
+import FormDestination from '../../../../components/form/FormDestinations';
 import Title from '../../../../components/text/Title';
 
 function Page({
