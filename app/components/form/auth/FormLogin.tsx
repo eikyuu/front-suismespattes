@@ -17,7 +17,9 @@ function FormLogin({handleActionChange}: any) {
             handleSubmit(e);
           }}
         >
-          <Title className="text-white" title="Connexion" balise="h2" />
+          <Title className="text-white" balise="h2">
+            Connexion
+          </Title>  
           <Label name='email' label='Votre email' required />
           <Input
             handleChange={handleChange}

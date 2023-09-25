@@ -9,7 +9,9 @@ export default function Page() {
   return (
     <main className='container mx-auto w-11/12 mt-10'>
       <GreenContainer>
-        <Title title='Mentions légales' className='text-white text-center' balise='h1' />
+        <Title className='text-white text-center' balise='h1'>
+          MENTIONS LEGALES
+        </Title>
         <div className='text-white text-start'>
           <TitleUnderline title='1. EDITEUR DU SITE' balise='h2' />
           <p className='text-white text-lg mt-10'>

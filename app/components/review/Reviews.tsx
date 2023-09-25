@@ -6,7 +6,9 @@ function Reviews({reviews}: any): JSX.Element {
   
   return (
     <section className='h-full pt-10 pb-10 md:h-100 flex flex-col justify-center bg-primary'>
-      <Title title='L&apos;avis des canipotes' className='text-white text-center mb-20' balise='h2' />
+      <Title className='text-white text-center mb-20' balise='h2'>
+        L&apos;avis des canipotes
+      </Title>
       
       {reviews.length === 0 && <LoaderReviews />}
 

@@ -9,7 +9,9 @@ function Page({
     return ( 
         <main className='container mx-auto w-11/12'>
             <section className='mt-10'>
-                <Title title='Modifier un lieu testé avec mon chien' className='text-center' balise='h1' />
+                <Title className='text-center' balise='h1'>
+                  Modifier un lieu testé avec mon chien
+                </Title>
                 <FormDestination slug={params.slug} />
             </section>
         </main>

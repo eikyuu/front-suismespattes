@@ -202,7 +202,9 @@ export default function Page({
             <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
               <div className='h-full flex flex-col justify-between '>
                 <div>
-                  <Title title={data.name} balise='h1' className='text-center' />
+                  <Title balise='h1' className='text-center'>
+                    {data.name}
+                  </Title>
                   <p className='mt-4 whitespace-pre-wrap	'>
                     {data.description} 
                   </p>
@@ -246,10 +248,14 @@ export default function Page({
                     </a>
                   )}
                   {data.cyanobacteriaAlert && (
-                    <Text type='alert' text='Présence de cyanobactéries ! *' className='mt-4' />
+                    <Text type='alert' className='mt-4'>
+                      Présence de cyanobactéries ! *
+                    </Text>
                   )}
                   {data.processionaryCaterpillarAlert && (
-                    <Text type='alert' text='Présence de chenilles processionnaire ! *' className='mt-4' />
+                    <Text type='alert' className='mt-4'>
+                      Présence de chenilles processionnaire ! *
+                    </Text>
                   )}
                 </div>
                 <div>

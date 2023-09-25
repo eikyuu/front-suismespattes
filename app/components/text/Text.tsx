@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ComponentProps {
     type: 'alert' | 'bold' | 'gray';
-    text: string;
+    children: string;
     className?: string;
   }
   
@@ -15,7 +15,7 @@ interface ComponentProps {
  * @param {string} props.className - Additional CSS class names for the title element.
  * @returns {JSX.Element} - The rendered text component.
  */
-  function Text({ type, text, className }: ComponentProps): JSX.Element {
+  function Text({ type, children, className }: ComponentProps): JSX.Element {
   
     const style: Record<string, string> = {
       alert: `text-red-600 uppercase ${className}`,
@@ -23,7 +23,7 @@ interface ComponentProps {
       gray: `text-bgray ${className}`,
     };
   
-    return <p className={style[type]}>{text}</p>;
+    return <p className={style[type]}>{children}</p>;
   }
   
   export default Text;

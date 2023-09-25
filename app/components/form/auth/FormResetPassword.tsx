@@ -16,7 +16,9 @@ function FormResetPassword({handleActionChange}: any) {
             handleSubmit(e)
           }}
         >
-            <Title className="text-white" title="Choisissez un nouveau mot de passe" balise="h3" />
+            <Title className="text-white" balise="h3">
+              Choisissez un nouveau mot de passe
+            </Title>
             <p>Assurez‑vous que votre mot de passe contient huit caractères ou plus. Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des chiffres, des lettres et des signes de ponctuation. </p>
             <Label name='email' label='Entrez un nouveau mot de passe' required />
             <Input handleChange={handleChange} value={form.email} type='password' name='email' label='Votre mot de passe' required />

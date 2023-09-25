@@ -11,7 +11,9 @@ export default function Page() {
   return (
     <main className='container mx-auto w-11/12'>
       <section className='mt-10'>
-        <Title title='AJOUTER UN LIEU TESTÉ AVEC MON CHIEN' className='text-center' balise='h1' />
+        <Title className='text-center' balise='h1'>
+          AJOUTER UN LIEU TESTÉ AVEC MON CHIEN
+        </Title>
         <p className='mt-10'>
           <b>Les moments partagés avec nos fidèles compagnons à quatre pattes sont
           parmi les plus précieux de nos vies.</b> Chaque sortie devient une

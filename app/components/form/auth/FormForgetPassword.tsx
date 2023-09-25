@@ -19,7 +19,9 @@ function FormForgetPassword({handleActionChange}: any) {
             });
           }}
         >
-            <Title className="text-white" title="Où devons‑nous envoyer un code de confirmation ?" balise="h3" />
+            <Title className="text-white" balise="h3">
+              Où devons‑nous envoyer un code de confirmation ?
+            </Title>
             <p>Pour que vous puissiez modifier votre mot de passe, nous devons d&apos;abord nous assurer qu&apos;il s&apos;agit bien de vous.Commencez par choisir où recevoir un code de confirmation.</p>
             <Label name='email' label='Entrez l&apos;adresse email associée à votre compte pour modifier votre mot de passe' required />
             <Input handleChange={handleChange} value={form.email} type='text' name='email' label='Votre email' required />

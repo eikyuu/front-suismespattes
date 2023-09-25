@@ -2,7 +2,7 @@ import React from 'react';
 
 interface ComponentProps {
     balise: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-    title: string;
+    children: string;
     className?: string;
   }
   
@@ -15,7 +15,7 @@ interface ComponentProps {
  * @param {string} props.className - Additional CSS class names for the title element.
  * @returns {JSX.Element} - The rendered title component.
  */
-  function Title({ balise: Balise, title, className }: ComponentProps): JSX.Element {
+  function Title({ balise: Balise, children, className }: ComponentProps): JSX.Element {
 
     const baseStyle: string = 'font-semibold uppercase text-primary';
   
@@ -28,7 +28,7 @@ interface ComponentProps {
       h6: `text-xl ${baseStyle} ${className}`,
     };
   
-    return <Balise className={style[Balise]}>{title}</Balise>;
+    return <Balise className={style[Balise]}>{children}</Balise>;
   }
   
   export default Title;

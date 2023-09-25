@@ -1,6 +1,5 @@
 import { ACTION } from '../../../../@core/constants/action-auth';
 import { useConfirmCode } from '../../../../@core/hooks/useConfirmCode';
-import { useForgetPassword } from '../../../../@core/hooks/useForgetPassword';
 import Button from '../../button/Button';
 import Input from '../../inputs/Input';
 import Label from '../../inputs/Label';
@@ -20,7 +19,9 @@ function FormConfirmCode({handleActionChange}: any) {
             })
           }}
         >
-            <Title className="text-white" title="Nous vous avons envoyé un code" balise="h3" />
+            <Title className="text-white" balise="h3">
+              Nous vous avons envoyé un code
+            </Title>
             <p>Consultez vos emails pour récupérer votre code de confirmation. Si vous devez demander un nouveau code, revenez en arrière et sélectionnez de nouveau une méthode de confirmation.</p>
             <Label name='email' label='Entrez le code de confirmation' required />
             <Input handleChange={handleChange} value={form.code} type='text' name='code' label='Code de confirmation' required />

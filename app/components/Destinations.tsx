@@ -44,7 +44,9 @@ function Destinations() {
 
   return (
     <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
-      <Title title='Toutes les destinations' balise='h1' className='text-center' />
+      <Title balise='h1' className='text-center'>
+        Toutes les destinations
+      </Title>
 
       <div className='container relative block mt-10 mx-auto'>
         <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>

@@ -9,11 +9,12 @@ export default function Page() {
   return (
     <main className='container mx-auto w-11/12 mt-10'>
       <GreenContainer>
-        <Title
-          title="CONDITIONS GÉNÉRALES D'UTILISATION"
+        <Title          
           className='text-white'
           balise='h1'
-        />
+        >
+          CONDITIONS GÉNÉRALES D&apos;UTILISATION
+        </Title>
         <div className='text-white text-start'>
           <TitleUnderline title='1. INTRODUCTION' balise='h2' />
           <p className='text-white text-lg mt-10'>
