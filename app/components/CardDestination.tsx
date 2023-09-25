@@ -31,6 +31,7 @@ function CardDestination({
   const elipsis = (text: string, length: number) => {
     return text.length > length ? text.slice(0, length) + '...' : text;
   };
+
   return (
     <Link
       href={`destination/${destination.slug}`}
@@ -63,22 +64,22 @@ function CardDestination({
       <div className='mb-1'>
         <Text
           type='bold'
-          text={elipsis(destination.name, 30)}
           className='text-black lowercase first-letter:uppercase'
-        />
+        >
+          elipsis(destination.name, 30)
+        </Text>
         <Text
           type='gray'
           className='uppercase'
-          text={`${destination.city}, (${destination.postalCode.slice(
-            0,
-            2
-          )}), ${Country[destination.country]}`}
-        />
+        >
+          {`${destination.city}, (${destination.postalCode.slice(0, 2 )}), ${Country[destination.country]}`}
+        </Text>
         <Text 
           type='gray' 
           className='uppercase' 
-          text={destination.category.name} 
-        />
+        >
+          {destination.category.name}
+        </Text>
       </div>
       <Button>DÉCOUVRIR</Button>
     </Link>
