@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { API_URL } from '../constants/global';
+import toast from 'react-hot-toast';
 
 export function useForgetPassword() {
 
@@ -21,22 +23,25 @@ export function useForgetPassword() {
         setLoading(true);
         console.log(form);
         try {
-            // const res = await fetch('/api/auth/forgot-password', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(form),
-            // });
+            const res = await fetch(`${API_URL}auth/forget-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form),
+            });
 
-            // if (res.ok) {
-            //     setErrors(null);
-            //     setForm({ email: '' });
-            // } else {
-            //     setErrors('Email non trouvé');
-            // }
+            if (res.ok) {
+                console.log(res);
+                setErrors(null);
+                setForm({ email: '' });
+            }
+
+            toast.success('Si cette adresse email existe, un email vous a été envoyé');
+
+            return res;
         } catch (error) {
-            console.log(error);
+            toast.error('Une erreur est survenue veuillez réessayer ou contactez l\'administrateur');
         } finally {
             setLoading(false);
         }

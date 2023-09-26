@@ -19,6 +19,7 @@ function FormConfirmCode({ handleActionChange }: any) {
         });
       }}
     >
+
       <div className='flex justify-center items-center gap-5 mb-5'>
         <div className='bg-white text-black rounded-full h-10 w-10 flex justify-center items-center'>
           1
@@ -30,6 +31,7 @@ function FormConfirmCode({ handleActionChange }: any) {
           3
         </div>
       </div>
+      
       <Title className='text-white' balise='h3'>
         Nous vous avons envoyé un code
       </Title>

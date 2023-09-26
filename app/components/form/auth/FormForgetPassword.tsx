@@ -8,19 +8,18 @@ import Text from '../../text/Text';
 import Title from '../../text/Title';
 
 function FormForgetPassword({ handleActionChange }: any) {
-  const { loading, form, errors, handleChange, handleSubmit } =
-    useForgetPassword();
-
+  const { loading, form, errors, handleChange, handleSubmit } = useForgetPassword();
   return (
     <form
       className=''
       onSubmit={(e) => {
-        handleSubmit(e).then(() => {
-          handleActionChange(ACTION.CONFIRM);
+        handleSubmit(e).then((res) => {
+          if (res?.ok) {
+            handleActionChange(ACTION.RESET);
+          }
         });
       }}
     >
-      
       <div className='flex justify-center items-center gap-5 mb-5'>
         <div className='bg-tertiary rounded-full h-10 w-10 flex justify-center items-center'>
           1
@@ -32,7 +31,6 @@ function FormForgetPassword({ handleActionChange }: any) {
           3
         </div>
       </div>
-
       <Title className='text-white' balise='h3'>
         Où devons‑nous envoyer un code de confirmation ?
       </Title>
