@@ -5,7 +5,7 @@ function Presentation() {
   return (
     <section className='container h-full pt-10 pb-10 md:h-128 w-11/12 md:w-full mx-auto flex flex-col justify-center'>
       <Title balise='h1' className='text-center mb-20'>
-        Au fil des pattes, une plateforme collaborative gratuite pour voyager avec ton chien !
+        Suis mes pattes, une plateforme collaborative gratuite pour voyager avec ton chien !
       </Title>
       <div className='w-11/12 mx-auto flex flex-col items-center space-y-4 md:space-y-0 justify-between text-center pt-10 md:flex-row'>
         <div className='flex flex-col xl:h-40 justify-between md:mr-10 last:mr-0 md:w-1/4'>

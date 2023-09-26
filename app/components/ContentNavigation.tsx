@@ -43,7 +43,7 @@ function ContentNavigation() {
             className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'
           >
             <span className='self-center text-white text-2xl font-semibold whitespace-nowrap'>
-              Au fil des pattes
+              Suis mes pattes
             </span>
           </Link>
           <div className='flex md:order-2'>

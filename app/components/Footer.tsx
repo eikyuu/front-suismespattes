@@ -7,7 +7,7 @@ function Footer() {
           <div className='md:flex md:justify-between'>
           <ul className='flex flex-col md:flex-row md:space-x-6'>
             <li>
-              <LinkOutline href='https://aufildespattes.com' text=' Au fil des pattes™'/>
+              <LinkOutline href='https://suismespattes.com' text=' Suis mes pattes™'/>
             </li>
             <li>
               <LinkOutline href='/contact' text='Contact'/>
@@ -27,7 +27,7 @@ function Footer() {
           <div className='sm:flex sm:items-center sm:justify-between'>
             <span className='text-sm text-gray-500 sm:text-center'>
               © Copyright 2023
-              <LinkOutline href='https://aufildespattes.com' text=' Au fil des pattes™'/>
+              <LinkOutline href='https://suismespattes.com' text=' Suis mes pattes™'/>
               . Tous droits réservés.
             </span>
           </div>

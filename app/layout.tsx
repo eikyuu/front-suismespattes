@@ -11,8 +11,8 @@ import Session from '../@core/context/Session';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'AuFilDesPattes.com : une plateforme pour voyager avec ton chien !',
-  description: 'Au fil des pattes, une plateforme collaborative gratuite pour voyager avec ton chien ! Trouve ta destination idéale. Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.',
+  title: 'Suismespattes.com : une plateforme pour voyager avec ton chien !',
+  description: 'Suis mes pattes, une plateforme collaborative gratuite pour voyager avec ton chien ! Trouve ta destination idéale. Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.',
   viewport: {
     width: 'device-width',
     initialScale: 1,

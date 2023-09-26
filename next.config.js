@@ -4,12 +4,12 @@ const nextConfig = {
       remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'aufildespattes-api.up.railway.app',
+            hostname: 'suismespattes-api.up.railway.app',
             pathname: '/destination/images/**',
           },
           {
             protocol: 'https',
-            hostname: 'aufildespattes-api-preprod.up.railway.app',
+            hostname: 'suismespattes-api-preprod.up.railway.app',
             pathname: '/destination/images/**',
           },
           {
@@ -28,7 +28,7 @@ const nextConfig = {
             pathname: '/breeds/**',
           }
       ],
-      domains: ['aufildespattes-api.up.railway.app', 'aufildespattes-api-preprod.up.railway.app' , 'localhost', 'randomuser.me'],
+      domains: ['suismespattes-api.up.railway.app', 'suismespattes-api-preprod.up.railway.app' , 'localhost', 'randomuser.me'],
   },
 };
 

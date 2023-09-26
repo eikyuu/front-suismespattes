@@ -20,7 +20,7 @@ export default function Page() {
           <p className='text-white text-lg mt-10'>
             Les présentes Conditions Générales d&apos;Utilisation (ci-après
             &quot;CGU&quot;) régissent l&apos;utilisation du site web
-            aufildespattes.com (ci-après le &quot;Site&quot;) et de tous les
+            suismespattes.com (ci-après le &quot;Site&quot;) et de tous les
             services, fonctionnalités et contenus associés. En accédant au Site
             ou en l&apos;utilisant de quelque manière que ce soit, vous acceptez
             de vous conformer aux présentes CGU.
@@ -66,7 +66,7 @@ export default function Page() {
           />
           <p className='text-white text-lg mt-10'>
             Lors de l&apos;utilisation du site{' '}
-            <span className='font-semibold'>aufildespattes.com</span>, des
+            <span className='font-semibold'>suismespattes.com</span>, des
             données personnelles peuvent être collectées. Le Site assure à
             l’Utilisateur une collecte et un traitement d’informations
             personnelles dans le respect de la vie privée conformément à la loi
@@ -107,7 +107,7 @@ export default function Page() {
           <TitleUnderline title='7. CONTACT' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Pour toute question ou demande concernant le site{' '}
-            <span className='font-semibold'>aufildespattes.com </span>
+            <span className='font-semibold'>suismespattes.com </span>
             ou ces mentions légales, veuillez nous contacter:
           </p>
           <ul>

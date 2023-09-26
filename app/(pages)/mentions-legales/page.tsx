@@ -15,7 +15,7 @@ export default function Page() {
         <div className='text-white text-start'>
           <TitleUnderline title='1. EDITEUR DU SITE' balise='h2' />
           <p className='text-white text-lg mt-10'>
-            Le site <span className='font-semibold'>aufildespattes.com </span>
+            Le site <span className='font-semibold'>suismespattes.com </span>
             est édité par <span className='font-semibold'> Vincent Duguet</span>.
           </p>
           <ul>
@@ -27,7 +27,7 @@ export default function Page() {
           <TitleUnderline title='2. DIRECTEUR DE LA PUBLICATION' balise='h2' />
           <p className='text-white text-lg mt-10'>
             Le directeur de la publication du site
-            <span className='font-semibold'> aufildespattes.com</span> est
+            <span className='font-semibold'> suismespattes.com</span> est
             <span className='font-semibold'> Vincent Duguet</span>.
           </p>
           <ul>
@@ -38,7 +38,7 @@ export default function Page() {
           </ul>
           <TitleUnderline title='3. HÉBERGEUR DU SITE' balise='h2' />
           <p className='text-white text-lg mt-10'>
-            Le site <span className='font-semibold'>aufildespattes.com</span>{' '}
+            Le site <span className='font-semibold'>suismespattes.com</span>{' '}
             est hébergé par <span className='font-semibold'>Vercel Inc</span>
           </p>
           <ul>
@@ -59,7 +59,7 @@ export default function Page() {
           </ul>
           <TitleUnderline title='4. COOKIES' balise='h2' />
           <p className='text-white text-lg mt-10'>
-            Le site <span className='font-semibold'>aufildespattes.com</span>  utilise des cookies permettent
+            Le site <span className='font-semibold'>suismespattes.com</span>  utilise des cookies permettent
             d’optimiser la connexion et de personnaliser l’utilisation du site.
             L’internaute peut refuser l’utilisation des cookies en configurant
             les paramètres de son navigateur Internet. Cependant le fait de ne
@@ -74,7 +74,7 @@ export default function Page() {
           </p>
           <TitleUnderline title='6. CONTACT' balise='h2' />
           <p className='text-white text-lg mt-10'>
-            Pour toute question ou demande concernant le site <span className='font-semibold'>aufildespattes.com </span> 
+            Pour toute question ou demande concernant le site <span className='font-semibold'>suismespattes.com </span> 
             ou ces mentions légales, veuillez nous contacter:
           </p>
           <ul>

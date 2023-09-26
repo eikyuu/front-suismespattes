@@ -3,7 +3,7 @@ import FormDestination from '../../components/form/FormDestination';
 import Title from '../../components/text/Title';
 
 export const metadata: Metadata = {
-  title: 'Partage une destination testée avec mon chien - AuFilDesPattes.com',
+  title: 'Partage une destination testée avec mon chien - suismespattes.com',
   description: 'Partage une destination testée avec mon chien',
 };
 
