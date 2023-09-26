@@ -52,14 +52,14 @@ function FormLogin({handleActionChange}: any) {
           >
             Mot de passe oublié ?
           </p>
-          <p
+          {/* <p
             className='block text-right mt-2 text-sm cursor-pointer'
             onClick={() => {
               handleActionChange(ACTION.REGISTER);
             }}
           >
             Vous n&apos;avez pas de compte ? Inscrivez-vous
-          </p>
+          </p> */}
         </form>
      );
 }

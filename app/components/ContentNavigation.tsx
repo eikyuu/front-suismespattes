@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react';
 import Modal from './Modal';
 import Login from './form/auth/Login';
 import { useHandleModal } from '../../@core/hooks/useHandleModal';
+import Image from 'next/image';
 
 function ContentNavigation() {
   const { data: session } = useSession();
@@ -38,6 +39,11 @@ function ContentNavigation() {
     <header ref={ref}>
       <nav className='bg-primary border-gray-200'>
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
+          <div className='flex items-center flex-shrink-0'>
+            <Link href='/'>
+              <Image width={40} height={40} src='/images/logo.png' alt='logo du site Suis mes pattes' />
+            </Link>
+          </div>
           <Link
             href='/'
             className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'
