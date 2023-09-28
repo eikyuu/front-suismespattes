@@ -54,7 +54,7 @@ function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Elem
           </div>
         </section>
       ) : (
-        <section className='h-full md:h-166 w-11/12 mx-auto flex flex-col justify-center bg-map bg-center bg-cover bg-no-repeat bg-opacity-80'>
+        <section className='h-full xl:h-166 pt-10 pb-10 w-11/12 mx-auto flex flex-col justify-center bg-map bg-center bg-cover bg-no-repeat bg-opacity-80'>
           <Title balise='h2' className='text-center'>
             Les dernières destinations
           </Title>

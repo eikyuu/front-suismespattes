@@ -3,7 +3,7 @@ import Title from './text/Title';
 
 function Presentation() {
   return (
-    <section className='container h-full pt-10 pb-10 md:h-128 w-11/12 md:w-full mx-auto flex flex-col justify-center'>
+    <section className='container h-full pt-10 pb-10 lg:h-128 w-11/12 md:w-full mx-auto flex flex-col justify-center'>
       <Title balise='h1' className='text-center mb-20'>
         Suis mes pattes, une plateforme collaborative gratuite pour voyager avec ton chien !
       </Title>

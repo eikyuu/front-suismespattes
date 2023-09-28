@@ -15,7 +15,7 @@ function FormForgetPassword({ handleActionChange }: any) {
       onSubmit={(e) => {
         handleSubmit(e).then((res) => {
           if (res?.ok) {
-            handleActionChange(ACTION.RESET);
+            handleActionChange(ACTION.CONFIRM);
           }
         });
       }}

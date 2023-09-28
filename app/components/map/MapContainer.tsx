@@ -3,9 +3,9 @@ import Title from '../text/Title';
 
 function MapContainer({ dogDestination, coordinates, title }: { dogDestination: any; coordinates: any; title: string }) {
   return (
-    <section className='bg-primary h-full md:h-166 mx-auto pt-10 pb-10 flex flex-col md:justify-evenly'>
+    <section className='bg-primary h-full md:h-166 mx-auto pt-10 pb-10 flex flex-col md:justify-center'>
       <Title
-        className='text-white text-center'
+        className='text-white text-center mb-10'
         balise='h2'
       >
         {title}

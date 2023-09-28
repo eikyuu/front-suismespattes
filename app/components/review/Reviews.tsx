@@ -5,8 +5,8 @@ import Title from '../text/Title';
 function Reviews({reviews}: any): JSX.Element {
   
   return (
-    <section className='h-full pt-10 pb-10 md:h-100 flex flex-col justify-center bg-primary'>
-      <Title className='text-white text-center mb-20' balise='h2'>
+    <section className='h-full pt-10 pb-10 xl:h-100 flex flex-col justify-center bg-primary'>
+      <Title className='text-white text-center mb-10' balise='h2'>
         L&apos;avis des canipotes
       </Title>
       

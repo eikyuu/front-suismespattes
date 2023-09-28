@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { API_URL } from '../constants/global';
 
 export function useConfirmCode() {
 
     const [loading, setLoading] = useState(false);
 
     const [form, setForm] = useState({
-        code: '',
+        resetToken: '',
     });
 
     const [errors, setErrors] = useState<string | null>(null);
@@ -21,20 +22,21 @@ export function useConfirmCode() {
         setLoading(true);
         console.log(form);
         try {
-            // const res = await fetch('/api/auth/forgot-password', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify(form),
-            // });
+            const res = await fetch(`${API_URL}auth/confirm-code`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(form),
+            });
 
-            // if (res.ok) {
-            //     setErrors(null);
-            //     setForm({ email: '' });
-            // } else {
-            //     setErrors('Email non trouvé');
-            // }
+            if (res.ok) {
+                setErrors(null);
+                setForm({ resetToken: '' });
+            } else {
+                setErrors('Code incorrect ou expiré'); 
+            }
+            return res;
         } catch (error) {
             console.log(error);
         } finally {

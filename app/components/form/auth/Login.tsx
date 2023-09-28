@@ -7,14 +7,20 @@ import FormConfirmCode from './FormConfirmCode';
 import FormResetPassword from './FormResetPassword';
 import { ACTION } from '../../../../@core/constants/action-auth';
 function Login() {
-  const [action, setAction] = useState('login');
+  const [data, setData] = useState({
+    action: 'login',
+    resetToken: '',
+  });
 
-  const handleActionChange = (data: string) => {
-    setAction(data);
+  const handleActionChange = (action: string, resetToken?: string) => {
+    setData({
+      action: action,
+      resetToken: resetToken || '',
+    });
   };
 
   const renderForm = () => {
-    switch (action) {
+    switch (data.action) {
       case ACTION.LOGIN:
         return <FormLogin handleActionChange={handleActionChange} />;
       case ACTION.REGISTER:
@@ -24,7 +30,7 @@ function Login() {
       case ACTION.CONFIRM:
         return <FormConfirmCode handleActionChange={handleActionChange} />;
       case ACTION.RESET:
-        return <FormResetPassword handleActionChange={handleActionChange} />;
+        return <FormResetPassword handleActionChange={handleActionChange} resetToken={data.resetToken} />;
       default:
         return <FormLogin handleActionChange={handleActionChange} />;
     }

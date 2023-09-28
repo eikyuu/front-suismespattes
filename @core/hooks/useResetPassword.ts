@@ -1,19 +1,13 @@
-
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { API_URL } from '../constants/global';
 import { useHandleModal } from './useHandleModal';
 
-/**
- * A custom hook for handling login functionality.
- *
- * @return {object} An object containing the loading state, form state,
- * errors state, handleChange function, and handleSubmit function.
- */
-export function useLogin() {
+export function useResetPawword() {
     const {toggle} = useHandleModal();
+
     const [loading, setLoading] = useState(false);
+
     const [form, setForm] = useState({
-        email: '',
         password: '',
     });
 
@@ -25,22 +19,26 @@ export function useLogin() {
         setErrors(null);
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: any, resetToken: string) => {
         e.preventDefault();
         setLoading(true);
-
         try {
-            const res = await signIn('credentials', {
-                email: form.email,
-                password: form.password,
-                redirect: false,
+            const res = await fetch(`${API_URL}auth/reset-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ ...form, resetToken }),
             });
 
-            if (res && res.error) {
-                setErrors('Email ou mot de passe incorrect');
-            } else {
+            if (res.ok) {
+                setErrors(null);
+                setForm({ password: '' });
                 toggle();
+            } else {
+                setErrors('Mot de passe trop faible'); 
             }
+            return res;
         } catch (error) {
             console.log(error);
         } finally {

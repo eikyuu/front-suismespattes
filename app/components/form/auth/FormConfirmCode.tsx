@@ -5,6 +5,7 @@ import Input from '../../inputs/Input';
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Title from '../../text/Title';
+import { useHandleModal } from '../../../../@core/hooks/useHandleModal';
 
 function FormConfirmCode({ handleActionChange }: any) {
   const { loading, form, errors, handleChange, handleSubmit } =
@@ -14,8 +15,10 @@ function FormConfirmCode({ handleActionChange }: any) {
     <form
       className=''
       onSubmit={(e) => {
-        handleSubmit(e).then(() => {
-          handleActionChange(ACTION.RESET);
+        handleSubmit(e).then((res) => {
+          if (res?.ok) {
+            handleActionChange(ACTION.RESET, form.resetToken);
+          }
         });
       }}
     >
@@ -43,9 +46,9 @@ function FormConfirmCode({ handleActionChange }: any) {
       <Label name='email' label='Entrez le code de confirmation' required />
       <Input
         handleChange={handleChange}
-        value={form.code}
+        value={form.resetToken}
         type='text'
-        name='code'
+        name='resetToken'
         label='Code de confirmation'
         required
       />
