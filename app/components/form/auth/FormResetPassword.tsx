@@ -1,4 +1,4 @@
-import { useResetPawword } from '../../../../@core/hooks/useResetPassword';
+import { useResetPassword } from '../../../../@core/hooks/useResetPassword';
 import Button from '../../button/Button';
 import Input from '../../inputs/Input';
 import Label from '../../inputs/Label';
@@ -8,7 +8,7 @@ import Title from '../../text/Title';
 
 function FormResetPassword({ handleActionChange, resetToken }: any) {
   const { loading, form, errors, handleChange, handleSubmit } =
-  useResetPawword();
+  useResetPassword();
   return (
     <form
       className=''

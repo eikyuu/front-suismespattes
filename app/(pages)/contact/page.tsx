@@ -11,6 +11,7 @@ import Loader from '../../components/loader/Loader';
 import Textarea from '../../components/inputs/Textarea';
 import { postMessage } from '../../../@core/services/contactService';
 import Button from '../../components/button/Button';
+import { useHandleChange } from '../../../@core/hooks/useHandleChange';
 
 export default function Page() {
   const [form, setForm] = useState<any>({
@@ -21,11 +22,7 @@ export default function Page() {
   const [submit, setSubmit] = useState<boolean>(false);
   const [errors, setErrors] = useState<any>({});
 
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-    setErrors({ ...errors, [name]: '' });
-  };
+  const { handleChange } = useHandleChange(setForm, setErrors);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();

@@ -332,7 +332,7 @@ function FormDestination({ slug }: { slug?: string }) {
         />
         {errors && <div className='text-red-400 mt-2'>{errors.images}</div>}
 
-        {images.length > 1 && (
+        {images.length >= 1 && (
           <div className='flex justify-center items-center flex-col flex-wrap md:flex-row mt-10'>
             {images.map((file: any, index: number) => (
               <React.Fragment key={index}>

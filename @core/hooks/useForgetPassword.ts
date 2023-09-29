@@ -1,28 +1,21 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { API_URL } from '../constants/global';
 import toast from 'react-hot-toast';
+import { useHandleChange } from './useHandleChange';
 
 export function useForgetPassword() {
-
     const [loading, setLoading] = useState(false);
-
-    const [form, setForm] = useState({
-        email: '',
-    });
-
+    const [form, setForm] = useState({ email: '' });
     const [errors, setErrors] = useState<string | null>(null);
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-        setErrors(null);
-    };
+    const { handleChange } = useHandleChange(setForm, setErrors);
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
+
         try {
-            const res = await fetch(`${API_URL}auth/forget-password`, {
+            const response = await fetch(`${API_URL}auth/forget-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -30,20 +23,19 @@ export function useForgetPassword() {
                 body: JSON.stringify(form),
             });
 
-            if (res.ok) {
+            if (response.ok) {
                 setErrors(null);
                 setForm({ email: '' });
             }
 
             toast.success('Si cette adresse email existe, un email vous a été envoyé');
-
-            return res;
+            return response;
         } catch (error) {
             toast.error('Une erreur est survenue veuillez réessayer ou contactez l\'administrateur');
         } finally {
             setLoading(false);
         }
-    };
+    }, [form]);
 
     return { loading, form, errors, handleChange, handleSubmit };
 }

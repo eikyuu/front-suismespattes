@@ -5,7 +5,6 @@ import Input from '../../inputs/Input';
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Title from '../../text/Title';
-import { useHandleModal } from '../../../../@core/hooks/useHandleModal';
 
 function FormConfirmCode({ handleActionChange }: any) {
   const { loading, form, errors, handleChange, handleSubmit } =

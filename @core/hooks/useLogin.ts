@@ -1,43 +1,28 @@
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useHandleModal } from './useHandleModal';
+import { useHandleChange } from './useHandleChange';
 
-/**
- * A custom hook for handling login functionality.
- *
- * @return {object} An object containing the loading state, form state,
- * errors state, handleChange function, and handleSubmit function.
- */
 export function useLogin() {
-    const {toggle} = useHandleModal();
+    const { toggle } = useHandleModal();
     const [loading, setLoading] = useState(false);
-    const [form, setForm] = useState({
-        email: '',
-        password: '',
-    });
-
+    const [form, setForm] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState<string | null>(null);
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-        setErrors(null);
-    };
+    const { handleChange } = useHandleChange(setForm, setErrors);
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const res = await signIn('credentials', {
-                email: form.email,
-                password: form.password,
-                redirect: false,
-            });
+            const { email, password } = form;
 
-            if (res && res.error) {
-                setErrors('Email ou mot de passe incorrect');
+            const response = await signIn('credentials', { email, password, redirect: false });
+
+            if (response?.error) {
+                setErrors('Email or password incorrect');
             } else {
                 toggle();
             }
@@ -46,7 +31,7 @@ export function useLogin() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [form, toggle]);
 
     return { loading, form, errors, handleChange, handleSubmit };
 }

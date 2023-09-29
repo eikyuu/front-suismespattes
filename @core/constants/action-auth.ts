@@ -4,4 +4,4 @@ export const ACTION = {
     RESET: 'reset',
     FORGOTPASSWORD: 'forgetpassword',
     CONFIRM: 'confirm',
-  }
+}

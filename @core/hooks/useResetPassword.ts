@@ -1,29 +1,23 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { API_URL } from '../constants/global';
 import { useHandleModal } from './useHandleModal';
+import { useHandleChange } from './useHandleChange';
 
-export function useResetPawword() {
-    const {toggle} = useHandleModal();
+export function useResetPassword() {
+    const { toggle } = useHandleModal();
 
     const [loading, setLoading] = useState(false);
-
-    const [form, setForm] = useState({
-        password: '',
-    });
-
+    const [form, setForm] = useState({ password: '' });
     const [errors, setErrors] = useState<string | null>(null);
 
-    const handleChange = (e: any) => {
-        const { name, value } = e.target;
-        setForm({ ...form, [name]: value });
-        setErrors(null);
-    };
+    const { handleChange } = useHandleChange(setForm, setErrors);
 
-    const handleSubmit = async (e: any, resetToken: string) => {
+    const handleSubmit = useCallback(async (e: React.FormEvent<HTMLFormElement>, resetToken: string) => {
         e.preventDefault();
         setLoading(true);
+
         try {
-            const res = await fetch(`${API_URL}auth/reset-password`, {
+            const response = await fetch(`${API_URL}auth/reset-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -31,20 +25,21 @@ export function useResetPawword() {
                 body: JSON.stringify({ ...form, resetToken }),
             });
 
-            if (res.ok) {
+            if (response.ok) {
                 setErrors(null);
                 setForm({ password: '' });
                 toggle();
             } else {
-                setErrors('Mot de passe trop faible'); 
+                setErrors('Mot de passe trop faible');
             }
-            return res;
+
+            return response;
         } catch (error) {
             console.error(error);
         } finally {
             setLoading(false);
         }
-    };
+    }, [form, toggle]);
 
     return { loading, form, errors, handleChange, handleSubmit };
 }
