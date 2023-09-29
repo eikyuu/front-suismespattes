@@ -39,7 +39,7 @@ module.exports = {
         '160': '40rem',
       },
       backgroundImage: {
-        'map': 'linear-gradient( rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)), url("../public/images/map.png")',
+        'map': 'linear-gradient( rgba(255, 255, 255, 0.93), rgba(255, 255, 255, 0.93)), url("../public/images/map.webp")',
       },
       spacing: {
         '21': '5.20rem',

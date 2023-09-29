@@ -30,11 +30,9 @@ function FormResetPassword({ handleActionChange, resetToken }: any) {
       <Title className='text-white' balise='h3'>
         Choisissez un nouveau mot de passe
       </Title>
-      <p>
-        Assurez‑vous que votre mot de passe contient huit caractères ou plus.
-        Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des
-        chiffres, des lettres et des signes de ponctuation.
-      </p>
+      <Text >
+        Assurez‑vous que votre mot de passe contient huit caractères ou plus. Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des chiffres, des lettres et des signes de ponctuation.
+      </Text>
       <Label name='email' label='Entrez un nouveau mot de passe' required />
       <Input
         handleChange={handleChange}
@@ -44,9 +42,7 @@ function FormResetPassword({ handleActionChange, resetToken }: any) {
         label='Votre mot de passe'
         required
       />
-      <Text className='text-sm mt-2' >
-        Assurez‑vous que votre mot de passe contient huit caractères ou plus. Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des chiffres, des lettres et des signes de ponctuation.
-      </Text>
+
       {errors && <div className='text-red-400 mt-2'>{errors}</div>}
 
       <Button className='mt-5 mb-1 bg-tertiary !w-full' type='submit'>

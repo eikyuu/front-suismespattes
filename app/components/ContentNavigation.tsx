@@ -41,7 +41,7 @@ function ContentNavigation() {
         <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
           <div className='flex items-center flex-shrink-0'>
             <Link href='/'>
-              <Image width={40} height={40} src='/images/logo.png' alt='logo du site Suis mes pattes' />
+              <Image width={40} height={40} src='/images/logo.webp' alt='logo du site Suis mes pattes' />
             </Link>
           </div>
           <Link

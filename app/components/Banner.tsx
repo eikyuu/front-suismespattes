@@ -10,6 +10,7 @@ function Banner() {
         src={banner}
         alt='Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts.'
         loading='eager'
+        priority={true}
       />
     </Link>
   );

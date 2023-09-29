@@ -6,7 +6,6 @@ import ContentNavigation from './components/ContentNavigation';
 import Footer from './components/Footer';
 import Headband from './components/Headband';
 import AuthProvider from '../@core/context/AuthProvider';
-import Session from '../@core/context/Session';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,19 +29,17 @@ export default function RootLayout({
     <html lang='fr'>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.webp" />
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body suppressHydrationWarning={true} className={inter.className + ' font-sans leading-relaxed'}>
         <AuthProvider>
-          <Session>
           <Headband />
           <ContentNavigation />
           {children}
           <Analytics />
           <Footer />
           <Toaster />
-          </Session>
         </AuthProvider>
       </body>
     </html>

@@ -161,7 +161,7 @@ export default function Page({
                 ) : (
                   <Image
                     className='rounded-lg object-cover h-144 w-full'
-                    src={'/images/placeholder.png'}
+                    src={'/images/placeholder.webp'}
                     width={500}
                     height={500}
                     alt='Picture of the author'
@@ -191,7 +191,7 @@ export default function Page({
                 ) : (
                   <Image
                     className='rounded-lg object-cover h-36'
-                    src={'/images/placeholder.png'}
+                    src={'/images/placeholder.webp'}
                     width={500}
                     height={500}
                     alt='Une image par défaut'
