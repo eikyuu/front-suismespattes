@@ -20,7 +20,6 @@ export function useConfirmCode() {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        console.log(form);
         try {
             const res = await fetch(`${API_URL}auth/confirm-code`, {
                 method: 'POST',
@@ -38,7 +37,7 @@ export function useConfirmCode() {
             }
             return res;
         } catch (error) {
-            console.log(error);
+            console.error(error);
         } finally {
             setLoading(false);
         }

@@ -21,7 +21,6 @@ export function useForgetPassword() {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         setLoading(true);
-        console.log(form);
         try {
             const res = await fetch(`${API_URL}auth/forget-password`, {
                 method: 'POST',
@@ -32,7 +31,6 @@ export function useForgetPassword() {
             });
 
             if (res.ok) {
-                console.log(res);
                 setErrors(null);
                 setForm({ email: '' });
             }
