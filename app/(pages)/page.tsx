@@ -52,6 +52,7 @@ export default function Home() {
 
 
   const url = `${API_URL}destination?page=1&limit=4`;
+  const urlall = `${API_URL}destination`;
   
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -90,7 +91,7 @@ export default function Home() {
 
   const fetchDataAll = async () => {
     try {
-      const response = await fetch(url);
+      const response = await fetch(urlall);
       const data = await response.json();
       setDogDestinationAll((prevItems) => [...prevItems, ...data.data]);
     } catch (error) {
