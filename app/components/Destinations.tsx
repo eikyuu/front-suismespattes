@@ -50,7 +50,7 @@ function Destinations() {
       }))
 
     } catch (error) {
-      toast.error('An error occurred');
+      toast.error('Une erreur est survenue');
     } finally {
       setLoading(false);
     }
@@ -71,7 +71,20 @@ function Destinations() {
         return walk.city
           .toLowerCase()
           .replace(/-/g, ' ')
-          .includes(search.toLowerCase().replace(/-/g, ' '));
+          .normalize("NFD").replace(/\p{Diacritic}/gu, "")
+          .includes(search.toLowerCase().replace(/-/g, ' '))
+          || 
+          walk.name
+          .toLowerCase()
+          .replace(/-/g, ' ')
+          .normalize("NFD").replace(/\p{Diacritic}/gu, "")
+          .includes(search.toLowerCase().replace(/-/g, ' ')) 
+          ||
+          walk.category.name
+          .toLowerCase()
+          .replace(/-/g, ' ')
+          .normalize("NFD").replace(/\p{Diacritic}/gu, "")
+          .includes(search.toLowerCase().replace(/-/g, ' '))
       })
     );
   }, [destinations, search]);
@@ -111,7 +124,7 @@ function Destinations() {
           type='text'
           id='search-navbar'
           className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500'
-          placeholder='Trouve une destination par ville'
+          placeholder='Trouve une destination par ville, nom ou catégorie'
           value={search}
           onChange={(e) => handleSearch(e.target.value)}
         />
