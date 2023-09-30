@@ -27,7 +27,7 @@ function Modal({ children, isOpen, onOpenChange }: ModalProps): JSX.Element {
 
           <div
             id='modal'
-            className='fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-primary rounded-lg md:w-96 h-auto p-10'
+            className='fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white bg-primary rounded-lg w-11/12 md:w-96 h-auto p-10'
           >
             <div
               className='absolute -ml-12 -mt-12 bg-tertiary rounded-full h-10 w-10 flex items-center justify-center text-white hover:bg-tertiary hover:text-black cursor-pointer hover:scale-110 transition ease duration-300 shadow'
