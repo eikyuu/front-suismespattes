@@ -1,5 +1,5 @@
 'use client';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import React from 'react';
 import CardDestination from './CardDestination';
 import LoaderDestinations from './loader/LoaderDestinations';
@@ -7,29 +7,66 @@ import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
 import Title from './text/Title';
+import { set } from 'lodash';
+import Loader from './loader/Loader';
 
 function Destinations() {
   const [dogDestination, setDogDestination] = useState<any[]>([]);
-  const [filteredDogDestination, setFilteredDogDestination] = useState<any[]>([]);
-  const [search, setSearch] = useState("");
+  const [filteredDogDestination, setFilteredDogDestination] = useState<any[]>(
+    []
+  );
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const url = `${API_URL}destination`;
+  const url = `${API_URL}destination?page=${page}&limit=10`;
 
-  const { data, error } = useFetch<any[]>(url)
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setTotalPages(data.pagination.totalPages);
+      setDogDestination((prevItems) => [...prevItems, ...data.data]);
+      setPage((prevPage) => prevPage + 1);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    if (data) {
-      setDogDestination(data);
-    } else if (error) {
-      console.error(error);
-      toast.error('Une erreur est survenue');
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    ) {
+      return;
     }
-  }, [data, error]);
+    if (page <= totalPages) {
+      fetchData();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line
+  }, [isLoading]);
 
   const filterDogDestination = useCallback(() => {
     setFilteredDogDestination(
       dogDestination.filter((walk) => {
-        return walk.city.toLowerCase().replace(/-/g, ' ').includes(search.toLowerCase().replace(/-/g, ' '));
+        return walk.city
+          .toLowerCase()
+          .replace(/-/g, ' ')
+          .includes(search.toLowerCase().replace(/-/g, ' '));
       })
     );
   }, [dogDestination, search]);
@@ -77,14 +114,18 @@ function Destinations() {
 
       <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
         {filteredDogDestination.length === 0 && <LoaderDestinations />}
-        {filteredDogDestination.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map(
-          (destination: any) => (
-            <CardDestination
-              key={destination.id}
-              destination={destination}
-            />
+        {filteredDogDestination
+          .sort(
+            (a: any, b: any) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
           )
-        )}
+          .map((destination: any) => (
+            <CardDestination key={destination.id} destination={destination} />
+          ))}
+      </div>
+
+      <div className='text-center text-gray-100 '>
+        {isLoading && <Loader />}
       </div>
     </section>
   );

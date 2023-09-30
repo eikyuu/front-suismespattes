@@ -35,10 +35,10 @@ function CardDestination({
   return (
     <Link
       href={`destination/${destination.slug}`}
-      className='flex flex-col justify-between w-auto max-w-md mb-4 xs:last:mb-0 md:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
+      className='flex flex-col justify-between w-full max-w-md mb-4 xs:last:mb-0 md:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
       <picture className='mb-2'>
-        <div className='absolute z-10 flex flex-row justify-between items-start w-full md:w-72 p-2'>
+        <div className='absolute z-10 flex flex-row justify-between items-start md:w-72 p-2'>
           <div className='flex flex-col justify-between'>
             {!destination.user.isAdmin && (
               <Button className='bg-tertiary hover:bg-primary mr-2 bg-opacity-80 mb-2'>

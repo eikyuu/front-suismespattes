@@ -50,9 +50,7 @@ export default function Home() {
   const [dogDestination, setDogDestination] = useState<any[]>([]);
 
 
-  const url = `${API_URL}destination`;
-
-  const { data, error } = useFetch<any[]>(url)
+  const url = `${API_URL}destination?page=1&limit=4`;
   
   useEffect(() => {
     const watchId = navigator.geolocation.watchPosition(
@@ -69,14 +67,23 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    if (data) {
-      setDogDestination(data);
-    } else if (error) {
-      console.error(error);
-      toast.error('Une erreur est survenue');
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setDogDestination((prevItems) => [...prevItems, ...data.data]);
+    } catch (error) {
+     toast.error('Une erreur est survenue'); 
+    } finally {
+      console.log('done');
     }
-  }, [data, error]);
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <main>
