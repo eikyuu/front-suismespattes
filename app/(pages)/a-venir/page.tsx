@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import constuction from '../../../public/images/en-construction.jpg';
+import constuction from '../../../public/images/en-construction.webp';
 import BlurImage from '../../components/blurImage/BlurImage';
 import Title from '../../components/text/Title';
 
