@@ -1,3 +1,4 @@
+'use client';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -8,9 +9,30 @@ import LoaderDestinations from './loader/LoaderDestinations';
 import Button from './button/Button';
 import CardDestination from './CardDestination';
 import Title from './text/Title';
+import { API_URL } from '../../@core/constants/global';
+import toast from 'react-hot-toast';
+import { Destination } from '../../@core/types/DestinationForm';
 
-function LastDestinations({ dogDestination }: { dogDestination: any }): JSX.Element {
+function LastDestinations(): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
+  const [dogDestination, setDogDestination] = useState<Destination[]>([]);
+
+  const url = `${API_URL}destination?page=1&limit=4`;
+
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setDogDestination(data.data);
+    } catch (error) {
+     toast.error('Une erreur est survenue'); 
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line
+  }, []);
 
   const handleResize = () => {
     window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);

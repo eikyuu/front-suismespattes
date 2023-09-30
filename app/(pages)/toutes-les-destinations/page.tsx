@@ -8,8 +8,6 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className='w-11/12 mx-auto'>
       <Destinations />
-    </main>
   );
 }

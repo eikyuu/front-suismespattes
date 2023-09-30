@@ -36,7 +36,9 @@ export default function RootLayout({
         <AuthProvider>
           <Headband />
           <ContentNavigation />
-          {children}
+          <main>
+            {children}
+          </main>
           <Analytics />
           <Footer />
           <Toaster />

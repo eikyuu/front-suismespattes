@@ -7,7 +7,7 @@ import Title from '../../components/text/Title';
 
 export default function Page() {
   return (
-    <main className='container mx-auto w-11/12 mt-10'>
+    <div className='container mx-auto w-11/12 mt-10'>
       <GreenContainer>
         <Title          
           className='text-white'
@@ -129,6 +129,6 @@ export default function Page() {
           </ul>
         </div>
       </GreenContainer>
-    </main>
+    </div>
   );
 }

@@ -101,7 +101,7 @@ export default function Page() {
   };
 
   return (
-    <main className='container mx-auto w-11/12 mt-10'>
+    <section className='container mx-auto w-11/12 mt-10'>
       <form
         onSubmit={(e) => {
           handleSubmit(e);
@@ -155,6 +155,6 @@ export default function Page() {
           {submit ? <Loader /> : 'Envoyer'}
         </Button>
       </form>
-    </main>
+    </section>
   );
 }

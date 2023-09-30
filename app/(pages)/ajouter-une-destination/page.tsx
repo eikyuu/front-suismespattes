@@ -9,8 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <main className='container mx-auto w-11/12'>
-      <section className='mt-10'>
+      <section className='container mx-auto w-11/12 mt-10'>
         <Title className='text-center' balise='h1'>
           AJOUTER UN LIEU TESTÉ AVEC MON CHIEN
         </Title>
@@ -33,8 +32,7 @@ export default function Page() {
           pourraient inspirer un autre propriétaire de chien à sortir et à
           explorer le monde avec son meilleur ami.
         </p>
+        <FormDestination/>
       </section>
-      <FormDestination/>
-    </main>
   );
 }

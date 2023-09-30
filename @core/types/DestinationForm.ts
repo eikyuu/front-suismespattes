@@ -24,6 +24,32 @@ export type Destination = {
     }[];
   };
 
+  export type Destinations = {
+    data : {
+      name: string;
+      description: string;
+      city: string;
+      postalCode: string;
+      street: string;
+      country: keyof typeof Country;
+      slug: string;
+      category: {
+        name: string;
+      };
+      latitude?: number | string;
+      longitude?: number | string;
+      obligatoryLeash: 'YES' | 'NO' | 'RECOMANDED';
+      waterPoint: boolean;
+      processionaryCaterpillarAlert: boolean;
+      cyanobacteriaAlert: boolean;
+      note: number;
+      files?: File[];
+      images: {
+        name: string;
+    };
+    }[];
+  }
+
 export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;
 
 export type DestinationWithoutFiles = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;

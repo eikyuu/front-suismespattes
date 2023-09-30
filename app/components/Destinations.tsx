@@ -1,29 +1,28 @@
 'use client';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import React from 'react';
 import CardDestination from './CardDestination';
 import LoaderDestinations from './loader/LoaderDestinations';
-import { useFetch } from '../../@core/hooks/useFetch';
 import { API_URL } from '../../@core/constants/global';
-import toast from 'react-hot-toast';
 import Title from './text/Title';
-import { set } from 'lodash';
 import Loader from './loader/Loader';
+import { Destination } from '../../@core/types/DestinationForm';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import toast from 'react-hot-toast';
 
 function Destinations() {
-  const [dogDestination, setDogDestination] = useState<any[]>([]);
-  const [filteredDogDestination, setFilteredDogDestination] = useState<any[]>(
-    []
-  );
+  const [dogDestination, setDogDestination] = useState<Destination[]>([]);
+  const [filteredDogDestination, setFilteredDogDestination] = useState<
+    Destination[]
+  >([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const url = `${API_URL}destination?page=${page}&limit=10`;
 
   const fetchData = async () => {
-    setIsLoading(true);
+    setLoading(true);
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -31,9 +30,9 @@ function Destinations() {
       setDogDestination((prevItems) => [...prevItems, ...data.data]);
       setPage((prevPage) => prevPage + 1);
     } catch (error) {
-      console.error(error);
+      toast.error('Une erreur est survenue');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -41,24 +40,6 @@ function Destinations() {
     fetchData();
     // eslint-disable-next-line
   }, []);
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    ) {
-      return;
-    }
-    if (page <= totalPages) {
-      fetchData();
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-    // eslint-disable-next-line
-  }, [isLoading]);
 
   const filterDogDestination = useCallback(() => {
     setFilteredDogDestination(
@@ -80,7 +61,7 @@ function Destinations() {
   };
 
   return (
-    <section className='h-full flex flex-col justify-evenly pt-10 pb-10'>
+    <section className='h-full flex flex-col justify-evenly pt-10 w-11/12 mx-auto'>
       <Title balise='h1' className='text-center'>
         Toutes les destinations
       </Title>
@@ -112,21 +93,36 @@ function Destinations() {
         />
       </div>
 
-      <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
-        {filteredDogDestination.length === 0 && <LoaderDestinations />}
-        {filteredDogDestination
-          .sort(
-            (a: any, b: any) =>
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      <InfiniteScroll
+        dataLength={filteredDogDestination.length}
+        next={fetchData}
+        hasMore={page < totalPages}
+        loader={
+          <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+            {loading && <Loader />}
+          </div>
+        }
+        endMessage={
+          page === totalPages && (
+            <p style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <b>Vous avez atteint la fin de la liste</b>
+            </p>
           )
-          .map((destination: any) => (
-            <CardDestination key={destination.id} destination={destination} />
-          ))}
-      </div>
-
-      <div className='text-center text-gray-100 '>
-        {isLoading && <Loader />}
-      </div>
+        }
+      >
+        <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 md:flex-row'>
+          {filteredDogDestination.length === 0 && <LoaderDestinations />}
+          {filteredDogDestination
+            .sort(
+              (a: any, b: any) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+            .map((destination: any) => (
+              <CardDestination key={destination.id} destination={destination} />
+            ))}
+        </div>
+      </InfiniteScroll>
     </section>
   );
 }
