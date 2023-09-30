@@ -75,8 +75,6 @@ export default function Home() {
       setDogDestination((prevItems) => [...prevItems, ...data.data]);
     } catch (error) {
      toast.error('Une erreur est survenue'); 
-    } finally {
-      console.log('done');
     }
   };
 
@@ -92,7 +90,7 @@ export default function Home() {
         <Presentation />
         <Reviews reviews={reviews} />
         <LastDestinations dogDestination={dogDestination} />
-        <MapContainer dogDestination={dogDestination} coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
+        <MapContainer coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
       </ErrorBoundary>
     </main>
   );
