@@ -1,23 +1,32 @@
 'use client';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { use, useCallback, useEffect, useRef, useState } from 'react';
 import CardDestination from './CardDestination';
 import LoaderDestinations from './loader/LoaderDestinations';
 import { API_URL } from '../../@core/constants/global';
 import Title from './text/Title';
 import Loader from './loader/Loader';
-import { Destination } from '../../@core/types/DestinationForm';
+import { Destination, Destinations } from '../../@core/types/DestinationForm';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import toast from 'react-hot-toast';
 
 function Destinations() {
-  const [dogDestination, setDogDestination] = useState<Destination[]>([]);
   const [filteredDogDestination, setFilteredDogDestination] = useState<
     Destination[]
   >([]);
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
+  const [destinations, setDestinations] = useState<Destinations>({
+    data: [],
+    pagination: {
+      limit: 10,
+      page: 1,
+      total: 0,
+      totalPages: 0,
+    },
+  })
 
   const url = `${API_URL}destination?page=${page}&limit=10`;
 
@@ -26,15 +35,30 @@ function Destinations() {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setTotalPages(data.pagination.totalPages);
-      setDogDestination((prevItems) => [...prevItems, ...data.data]);
-      setPage((prevPage) => prevPage + 1);
+      setPage(prevPage => prevPage + 1);
+
+      setDestinations(prevDestinations => ({
+        ...prevDestinations,
+        data: [...prevDestinations.data, ...data.data],
+        pagination: {
+          ...prevDestinations.pagination,
+          limit: data.pagination.limit,
+          page: data.pagination.page,
+          total: data.pagination.total,
+          totalPages: data.pagination.totalPages
+        }
+      }))
+
     } catch (error) {
-      toast.error('Une erreur est survenue');
+      toast.error('An error occurred');
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    setHasMore(destinations.pagination.total > destinations.data.length);
+  }, [destinations]);
 
   useEffect(() => {
     fetchData();
@@ -43,14 +67,14 @@ function Destinations() {
 
   const filterDogDestination = useCallback(() => {
     setFilteredDogDestination(
-      dogDestination.filter((walk) => {
+      destinations.data.filter((walk) => {
         return walk.city
           .toLowerCase()
           .replace(/-/g, ' ')
           .includes(search.toLowerCase().replace(/-/g, ' '));
       })
     );
-  }, [dogDestination, search]);
+  }, [destinations, search]);
 
   useEffect(() => {
     filterDogDestination();
@@ -96,14 +120,14 @@ function Destinations() {
       <InfiniteScroll
         dataLength={filteredDogDestination.length}
         next={fetchData}
-        hasMore={page < totalPages}
+        hasMore={hasMore}
         loader={
           <div style={{ textAlign: 'center', marginTop: '1rem' }}>
             {loading && <Loader />}
           </div>
         }
         endMessage={
-          page === totalPages && (
+          destinations.pagination.total === filteredDogDestination.length && (
             <p style={{ textAlign: 'center', marginTop: '1rem' }}>
               <b>Vous avez atteint la fin de la liste</b>
             </p>

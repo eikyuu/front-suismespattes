@@ -25,29 +25,13 @@ export type Destination = {
   };
 
   export type Destinations = {
-    data : {
-      name: string;
-      description: string;
-      city: string;
-      postalCode: string;
-      street: string;
-      country: keyof typeof Country;
-      slug: string;
-      category: {
-        name: string;
-      };
-      latitude?: number | string;
-      longitude?: number | string;
-      obligatoryLeash: 'YES' | 'NO' | 'RECOMANDED';
-      waterPoint: boolean;
-      processionaryCaterpillarAlert: boolean;
-      cyanobacteriaAlert: boolean;
-      note: number;
-      files?: File[];
-      images: {
-        name: string;
-    };
-    }[];
+    data : Destination[],
+    pagination: {
+      limit: number;
+      page: number;
+      total: number;
+      totalPages: number;
+    }
   }
 
 export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;
