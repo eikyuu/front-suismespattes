@@ -47,7 +47,7 @@ function FormForgetPassword({ handleActionChange }: any) {
       <Input
         handleChange={handleChange}
         value={form.email}
-        type='text'
+        type='email'
         name='email'
         label='Votre email'
         required
