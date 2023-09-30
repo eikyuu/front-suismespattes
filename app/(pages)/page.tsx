@@ -48,6 +48,7 @@ const reviews = [
 export default function Home() {
   const [coordinates, setCoordinates] = useState<any>();
   const [dogDestination, setDogDestination] = useState<any[]>([]);
+  const [dogDestinationAll, setDogDestinationAll] = useState<any[]>([]);
 
 
   const url = `${API_URL}destination?page=1&limit=4`;
@@ -75,13 +76,30 @@ export default function Home() {
       setDogDestination((prevItems) => [...prevItems, ...data.data]);
     } catch (error) {
      toast.error('Une erreur est survenue'); 
+    } finally {
+      console.log('done');
     }
   };
 
   useEffect(() => {
     fetchData();
+    fetchDataAll();
     // eslint-disable-next-line
   }, []);
+
+
+  const fetchDataAll = async () => {
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setDogDestinationAll((prevItems) => [...prevItems, ...data.data]);
+    } catch (error) {
+     toast.error('Une erreur est survenue'); 
+    } finally {
+      console.log('done');
+    }
+  };
+
 
   return (
     <main>
@@ -90,7 +108,7 @@ export default function Home() {
         <Presentation />
         <Reviews reviews={reviews} />
         <LastDestinations dogDestination={dogDestination} />
-        <MapContainer coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
+        <MapContainer dogDestination={dogDestinationAll} coordinates={coordinates} title='Retrouve toutes les destinations autours de chez toi !' />
       </ErrorBoundary>
     </main>
   );
