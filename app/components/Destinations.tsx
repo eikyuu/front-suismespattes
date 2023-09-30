@@ -96,7 +96,7 @@ function Destinations() {
       <InfiniteScroll
         dataLength={filteredDogDestination.length}
         next={fetchData}
-        hasMore={page < totalPages}
+        hasMore={page <= totalPages}
         loader={
           <div style={{ textAlign: 'center', marginTop: '1rem' }}>
             {loading && <Loader />}
