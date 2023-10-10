@@ -128,7 +128,7 @@ export function useDestinationForm(slug?: string) {
         await Promise.all([updatePromise, deleteDestinationPromise, uploadPromise]);
 
         toast.success('Votre promenade a bien été modifiée');
-        router.push(`/destination/${formatSlug(form.name)}`);
+        router.push(`/destination-chien-accepte/${formatSlug(form.name)}`);
       } else {
         const res = await postDestination(formTemp(form));
 
@@ -157,7 +157,7 @@ export function useDestinationForm(slug?: string) {
 
           setImages([]);
           setErrors({});
-          router.push(`/destination/${formatSlug(form.name)}`);
+          router.push(`/destination-chien-accepte/${formatSlug(form.name)}`);
         } else {
           toast.error(`${res.error.message}`);
         }

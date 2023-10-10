@@ -48,7 +48,7 @@ function ContentNavigation() {
             href='/'
             className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'
           >
-            <span className='self-center text-white text-2xl font-semibold whitespace-nowrap'>
+            <span className='self-center text-white text-2xl font-extrabold tracking-tight whitespace-nowrap'>
               Suis mes pattes
             </span>
           </Link>
@@ -57,7 +57,7 @@ function ContentNavigation() {
               onClick={handleMenuClick}
               data-collapse-toggle='navbar'
               type='button'
-              className='inline-flex items-center p-2 text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
+              className='inline-flex items-center p-2 text-white rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
               aria-controls='navbar'
               aria-expanded='false'
             >
@@ -83,16 +83,16 @@ function ContentNavigation() {
             }`}
             id='navbar'
           >
-            <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary'>
+            <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-md bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary'>
               <LiNav text='Accueil' href='/' />
               <LiNav
-                text='Toutes les destinations'
-                href='/toutes-les-destinations'
+                text='Destinations'
+                href='/destinations-chien-accepte'
               />
 
               <LiNav
-                text='Ajouter une destination'
-                href='/ajouter-une-destination'
+                text='Partager une destination'
+                href='/partager-une-destination'
                 prefetch={false}
                 onClick={(e: any) => {
                   if (!session?.user) {
@@ -102,7 +102,6 @@ function ContentNavigation() {
                   }
                 }}
               />
-              <LiNav text='A propos' href='/a-venir' />
               <LiNav text='Boutique' href='/a-venir' />
               <LiNav text='Contact' href='/contact' />
               <LoginBtn />

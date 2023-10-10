@@ -1,6 +1,6 @@
 import { useResetPassword } from '../../../../@core/hooks/useResetPassword';
-import Button from '../../button/Button';
-import Input from '../../inputs/Input';
+import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input"
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Text from '../../text/Text';
@@ -35,11 +35,10 @@ function FormResetPassword({ handleActionChange, resetToken }: any) {
       </Text>
       <Label name='email' label='Entrez un nouveau mot de passe' required />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.password}
         type='password'
         name='password'
-        label='Votre mot de passe'
         required
       />
 

@@ -17,15 +17,15 @@ interface ComponentProps {
  */
   function Title({ balise: Balise, children, className }: ComponentProps): JSX.Element {
 
-    const baseStyle: string = 'font-semibold uppercase text-primary';
+    const baseStyle: string = 'scroll-m-20 uppercase text-primary';
   
     const style: Record<string, string> = {
-      h1: `text-3xl md:text-4xl ${baseStyle} ${className}`,
-      h2: `text-2xl ${baseStyle} ${className}`,
-      h3: `text-xl ${baseStyle} ${className}`,
-      h4: `text-xl ${baseStyle} ${className}`,
-      h5: `text-xl ${baseStyle} ${className}`,
-      h6: `text-xl ${baseStyle} ${className}`,
+      h1: `text-4xl font-extrabold tracking-tight lg:text-5xl ${baseStyle} ${className}`,
+      h2: `pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 ${baseStyle} ${className}`,
+      h3: `text-2xl font-semibold tracking-tight ${baseStyle} ${className}`,
+      h4: `text-xl font-semibold tracking-tight ${baseStyle} ${className}`,
+      h5: `text-xl font-semibold tracking-tight ${baseStyle} ${className}`,
+      h6: `text-xl font-semibold tracking-tight ${baseStyle} ${className}`,
     };
   
     return <Balise className={style[Balise]}>{children}</Balise>;

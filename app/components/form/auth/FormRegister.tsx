@@ -1,6 +1,6 @@
 import { useLogin } from '../../../../@core/hooks/useLogin';
-import Button from '../../button/Button';
-import Input from '../../inputs/Input';
+import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input"
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Text from '../../text/Text';
@@ -22,31 +22,28 @@ function FormRegister({ handleActionChange }: any) {
 
       <Label name='pseudo' label='Votre pseudo' required />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.email}
         type='text'
         name='pseudo'
-        label='Votre pseudo'
         required
       />
 
       <Label name='email' label='Votre email' required />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.email}
         type='email'
         name='email'
-        label='Votre email'
         required
       />
 
       <Label name='Password' label='Votre mot de passe' required />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.password}
         type='password'
         name='password'
-        label='Votre mot de passe'
         required
       />
       {errors && <div className='text-red-400 mt-2'>{errors}</div>}

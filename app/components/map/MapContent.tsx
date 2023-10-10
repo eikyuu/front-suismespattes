@@ -48,8 +48,8 @@ function MapContent({
             offset={[120, 79]}
           >
             <Link
-              href={`/destination/${selectedDestination.slug}`}
-              className='block bg-white rounded-lg shadow-md w-96 h-40'
+              href={`/destination-chien-accepte/${selectedDestination.slug}`}
+              className='block bg-white rounded-md shadow-md w-96 h-40'
             >
               <div className='brightness-50'>
                 <BlurImage

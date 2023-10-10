@@ -1,7 +1,6 @@
 import { useSession, signOut } from 'next-auth/react';
-import Button from './Button';
+import { Button } from '@/components/ui/button';
 import { useHandleModal } from '../../../@core/hooks/useHandleModal';
-import { use, useEffect } from 'react';
 export default function Component() {
   const { data: session } = useSession();
 

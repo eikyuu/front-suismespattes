@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import React from 'react';
 import LoaderDestinations from './loader/LoaderDestinations';
-import Button from './button/Button';
+import { Button } from '@/components/ui/button';
 import CardDestination from './CardDestination';
 import Title from './text/Title';
 import { API_URL } from '../../@core/constants/global';

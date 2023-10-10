@@ -3,19 +3,40 @@
 import Image from 'next/image';
 import { useDestinationForm } from '../../../@core/hooks/useDestinationForm';
 import GreenContainer from '../GreenContainer';
-import Input from '../inputs/Input';
 import Label from '../inputs/Label';
 import MultiRadio from '../inputs/MultiRadio';
-import Textarea from '../inputs/Textarea';
 import Loader from '../loader/Loader';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { useFetch } from '../../../@core/hooks/useFetch';
 import { API_URL } from '../../../@core/constants/global';
-import toast from 'react-hot-toast';
-import { TypeCategory } from '../../../@core/enum/TypeCategory';
-import Button from '../button/Button';
+import { Input } from '@/components/ui/input';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import TitleUnderline from '../text/TitleUnderline';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import toast from 'react-hot-toast';
+import { Check, ChevronsUpDown } from 'lucide-react';
+
+import { cn } from '@/@core/utils/utils';
+import { Button } from '@/components/ui/button';
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+} from '@/components/ui/command';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 
 function FormDestination({ slug }: { slug?: string }) {
   const {
@@ -30,31 +51,23 @@ function FormDestination({ slug }: { slug?: string }) {
     loading,
   } = useDestinationForm(slug);
 
+
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState('');
+
   // FETCH CATEGORIES
   const { data: categories, error } = useFetch<any>(`${API_URL}category`);
-  const [typeCategory, setTypeCategory] = useState<any[]>([]);
 
-  useEffect(() => {
-
-    if (categories) {
-      const newTypeCategory = categories.reduce((acc: any[], category: any) => {
-        const type = category.type;
-        if (!acc.includes(type)) {
-          acc.push(type);
-        }
-        return acc;
-      }, []);
-      setTypeCategory(newTypeCategory);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categories]);
-
-  const filterCategories = (categories: any, typeCategory: keyof typeof TypeCategory) => {
-    return categories.filter((category: any) => category.type === typeCategory);
-  }
+  const handleSelect = (value: string, nameValue: string) => {
+    handleChange({
+      target: { name: nameValue, value },
+    } as React.ChangeEvent<HTMLSelectElement>);
+  };
 
   if (error) {
-    toast.error('Une erreur est survenue lors de la récupération des catégories');
+    toast.error(
+      'Une erreur est survenue lors de la récupération des catégories'
+    );
   }
 
   if (loading) {
@@ -68,20 +81,19 @@ function FormDestination({ slug }: { slug?: string }) {
       }}
     >
       <GreenContainer>
-        <TitleUnderline title='Description' balise='h2' className='!mt-0'/>
+        <TitleUnderline title='Description' balise='h2' className='!mt-0' />
 
         <div className='w-auto md:w-1/2'>
           <Label name='name' label='Nom de la destination' required />
           <Input
-            handleChange={handleChange}
+            onChange={handleChange}
             value={form.name}
-            errors={errors}
             type='text'
             name='name'
             maxLength={50}
-            label='Nom de la destination'
             required
           />
+          {errors && <div className='text-red-400'>{errors.name}</div>}
         </div>
 
         <Label
@@ -90,32 +102,57 @@ function FormDestination({ slug }: { slug?: string }) {
           required
         />
         <Textarea
-          maxLength='5000'
+          onChange={(e: any) => handleChange(e)}
           name='description'
-          handleChange={handleChange}
           value={form.description}
-          describedby='pour la description'
-          errors={errors}
+          maxLength={5000}
         />
+        {errors && <div className='text-red-400'>{errors.description}</div>}
 
         <Label name='category' label='Type de destination' required />
-        <select
-          value={form.category.id}
-          required
-          name='category'
-          onChange={(e) => handleChange(e)}
-          id='categories'
-          className='mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5'
-        >
-          <option value=''>Sélectionnez un type de destination</option>
-          {typeCategory && typeCategory.map((type: keyof typeof TypeCategory, index: number) => (
-            <optgroup key={index} label={TypeCategory[type]}>
-              {categories && filterCategories(categories, type).map((category: any) => (
-                <option key={category.id} value={category.id}>{category.name}</option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant='outline'
+              role='combobox'
+              aria-expanded={open}
+              className='w-[250px] justify-between'
+            >
+              {value
+                ? categories.find((category: any) => category.name.toLowerCase() === value).name
+                : 'Choissisez une categorie'}
+              <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[250px] p-0 overflow-auto max-h-[20rem]'>
+            <Command>
+              <CommandInput placeholder='Rechercher une catégorie' />
+              <CommandEmpty>Aucune catégorie trouvé.</CommandEmpty>
+              <CommandGroup>
+                {categories &&
+                  categories.map((category: any) => (
+                    <CommandItem
+                      key={category.id}
+                      onSelect={(currentValue) => {
+                        handleSelect(category.id, 'category')
+                        setValue(currentValue === value ? '' : currentValue);
+                        setOpen(false);
+                      }}
+                    >
+                      <Check
+                        className={cn(
+                          'mr-2 h-4 w-4',
+                          value === category.name ? 'opacity-100' : 'opacity-0'
+                        )}
+                      />
+                      {category.name}
+                    </CommandItem>
+                  ))}
+              </CommandGroup>
+            </Command>
+          </PopoverContent>
+        </Popover>
 
         <div className=' flex flex-wrap justify-between'>
           <div className='w-full'>
@@ -220,84 +257,78 @@ function FormDestination({ slug }: { slug?: string }) {
         <div className='w-full md:w-1/2 '>
           <Label name='street' label='N et nom de la rue' required />
           <Input
-            handleChange={handleChange}
+            onChange={handleChange}
             value={form.street}
-            errors={errors}
             type='text'
             name='street'
             maxLength={50}
-            label='N et nom de la rue'
             required
           />
+          {errors && <div className='text-red-400'>{errors.street}</div>}
         </div>
 
         <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
           <div className='md:mr-5'>
             <Label name='postalCode' label='Code postal' required />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.postalCode}
-              errors={errors}
               type='text'
               name='postalCode'
               maxLength={5}
-              label='Code postal'
               required
             />
+            {errors && <div className='text-red-400'>{errors.postalCode}</div>}
           </div>
           <div className=''>
             <Label name='city' label='Ville' required />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.city}
-              errors={errors}
               type='text'
               name='city'
               maxLength={50}
-              label='Ville'
               required
             />
+            {errors && <div className='text-red-400'>{errors.city}</div>}
           </div>
         </div>
 
         <Label name='country' label='Pays' required />
-        <select
+        <Select
+          onValueChange={(e) => handleSelect(e, 'country')}
           value={form.country}
-          required
           name='country'
-          onChange={(e) => handleChange(e)}
-          id='countries'
-          className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit p-2.5'
+          required
         >
-          <option value=''>Choissisez un pays</option>
-          <option value='US'>United States</option>
-          <option value='CA'>Canada</option>
-          <option value='FR'>France</option>
-          <option value='DE'>Germany</option>
-        </select>
+          <SelectTrigger className='w-[180px]'>
+            <SelectValue placeholder='Choissisez un pays' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='FR'>France</SelectItem>
+          </SelectContent>
+        </Select>
 
         <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
           <div className='md:mr-5'>
             <Label name='latitude' label='Latitude' />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.latitude}
-              errors={errors}
               type='number'
               name='latitude'
-              label='Latitude'
             />
+            {errors && <div className='text-red-400'>{errors.latitude}</div>}
           </div>
           <div className=''>
             <Label name='longitude' label='Longitude' />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.longitude}
-              errors={errors}
               type='number'
               name='longitude'
-              label='Longitude'
             />
+            {errors && <div className='text-red-400'>{errors.longitude}</div>}
           </div>
         </div>
       </GreenContainer>
@@ -317,13 +348,9 @@ function FormDestination({ slug }: { slug?: string }) {
           label='Ajouter des photos de la destination'
           required
         />
-        <input
+        <Input
+          className='w-auto'
           onChange={(e) => handleFileChange(e)}
-          className='block w-full text-sm text-white
-              file:mr-4 file:py-2 file:px-4 file:rounded-lg
-              file:border-0 file:text-sm file:font-semibold
-              file:bg-white file:text-black
-              hover:file:bg-tertiary'
           id='multiple_files'
           type='file'
           accept='image/png, image/jpeg, image/jpg'
@@ -338,7 +365,7 @@ function FormDestination({ slug }: { slug?: string }) {
               <React.Fragment key={index}>
                 <Image
                   key={index}
-                  className='mt-5 md:mr-5 rounded-lg shadow-lg h-60 w-60 object-cover object-center'
+                  className='mt-5 md:mr-5 rounded-md shadow-lg h-60 w-60 object-cover object-center'
                   src={URL.createObjectURL(file)}
                   alt={file.name}
                   width={300}
@@ -349,7 +376,7 @@ function FormDestination({ slug }: { slug?: string }) {
                   onClick={() => deleteImage(index)}
                 >
                   <p className='-mt-1 text-xl'>
-                  <TrashIcon className='w-5 h-5' />
+                    <TrashIcon className='w-5 h-5' />
                   </p>
                 </div>
               </React.Fragment>
@@ -358,10 +385,7 @@ function FormDestination({ slug }: { slug?: string }) {
         )}
       </GreenContainer>
 
-      <Button
-        className='mt-10 !w-24 ' 
-        type='submit'
-      >
+      <Button className='mt-10 !w-24 ' type='submit'>
         {submit ? <Loader /> : slug ? 'Modifier' : 'Ajouter'}
       </Button>
     </form>

@@ -1,10 +1,10 @@
 import { ACTION } from '../../../../@core/constants/action-auth';
 import { useConfirmCode } from '../../../../@core/hooks/useConfirmCode';
-import Button from '../../button/Button';
-import Input from '../../inputs/Input';
+import { Button } from '@/components/ui/button';
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Title from '../../text/Title';
+import { Input } from "@/components/ui/input"
 
 function FormConfirmCode({ handleActionChange }: any) {
   const { loading, form, errors, handleChange, handleSubmit } =
@@ -44,11 +44,10 @@ function FormConfirmCode({ handleActionChange }: any) {
       </p>
       <Label name='email' label='Entrez le code de confirmation' required />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.resetToken}
         type='text'
         name='resetToken'
-        label='Code de confirmation'
         required
       />
       {errors && <div className='text-red-400 mt-2'>{errors}</div>}

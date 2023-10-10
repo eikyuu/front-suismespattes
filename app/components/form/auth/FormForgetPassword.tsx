@@ -1,7 +1,7 @@
 import { ACTION } from '../../../../@core/constants/action-auth';
 import { useForgetPassword } from '../../../../@core/hooks/useForgetPassword';
-import Button from '../../button/Button';
-import Input from '../../inputs/Input';
+import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input"
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
 import Text from '../../text/Text';
@@ -45,11 +45,10 @@ function FormForgetPassword({ handleActionChange }: any) {
         required
       />
       <Input
-        handleChange={handleChange}
+        onChange={handleChange}
         value={form.email}
         type='email'
         name='email'
-        label='Votre email'
         required
       />
       {errors && <div className='text-red-400 mt-2'>{errors}</div>}

@@ -9,7 +9,7 @@ function MultiRadio({
 })  {
   return (
 
-<ul className='w-full md:w-fit items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex'>
+<ul className='w-full md:w-fit items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-md sm:flex'>
 {options.map((option, i) => (
   <li
     key={i}
@@ -23,7 +23,7 @@ function MultiRadio({
         type='radio'
         name={option.name}
         onChange={handleChange}
-        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5'
+        className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-auto p-2.5'
         required
         value={option.value} 
         checked={form[option.name] === option.value}

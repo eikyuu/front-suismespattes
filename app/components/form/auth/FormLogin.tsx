@@ -1,10 +1,10 @@
-import Button from '../../button/Button';
-import Input from '../../inputs/Input';
+import { Button } from '@/components/ui/button';
 import Label from '../../inputs/Label';
 import { useLogin } from '../../../../@core/hooks/useLogin';
 import Loader from '../../loader/Loader';
 import Title from '../../text/Title';
 import { ACTION } from '../../../../@core/constants/action-auth';
+import { Input } from "@/components/ui/input";
 
 function FormLogin({handleActionChange}: any) {
 
@@ -12,7 +12,6 @@ function FormLogin({handleActionChange}: any) {
 
     return ( 
         <form
-          className=''
           onSubmit={(e) => {
             handleSubmit(e);
           }}
@@ -22,20 +21,20 @@ function FormLogin({handleActionChange}: any) {
           </Title>  
           <Label name='email' label='Votre email' required />
           <Input
-            handleChange={handleChange}
+            className='text-black'
+            onChange={handleChange}
             value={form.email}
-            type='email'
+            type='text'
             name='email'
-            label='Votre email'
             required
           />
           <Label name='Password' label='Votre mot de passe' required />
           <Input
-            handleChange={handleChange}
+            className='text-black'
+            onChange={handleChange}
             value={form.password}
             type='password'
             name='password'
-            label='Votre mot de passe'
             required
           />
 

@@ -6,12 +6,13 @@ import toast from 'react-hot-toast';
 import { Contact } from '../../../@core/types/Contact';
 import GreenContainer from '../../components/GreenContainer';
 import Label from '../../components/inputs/Label';
-import Input from '../../components/inputs/Input';
 import Loader from '../../components/loader/Loader';
-import Textarea from '../../components/inputs/Textarea';
 import { postMessage } from '../../../@core/services/contactService';
-import Button from '../../components/button/Button';
+import { Button } from '@/components/ui/button';
 import { useHandleChange } from '../../../@core/hooks/useHandleChange';
+import { Textarea } from "@/components/ui/textarea"
+import { Input } from "@/components/ui/input"
+
 
 export default function Page() {
   const [form, setForm] = useState<any>({
@@ -41,12 +42,7 @@ export default function Page() {
       console.error(error);
       toast.error('Une erreur est survenue lors de l\'envoi du message');
     } finally {
-      setSubmit(false);
-      setForm({
-        email: '',
-        subject: '',
-        message: '',
-      })
+      setSubmit(false); 
       setErrors({});
     }
 
@@ -115,36 +111,30 @@ export default function Page() {
           <div className='w-auto md:w-1/2 mx-auto'>
             <Label name='email' label='Votre email' required />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.email}
-              errors={errors}
               type='email'
               name='email'
               maxLength={50}
-              label='Votre email'
               required
             />
 
             <Label name='subject' label='Objet de votre message' required />
             <Input
-              handleChange={handleChange}
+              onChange={handleChange}
               value={form.subject}
-              errors={errors}
               type='text'
               name='subject'
               maxLength={50}
-              label='Objet de votre message'
               required
             />
 
             <Label name='message' label='Votre message' required />
             <Textarea
-              maxLength='1000'
+              maxLength={1000}
               name='message'
-              handleChange={handleChange}
+              onChange={(e: any) => handleChange(e)}
               value={form.message}
-              describedby='pour votre message'
-              errors={errors}
             />
           </div>
         </GreenContainer>

@@ -39,7 +39,7 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
           ))
         ) : (
           <Image
-            className='rounded-lg object-cover h-144 w-full'
+            className='rounded-md object-cover h-144 w-full'
             src={'/images/placeholder.webp'}
             width={500}
             height={500}
@@ -69,7 +69,7 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
           ))
         ) : (
           <Image
-            className='rounded-lg object-cover h-36'
+            className='rounded-md object-cover h-36'
             src={'/images/placeholder.webp'}
             width={500}
             height={500}

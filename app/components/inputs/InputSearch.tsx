@@ -1,6 +1,6 @@
 function InputSearch() {
     return ( 
-        <input className='rounded-lg' type="search" />
+        <input className='rounded-md' type="search" />
      );
 }
 

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import BlurImage from './blurImage/BlurImage';
-import Button from './button/Button';
+import { Button } from '@/components/ui/button';
 import { Country } from '../../@core/enum/Country';
 import Text from './text/Text';
 //import { HeartIcon } from '@heroicons/react/24/outline';
@@ -34,7 +34,7 @@ function CardDestination({
 
   return (
     <Link
-      href={`destination/${destination.slug}`}
+      href={`destination-chien-accepte/${destination.slug}`}
       className='flex flex-col justify-between w-full max-w-md mb-4 xs:last:mb-0 md:w-72 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
       <picture className='mb-2'>
@@ -81,7 +81,7 @@ function CardDestination({
           {destination.category.name}
         </Text>
       </div>
-      <Button>DÉCOUVRIR</Button>
+      <Button variant='default' className='w-max' >DÉCOUVRIR</Button>
     </Link>
   );
 }

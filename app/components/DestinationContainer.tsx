@@ -7,12 +7,12 @@ import LoaderDestination from './loader/LoaderDestination';
 import { useSession } from 'next-auth/react';
 import MapContainer from './map/MapContainer';
 import Link from 'next/link';
-import Button from './button/Button';
 import SwiperContainer from './SwiperContainer';
 import Title from './text/Title';
 import BlocTextWithspan from './text/BlocTextWithSpan';
 import Text from './text/Text';
 import { Country } from '../../@core/enum/Country';
+import { Button } from '@/components/ui/button';
 
 function DestinationContainer({slug }: { slug: string }) {
   const url = `${API_URL}destination/${slug}`;
@@ -102,7 +102,7 @@ function DestinationContainer({slug }: { slug: string }) {
         <div className='flex justify-end items-end pt-10 w-11/12 mx-auto '>
           <Link
             className='block relative top-0 right-0'
-            href={`/destination/${data.slug}/edit`}
+            href={`/destination-chien-accepte/${data.slug}/edit`}
           >
             <Button>
               MODIFIER
