@@ -68,7 +68,7 @@ function LastDestinations(): JSX.Element {
             </Swiper>
           </div>
           <div className='text-center'>
-            <Link className='outline-none' href='/toutes-les-destinations'>
+            <Link className='outline-none' href='/destinations-chien-accepte'>
               <Button>
                 Voir toutes les destinations
               </Button>
@@ -90,7 +90,7 @@ function LastDestinations(): JSX.Element {
             ))}
           </div>
           <div className='text-center'>
-            <Link className='outline-none' href='/toutes-les-destinations'>
+            <Link className='outline-none' href='/destinations-chien-accepte'>
               <Button>
                 Voir toutes les destinations
               </Button>
