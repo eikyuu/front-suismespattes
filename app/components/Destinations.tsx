@@ -106,7 +106,7 @@ function Destinations() {
   };
 
   return (
-    <section className='h-full flex flex-col justify-evenly pt-10 w-11/12 mx-auto'>
+    <section className='h-full flex flex-col justify-evenly pt-10 mx-auto'>
       <Title balise='h1' className='text-center'>
         Toutes les destinations
       </Title>

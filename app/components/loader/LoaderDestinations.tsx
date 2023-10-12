@@ -2,7 +2,7 @@ import React from 'react';
 
 function LoaderDestinations() {
   return (
-    <div className='container mx-auto flex flex-col flex-wrap md:flex-row justify-between animate-pulse'>
+    <>
 
       <div className='flex flex-col space-y-3 mb-5'>
         <div className="rounded-md bg-slate-300 h-80 w-full md:w-72"></div>
@@ -45,7 +45,7 @@ function LoaderDestinations() {
       </div>
 
 
-    </div>
+    </>
   );
 }
 
