@@ -46,11 +46,11 @@ function LastDestinations(): JSX.Element {
   return (
     <>
       {isMobile ? (
-        <section className='h-full w-11/12 mx-auto  pt-10 pb-10'>
-          <Title balise='h2'>
+        <section className='h-full pt-10 pb-10'>
+          <Title className='text-center' balise='h2'>
             Les dernières destinations
           </Title>
-          <div className='container mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
+          <div className='w-11/12 mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
           {dogDestination.length === 0 && <LoaderDestinations />}
 
             <Swiper
@@ -76,11 +76,11 @@ function LastDestinations(): JSX.Element {
           </div>
         </section>
       ) : (
-        <section className='h-full xl:h-166 pt-10 pb-10 w-11/12 mx-auto flex flex-col justify-center bg-map bg-center bg-cover bg-no-repeat bg-opacity-80'>
-          <Title balise='h2' className='text-center'>
+        <section className='container h-full mx-auto flex flex-col flex-wrap justify-center w-11/12 md:w-full xl:h-166 pt-10 pb-10 bg-map bg-center bg-cover bg-no-repeat bg-opacity-80'>
+          <Title balise='h2' className='text-center mb-10'>
             Les dernières destinations
           </Title>
-          <div className='container mx-auto mt-10 mb-10 flex flex-col flex-wrap justify-between md:flex-row'>
+          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center text-center place-items-center'>
           {dogDestination.length === 0 && <LoaderDestinations />}
             {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
               <CardDestination

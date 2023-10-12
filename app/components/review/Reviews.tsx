@@ -12,7 +12,7 @@ function Reviews({reviews}: any): JSX.Element {
       
       {reviews.length === 0 && <LoaderReviews />}
 
-      <div className='container mx-auto w-11/12 flex flex-col items-center justify-between md:flex-row'>
+      <div className='container mx-auto flex flex-col items-center justify-between lg:flex-row'>
         {reviews.slice(0, 3).map((review: any) => (
           <div key={review.id} className='mb-10 last:mb-0 md:mb-0'>
             <Review  name={review.name} content={review.content} image={review.image} />

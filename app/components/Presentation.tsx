@@ -4,13 +4,13 @@ import Title from './text/Title';
 
 function Presentation() {
   return (
-    <section className='container h-full pt-10 pb-10 w-11/12 md:w-full mx-auto flex flex-col justify-center md:h-160 md:pt-0 md:pb-0'>
-      <Title balise='h1' className='text-center'>
+    <section className='container h-full pt-10 pb-10 w-11/12 md:w-full mx-auto flex flex-col flex-wrap justify-center lg:h-160 lg:pt-0 lg:pb-0'>
+      <Title balise='h1' className='text-center mb-10'>
         Suis mes pattes, une plateforme collaborative gratuite pour voyager avec
         ton chien !
       </Title>
-      <div className='w-11/12 mx-auto flex flex-col items-center space-y-4 md:space-y-0 justify-between text-center pt-10 md:flex-row'>
-        <div className='flex flex-col xl:h-full justify-between md:mr-10 last:mr-0 md:w-1/4'>
+      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center text-center'>
+        <div className='flex flex-col xl:h-full justify-between'>
           <Image
             src='/images/head-dog-1.webp'
             alt='logo du site Suis mes pattes'
@@ -24,7 +24,7 @@ function Presentation() {
           />
           {/* <p className='text-white'>Prochainement</p> */}
         </div>
-        <div className=' flex flex-col xl:h-full justify-between md:mr-10 last:mr-0 md:w-1/4'>
+        <div className=' flex flex-col xl:h-full justify-between'>
           <Image
             src='/images/head-dog-2.webp'
             alt='logo du site Suis mes pattes'
@@ -38,7 +38,7 @@ function Presentation() {
           />
           <p>Prochainement</p>
         </div>
-        <div className='flex flex-col xl:h-full justify-between md:mr-10 last:mr-0 md:w-1/4'>
+        <div className='flex flex-col xl:h-full justify-between'>
           <Image
             src='/images/head-dog-3.webp'
             alt='logo du site Suis mes pattes'
@@ -52,7 +52,7 @@ function Presentation() {
           />
           <p>Prochainement</p>
         </div>
-        <div className='flex flex-col xl:h-full  justify-between md:mr-10 last:mr-0 md:w-1/4'>
+        <div className='flex flex-col xl:h-full  justify-between'>
           <Image
             src='/images/head-dog-4.webp'
             alt='logo du site Suis mes pattes'
