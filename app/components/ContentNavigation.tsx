@@ -52,12 +52,12 @@ function ContentNavigation() {
               Suis mes pattes
             </span>
           </Link>
-          <div className='flex md:order-2'>
+          <div className='flex lg:order-2'>
             <button
               onClick={handleMenuClick}
               data-collapse-toggle='navbar'
               type='button'
-              className='inline-flex items-center p-2 text-white rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
+              className='inline-flex items-center p-2 text-white rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
               aria-controls='navbar'
               aria-expanded='false'
             >
@@ -78,12 +78,12 @@ function ContentNavigation() {
             </button>
           </div>
           <div
-            className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
+            className={`items-center justify-between w-full lg:flex lg:w-auto lg:order-1 ${
               navbar ? '' : 'hidden'
             }`}
             id='navbar'
           >
-            <ul className='flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-md bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-primary'>
+            <ul className='flex flex-col items-center p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary'>
               <LiNav text='Accueil' href='/' />
               <LiNav
                 text='Destinations'
