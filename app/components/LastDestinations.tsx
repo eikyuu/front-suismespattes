@@ -80,7 +80,7 @@ function LastDestinations(): JSX.Element {
           <Title balise='h2' className='text-center mb-10'>
             Les dernières destinations
           </Title>
-          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center text-center place-items-center'>
+          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center place-items-center'>
           {dogDestination.length === 0 && <LoaderDestinations />}
             {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
               <CardDestination
