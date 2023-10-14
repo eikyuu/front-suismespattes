@@ -132,7 +132,7 @@ function FormDestination({ slug }: { slug?: string }) {
               variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='w-[260px] justify-between capitalize'
+              className='w-full md:w-[260px] justify-between capitalize'
             >
               {value
                 ? categories.find(
@@ -142,7 +142,7 @@ function FormDestination({ slug }: { slug?: string }) {
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[260px] p-0 overflow-auto max-h-[20rem]'>
+          <PopoverContent className='w- md:w-[260px] p-0 overflow-auto max-h-[20rem]'>
             <Command>
               <CommandInput placeholder='Rechercher une catégorie' />
               <CommandEmpty>Aucune catégorie trouvé.</CommandEmpty>
@@ -274,7 +274,7 @@ function FormDestination({ slug }: { slug?: string }) {
       <GreenContainer>
         <TitleUnderline title='Localisation' balise='h2' className='!mt-0' />
 
-        <div className='w-full md:w-1/2 '>
+        <div className='w-full '>
           <Label name='street' label='N et nom de la rue' required />
           <Input
             onChange={handleChange}
@@ -287,7 +287,7 @@ function FormDestination({ slug }: { slug?: string }) {
           {errors && <div className='text-red-400'>{errors.street}</div>}
         </div>
 
-        <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
+        <div className='w-full flex flex-col md:flex-row'>
           <div className='md:mr-5'>
             <Label name='postalCode' label='Code postal' required />
             <Input
@@ -309,7 +309,7 @@ function FormDestination({ slug }: { slug?: string }) {
                   variant='outline'
                   role='combobox'
                   aria-expanded={openCities}
-                  className='w-[250px] justify-between capitalize'
+                  className='w-full md:w-[260px] justify-between capitalize'
                 >
                   {valueCities
                     ? valueCities
@@ -317,7 +317,7 @@ function FormDestination({ slug }: { slug?: string }) {
                   <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className='w-[250px] p-0 overflow-auto max-h-[20rem]'>
+              <PopoverContent className='w-full md:w-[260px] p-0 overflow-auto max-h-[20rem]'>
                 <Command>
                   <CommandInput placeholder='Rechercher une ville' />
                   <CommandEmpty>Renseigner un code postal.</CommandEmpty>
@@ -362,7 +362,7 @@ function FormDestination({ slug }: { slug?: string }) {
           name='country'
           required
         >
-          <SelectTrigger className='w-[180px]'>
+          <SelectTrigger className='w-full md:w-[180px]'>
             <SelectValue placeholder='Choissisez un pays' />
           </SelectTrigger>
           <SelectContent>
