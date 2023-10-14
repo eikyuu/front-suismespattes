@@ -62,9 +62,9 @@ function MapContent({
               <div className='absolute bottom-0 left-0 p-4 text-white'>
                 <p className='font-bold lowercase first-letter:uppercase'>{selectedDestination.name}</p>
                 <p className='text-sm'>
-                  &#x2691; {selectedDestination.street} {selectedDestination.postalCode}
+                  &#x2691; {selectedDestination.street} {selectedDestination.city.postalCode}
                 </p>
-                <p className='text-sm uppercase'>{selectedDestination.city} {Country[selectedDestination.country]}</p>
+                <p className='text-sm uppercase'>{selectedDestination.city.label} {Country[selectedDestination.country]}</p>
               </div>
             </Link>
           </Overlay>
