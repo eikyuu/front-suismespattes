@@ -139,7 +139,7 @@ function DestinationContainer({slug }: { slug: string }) {
               <p className='mt-4'>
                 Adresse de la destination :{' '}
                 <span className='font-semibold'>
-                  {data.street}, {data.postalCode}, <span className='uppercase'>{data.city} {Country[data.country]}</span> 
+                  {data.street}, {data.city.postalCode}, <span className='uppercase'>{data.city.label} {Country[data.country]}</span> 
                 </span>
               </p>
               <p className='mt-4'>

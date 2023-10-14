@@ -38,7 +38,7 @@ function MapContainer({ title, slug }: { title: string; slug?: string }) {
     try {
       const response = await fetch(urlall);
       const data = await response.json();
-      setDogDestination((prevItems) => [...prevItems, ...data.data]);
+      setDogDestination((prevItems) => [...prevItems, ...data.destinations]);
     } catch (error) {
       toast.error('Une erreur est survenue');
     }

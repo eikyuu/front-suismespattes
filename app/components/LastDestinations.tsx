@@ -23,7 +23,7 @@ function LastDestinations(): JSX.Element {
     try {
       const response = await fetch(url);
       const data = await response.json();
-      setDogDestination(data.data);
+      setDogDestination(data.destinations);
     } catch (error) {
      toast.error('Une erreur est survenue'); 
     }

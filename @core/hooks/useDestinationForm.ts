@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Destination, DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
@@ -6,6 +5,8 @@ import { fetchDestinationBySlug, postDestination, updateDestination, deleteDesti
 import { useRouter } from 'next/navigation'
 import { formatSlug, userFromSession } from '../utils/utils';
 import { useHandleChange } from './useHandleChange';
+import { fetchCityByCodePostal } from '../services/cityService';
+import { set } from 'lodash';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -13,7 +14,10 @@ export function useDestinationForm(slug?: string) {
   const [form, setForm] = useState<any>({
     name: '',
     description: '',
-    city: '',
+    city: {
+      label: '',
+      postalCode: '',
+    },
     postalCode: '',
     street: '',
     country: '',
@@ -27,6 +31,7 @@ export function useDestinationForm(slug?: string) {
     category: '',
     user: '',
   });
+  const [cities, setCities] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
   const [submit, setSubmit] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
@@ -61,6 +66,20 @@ export function useDestinationForm(slug?: string) {
     };
   }
 
+
+  const handleChangeCodePostal = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange(e);
+    if (e.target.value.length === 5) {
+     try {
+        const cities = await fetchCityByCodePostal(e.target.value);
+        setCities(cities);
+    } catch (error) {
+      console.error('Erreur lors de la récupération de la ville par code postal:', error);
+      toast.error('Une erreur est survenue lors de la récupération de la ville par code postal');
+    }
+  }
+  }
+
   useEffect(() => {
     if (slug) {
       fetchDestination(slug);
@@ -87,6 +106,7 @@ export function useDestinationForm(slug?: string) {
       const destination: Destination = await fetchDestinationBySlug(slug);
       setForm({
         ...destination,
+        postalCode: destination.city.postalCode,
         waterPoint: destination.waterPoint ? 'YES' : 'NO',
         processionaryCaterpillarAlert: destination.processionaryCaterpillarAlert ? 'YES' : 'NO',
         cyanobacteriaAlert: destination.cyanobacteriaAlert ? 'YES' : 'NO',
@@ -105,10 +125,16 @@ export function useDestinationForm(slug?: string) {
     }
   };
 
-
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+
+    if (form.category === '') {
+      setErrors({
+        ...errors,
+        category: 'La catégorie est obligatoire',
+      })
+      return;
+    }
 
     setSubmit(true);
 
@@ -128,7 +154,7 @@ export function useDestinationForm(slug?: string) {
         await Promise.all([updatePromise, deleteDestinationPromise, uploadPromise]);
 
         toast.success('Votre promenade a bien été modifiée');
-        router.push(`/destination-chien-accepte/${formatSlug(form.name)}`);
+        router.push(`/destination-chien-accepte/${formatSlug(form.name.trim())}`);
       } else {
         const res = await postDestination(formTemp(form));
 
@@ -140,8 +166,10 @@ export function useDestinationForm(slug?: string) {
           setForm({
             name: '',
             description: '',
-            city: '',
-            postalCode: '',
+            city: {
+              label: '',
+              postalCode: '',
+            },
             street: '',
             country: '',
             latitude: '',
@@ -157,7 +185,7 @@ export function useDestinationForm(slug?: string) {
 
           setImages([]);
           setErrors({});
-          router.push(`/destination-chien-accepte/${formatSlug(form.name)}`);
+          router.push(`/destination-chien-accepte/${formatSlug(form.name.trim())}`);
         } else {
           toast.error(`${res.error.message}`);
         }
@@ -250,13 +278,13 @@ export function useDestinationForm(slug?: string) {
       const { label, minLength, maxLength } = validationRules[key as keyof typeof validationRules];
       const fieldValue = form[key as keyof DestinationFormPick];
 
-      if (fieldValue.length === 0) {
+      if (typeof fieldValue === 'string' && fieldValue.length === 0) {
         updatedErrors = { ...updatedErrors, [key]: `Le ${label} est obligatoire` };
         isValid = false;
-      } else if (fieldValue.length < minLength) {
+      } else if (typeof fieldValue === 'string' && fieldValue.length < minLength) {
         updatedErrors = { ...updatedErrors, [key]: `Le ${label} doit contenir au minimum ${minLength} caractères` };
         isValid = false;
-      } else if (fieldValue.length > maxLength) {
+      } else if (typeof fieldValue === 'string' && fieldValue.length > maxLength) {
         updatedErrors = { ...updatedErrors, [key]: `Le ${label} doit contenir au maximum ${maxLength} caractères` };
         isValid = false;
       }
@@ -267,5 +295,5 @@ export function useDestinationForm(slug?: string) {
     return isValid;
   };
 
-  return { form, submit, handleChange, handleSubmit, handleFileChange, deleteImage, errors, images, loading };
+  return { form, submit, handleChange, handleSubmit, handleFileChange, handleChangeCodePostal, deleteImage, errors, images, loading, cities};
 }

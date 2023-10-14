@@ -6,7 +6,7 @@ export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, value, ...props }, ref) => {
+  ({ className, ...props }, ref) => {
     return (
       <div className='flex justify-end'>
         <textarea
@@ -18,13 +18,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           {...props}
         />
 
-        {props.maxLength && typeof value === 'string' && (
+        {props.maxLength && typeof props.value === 'string' && (
           <p
             className={`absolute mt-2 mr-2 ${
-              value.length > props.maxLength ? 'text-red-500' : 'text-slate-400'
+              props.value.length > props.maxLength ? 'text-red-500' : 'text-slate-400'
             }`}
           >
-            {value.length} / {props.maxLength}
+            {props.value.length} / {props.maxLength}
           </p>
         )}
       </div>

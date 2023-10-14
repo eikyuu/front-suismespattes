@@ -80,7 +80,7 @@ export const fetchDestinationBySlug = async (slug: string) => {
 
 export const uploadImages = async (files: any, form : any) => {
   try {
-    const uploadPromises = files.map((file: any) => postImages(file, form.name));
+    const uploadPromises = files.map((file: any) => postImages(file, form.name.trim()));
     await Promise.all(uploadPromises);
   } catch (err) {
     console.error(err);

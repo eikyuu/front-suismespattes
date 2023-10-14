@@ -10,7 +10,7 @@ function Presentation() {
         ton chien !
       </Title>
       <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center text-center'>
-        <div className='flex flex-col xl:h-full justify-between'>
+        <div className='flex flex-col xl:h-full'>
           <Image
             src='/images/head-dog-1.webp'
             alt='logo du site Suis mes pattes'

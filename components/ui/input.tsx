@@ -7,9 +7,8 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, value, ...props }, ref) => {
+  ({ className, type, ...props }, ref) => {
     const [typeValue, setTypeValue] = React.useState(type);
-
     return (
       <div className={`flex ${type === 'file' ? '' : 'justify-end'}`}>
         <input
@@ -21,13 +20,13 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           {...props}
         />
-        {props.maxLength && typeof value === 'string' && (
+        {props.maxLength && typeof props.value === 'string' && (
           <p
             className={`absolute mt-2 mr-2 ${
-              value.length > props.maxLength ? 'text-red-500' : 'text-slate-400'
+              props.value.length > props.maxLength ? 'text-red-500' : 'text-slate-400'
             }`}
           >
-            {value.length} / {props.maxLength}
+            {props.value.length} / {props.maxLength}
           </p>
         )}
 

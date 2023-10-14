@@ -10,7 +10,10 @@ function CardDestination({
 }: {
   destination: {
     name: string;
-    city: string;
+    city: {
+      label: string;
+      departmentCode: string;
+    }
     country: keyof typeof Country;
     postalCode: string;
     slug: string;
@@ -72,7 +75,7 @@ function CardDestination({
           type='gray'
           className='uppercase'
         >
-          {`${destination.city}, (${destination.postalCode.slice(0, 2 )}), ${Country[destination.country]}`}
+          {`${destination.city.label}, (${destination.city.departmentCode}), ${Country[destination.country]}`}
         </Text>
         <Text 
           type='gray' 

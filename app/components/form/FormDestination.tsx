@@ -43,20 +43,35 @@ function FormDestination({ slug }: { slug?: string }) {
     handleSubmit,
     handleChange,
     handleFileChange,
+    handleChangeCodePostal,
     deleteImage,
     form,
     errors,
     submit,
     images,
     loading,
+    cities,
   } = useDestinationForm(slug);
 
-
   const [open, setOpen] = React.useState(false);
+  const [openCities, setOpenCities] = React.useState(false);
+  const [valueCities, setValueCities] = React.useState('');
   const [value, setValue] = React.useState('');
 
   // FETCH CATEGORIES
   const { data: categories, error } = useFetch<any>(`${API_URL}category`);
+
+  useEffect(() => {
+    if (form.category.name) {
+      setValue(form.category.name);
+    }
+  }, [form.category.name]);
+
+  useEffect(() => {
+    if (form.city.label) {
+      setValueCities(form.city.label);
+    }
+  }, [form.city.label]);
 
   const handleSelect = (value: string, nameValue: string) => {
     handleChange({
@@ -86,7 +101,7 @@ function FormDestination({ slug }: { slug?: string }) {
         <div className='w-auto md:w-1/2'>
           <Label name='name' label='Nom de la destination' required />
           <Input
-            onChange={handleChange}
+            onChange={(e: any) => handleChange(e)}
             value={form.name}
             type='text'
             name='name'
@@ -117,15 +132,17 @@ function FormDestination({ slug }: { slug?: string }) {
               variant='outline'
               role='combobox'
               aria-expanded={open}
-              className='w-[250px] justify-between'
+              className='w-[260px] justify-between capitalize'
             >
               {value
-                ? categories.find((category: any) => category.name.toLowerCase() === value).name
+                ? categories.find(
+                    (category: any) => category.name === value
+                  ).name
                 : 'Choissisez une categorie'}
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[250px] p-0 overflow-auto max-h-[20rem]'>
+          <PopoverContent className='w-[260px] p-0 overflow-auto max-h-[20rem]'>
             <Command>
               <CommandInput placeholder='Rechercher une catégorie' />
               <CommandEmpty>Aucune catégorie trouvé.</CommandEmpty>
@@ -133,9 +150,10 @@ function FormDestination({ slug }: { slug?: string }) {
                 {categories &&
                   categories.map((category: any) => (
                     <CommandItem
-                      key={category.id}
+                      className='capitalize'
+                      key={category.name}
                       onSelect={(currentValue) => {
-                        handleSelect(category.id, 'category')
+                        handleSelect(category.id, 'category');
                         setValue(currentValue === value ? '' : currentValue);
                         setOpen(false);
                       }}
@@ -153,6 +171,8 @@ function FormDestination({ slug }: { slug?: string }) {
             </Command>
           </PopoverContent>
         </Popover>
+        {errors && <div className='text-red-400'>{errors.category}</div>}
+
 
         <div className=' flex flex-wrap justify-between'>
           <div className='w-full'>
@@ -271,7 +291,7 @@ function FormDestination({ slug }: { slug?: string }) {
           <div className='md:mr-5'>
             <Label name='postalCode' label='Code postal' required />
             <Input
-              onChange={handleChange}
+              onChange={handleChangeCodePostal}
               value={form.postalCode}
               type='text'
               name='postalCode'
@@ -282,14 +302,55 @@ function FormDestination({ slug }: { slug?: string }) {
           </div>
           <div className=''>
             <Label name='city' label='Ville' required />
-            <Input
-              onChange={handleChange}
-              value={form.city}
-              type='text'
-              name='city'
-              maxLength={50}
-              required
-            />
+
+            <Popover open={openCities} onOpenChange={setOpenCities}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant='outline'
+                  role='combobox'
+                  aria-expanded={openCities}
+                  className='w-[250px] justify-between capitalize'
+                >
+                  {valueCities
+                    ? valueCities
+                    : 'Choissisez une ville'}
+                  <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className='w-[250px] p-0 overflow-auto max-h-[20rem]'>
+                <Command>
+                  <CommandInput placeholder='Rechercher une ville' />
+                  <CommandEmpty>Renseigner un code postal.</CommandEmpty>
+                  <CommandGroup>
+                    {cities &&
+                      cities.map((city: any) => (
+                        <CommandItem
+                          className='capitalize'
+                          key={city.id}
+                          onSelect={(currentValue) => {
+                            handleSelect(city.id, 'city');
+                            setValueCities(
+                              currentValue === valueCities ? '' : currentValue
+                            );
+                            setOpenCities(false);
+                          }}
+                        >
+                          <Check
+                            className={cn(
+                              'mr-2 h-4 w-4',
+                              valueCities === city.label
+                                ? 'opacity-100'
+                                : 'opacity-0'
+                            )}
+                          />
+                          {city.label}
+                        </CommandItem>
+                      ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+
             {errors && <div className='text-red-400'>{errors.city}</div>}
           </div>
         </div>
@@ -318,6 +379,7 @@ function FormDestination({ slug }: { slug?: string }) {
               type='number'
               name='latitude'
             />
+            
             {errors && <div className='text-red-400'>{errors.latitude}</div>}
           </div>
           <div className=''>
@@ -349,7 +411,7 @@ function FormDestination({ slug }: { slug?: string }) {
           required
         />
         <Input
-          className='w-auto'
+          className='w-auto cursor-pointer'
           onChange={(e) => handleFileChange(e)}
           id='multiple_files'
           type='file'

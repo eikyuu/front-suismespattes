@@ -3,8 +3,11 @@ import { Country } from '../enum/Country';
 export type Destination = {
     name: string;
     description: string;
-    city: string;
-    postalCode: string;
+    city: {
+      label: string;
+      postalCode: string;
+      departmentCode: string;
+    };
     street: string;
     country: keyof typeof Country;
     slug: string;
@@ -25,7 +28,7 @@ export type Destination = {
   };
 
   export type Destinations = {
-    data : Destination[],
+    destinations : Destination[],
     pagination: {
       limit: number;
       page: number;
@@ -34,10 +37,10 @@ export type Destination = {
     }
   }
 
-export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'>;
+export type DestinationFormPick = Pick<Destination, 'name'|'description'|'city'| 'street'|'country'>;
 
-export type DestinationWithoutFiles = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;
+export type DestinationWithoutFiles = Pick<Destination, 'name'|'description'|'city'| 'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;
 
-export type DestinationWithoutImages = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;
+export type DestinationWithoutImages = Pick<Destination, 'name'|'description'|'city'| 'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;
 
-export type DestinationWithoutFilesAndFilesImages = Pick<Destination, 'name'|'description'|'city'|'postalCode'|'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;
+export type DestinationWithoutFilesAndFilesImages = Pick<Destination, 'name'|'description'|'city'| 'street'|'country'|'latitude'|'longitude'|'obligatoryLeash'|'waterPoint'|'processionaryCaterpillarAlert'|'cyanobacteriaAlert'|'note'>;

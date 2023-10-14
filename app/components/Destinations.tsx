@@ -18,7 +18,7 @@ const initialPagination = {
 };
 
 const initialDestination: Destinations = {
-  data: [],
+  destinations: [],
   pagination: initialPagination,
 };
 
@@ -41,7 +41,7 @@ function Destinations() {
       setPage(page);
       setState((prevState: any) => ({
         ...prevState,
-        data: [...prevState.data, ...data.data],
+        destinations: [...prevState.destinations, ...data.destinations],
         pagination: {
           ...prevState.pagination,
           limit: data.pagination.limit,
@@ -58,8 +58,8 @@ function Destinations() {
   };
 
   useEffect(() => {
-    setHasMore(state.pagination.total > state.data.length);
-  }, [state.data, state.pagination]);
+    setHasMore(state.pagination.total > state.destinations.length);
+  }, [state.destinations, state.pagination]);
 
   useEffect(() => {
     fetchData(1);
@@ -72,9 +72,9 @@ function Destinations() {
 
   const filterDogDestination = useCallback(() => {
     setFilteredDogDestination(
-      state.data.filter((walk) => {
+      state.destinations.filter((walk) => {
         return (
-          walk.city
+          walk.city?.label
             .toLowerCase()
             .replace(/-/g, ' ')
             .normalize('NFD')
@@ -141,7 +141,7 @@ function Destinations() {
       </div>
 
       <InfiniteScroll
-        dataLength={state.data.length}
+        dataLength={state.destinations.length}
         next={() => fetchData(page + 1)}
         hasMore={hasMore}
         loader={
