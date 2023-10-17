@@ -79,9 +79,7 @@ function FormDestination({ slug }: { slug?: string }) {
       city: valueCities,
       postalCode: form.postalCode,
     };
-
-    console.log(valueCities);
-
+    
     try {
       const response = await fetch(`${API_URL}destination/geocode`, {
         method: 'POST',
