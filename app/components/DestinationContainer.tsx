@@ -13,8 +13,23 @@ import BlocTextWithspan from './text/BlocTextWithSpan';
 import Text from './text/Text';
 import { Country } from '../../@core/enum/Country';
 import { Button } from '@/components/ui/button';
+import { deleteDestination } from '../../@core/services/destinationService';
+import { useRouter } from 'next/navigation';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
-function DestinationContainer({slug }: { slug: string }) {
+function DestinationContainer({ slug }: { slug: string }) {
+  const router = useRouter();
+
   const url = `${API_URL}destination/${slug}`;
   const { data: session, status } = useSession();
   const { data, error } = useFetch<Destination>(url);
@@ -95,19 +110,51 @@ function DestinationContainer({slug }: { slug: string }) {
         return 'Non';
     }
   };
-    return (
-
-      <>
+  return (
+    <>
       {session?.user?.roles?.includes('ROLE_ADMIN') && (
         <div className='flex justify-end items-end pt-10 w-11/12 mx-auto '>
           <Link
-            className='block relative top-0 right-0'
+            className='block relative top-0 right-0 mr-2'
             href={`/destination-chien-accepte/${data.slug}/edit`}
           >
-            <Button>
-              MODIFIER
-            </Button>
+            <Button>MODIFIER</Button>
           </Link>
+
+          <AlertDialog>
+            <AlertDialogTrigger>
+              {' '}
+              <Button
+                variant={'destructive'}
+                className='block relative top-0 right-0'
+              >
+                SUPPRIMER
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Voulez-vous vraiment supprimer cette destination ?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Si vous supprimez cette destination, vous ne pourrez plus la
+                  récupérer. Vous pouvez la modifier si vous le souhaitez.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogAction
+                  variant={'destructive'}
+                  onClick={() => {
+                    deleteDestination(data.slug);
+                    router.push(`/`);
+                  }}
+                >
+                  Supprimer
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       )}
 
@@ -119,9 +166,7 @@ function DestinationContainer({slug }: { slug: string }) {
               <Title balise='h1' className='text-center'>
                 {data.name}
               </Title>
-              <p className='mt-4 whitespace-pre-wrap	'>
-                {data.description} 
-              </p>
+              <p className='mt-4 whitespace-pre-wrap	'>{data.description}</p>
               <p className='mt-4'>
                 Note :{' '}
                 <span className='font-semibold text-yellow-400'>
@@ -139,7 +184,10 @@ function DestinationContainer({slug }: { slug: string }) {
               <p className='mt-4'>
                 Adresse de la destination :{' '}
                 <span className='font-semibold'>
-                  {data.street}, {data.city.postalCode}, <span className='uppercase'>{data.city.label} {Country[data.country]}</span> 
+                  {data.street}, {data.city.postalCode},{' '}
+                  <span className='uppercase'>
+                    {data.city.label} {Country[data.country]}
+                  </span>
                 </span>
               </p>
               <p className='mt-4'>
@@ -155,9 +203,7 @@ function DestinationContainer({slug }: { slug: string }) {
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <span className='font-semibold'>
-                    Lien direct Google maps
-                  </span>
+                  <span className='font-semibold'>Lien direct Google maps</span>
                 </a>
               )}
               {data.cyanobacteriaAlert && (
@@ -173,9 +219,9 @@ function DestinationContainer({slug }: { slug: string }) {
             </div>
             <div>
               <p className='mt-4 italic font-semibold text-xs'>
-                La responsabilité du site ne peut être encourue
-                pour aucun dommage ou danger, chacun est responsable de son
-                propre bien-être et de ses animaux. *
+                La responsabilité du site ne peut être encourue pour aucun
+                dommage ou danger, chacun est responsable de son propre
+                bien-être et de ses animaux. *
               </p>
 
               <p className='mt-1 italic font-semibold text-xs'>
@@ -186,12 +232,9 @@ function DestinationContainer({slug }: { slug: string }) {
           </div>
         </div>
       </section>
-      <MapContainer
-        slug={slug}
-        title={`${data.name}`}
-      />
+      <MapContainer slug={slug} title={`${data.name}`} />
     </>
-    );
-  };
+  );
+}
 
 export default DestinationContainer;

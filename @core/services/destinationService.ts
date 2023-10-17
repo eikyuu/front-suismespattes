@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { API_URL } from '../constants/global';
 import { tokenFromSession } from '../utils/utils';
 
@@ -41,6 +42,25 @@ export const updateDestination = async (form: any, slug: string) => {
     console.error(err);
   }
 };
+
+export const deleteDestination = async (slug: string) => {
+  const token = await tokenFromSession();
+
+  try {
+    const response = await fetch(`${API_URL}destination/${slug}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    toast.success('La destination a été supprimé avec succès');
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 export const fetchDestination = async () => {
   const token = await tokenFromSession();
