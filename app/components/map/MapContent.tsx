@@ -10,7 +10,7 @@ function MapContent({
   coordinates,
 }: {
   dogDestination: Destination[];
-  coordinates?: [number, number];
+  coordinates?: [string, string];
 }) {
   const [selectedDestination, setSelectedDestination] = useState<Destination | null>(
     null
@@ -20,7 +20,7 @@ function MapContent({
     <React.Fragment>
       <Map
         height={500}
-        center={coordinates}
+        center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
         defaultZoom={12}
         onClick={() => {
           setSelectedDestination(null);
@@ -31,7 +31,7 @@ function MapContent({
           <Marker
             key={index.toString()}
             width={50}
-            anchor={[walk.latitude!, walk.longitude!]}
+            anchor={[Number(walk.latitude!), Number(walk.longitude!)]}
             color={'#0c8892'}
             onClick={() => {
               setSelectedDestination(walk);

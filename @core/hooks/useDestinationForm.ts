@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation'
 import { formatSlug, userFromSession } from '../utils/utils';
 import { useHandleChange } from './useHandleChange';
 import { fetchCityByCodePostal } from '../services/cityService';
-import { set } from 'lodash';
 
 export function useDestinationForm(slug?: string) {
   const router = useRouter();
@@ -295,5 +294,9 @@ export function useDestinationForm(slug?: string) {
     return isValid;
   };
 
-  return { form, submit, handleChange, handleSubmit, handleFileChange, handleChangeCodePostal, deleteImage, errors, images, loading, cities};
+  const handleAnchor = (anchor: any) => {
+    setForm({ ...form, latitude: anchor[0], longitude: anchor[1] });
+  };
+
+  return { form, submit, handleChange, handleSubmit, handleFileChange, handleChangeCodePostal, deleteImage, handleAnchor, errors, images, loading, cities};
 }

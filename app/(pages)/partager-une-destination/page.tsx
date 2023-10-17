@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-      <section className='container mx-auto w-11/12 mt-10'>
+      <section className='container mx-auto mt-10'>
         <Title className='text-center' balise='h1'>
           AJOUTER UN LIEU TESTÉ AVEC MON CHIEN
         </Title>

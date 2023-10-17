@@ -49,7 +49,13 @@ function MapContainer({ title, slug }: { title: string; slug?: string }) {
       const response = await fetch(url);
       const data = await response.json();
       setDogDestination([data]);
-      setCoordinates([data.latitude, data.longitude]);
+
+      //data.latitude to number
+
+      const lat = Number(data.latitude);
+      const lng = Number(data.longitude);
+
+      setCoordinates([lat, lng]);
     } catch (error) {
       toast.error('Une erreur est survenue');
     }

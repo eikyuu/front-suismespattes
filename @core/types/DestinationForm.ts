@@ -14,8 +14,8 @@ export type Destination = {
     category: {
       name: string;
     };
-    latitude?: number | string;
-    longitude?: number | string;
+    latitude?: string;
+    longitude?: string;
     obligatoryLeash: 'YES' | 'NO' | 'RECOMANDED';
     waterPoint: boolean;
     processionaryCaterpillarAlert: boolean;

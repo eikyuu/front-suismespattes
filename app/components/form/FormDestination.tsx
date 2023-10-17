@@ -37,14 +37,19 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { Draggable, Map, Marker, Point, ZoomControl } from 'pigeon-maps';
+import Text from '../text/Text';
 
 function FormDestination({ slug }: { slug?: string }) {
+  const [anchor, setAnchor] = useState([50.879, 4.6997]);
+
   const {
     handleSubmit,
     handleChange,
     handleFileChange,
     handleChangeCodePostal,
     deleteImage,
+    handleAnchor,
     form,
     errors,
     submit,
@@ -53,10 +58,44 @@ function FormDestination({ slug }: { slug?: string }) {
     cities,
   } = useDestinationForm(slug);
 
+  useEffect(() => {
+    if (form.latitude && form.longitude) {
+      setAnchor([Number(form.latitude), Number(form.longitude)]);
+    }
+  }, [form.latitude, form.longitude]);
+
   const [open, setOpen] = React.useState(false);
   const [openCities, setOpenCities] = React.useState(false);
   const [valueCities, setValueCities] = React.useState('');
   const [value, setValue] = React.useState('');
+
+  useEffect(() => {
+    handleAnchor(anchor);
+  }, [anchor]);
+
+  const fetchAnchorLocation = async () => {
+    const formBody = {
+      street: form.street,
+      city: valueCities,
+      postalCode: form.postalCode,
+    };
+
+    console.log(valueCities);
+
+    try {
+      const response = await fetch(`${API_URL}destination/geocode`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formBody),
+      });
+      const data = await response.json();
+      setAnchor([data.lat, data.lng]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   // FETCH CATEGORIES
   const { data: categories, error } = useFetch<any>(`${API_URL}category`);
@@ -135,9 +174,8 @@ function FormDestination({ slug }: { slug?: string }) {
               className='w-full md:w-[260px] justify-between capitalize'
             >
               {value
-                ? categories.find(
-                    (category: any) => category.name === value
-                  ).name
+                ? categories.find((category: any) => category.name === value)
+                    .name
                 : 'Choissisez une categorie'}
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
@@ -172,7 +210,6 @@ function FormDestination({ slug }: { slug?: string }) {
           </PopoverContent>
         </Popover>
         {errors && <div className='text-red-400'>{errors.category}</div>}
-
 
         <div className=' flex flex-wrap justify-between'>
           <div className='w-full'>
@@ -311,9 +348,7 @@ function FormDestination({ slug }: { slug?: string }) {
                   aria-expanded={openCities}
                   className='w-full md:w-[260px] justify-between capitalize'
                 >
-                  {valueCities
-                    ? valueCities
-                    : 'Choissisez une ville'}
+                  {valueCities ? valueCities : 'Choissisez une ville'}
                   <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
                 </Button>
               </PopoverTrigger>
@@ -370,24 +405,66 @@ function FormDestination({ slug }: { slug?: string }) {
           </SelectContent>
         </Select>
 
-        <div className='w-full md:w-1/2 flex flex-col md:flex-row'>
-          <div className='md:mr-5'>
+        <Text className='mb-4 mt-4'>
+          Vérifiez la localisation de votre destination. Repositionnez la
+          localisation si besoin.
+        </Text>
+
+        <div className='w-full h-full  flex flex-col md:flex-row'>
+          <Map
+            animate={true}
+            defaultWidth={600}
+            height={400}
+            center={anchor as Point}
+            defaultZoom={12}
+          >
+            <Draggable
+              anchor={[anchor[0], anchor[1]]}
+              onDragEnd={(dragAnchor) => setAnchor(dragAnchor)}
+              offset={[25, 30]}
+            >
+              <Marker
+              width={50}
+              height={60}
+              color={'#0c8892'}
+              
+              />
+            </Draggable>
+
+            <ZoomControl />
+          </Map>
+
+          <div className='md:ml-5'>
+            <Button
+              variant={'outline'}
+              className='w-full md:w-[180px]'
+              onClick={() => {
+                if (form.street === '' || form.postalCode === '' || form.city === '' || form.country === '') {
+                  toast.error('Veuillez saisir les informations requises');
+                  return;
+                }
+                fetchAnchorLocation();
+              }}
+              type='button'
+            >
+              Vérifier la localisation
+            </Button>
+
             <Label name='latitude' label='Latitude' />
             <Input
               onChange={handleChange}
               value={form.latitude}
-              type='number'
+              type='text'
               name='latitude'
             />
-            
+
             {errors && <div className='text-red-400'>{errors.latitude}</div>}
-          </div>
-          <div className=''>
+
             <Label name='longitude' label='Longitude' />
             <Input
               onChange={handleChange}
               value={form.longitude}
-              type='number'
+              type='text'
               name='longitude'
             />
             {errors && <div className='text-red-400'>{errors.longitude}</div>}
