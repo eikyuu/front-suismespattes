@@ -435,7 +435,7 @@ function FormDestination({ slug }: { slug?: string }) {
           <div className='md:ml-5'>
             <Button
               variant={'outline'}
-              className='w-full md:w-[180px]'
+              className='w-full md:w-[180px] mt-5 md:mt-0'
               onClick={() => {
                 if (form.street === '' || form.postalCode === '' || form.city === '' || form.country === '') {
                   toast.error('Veuillez saisir les informations requises');
