@@ -30,10 +30,18 @@ function DestinationContainer({slug }: { slug: string }) {
 
   const handleNote = (note: number) => {
     switch (note) {
-      case 1:
+      case 0:
         return (
           String.fromCharCode(9733) +
           String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734) +
+          String.fromCharCode(9734)
+        );
+      case 1:
+        return (
+          String.fromCharCode(9733) +
+          String.fromCharCode(9733) +
           String.fromCharCode(9734) +
           String.fromCharCode(9734) +
           String.fromCharCode(9734)
@@ -42,7 +50,7 @@ function DestinationContainer({slug }: { slug: string }) {
         return (
           String.fromCharCode(9733) +
           String.fromCharCode(9733) +
-          String.fromCharCode(9734) +
+          String.fromCharCode(9733) +
           String.fromCharCode(9734) +
           String.fromCharCode(9734)
         );
@@ -51,18 +59,10 @@ function DestinationContainer({slug }: { slug: string }) {
           String.fromCharCode(9733) +
           String.fromCharCode(9733) +
           String.fromCharCode(9733) +
-          String.fromCharCode(9734) +
+          String.fromCharCode(9733) +
           String.fromCharCode(9734)
         );
       case 4:
-        return (
-          String.fromCharCode(9733) +
-          String.fromCharCode(9733) +
-          String.fromCharCode(9733) +
-          String.fromCharCode(9733) +
-          String.fromCharCode(9734)
-        );
-      case 5:
         return (
           String.fromCharCode(9733) +
           String.fromCharCode(9733) +
