@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import GreenContainer from '../../components/GreenContainer';
-import TitleUnderline from '../../components/text/TitleUnderline';
-import Title from '../../components/text/Title';
+import TitleUnderline from '@/components/ui/text/TitleUnderline';
+import Title from '@/components/ui/text/Title';
 
 export default function Page() {
   return (

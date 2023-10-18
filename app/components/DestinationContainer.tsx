@@ -8,9 +8,6 @@ import { useSession } from 'next-auth/react';
 import MapContainer from './map/MapContainer';
 import Link from 'next/link';
 import SwiperContainer from './SwiperContainer';
-import Title from './text/Title';
-import BlocTextWithspan from './text/BlocTextWithSpan';
-import Text from './text/Text';
 import { Country } from '../../@core/enum/Country';
 import { Button } from '@/components/ui/button';
 import { deleteDestination } from '../../@core/services/destinationService';
@@ -26,6 +23,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Title from '@/components/ui/text/Title';
+import BlocTextWithspan from '@/components/ui/text/BlocTextWithSpan';
+import Text from '@/components/ui/text/Text';
 
 function DestinationContainer({ slug }: { slug: string }) {
   const router = useRouter();
@@ -122,8 +122,7 @@ function DestinationContainer({ slug }: { slug: string }) {
           </Link>
 
           <AlertDialog>
-            <AlertDialogTrigger>
-              {' '}
+            <AlertDialogTrigger asChild>
               <Button
                 variant={'destructive'}
                 className='block relative top-0 right-0'

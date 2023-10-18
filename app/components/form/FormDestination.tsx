@@ -11,7 +11,6 @@ import { useFetch } from '../../../@core/hooks/useFetch';
 import { API_URL } from '../../../@core/constants/global';
 import { Input } from '@/components/ui/input';
 import { TrashIcon } from '@heroicons/react/24/outline';
-import TitleUnderline from '../text/TitleUnderline';
 import {
   Select,
   SelectContent,
@@ -38,7 +37,8 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { Draggable, Map, Marker, Point, ZoomControl } from 'pigeon-maps';
-import Text from '../text/Text';
+import TitleUnderline from '@/components/ui/text/TitleUnderline';
+import Text from '@/components/ui/text/Text';
 
 function FormDestination({ slug }: { slug?: string }) {
   const [anchor, setAnchor] = useState([50.879, 4.6997]);

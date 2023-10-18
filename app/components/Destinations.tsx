@@ -1,9 +1,9 @@
 'use client';
-import { use, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import CardDestination from './CardDestination';
 import LoaderDestinations from './loader/LoaderDestinations';
 import { API_URL } from '../../@core/constants/global';
-import Title from './text/Title';
+import Title from '@/components/ui/text/Title';
 import Loader from './loader/Loader';
 import { Destination, Destinations } from '../../@core/types/DestinationForm';
 import InfiniteScroll from 'react-infinite-scroll-component';

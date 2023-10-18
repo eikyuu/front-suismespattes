@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import PresentationContent from './PresentationContent';
-import Title from './text/Title';
+import Title from '@/components/ui/text/Title';
 
 function Presentation() {
   return (

@@ -1,5 +1,5 @@
-import Text from './text/Text';
-import Title from './text/Title';
+import Text from '@/components/ui/text/Text';
+import Title from '@/components/ui/text/Title';
 
 function PresentationContent({ title, text }: { title: string; text: string }): JSX.Element {
   return (

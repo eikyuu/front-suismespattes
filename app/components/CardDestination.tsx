@@ -2,7 +2,7 @@ import Link from 'next/link';
 import BlurImage from './blurImage/BlurImage';
 import { Button } from '@/components/ui/button';
 import { Country } from '../../@core/enum/Country';
-import Text from './text/Text';
+import Text from '@/components/ui/text/Text';
 //import { HeartIcon } from '@heroicons/react/24/outline';
 
 function CardDestination({

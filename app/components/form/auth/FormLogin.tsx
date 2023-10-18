@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import Label from '../../inputs/Label';
 import { useLogin } from '../../../../@core/hooks/useLogin';
 import Loader from '../../loader/Loader';
-import Title from '../../text/Title';
+import Title from '@/components/ui/text/Title';
 import { ACTION } from '../../../../@core/constants/action-auth';
 import { Input } from "@/components/ui/input";
 

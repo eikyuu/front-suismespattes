@@ -1,6 +1,6 @@
 import BlurImageRounded from '../blurImage/BlurImageRounded';
-import Text from '../text/Text';
-import TextWithQuote from '../text/TextWithQuote';
+import Text from '@/components/ui/text/Text';
+import TextWithQuote from '@/components/ui/text/TextWithQuote';
 
 interface ReviewProps {
   name: string;

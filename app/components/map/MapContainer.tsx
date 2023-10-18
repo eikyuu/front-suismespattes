@@ -1,6 +1,6 @@
 'use client';
 import MapContent from './MapContent';
-import Title from '../text/Title';
+import Title from '@/components/ui/text/Title';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../../@core/constants/global';
 import toast from 'react-hot-toast';

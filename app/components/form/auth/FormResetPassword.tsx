@@ -3,8 +3,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from "@/components/ui/input"
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
-import Text from '../../text/Text';
-import Title from '../../text/Title';
+import Text from '@/components/ui/text/Text';
+import Title from '@/components/ui/text/Title';
 
 function FormResetPassword({ handleActionChange, resetToken }: any) {
   const { loading, form, errors, handleChange, handleSubmit } =

@@ -3,7 +3,7 @@ import { useConfirmCode } from '../../../../@core/hooks/useConfirmCode';
 import { Button } from '@/components/ui/button';
 import Label from '../../inputs/Label';
 import Loader from '../../loader/Loader';
-import Title from '../../text/Title';
+import Title from '@/components/ui/text/Title';
 import { Input } from "@/components/ui/input"
 
 function FormConfirmCode({ handleActionChange }: any) {

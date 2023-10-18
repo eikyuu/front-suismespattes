@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useHandleModal } from '../../@core/hooks/useHandleModal';
 
 type ModalProps = {

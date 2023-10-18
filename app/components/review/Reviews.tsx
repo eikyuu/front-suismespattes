@@ -1,7 +1,7 @@
 import React from 'react';
 import Review from './Review';
 import LoaderReviews from '../loader/LoaderReviews';
-import Title from '../text/Title';
+import Title from '@/components/ui/text/Title';
 function Reviews({reviews}: any): JSX.Element {
   
   return (

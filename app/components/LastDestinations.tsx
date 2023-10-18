@@ -8,7 +8,7 @@ import React from 'react';
 import LoaderDestinations from './loader/LoaderDestinations';
 import { Button } from '@/components/ui/button';
 import CardDestination from './CardDestination';
-import Title from './text/Title';
+import Title from '@/components/ui/text/Title';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
 import { Destination } from '../../@core/types/DestinationForm';
