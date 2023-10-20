@@ -12,6 +12,7 @@ import LoaderDestinations from './loader/loader-destinations';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
 import { useCreateQueryString } from '../@core/hooks/useCreateQueryString';
+import toast from 'react-hot-toast';
 
 export default function CardDestinations() {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default function CardDestinations() {
   const [page, setPage] = useState(1);
 
   const { status, data, error, isLoading, isPlaceholderData } = useQuery({
-    queryKey: ['projects', page],
+    queryKey: ['getDestinations', page],
     queryFn: () => fetchDestination(page, 10),
     placeholderData: keepPreviousData,
     staleTime: 5000,
@@ -36,39 +37,30 @@ export default function CardDestinations() {
 
   // Prefetch the next page!
   useEffect(() => {
-
-    if (data?.pagination.total > data?.destinations.length) {
-      console.log('prefetching');
-    }
     if (
       !isPlaceholderData &&
       data?.pagination.total > data?.destinations.length
     ) {
       queryClient.prefetchQuery({
-        queryKey: ['projects', page + 1],
+        queryKey: ['getDestinations', page + 1],
         queryFn: () => fetchDestination(page + 1, 10),
       });
     }
   }, [data, isPlaceholderData, page, queryClient]);
 
-  if (error) return 'An error has occurred: ' + error.message;
+function handlePageChange(newPage: number) {
+  const totalPages = data?.pagination.totalPages;
+  const validatedPage = Math.max(1, Math.min(newPage, totalPages));
 
-  function handlePageChange(newPage: number) {
-    if (newPage < 1) {
-      newPage = 1;
-    }
-
-    if (newPage > data?.pagination.totalPages) {
-      newPage = data?.pagination.totalPages;
-    }
-
-    if (newPage === page) {
-      return;
-    }
-
-    setPage(newPage);
-    router.push(pathname + '?' + createQueryString('page', newPage.toString()));
+  if (validatedPage === page) {
+    return;
   }
+
+  setPage(validatedPage);
+  router.push(pathname + '?' + createQueryString('page', validatedPage.toString()));
+}
+
+  if (error) return toast.error('Une erreur est survenue');
 
   return (
     <Fragment>
@@ -77,10 +69,9 @@ export default function CardDestinations() {
         {data?.destinations.map((destination: any) => (
           <CardDestination key={destination.id} destination={destination} />
         ))}
-        <ReactQueryDevtools initialIsOpen />
       </div>
 
-      <div className='text-center'>
+      <div className='text-center mt-10'>
         <Button
           className='mr-2'
           disabled={page === 1 || isLoading}
