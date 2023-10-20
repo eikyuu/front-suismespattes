@@ -403,7 +403,7 @@ function FormDestination({ slug }: { slug?: string }) {
           </SelectContent>
         </Select>
 
-        <Text className='mb-4 mt-4'>
+        <Text className='mb-4 mt-4 text-white'>
           Vérifiez la localisation de votre destination. Repositionnez la
           localisation si besoin.
         </Text>
