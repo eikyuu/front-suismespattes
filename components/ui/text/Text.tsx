@@ -21,7 +21,7 @@ interface ComponentProps {
       alert: `text-red-600 uppercase ${className}`,
       bold: `font-semibold ${className}`,
       gray: `text-bgray ${className}`,
-      normal: `text-white ${className}`,
+      normal: `${className}`,
     };
   
     return <p className={style[type]}>{children}</p>;

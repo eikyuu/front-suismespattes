@@ -6,6 +6,7 @@ import ContentNavigation from './components/ContentNavigation';
 import Footer from './components/Footer';
 import Headband from './components/Headband';
 import AuthProvider from '../@core/context/AuthProvider';
+import Provider from '../@core/utils/provider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body suppressHydrationWarning={true} className={inter.className + ' font-sans leading-relaxed'}>
+        <Provider>
         <AuthProvider>
           <Headband />
           <ContentNavigation />
@@ -43,6 +45,7 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </AuthProvider>
+        </Provider>
       </body>
     </html>
   );

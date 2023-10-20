@@ -2,8 +2,6 @@ import toast from 'react-hot-toast';
 import { API_URL } from '../constants/global';
 import { tokenFromSession } from '../utils/utils';
 
-
-
 export const postDestination = async (form: any) => {
 
   const token = await tokenFromSession();
@@ -62,15 +60,12 @@ export const deleteDestination = async (slug: string) => {
   }
 }
 
-export const fetchDestination = async () => {
-  const token = await tokenFromSession();
-
+export const fetchDestination = async (page: number, limit: number) => {
   try {
-    const response = await fetch(`${API_URL}destination`, {
+    const response = await fetch(`${API_URL}destination?page=${page}&limit=${limit}`, {
       method: 'get',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
       },
     });
 
