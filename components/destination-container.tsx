@@ -1,8 +1,5 @@
 'use client';
 import toast from 'react-hot-toast';
-import { API_URL } from '../@core/constants/global';
-import { useFetch } from '../@core/hooks/useFetch';
-import { Destination } from '../@core/types/DestinationForm';
 import LoaderDestination from './loader/loader-destination';
 import { useSession } from 'next-auth/react';
 import MapContainer from './map/map-container';
@@ -10,7 +7,7 @@ import Link from 'next/link';
 import SwiperContainer from '@/components/swiper-container';
 import { Country } from '../@core/enum/Country';
 import { Button } from '@/components/ui/button';
-import { deleteDestination } from '../@core/services/destinationService';
+import { deleteDestination, fetchDestinationBySlug } from '../@core/services/destinationService';
 import { useRouter } from 'next/navigation';
 import {
   AlertDialog,
@@ -26,22 +23,33 @@ import {
 import Title from '@/components/ui/text/Title';
 import BlocTextWithspan from '@/components/ui/text/BlocTextWithSpan';
 import Text from '@/components/ui/text/Text';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
 function DestinationContainer({ slug }: { slug: string }) {
+  const queryClient = useQueryClient()
+
   const router = useRouter();
 
-  const url = `${API_URL}destination/${slug}`;
   const { data: session, status } = useSession();
-  const { data, error } = useFetch<Destination>(url);
 
-  if (status === 'loading' || !data) {
-    return <LoaderDestination />;
-  }
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['destinationBySlug', slug],
+    queryFn: () => fetchDestinationBySlug(slug),
+  })
 
-  if (error) {
-    toast.error('Une erreur est survenue');
-    return <p>Une erreur est survenue.</p>;
-  }
+  const mutation = useMutation({
+    mutationFn: (slug: string) => {
+      return deleteDestination(slug);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['destinationBySlug', ] });
+      router.push('/');
+    }
+  })
+
+  if (isLoading) return <LoaderDestination />
+
+  if (error) toast.error('Une erreur est survenue');
 
   const handleNote = (note: number) => {
     switch (note) {
@@ -116,7 +124,7 @@ function DestinationContainer({ slug }: { slug: string }) {
         <div className='flex justify-end items-end pt-10 w-11/12 mx-auto '>
           <Link
             className='block relative top-0 right-0 mr-2'
-            href={`/destination-chien-accepte/${data.slug}/edit`}
+            href={`/destination-chien-accepte/${data?.slug}/edit`}
           >
             <Button>MODIFIER</Button>
           </Link>
@@ -145,8 +153,7 @@ function DestinationContainer({ slug }: { slug: string }) {
                 <AlertDialogAction
                   variant={'destructive'}
                   onClick={() => {
-                    deleteDestination(data.slug);
-                    router.push(`/`);
+                    mutation.mutate(data?.slug);
                   }}
                 >
                   Supprimer
@@ -158,59 +165,59 @@ function DestinationContainer({ slug }: { slug: string }) {
       )}
 
       <section className='container w-11/12 mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
-        <SwiperContainer data={data.images} />
+        <SwiperContainer data={data?.images} />
         <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
           <div className='h-full flex flex-col justify-between '>
             <div>
               <Title balise='h1' className='text-center'>
-                {data.name}
+                {data?.name}
               </Title>
-              <p className='mt-4 whitespace-pre-wrap	'>{data.description}</p>
+              <p className='mt-4 whitespace-pre-wrap	'>{data?.description}</p>
               <p className='mt-4'>
                 Note :{' '}
                 <span className='font-semibold text-yellow-400'>
-                  {handleNote(data.note)}
+                  {handleNote(data?.note)}
                 </span>
               </p>
               <BlocTextWithspan
-                dogDestination={data.waterPoint}
+                dogDestination={data?.waterPoint}
                 text='Point d&#039;eau buvable pour les chiens : '
               />
               <BlocTextWithspan
-                dogDestination={handleObligatoryLeash(data.obligatoryLeash)}
+                dogDestination={handleObligatoryLeash(data?.obligatoryLeash)}
                 text='Laisse obligatoire : '
               />
               <p className='mt-4'>
                 Adresse de la destination :{' '}
                 <span className='font-semibold'>
-                  {data.street}, {data.city.postalCode},{' '}
+                  {data?.street}, {data?.city.postalCode},{' '}
                   <span className='uppercase'>
-                    {data.city.label} {Country[data.country]}
+                    {data?.city.label} {Country[data?.country]}
                   </span>
                 </span>
               </p>
               <p className='mt-4'>
                 Coordonnées GPS :{' '}
                 <span className='font-semibold'>
-                  {data.latitude}, {data.longitude}{' '}
+                  {data?.latitude}, {data?.longitude}{' '}
                 </span>
               </p>
-              {data.latitude && data.longitude && (
+              {data?.latitude && data?.longitude && (
                 <a
                   className='block mt-4'
-                  href={`https://www.google.com/maps?q=${data.latitude},${data.longitude}`}
+                  href={`https://www.google.com/maps?q=${data?.latitude},${data?.longitude}`}
                   target='_blank'
                   rel='noreferrer'
                 >
                   <span className='font-semibold'>Lien direct Google maps</span>
                 </a>
               )}
-              {data.cyanobacteriaAlert && (
+              {data?.cyanobacteriaAlert && (
                 <Text type='alert' className='mt-4'>
                   Présence de cyanobactéries ! *
                 </Text>
               )}
-              {data.processionaryCaterpillarAlert && (
+              {data?.processionaryCaterpillarAlert && (
                 <Text type='alert' className='mt-4'>
                   Présence de chenilles processionnaire ! *
                 </Text>
@@ -231,7 +238,9 @@ function DestinationContainer({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-      <MapContainer slug={slug} title={`${data.name}`} />
+
+     {/* ///TODO: fix le double appel */}
+      <MapContainer slug={slug} title={`${data?.name}`} />
     </>
   );
 }

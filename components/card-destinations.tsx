@@ -7,7 +7,6 @@ import {
 import { useState, useEffect, Fragment, use } from 'react';
 import { fetchDestination } from '../@core/services/destinationService';
 import CardDestination from './card-destination';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import LoaderDestinations from './loader/loader-destinations';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';

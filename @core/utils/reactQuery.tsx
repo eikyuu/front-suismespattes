@@ -8,6 +8,7 @@ import {
   DehydratedState,
 } from '@tanstack/react-query';
 import Script from 'next/script';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 type Props = {
   dehydratedState: DehydratedState;
@@ -19,6 +20,7 @@ export function ReactQuery({ dehydratedState, children }: Props) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools initialIsOpen={false} />
         <HydrationBoundary state={dehydratedState}>
           {children}
         </HydrationBoundary>

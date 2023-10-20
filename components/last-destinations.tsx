@@ -4,35 +4,21 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import React from 'react';
 import LoaderDestinations from './loader/loader-destinations';
 import { Button } from '@/components/ui/button';
 import CardDestination from './card-destination';
 import Title from '@/components/ui/text/Title';
-import { API_URL } from '../@core/constants/global';
 import toast from 'react-hot-toast';
-import { Destination } from '../@core/types/DestinationForm';
+import { useQuery } from '@tanstack/react-query';
+import { fetchDestination } from '../@core/services/destinationService';
 
 function LastDestinations(): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
-  const [dogDestination, setDogDestination] = useState<Destination[]>([]);
 
-  const url = `${API_URL}destination?page=1&limit=4`;
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch(url);
-      const data = await response.json();
-      setDogDestination(data.destinations);
-    } catch (error) {
-     toast.error('Une erreur est survenue'); 
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line
-  }, []);
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['destinations'],
+    queryFn: () => fetchDestination(1, 4),
+  })
 
   const handleResize = () => {
     window.innerWidth < 768 ? setIsMobile(true) : setIsMobile(false);
@@ -43,6 +29,8 @@ function LastDestinations(): JSX.Element {
     window.addEventListener('resize', handleResize);
   }, [isMobile]);
 
+  if (error) toast.error('Une erreur est survenue');
+
   return (
     <>
       {isMobile ? (
@@ -51,17 +39,17 @@ function LastDestinations(): JSX.Element {
             Les dernières destinations
           </Title>
           <div className='w-11/12 mx-auto flex flex-col flex-wrap justify-between pt-10 pb-10 md:flex-row'>
-          {dogDestination.length === 0 && <LoaderDestinations />}
+          {isLoading && <LoaderDestinations />}
 
             <Swiper
               slidesPerView={'auto'}
               spaceBetween={16}
               className='w-full h-full'
             >
-              {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
-                <SwiperSlide key={dogDestination.id} className='!w-11/12 last:w-full'>
+              {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
+                <SwiperSlide key={destination.id} className='!w-11/12 last:w-full'>
                   <CardDestination
-                    destination={dogDestination}
+                    destination={destination}
                   />
                 </SwiperSlide>
               ))}
@@ -81,11 +69,11 @@ function LastDestinations(): JSX.Element {
             Les dernières destinations
           </Title>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center place-items-center'>
-          {dogDestination.length === 0 && <LoaderDestinations />}
-            {dogDestination.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((dogDestination: any) => (
+          {isLoading && <LoaderDestinations />}
+            {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
               <CardDestination
-                key={dogDestination.id}
-                destination={dogDestination}
+                key={destination.id}
+                destination={destination}
               />
             ))}
           </div>
