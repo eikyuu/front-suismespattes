@@ -1,0 +1,54 @@
+import { useResetPassword } from '../../../@core/hooks/useResetPassword';
+import { Button } from '@/components/ui/button';
+import { Input } from "@/components/ui/input"
+import Label from '../../inputs/label';
+import Loader from '../../loader/loader';
+import Text from '@/components/ui/text/Text';
+import Title from '@/components/ui/text/Title';
+
+function FormResetPassword({ handleActionChange, resetToken }: any) {
+  const { loading, form, errors, handleChange, handleSubmit } =
+  useResetPassword();
+  return (
+    <form
+      className=''
+      onSubmit={(e) => {
+        handleSubmit(e, resetToken);
+      }}
+    >
+      <div className='flex justify-center items-center gap-5 mb-5'>
+        <div className='bg-white text-black rounded-full h-10 w-10 flex justify-center items-center'>
+          1
+        </div>
+        <div className='bg-white text-black rounded-full h-10 w-10 flex justify-center items-center'>
+          2
+        </div>
+        <div className='bg-tertiary rounded-full h-10 w-10 flex justify-center items-center'>
+          3
+        </div>
+      </div>
+      <Title className='text-white' balise='h3'>
+        Choisissez un nouveau mot de passe
+      </Title>
+      <Text >
+        Assurez‑vous que votre mot de passe contient huit caractères ou plus. Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des chiffres, des lettres et des signes de ponctuation.
+      </Text>
+      <Label name='email' label='Entrez un nouveau mot de passe' required />
+      <Input
+        onChange={handleChange}
+        value={form.password}
+        type='password'
+        name='password'
+        required
+      />
+
+      {errors && <div className='text-red-400 mt-2'>{errors}</div>}
+
+      <Button className='mt-5 mb-1 bg-tertiary !w-full' type='submit'>
+        {loading ? <Loader /> : 'Confirmer'}
+      </Button>
+    </form>
+  );
+}
+
+export default FormResetPassword;

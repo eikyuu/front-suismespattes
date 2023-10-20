@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import BlurImage from './components/blurImage/BlurImage';
+import BlurImage from '../components/blurImage/blur-image';
 import Title from '@/components/ui/text/Title';
 import Text from '@/components/ui/text/Text';
 

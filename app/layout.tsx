@@ -2,11 +2,11 @@ import './globals.css';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import { Analytics } from '@vercel/analytics/react';
-import ContentNavigation from './components/ContentNavigation';
-import Footer from './components/Footer';
-import Headband from './components/Headband';
+import ContentNavigation from '../components/content-navigation';
+import Headband from '../components/headband';
 import AuthProvider from '../@core/context/AuthProvider';
 import Provider from '../@core/utils/provider';
+import Footer from '../components/footer';
 
 const inter = Inter({ subsets: ['latin'] });
 

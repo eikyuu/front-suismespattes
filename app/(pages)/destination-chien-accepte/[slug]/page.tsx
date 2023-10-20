@@ -1,6 +1,6 @@
 import React from 'react';
 import ScrollUp from '../../../../@core/utils/scrollUp';
-import DestinationContainer from '../../../components/DestinationContainer';
+import DestinationContainer from '@/components/destination-container';
 
 export default function Page({
   params,

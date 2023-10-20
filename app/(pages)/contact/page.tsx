@@ -4,9 +4,9 @@ import { useState } from 'react';
 
 import toast from 'react-hot-toast';
 import { Contact } from '../../../@core/types/Contact';
-import GreenContainer from '../../components/GreenContainer';
-import Label from '../../components/inputs/Label';
-import Loader from '../../components/loader/Loader';
+import GreenContainer from '@/components/green-container';
+import Label from '@/components/inputs/label';
+import Loader from '@/components/loader/loader';
 import { postMessage } from '../../../@core/services/contactService';
 import { Button } from '@/components/ui/button';
 import { useHandleChange } from '../../../@core/hooks/useHandleChange';

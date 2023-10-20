@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import GreenContainer from '../../components/GreenContainer';
+import GreenContainer from '@/components/green-container';
 import TitleUnderline from '@/components/ui/text/TitleUnderline';
 import Title from '@/components/ui/text/Title';
 

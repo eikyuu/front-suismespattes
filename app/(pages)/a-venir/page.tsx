@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import constuction from '../../../public/images/en-construction.webp';
-import BlurImage from '../../components/blurImage/BlurImage';
+import BlurImage from '@/components/blurImage/blur-image';
 import Title from '@/components/ui/text/Title';
 
 export default function Page() {

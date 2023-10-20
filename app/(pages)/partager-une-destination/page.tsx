@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import FormDestination from '../../components/form/FormDestination';
+import FormDestination from '@/components/form/form-destination';
 import Title from '@/components/ui/text/Title';
 
 export const metadata: Metadata = {

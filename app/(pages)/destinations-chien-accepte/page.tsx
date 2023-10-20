@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import Destinations from '../../components/Destinations';
+import Destinations from '@/components/destinations';
 
 export const metadata: Metadata = {
   title: 'Toutes les destinations',
