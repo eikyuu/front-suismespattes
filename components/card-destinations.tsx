@@ -19,12 +19,11 @@ export default function CardDestinations() {
   const queryClient = useQueryClient();
   const { pathname, searchParam, createQueryString } =
     useCreateQueryString('page');
-
   const [page, setPage] = useState(1);
-
+  const totalItems = 12;
   const { status, data, error, isLoading, isPlaceholderData } = useQuery({
     queryKey: ['getDestinations', page],
-    queryFn: () => fetchDestination(page, 10),
+    queryFn: () => fetchDestination(page, totalItems),
     placeholderData: keepPreviousData,
     staleTime: 5000,
   });
@@ -43,22 +42,24 @@ export default function CardDestinations() {
     ) {
       queryClient.prefetchQuery({
         queryKey: ['getDestinations', page + 1],
-        queryFn: () => fetchDestination(page + 1, 10),
+        queryFn: () => fetchDestination(page + 1, totalItems),
       });
     }
   }, [data, isPlaceholderData, page, queryClient]);
 
-function handlePageChange(newPage: number) {
-  const totalPages = data?.pagination.totalPages;
-  const validatedPage = Math.max(1, Math.min(newPage, totalPages));
+  function handlePageChange(newPage: number) {
+    const totalPages = data?.pagination.totalPages;
+    const validatedPage = Math.max(1, Math.min(newPage, totalPages));
 
-  if (validatedPage === page) {
-    return;
+    if (validatedPage === page) {
+      return;
+    }
+
+    setPage(validatedPage);
+    router.push(
+      pathname + '?' + createQueryString('page', validatedPage.toString())
+    );
   }
-
-  setPage(validatedPage);
-  router.push(pathname + '?' + createQueryString('page', validatedPage.toString()));
-}
 
   if (error) return toast.error('Une erreur est survenue');
 
