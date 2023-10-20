@@ -190,16 +190,16 @@ function DestinationContainer({ slug }: { slug: string }) {
               <p className='mt-4'>
                 Adresse de la destination :{' '}
                 <span className='font-semibold'>
-                  {data?.street}, {data?.city.postalCode},{' '}
-                  <span className='uppercase'>
-                    {data?.city.label} {Country[data?.country]}
-                  </span>
-                </span>
-              </p>
-              <p className='mt-4'>
-                Coordonnées GPS :{' '}
-                <span className='font-semibold'>
-                  {data?.latitude}, {data?.longitude}{' '}
+                      {data?.street}, {data?.city.postalCode},{' '}
+                      <span className='uppercase'>
+                        {data?.city.label} ({Country[data?.city.country as keyof typeof Country]})
+                      </span>
+                    </span>
+                  </p>
+                  <p className='mt-4'>
+                    Coordonnées GPS :{' '}
+                    <span className='font-semibold'>
+                      {data?.latitude}, {data?.longitude}{' '}
                 </span>
               </p>
               {data?.latitude && data?.longitude && (
