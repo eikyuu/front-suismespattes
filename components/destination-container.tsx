@@ -164,7 +164,7 @@ function DestinationContainer({ slug }: { slug: string }) {
         </div>
       )}
 
-      <section className='container w-11/12 mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
+      <section className='container mx-auto h-full flex flex-col justify-between pt-10 pb-10 md:flex-row'>
         <SwiperContainer data={data?.images} />
         <div className='mt-4 w-11/12 md:mt-0 md:w-2/5 mx-auto md:m-0'>
           <div className='h-full flex flex-col justify-between '>
@@ -192,7 +192,7 @@ function DestinationContainer({ slug }: { slug: string }) {
                 <span className='font-semibold'>
                       {data?.street}, {data?.city.postalCode},{' '}
                       <span className='uppercase'>
-                        {data?.city.label} ({Country[data?.city.country as keyof typeof Country]})
+                        {data?.city.label} 
                       </span>
                     </span>
                   </p>

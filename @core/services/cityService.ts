@@ -14,3 +14,17 @@ export const fetchCityByCodePostal = async (codePostal: string) => {
         console.error(err);
       }
 }
+
+export const fetchCitiesBySearch = async (search: string) => {
+  try {
+    const response = await fetch(`${API_URL}city?q=${search}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}

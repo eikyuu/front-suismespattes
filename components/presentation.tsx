@@ -4,7 +4,7 @@ import Title from '@/components/ui/text/Title';
 
 function Presentation() {
   return (
-    <section className='container h-full pt-10 pb-10 w-11/12 md:w-full mx-auto flex flex-col flex-wrap justify-center lg:h-160 lg:pt-0 lg:pb-0'>
+    <section className='container h-full mt-10 mb-10 w-11/12 md:w-full mx-auto flex flex-col justify-center'>
       <Title balise='h1' className='text-center mb-10'>
         Suis mes pattes, une plateforme collaborative gratuite pour voyager avec
         ton chien !

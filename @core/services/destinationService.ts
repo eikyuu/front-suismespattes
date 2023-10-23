@@ -142,3 +142,31 @@ export const deleteDestinationImage = async (slug : string) => {
     console.error(err);
   }
 }
+
+export const getDestinationsByQueries = async (page: number, totalItems: number, cityParam?: string) => {
+
+  const queries = {
+    page: page,
+    limit: totalItems,
+    city: cityParam ? cityParam : '',
+  };
+
+  const createQueryString = (queries: any) => {
+    const queryString = Object.keys(queries)
+      .filter((key) => queries[key] !== null && queries[key] !== '')
+      .map((key) => `${key}=${queries[key]}`)
+      .join('&');
+    return queryString ? `${queryString}` : '';
+  };
+
+  
+  const url = `${createQueryString(queries)}`;
+
+
+  try {
+    const response = await fetch(`${API_URL}search?${url}`);
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}

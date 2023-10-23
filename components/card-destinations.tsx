@@ -5,7 +5,7 @@ import {
   keepPreviousData,
 } from '@tanstack/react-query';
 import { useState, useEffect, Fragment, use } from 'react';
-import { fetchDestination } from '../@core/services/destinationService';
+import { fetchDestination, getDestinationsByQueries } from '../@core/services/destinationService';
 import CardDestination from './card-destination';
 import LoaderDestinations from './loader/loader-destinations';
 import { Button } from './ui/button';
@@ -16,13 +16,25 @@ import toast from 'react-hot-toast';
 export default function CardDestinations() {
   const router = useRouter();
   const queryClient = useQueryClient();
+
   const { pathname, searchParam, createQueryString } =
     useCreateQueryString('page');
+  const { searchParam: cityParam } = useCreateQueryString('city');
+
+
   const [page, setPage] = useState(1);
   const totalItems = 12;
+
+
   const { status, data, error, isLoading, isPlaceholderData } = useQuery({
-    queryKey: ['getDestinations', page],
-    queryFn: () => fetchDestination(page, totalItems),
+    queryKey: ['getDestinations', page, cityParam],
+    queryFn: () => {
+      if (cityParam) {
+        return getDestinationsByQueries(page, totalItems, cityParam);
+      } else {
+        return fetchDestination(page, totalItems);
+      }
+    },
     placeholderData: keepPreviousData,
     staleTime: 5000,
   });
@@ -40,11 +52,17 @@ export default function CardDestinations() {
       data?.pagination.total > data?.destinations.length
     ) {
       queryClient.prefetchQuery({
-        queryKey: ['getDestinations', page + 1],
-        queryFn: () => fetchDestination(page + 1, totalItems),
+        queryKey: ['getDestinations', page + 1, cityParam],
+        queryFn: () => {
+          if (cityParam) {
+            return getDestinationsByQueries(page + 1, totalItems, cityParam);
+          } else {
+            return fetchDestination(page + 1, totalItems);
+          }
+        } ,
       });
     }
-  }, [data, isPlaceholderData, page, queryClient]);
+  }, [data, isPlaceholderData, page, queryClient, cityParam]);
 
   function handlePageChange(newPage: number) {
     const totalPages = data?.pagination.totalPages;
@@ -64,7 +82,7 @@ export default function CardDestinations() {
 
   return (
     <Fragment>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center place-items-center gap-16'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center place-items-center gap-16'>
         {isLoading && <LoaderDestinations />}
         {data?.destinations.map((destination: any) => (
           <CardDestination key={destination.id} destination={destination} />
@@ -80,7 +98,7 @@ export default function CardDestinations() {
           Précédent
         </Button>
         <Button
-          disabled={page === data?.pagination.totalPages || isLoading}
+          disabled={page === data?.pagination.totalPages || isLoading || data.destinations.length === 0}
           onClick={() => handlePageChange(page + 1)}
         >
           Suivant
