@@ -119,7 +119,7 @@ function MapContent({
             }}
           />
         ))}
-
+{/* 
         {selectedDestination && (
           <Overlay
             anchor={[
@@ -149,7 +149,7 @@ function MapContent({
               </div>
             </Link>
           </Overlay>
-        )}
+        )} */}
 
         <ZoomControl />
       </Map>
