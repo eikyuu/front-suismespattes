@@ -41,16 +41,16 @@ function CardDestination({
       className='flex flex-col justify-between w-full md:w-72 h-full xs:last:mb-0 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
       <picture className='mb-2'>
-        <div className='absolute z-10 flex flex-row justify-between items-start p-1 md:p-2' >
+        <div className='absolute z-10 flex flex-row justify-between items-start px-2 py-2 md:p-2' >
           <div className='flex flex-col justify-between'>
             {!destination.user.isAdmin && (
-              <Button className='bg-tertiary hover:bg-primary mr-2 bg-opacity-80 mb-2 text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm'>
+              <Button className='bg-tertiary hover:bg-primary bg-opacity-80 text-[8px] min-[425px]:text-[12px] p-1 h-auto md:p-2 md:h-10 md:text-sm'>
                 PARTAGÉ PAR UN CANIPOTE
               </Button>
             )}
 
             {destination.isFavorite && (
-              <Button className='bg-opacity-80 hover:bg-primary mr-2 bg-opacity-80 mb-2 text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm'>COUP DE COEUR</Button>
+              <Button className='bg-tertiary hover:bg-primary bg-opacity-80 text-[8px] min-[425px]:text-[12px] p-1 h-auto md:p-2 md:h-10 md:text-sm mt-2'>COUP DE COEUR</Button>
             )}
           </div>
           {/* <Button className='bg-opacity-80 h-10'>
@@ -84,7 +84,7 @@ function CardDestination({
           {destination.category.name}
         </Text>
       </div>
-      <Button variant='default' className='w-max text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm' >DÉCOUVRIR</Button>
+      <Button variant='default' className='w-max text-[8px] min-[425px]:text-[12px] p-1 h-auto md:p-2 md:h-10 md:text-sm' >DÉCOUVRIR</Button>
     </Link>
   );
 }
