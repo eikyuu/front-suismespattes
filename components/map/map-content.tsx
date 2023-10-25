@@ -87,26 +87,26 @@ function MapContent({
   return (
     <React.Fragment>
       <Map
-        limitBounds="edge"
-        dprs={[1, 2]}
-        height={500}
-        zoom={zoom}
-        center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
-        onBoundsChanged={handleBoundsChange}
-        onAnimationStart={handleAnimationStart}
-        onAnimationStop={handleAnimationStop}
-        animate={animate}
-        metaWheelZoom={metaWheelZoom}
-        twoFingerDrag={twoFingerDrag}
-        zoomSnap={zoomSnap}
-        mouseEvents={mouseEvents}
-        touchEvents={touchEvents}
-        minZoom={minZoom}
-        maxZoom={maxZoom}
-        defaultZoom={12}
-        onClick={() => {
-          setSelectedDestination(null);
-        }}
+          limitBounds="edge"
+          center={center}
+          zoom={zoom}
+          dprs={[1, 2]}
+          onBoundsChanged={handleBoundsChange}
+          onAnimationStart={handleAnimationStart}
+          onAnimationStop={handleAnimationStop}
+          animate={animate}
+          metaWheelZoom={metaWheelZoom}
+          twoFingerDrag={twoFingerDrag}
+          zoomSnap={zoomSnap}
+          mouseEvents={mouseEvents}
+          touchEvents={touchEvents}
+          minZoom={minZoom}
+          maxZoom={maxZoom}
+          defaultWidth={600}
+          height={400}
+          onClick={() => {
+            setSelectedDestination(null);
+          }}
       >
         {dogDestination.map((walk: any, index) => (
           <Marker
@@ -150,6 +150,7 @@ function MapContent({
             </Link>
           </Overlay>
         )}
+
         <ZoomControl />
       </Map>
     </React.Fragment>
