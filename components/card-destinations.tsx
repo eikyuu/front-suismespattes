@@ -82,7 +82,7 @@ export default function CardDestinations() {
 
   return (
     <Fragment>
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center place-items-center gap-16'>
+      <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center place-items-center gap-4 md:gap-16'>
         {isLoading && <LoaderDestinations />}
         {data?.destinations.map((destination: any) => (
           <CardDestination key={destination.id} destination={destination} />

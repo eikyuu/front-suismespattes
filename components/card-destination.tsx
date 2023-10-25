@@ -38,19 +38,19 @@ function CardDestination({
   return (
     <Link
       href={`destination-chien-accepte/${destination.slug}`}
-      className='flex flex-col justify-between w-72 h-full mb-4 xs:last:mb-0 focus:ring-4 focus:ring-tertiary focus:outline-none '
+      className='flex flex-col justify-between w-full md:w-72 h-full xs:last:mb-0 focus:ring-4 focus:ring-tertiary focus:outline-none '
     >
       <picture className='mb-2'>
-        <div className='absolute z-10 flex flex-row justify-between items-start p-2'>
+        <div className='absolute z-10 flex flex-row justify-between items-start p-1 md:p-2' >
           <div className='flex flex-col justify-between'>
             {!destination.user.isAdmin && (
-              <Button className='bg-tertiary hover:bg-primary mr-2 bg-opacity-80 mb-2'>
+              <Button className='bg-tertiary hover:bg-primary mr-2 bg-opacity-80 mb-2 text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm'>
                 PARTAGÉ PAR UN CANIPOTE
               </Button>
             )}
 
             {destination.isFavorite && (
-              <Button className='bg-opacity-80'>COUP DE COEUR</Button>
+              <Button className='bg-opacity-80 hover:bg-primary mr-2 bg-opacity-80 mb-2 text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm'>COUP DE COEUR</Button>
             )}
           </div>
           {/* <Button className='bg-opacity-80 h-10'>
@@ -59,7 +59,7 @@ function CardDestination({
         </div>
 
         <BlurImage
-          height='h-72'
+          height='h-44 md:h-72'
           alt={`Image de la destination ${destination.name} a ${destination.city}`}
           image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${destination.images[0]?.name}`}
         />
@@ -67,24 +67,24 @@ function CardDestination({
       <div className='mb-1'>
         <Text
           type='bold'
-          className='text-black lowercase first-letter:uppercase'
+          className='text-black lowercase first-letter:uppercase text-sm md:text-base'
         >
-          {elipsis(destination.name, 30)}
+          {elipsis(destination.name, 20)}
         </Text>
         <Text
           type='gray'
-          className='uppercase'
+          className='uppercase text-sm md:text-base'
         >
           {`${destination.city.label}, (${destination.city.departmentCode}), ${Country[destination.country]}`}
         </Text>
         <Text 
           type='gray' 
-          className='uppercase' 
+          className='uppercase text-sm md:text-base' 
         >
           {destination.category.name}
         </Text>
       </div>
-      <Button variant='default' className='w-max' >DÉCOUVRIR</Button>
+      <Button variant='default' className='w-max text-[8px] p-1 h-auto md:p-2 md:h-10 md:text-sm' >DÉCOUVRIR</Button>
     </Link>
   );
 }
