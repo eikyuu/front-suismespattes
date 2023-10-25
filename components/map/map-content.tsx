@@ -16,12 +16,9 @@ function MapContent({
     null
   );
 
-  const [center, setCenter] = useState([50.879, 4.6997])
-  const [zoom, setZoom] = useState(11)
-
   return (
     <React.Fragment>
-      {/* <Map
+      <Map
         height={500}
         center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
         defaultZoom={12}
@@ -72,16 +69,7 @@ function MapContent({
             </Link>
           </Overlay>
         )}
-      </Map> */}
-          <Map 
-            height={300}
-            center={[center[0], center[1]] as [number, number]} 
-            zoom={zoom} 
-            onBoundsChanged={({ center, zoom }) => { 
-              setCenter([center[0], center[1]]) 
-              setZoom(zoom) 
-            }} 
-          />
+      </Map>
     </React.Fragment>
   );
 }
