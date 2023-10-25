@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Map, Marker, Overlay, ZoomControl } from 'pigeon-maps';
+import { Map, Marker, Overlay, Point, ZoomControl } from 'pigeon-maps';
 import Link from 'next/link';
 import BlurImage from '../blurImage/blur-image';
 import { Destination } from '../../@core/types/DestinationForm';
@@ -16,6 +16,74 @@ function MapContent({
     null
   );
 
+  const [state, setRawState] = useState({
+    center: [50.1102, 3.1506] as Point,
+    zoom: 6,
+    provider: 'osm',
+    metaWheelZoom: false,
+    twoFingerDrag: false,
+    animate: true,
+    animating: false,
+    zoomSnap: true,
+    mouseEvents: true,
+    touchEvents: true,
+    minZoom: 1,
+    maxZoom: 18,
+    dragAnchor: [48.8565, 2.3475] as Point,
+  })
+  const setState = (stateChanges: Partial<typeof state>) => setRawState({ ...state, ...stateChanges })
+
+  const {
+    center,
+    zoom,
+    provider,
+    animate,
+    metaWheelZoom,
+    twoFingerDrag,
+    zoomSnap,
+    mouseEvents,
+    touchEvents,
+    animating,
+    minZoom,
+    maxZoom,
+  } = state
+
+  const zoomIn = () => {
+    setState({
+      zoom: Math.min(state.zoom + 1, 18),
+    })
+  }
+
+  const zoomOut = () => {
+    setState({
+      zoom: Math.max(state.zoom - 1, 1),
+    })
+  }
+
+  const handleBoundsChange = ({ center, zoom, bounds, initial } : any) => {
+    if (initial) {
+      console.log('Got initial bounds: ', bounds)
+    }
+    setState({ center, zoom })
+  }
+
+  const handleClick = ({ event, latLng, pixel } : any) => {
+    console.log('Map clicked!', latLng, pixel)
+  }
+
+  const handleMarkerClick = ({ event, payload, anchor } : any) => {
+    console.log(`Marker #${payload} clicked at: `, anchor)
+  }
+
+  const handleAnimationStart = () => {
+    setState({ animating: true })
+  }
+
+  const handleAnimationStop = () => {
+    setState({ animating: false })
+  }
+
+
   return (
     <React.Fragment>
       <Map
@@ -23,6 +91,17 @@ function MapContent({
         dprs={[1, 2]}
         height={500}
         center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
+        onBoundsChanged={handleBoundsChange}
+        onAnimationStart={handleAnimationStart}
+        onAnimationStop={handleAnimationStop}
+        animate={animate}
+        metaWheelZoom={metaWheelZoom}
+        twoFingerDrag={twoFingerDrag}
+        zoomSnap={zoomSnap}
+        mouseEvents={mouseEvents}
+        touchEvents={touchEvents}
+        minZoom={minZoom}
+        maxZoom={maxZoom}
         defaultZoom={12}
         onClick={() => {
           setSelectedDestination(null);
