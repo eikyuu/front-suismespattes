@@ -108,7 +108,7 @@ function MapContent({
             setSelectedDestination(null);
           }}
       >
-        {dogDestination.map((walk: any, index) => (
+        {/* {dogDestination.map((walk: any, index) => (
           <Marker
             key={index.toString()}
             width={50}
@@ -119,7 +119,7 @@ function MapContent({
             }}
           />
         ))}
-{/* 
+
         {selectedDestination && (
           <Overlay
             anchor={[
