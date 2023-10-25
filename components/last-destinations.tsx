@@ -49,6 +49,7 @@ function LastDestinations(): JSX.Element {
               {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
                 <SwiperSlide key={destination.id} className='!w-11/12 last:w-full'>
                   <CardDestination
+                    height='h-72'
                     destination={destination}
                   />
                 </SwiperSlide>
@@ -71,7 +72,7 @@ function LastDestinations(): JSX.Element {
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center place-items-center'>
           {isLoading && <LoaderDestinations />}
             {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
-              <CardDestination
+              <CardDestination 
                 key={destination.id}
                 destination={destination}
               />

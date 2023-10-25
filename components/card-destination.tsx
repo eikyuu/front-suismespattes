@@ -7,6 +7,7 @@ import Text from '@/components/ui/text/Text';
 
 function CardDestination({
   destination,
+  height = 'h-40 md:h-72',
 }: {
   destination: {
     name: string;
@@ -30,6 +31,7 @@ function CardDestination({
       isAdmin: boolean
     }
   };
+  height?: string;
 }): JSX.Element {
   const elipsis = (text: string, length: number) => {
     return text.length > length ? text.slice(0, length) + '...' : text;
@@ -59,7 +61,7 @@ function CardDestination({
         </div>
 
         <BlurImage
-          height='h-44 md:h-72'
+          height={height}
           alt={`Image de la destination ${destination.name} a ${destination.city}`}
           image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${destination.images[0]?.name}`}
         />
