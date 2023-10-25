@@ -19,6 +19,8 @@ function MapContent({
   return (
     <React.Fragment>
       <Map
+        limitBounds="edge"
+        dprs={[1, 2]}
         height={500}
         center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
         defaultZoom={12}
