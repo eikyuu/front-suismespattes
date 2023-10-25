@@ -90,6 +90,7 @@ function MapContent({
         limitBounds="edge"
         dprs={[1, 2]}
         height={500}
+        zoom={zoom}
         center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
         onBoundsChanged={handleBoundsChange}
         onAnimationStart={handleAnimationStart}
@@ -107,7 +108,6 @@ function MapContent({
           setSelectedDestination(null);
         }}
       >
-        <ZoomControl />
         {dogDestination.map((walk: any, index) => (
           <Marker
             key={index.toString()}
@@ -150,6 +150,7 @@ function MapContent({
             </Link>
           </Overlay>
         )}
+        <ZoomControl />
       </Map>
     </React.Fragment>
   );
