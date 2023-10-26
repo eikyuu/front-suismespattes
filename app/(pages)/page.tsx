@@ -1,10 +1,11 @@
 
 import 'leaflet/dist/leaflet.css';
 import LastDestinations from '@/components/last-destinations';
-import MapContainer from '@/components/map/map-container';
+
 import Reviews from '@/components/review/reviews';
 import Banner from '@/components/banner';
 import Presentation from '@/components/presentation';
+import MapContainer from '../../components/map/map-container';
 
 const reviews = [
   {

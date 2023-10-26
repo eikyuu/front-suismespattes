@@ -1,9 +1,13 @@
 'use client';
-import MapContent from './map-content';
 import Title from '@/components/ui/text/Title';
 import { useEffect, useState } from 'react';
 import { API_URL } from '../../@core/constants/global';
 import toast from 'react-hot-toast';
+import dynamic from 'next/dynamic';
+
+export const MapContent = dynamic(() => import('./map-content'), {
+  ssr: false,
+})
 
 function MapContainer({ title, slug }: { title: string; slug?: string }) {
   const [coordinates, setCoordinates] = useState<any>();
