@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Destination } from '../../@core/types/DestinationForm';
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import "leaflet/dist/leaflet.css";
 import L, { DivIcon, Icon, IconOptions, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
