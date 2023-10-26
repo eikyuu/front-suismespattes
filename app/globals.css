@@ -106,7 +106,7 @@
 
 /* height of the container */
 .leaflet-container {
-  height: 600%;
+  height: 600px;
   border-radius: 1rem;
 }
 

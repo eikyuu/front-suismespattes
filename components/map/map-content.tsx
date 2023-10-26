@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Destination } from '../../@core/types/DestinationForm';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import L, { DivIcon, Icon, IconOptions, divIcon, point } from 'leaflet';
+import dynamic from 'next/dynamic';
+import { TileLayer, Marker, Popup } from 'react-leaflet';
+
+const LeafletMap = dynamic(() => import('react-leaflet').then((module) => module.MapContainer), {
+  ssr: false, // This ensures that it's only rendered on the client side.
+});
+
+import L, { DivIcon, divIcon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
 const ico = `<svg width="40" height="40" viewBox="0 0 61 71" fill="none" xmlns="http://www.w3.org/2000/svg"><g style="pointer-events: auto;"><path d="M52 31.5C52 36.8395 49.18 42.314 45.0107 47.6094C40.8672 52.872 35.619 57.678 31.1763 61.6922C30.7916 62.0398 30.2084 62.0398 29.8237 61.6922C25.381 57.678 20.1328 52.872 15.9893 47.6094C11.82 42.314 9 36.8395 9 31.5C9 18.5709 18.6801 9 30.5 9C42.3199 9 52 18.5709 52 31.5Z" fill="#0c8892" stroke="white" stroke-width="4"></path><circle cx="30.5" cy="30.5" r="8.5" fill="white" opacity="0.6"></circle></g></svg>`;
@@ -10,8 +16,8 @@ const ico = `<svg width="40" height="40" viewBox="0 0 61 71" fill="none" xmlns="
 const createClusterCustomIcon = function (cluster: any) {
   return new DivIcon({
     html: `<span class="cluster-icon">${cluster.getChildCount()}</span>`,
-    className: "custom-marker-cluster",
-    iconSize: point(33, 33, true)
+    className: 'custom-marker-cluster',
+    iconSize: point(33, 33, true),
   });
 };
 
@@ -43,64 +49,11 @@ function MapContent({
 
   return (
     <React.Fragment>
-      {/* <Map
-        height={500}
-        center={coordinates ? [Number(coordinates[0]), Number(coordinates[1])] : undefined}
-        defaultZoom={12}
-        onClick={() => {
-          setSelectedDestination(null);
-        }}
-      >
-        <ZoomControl />
-        {dogDestination.map((walk: any, index) => (
-          <Marker
-            key={index.toString()}
-            width={50}
-            anchor={[Number(walk.latitude!), Number(walk.longitude!)]}
-            color={'#0c8892'}
-            onClick={() => {
-              setSelectedDestination(walk);
-            }}
-          />
-        ))}
-
-        {selectedDestination && (
-          <Overlay
-            anchor={[
-                Number(selectedDestination.latitude) || 0,
-                Number(selectedDestination.longitude) || 0,
-            ]}
-            offset={[120, 79]}
-          >
-            <Link
-              href={`/destination-chien-accepte/${selectedDestination.slug}`}
-              className='block bg-white rounded-md shadow-md w-96 h-40'
-            >
-              <div className='brightness-50'>
-                <BlurImage
-                  height='h-40'
-                  alt={selectedDestination.name}
-                  image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${selectedDestination.images[0].name}`}
-                />
-              </div>
-
-              <div className='absolute bottom-0 left-0 p-4 text-white'>
-                <p className='font-bold lowercase first-letter:uppercase'>{selectedDestination.name}</p>
-                <p className='text-sm'>
-                  &#x2691; {selectedDestination.street} {selectedDestination.city.postalCode}
-                </p>
-                <p className='text-sm uppercase'>{selectedDestination.city.label} {Country[selectedDestination.country]}</p>
-              </div>
-            </Link>
-          </Overlay>
-        )}
-      </Map> */}
-
-      <MapContainer center={[48.8566, 2.3522]} zoom={13}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <LeafletMap center={[48.8566, 2.3522]} zoom={13}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/cope2yright">OpenStreetMap</a> contributors'
+          url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+        />
         <MarkerClusterGroup
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
@@ -110,16 +63,16 @@ function MapContent({
             <Marker
               key={marker.geocode.toString()}
               position={{ lat: marker.geocode[0], lng: marker.geocode[1] }}
-              icon={ divIcon({
+              icon={divIcon({
                 html: ico,
-                iconSize: [40, 40], 
+                iconSize: [40, 40],
               })}
             >
               <Popup>{marker.popUp}</Popup>
             </Marker>
           ))}
         </MarkerClusterGroup>
-      </MapContainer>
+      </LeafletMap>
     </React.Fragment>
   );
 }

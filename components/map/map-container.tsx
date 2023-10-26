@@ -62,9 +62,9 @@ function MapContainer({ title, slug }: { title: string; slug?: string }) {
   };
 
   return (
-    <section className='bg-primary h-full md:h-166 mx-auto pt-10 pb-10 flex flex-col'>
+    <section className='bg-primary mx-auto pt-10 pb-10 flex flex-col'>
 
-      <div className='container mx-auto'>
+      <div className='container mx-auto '>
       <Title className='text-white text-center mb-10' balise='h2'>
         {title}
       </Title>
