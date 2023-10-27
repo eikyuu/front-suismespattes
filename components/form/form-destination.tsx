@@ -448,28 +448,6 @@ function FormDestination({ slug }: { slug?: string }) {
             <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
              <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                 
           </LeafletMap>
-          {/* <Map
-            animate={true}
-            defaultWidth={600}
-            height={400}
-            center={anchor as Point}
-            defaultZoom={12}
-          >
-            <Draggable
-              anchor={[anchor[0], anchor[1]]}
-              onDragEnd={(dragAnchor) => setAnchor(dragAnchor)}
-              offset={[25, 30]}
-            >
-              <Marker
-              width={50}
-              height={60}
-              color={'#0c8892'}
-              
-              />
-            </Draggable>
-
-            <ZoomControl />
-          </Map> */}
 
           <div className='md:ml-5'>
             <Button
