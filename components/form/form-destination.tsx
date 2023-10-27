@@ -55,13 +55,13 @@ type RecenterAutomaticallyProps = {
   lng: number;
 };
 
-const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyProps) => {
-  const map = useMap();
-  useEffect(() => {
-    map.setView([lat, lng]);
-  }, [lat, lng]);
-  return null;
-};
+// const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyProps) => {
+//   const map = useMap();
+//   useEffect(() => {
+//     map.setView([lat, lng]);
+//   }, [lat, lng]);
+//   return null;
+// };
 
 function FormDestination({ slug }: { slug?: string }) {
   const [anchor, setAnchor] = useState({
@@ -446,7 +446,7 @@ function FormDestination({ slug }: { slug?: string }) {
             zoom={13}
           >
             <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
-             <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                 
+             {/* <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                  */}
           </LeafletMap>
           {/* <Map
             animate={true}
