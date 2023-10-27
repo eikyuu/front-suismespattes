@@ -16,7 +16,7 @@ function LastDestinations(): JSX.Element {
   const [isMobile, setIsMobile] = useState(false);
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ['destinations'],
+    queryKey: ['destinations', 1, 4],
     queryFn: () => fetchDestination(1, 4),
   })
 
@@ -46,7 +46,7 @@ function LastDestinations(): JSX.Element {
               spaceBetween={16}
               className='w-full h-full'
             >
-              {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
+              {!isLoading && data.destinations.length > 0 && data.destinations.map((destination: any) => (
                 <SwiperSlide key={destination.id} className='!w-11/12 last:w-full'>
                   <CardDestination
                     height='h-72'
@@ -71,7 +71,7 @@ function LastDestinations(): JSX.Element {
           </Title>
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center place-items-center'>
           {isLoading && <LoaderDestinations />}
-            {data?.destinations.slice(0, 4).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).map((destination: any) => (
+            {!isLoading && data.destinations.length > 0 && data.destinations.map((destination: any) => (
               <CardDestination 
                 key={destination.id}
                 destination={destination}

@@ -45,8 +45,6 @@ function MapContent({
   destinations: Destination[];
 }) {
 
-  console.log(destinations);
-
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <LazyMap
@@ -61,7 +59,7 @@ function MapContent({
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
         >
-          {destinations.map((marker) => (
+          {destinations && destinations.map((marker) => (
             <LazyMarker
               key={marker.name}
               position={[Number(marker.latitude), Number(marker.longitude)]}
