@@ -92,18 +92,6 @@
   opacity: 1;
 }
 
-/* #root {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1em;
-  font-family: sans-serif;
-  color: #333;
-  background-color: #f3e4d7;
-} */
-
 /* height of the container */
 .leaflet-container {
   height: 400px;
@@ -139,4 +127,8 @@
   background:   unset !important;
   border: unset !important;
   box-shadow: unset !important;
+}
+
+.leaflet-pane {
+  background: unset !important;
 }
