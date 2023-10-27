@@ -58,6 +58,7 @@ function MapContent({
         <MarkerClusterGroup
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
+          showCoverageOnHover={false}
         >
           {destinations && destinations.map((marker) => (
             <LazyMarker
