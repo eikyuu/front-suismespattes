@@ -75,6 +75,20 @@ export const fetchDestination = async (page: number, limit: number) => {
   }
 };
 
+export const fetchDestinations = async () => {
+  try {
+    const response = await fetch(`${API_URL}destination`, {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 export const fetchDestinationBySlug = async (slug: string) => {
   const token = await tokenFromSession();
 

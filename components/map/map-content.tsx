@@ -3,6 +3,8 @@ import { Destination } from '../../@core/types/DestinationForm';
 import dynamic from 'next/dynamic';
 import { Marker, divIcon, icon, point } from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
+import Link from 'next/link';
+import BlurImage from '../blurImage/blur-image';
 
 export const LazyMap = dynamic(() => import('./leaflet-map'), { ssr: false });
 
@@ -38,23 +40,28 @@ const createClusterCustomIcon = function (cluster: any) {
 };
 
 function MapContent({
-  dogDestination,
-  coordinates,
+  destinations,
 }: {
-  dogDestination: Destination[];
-  coordinates?: [string, string];
+  destinations: Destination[];
 }) {
-  const [selectedDestination, setSelectedDestination] =
-    useState<Destination | null>(null);
+
+  console.log(destinations);
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <LazyMap center={[48.8566, 2.3522]} zoom={13}>
+      <LazyMap
+        center={
+          destinations
+            ? [Number(destinations[0].latitude), Number(destinations[0].longitude)]
+            : [47.39235495962892, 0.6897129358274583]
+        }
+        zoom={13}
+      >
         <MarkerClusterGroup
           chunkedLoading
           iconCreateFunction={createClusterCustomIcon}
         >
-          {dogDestination.map((marker) => (
+          {destinations.map((marker) => (
             <LazyMarker
               key={marker.name}
               position={[Number(marker.latitude), Number(marker.longitude)]}
@@ -63,7 +70,30 @@ function MapContent({
                 iconSize: [40, 40],
               })}
             >
-              <LazyPopup>test</LazyPopup>
+              <LazyPopup>
+                <Link
+                  href={`/destination-chien-accepte/${marker.slug}`}
+                  className='block bg-white rounded-md shadow-md w-96 h-40'
+                >
+                  <div className='brightness-50'>
+                    <BlurImage
+                      height='h-40'
+                      alt={marker.name}
+                      image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${marker.images[0].name}`}
+                    />
+                  </div>
+
+                  <div className='absolute bottom-8 left-8 text-white'>
+                    <p className='font-bold lowercase first-letter:uppercase'>
+                      {marker.name}
+                    </p>
+                    <p className='text-sm'>
+                      &#x2691; {marker.street} {marker.city.postalCode}
+                    </p>
+                    <p className='text-sm uppercase'>{marker.city.label}</p>
+                  </div>
+                </Link>
+              </LazyPopup>
             </LazyMarker>
           ))}
         </MarkerClusterGroup>

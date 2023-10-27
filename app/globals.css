@@ -107,6 +107,7 @@
 /* height of the container */
 .leaflet-container {
   height: 600px;
+  width: 100%;
   border-radius: 1rem;
 }
 
@@ -126,4 +127,16 @@
 .leaflet-div-icon {
   background: unset !important;
   border: unset !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: unset !important;
+  border: unset !important;
+  box-shadow: unset !important;
+}
+
+.leaflet-popup-tip {
+  background:   unset !important;
+  border: unset !important;
+  box-shadow: unset !important;
 }
