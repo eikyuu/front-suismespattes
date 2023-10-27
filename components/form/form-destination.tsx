@@ -40,23 +40,24 @@ import TitleUnderline from '@/components/ui/text/TitleUnderline';
 import Text from '@/components/ui/text/Text';
 import dynamic from 'next/dynamic';
 // import DraggableMarker from '../map/draggableMarker';
-// export const LeafletMap = dynamic(
-//   () => import('@/components/map/leaflet-map'),
-//   { ssr: false }
-// );
+import { useMap } from 'react-leaflet';
+export const LeafletMap = dynamic(
+  () => import('@/components/map/leaflet-map'),
+  { ssr: false }
+);
 
 type RecenterAutomaticallyProps = {
   lat: number;
   lng: number;
 };
 
-// const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyProps) => {
-//   const map = useMap();
-//   useEffect(() => {
-//     map.setView([lat, lng]);
-//   }, [lat, lng]);
-//   return null;
-// };
+const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyProps) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView([lat, lng]);
+  }, [lat, lng]);
+  return null;
+};
 
 function FormDestination({ slug }: { slug?: string }) {
   const [anchor, setAnchor] = useState({
