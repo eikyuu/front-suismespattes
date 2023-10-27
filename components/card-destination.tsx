@@ -40,7 +40,7 @@ function CardDestination({
   return (
     <Link
       href={`destination-chien-accepte/${destination.slug}`}
-      className='flex flex-col justify-between w-full md:w-72 h-full xs:last:mb-0 focus:ring-4 focus:ring-tertiary focus:outline-none '
+      className='flex flex-col justify-between w-full md:w-72 h-full xs:last:mb-0 focus:ring-4 focus:ring-tertiary focus:outline-none md:pb-4'
     >
       <picture className='mb-2'>
         <div className='absolute z-10 flex flex-row justify-between items-start px-2 py-2 md:p-2' >
