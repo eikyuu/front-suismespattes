@@ -36,19 +36,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { Draggable, Map, Marker, Point, ZoomControl } from 'pigeon-maps';
 import TitleUnderline from '@/components/ui/text/TitleUnderline';
 import Text from '@/components/ui/text/Text';
 import dynamic from 'next/dynamic';
-import DraggableMarker from '../map/draggableMarker';
-export const LeafletMap = dynamic(
-  () => import('@/components/map/leaflet-map'),
-  { ssr: false }
-);
-
-
-
-import { useMap } from 'react-leaflet';
+// import DraggableMarker from '../map/draggableMarker';
+// export const LeafletMap = dynamic(
+//   () => import('@/components/map/leaflet-map'),
+//   { ssr: false }
+// );
 
 type RecenterAutomaticallyProps = {
   lat: number;
@@ -441,13 +436,13 @@ function FormDestination({ slug }: { slug?: string }) {
         </Text>
 
         <div className='w-full h-full  flex flex-col md:flex-row'>
-          <LeafletMap
+          {/* <LeafletMap
             center={form.latitude ? [form.latitude, form.longitude] : [anchor.lat, anchor.lng]}
             zoom={13}
           >
             <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
-             {/* <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                  */}
-          </LeafletMap>
+             <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                 
+          </LeafletMap> */}
           {/* <Map
             animate={true}
             defaultWidth={600}
