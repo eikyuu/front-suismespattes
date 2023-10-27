@@ -238,8 +238,7 @@ function DestinationContainer({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
-
-     {/* ///TODO: fix le double appel */}
+      
       <MapContainer slug={slug} destination={data ? data : null} title={`${data?.name}`} />
     </>
   );

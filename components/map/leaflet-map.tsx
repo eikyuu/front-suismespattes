@@ -1,6 +1,6 @@
 import { MapOptions } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet';
-
+import "leaflet/dist/leaflet.css";
 function LeafletMap({
   center,
   children,
