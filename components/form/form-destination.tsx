@@ -39,12 +39,16 @@ import {
 import TitleUnderline from '@/components/ui/text/TitleUnderline';
 import Text from '@/components/ui/text/Text';
 import dynamic from 'next/dynamic';
-// import DraggableMarker from '../map/draggableMarker';
 import { useMap } from 'react-leaflet';
 export const LeafletMap = dynamic(
   () => import('@/components/map/leaflet-map'),
   { ssr: false }
 );
+
+export const DraggableMarker = dynamic(
+  () => import('@/components/map/draggableMarker'),
+  { ssr: false }
+)
 
 type RecenterAutomaticallyProps = {
   lat: number;
@@ -437,13 +441,13 @@ function FormDestination({ slug }: { slug?: string }) {
         </Text>
 
         <div className='w-full h-full  flex flex-col md:flex-row'>
-          {/* <LeafletMap
+          <LeafletMap
             center={form.latitude ? [form.latitude, form.longitude] : [anchor.lat, anchor.lng]}
             zoom={13}
           >
             <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
              <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                 
-          </LeafletMap> */}
+          </LeafletMap>
           {/* <Map
             animate={true}
             defaultWidth={600}
