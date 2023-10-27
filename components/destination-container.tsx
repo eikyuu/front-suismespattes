@@ -239,7 +239,7 @@ function DestinationContainer({ slug }: { slug: string }) {
         </div>
       </section>
       
-      <MapContainer slug={slug} destination={data ? data : null} title={`${data?.name}`} />
+      <MapContainer destination={data ? data : null} title={`${data?.name}`} />
     </>
   );
 }
