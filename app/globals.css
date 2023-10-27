@@ -96,7 +96,7 @@
 .leaflet-container {
   height: 400px;
   width: 100%;
-  border-radius: 1rem;
+  border-radius: .5rem;
 }
 
 .cluster-icon {
@@ -125,12 +125,6 @@
 
 .leaflet-popup-tip {
   background:   unset !important;
-  border: unset !important;
-  box-shadow: unset !important;
-}
-
-.leaflet-pane {
-  background: unset !important;
   border: unset !important;
   box-shadow: unset !important;
 }

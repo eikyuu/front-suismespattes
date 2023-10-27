@@ -295,7 +295,7 @@ export function useDestinationForm(slug?: string) {
   };
 
   const handleAnchor = (anchor: any) => {
-    setForm({ ...form, latitude: anchor[0], longitude: anchor[1] });
+    setForm({ ...form, latitude: anchor.lat, longitude: anchor.lng });
   };
 
   return { form, submit, handleChange, handleSubmit, handleFileChange, handleChangeCodePostal, deleteImage, handleAnchor, errors, images, loading, cities};

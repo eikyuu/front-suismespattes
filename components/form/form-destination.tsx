@@ -39,9 +39,35 @@ import {
 import { Draggable, Map, Marker, Point, ZoomControl } from 'pigeon-maps';
 import TitleUnderline from '@/components/ui/text/TitleUnderline';
 import Text from '@/components/ui/text/Text';
+import dynamic from 'next/dynamic';
+import DraggableMarker from '../map/draggableMarker';
+export const LeafletMap = dynamic(
+  () => import('@/components/map/leaflet-map'),
+  { ssr: false }
+);
+
+
+
+import { useMap } from 'react-leaflet';
+
+type RecenterAutomaticallyProps = {
+  lat: number;
+  lng: number;
+};
+
+const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyProps) => {
+  const map = useMap();
+  useEffect(() => {
+    map.setView([lat, lng]);
+  }, [lat, lng]);
+  return null;
+};
 
 function FormDestination({ slug }: { slug?: string }) {
-  const [anchor, setAnchor] = useState([50.879, 4.6997]);
+  const [anchor, setAnchor] = useState({
+    lat: 47.39235495962892,
+    lng: 0.6897129358274583,
+  });
 
   const {
     handleSubmit,
@@ -60,7 +86,10 @@ function FormDestination({ slug }: { slug?: string }) {
 
   useEffect(() => {
     if (form.latitude && form.longitude) {
-      setAnchor([Number(form.latitude), Number(form.longitude)]);
+      setAnchor({
+        lat: form.latitude,
+        lng: form.longitude,
+      });
     }
   }, [form.latitude, form.longitude]);
 
@@ -79,7 +108,7 @@ function FormDestination({ slug }: { slug?: string }) {
       city: valueCities,
       postalCode: form.postalCode,
     };
-    
+
     try {
       const response = await fetch(`${API_URL}destination/geocode`, {
         method: 'POST',
@@ -89,7 +118,10 @@ function FormDestination({ slug }: { slug?: string }) {
         body: JSON.stringify(formBody),
       });
       const data = await response.json();
-      setAnchor([data.lat, data.lng]);
+      setAnchor({
+        lat: data.lat,
+        lng: data.lng,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -409,7 +441,14 @@ function FormDestination({ slug }: { slug?: string }) {
         </Text>
 
         <div className='w-full h-full  flex flex-col md:flex-row'>
-          <Map
+          <LeafletMap
+            center={form.latitude ? [form.latitude, form.longitude] : [anchor.lat, anchor.lng]}
+            zoom={13}
+          >
+            <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
+             <RecenterAutomatically lat={anchor.lat} lng={anchor.lng}/>                 
+          </LeafletMap>
+          {/* <Map
             animate={true}
             defaultWidth={600}
             height={400}
@@ -430,14 +469,19 @@ function FormDestination({ slug }: { slug?: string }) {
             </Draggable>
 
             <ZoomControl />
-          </Map>
+          </Map> */}
 
           <div className='md:ml-5'>
             <Button
               variant={'outline'}
               className='w-full md:w-[180px] mt-5 md:mt-0'
               onClick={() => {
-                if (form.street === '' || form.postalCode === '' || form.city === '' || form.country === '') {
+                if (
+                  form.street === '' ||
+                  form.postalCode === '' ||
+                  form.city === '' ||
+                  form.country === ''
+                ) {
                   toast.error('Veuillez saisir les informations requises');
                   return;
                 }
