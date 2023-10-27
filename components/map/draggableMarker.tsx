@@ -1,7 +1,6 @@
 import { divIcon } from 'leaflet';
 import dynamic from 'next/dynamic';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { useMap } from 'react-leaflet';
+import { useMemo } from 'react';
 
 export const Marker = dynamic(
     async () => (await import('react-leaflet')).Marker,
