@@ -16,7 +16,6 @@ export default function Page() {
         height='h-96'
         alt='Deux personnage en jouets qui imite un chantier'
       />
-
       <Link className='mt-10' href='/'>
         Retour à l&apos;accueil
       </Link>

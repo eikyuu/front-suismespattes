@@ -15,7 +15,7 @@ export default function Destinations() {
         <Title balise='h1' className='text-center mb-10 mt-10'>
           Toutes les destinations
         </Title>
-        <Text className='text-black	'>
+        <Text className='text-black'>
           À la recherche d&apos;une aventure inoubliable à partager avec votre
           fidèle compagnon canin lors de vos prochaines vacances ? Vous êtes au
           bon endroit.
