@@ -118,7 +118,7 @@ export default function Page() {
             <li className='text-white text-lg list-disc ml-10'>
               <span className='font-semibold'>
                 Par le formulaire de contact:
-              </span>
+              </span>{' '}
               <Link className='underline' href='/contact'>
                 Contact
               </Link>
