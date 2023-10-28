@@ -1,6 +1,7 @@
 import { MapOptions } from 'leaflet';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
+import { Fragment } from 'react';
 function LeafletMap({
   center,
   children,
@@ -13,7 +14,7 @@ function LeafletMap({
   mapOptions?: MapOptions;
 }) {
   return (
-    <>
+    <Fragment>
       <MapContainer
         maxZoom={18}
         center={center}
@@ -26,7 +27,7 @@ function LeafletMap({
         />
         {children}
       </MapContainer>
-    </>
+    </Fragment>
   );
 }
 

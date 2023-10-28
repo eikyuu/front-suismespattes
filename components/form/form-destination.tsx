@@ -46,7 +46,7 @@ export const LeafletMap = dynamic(
 );
 
 export const DraggableMarker = dynamic(
-  () => import('@/components/map/draggableMarker'),
+  () => import('@/components/map/draggable-marker'),
   { ssr: false }
 )
 
@@ -100,6 +100,7 @@ function FormDestination({ slug }: { slug?: string }) {
 
   useEffect(() => {
     handleAnchor(anchor);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [anchor]);
 
   const fetchAnchorLocation = async () => {
