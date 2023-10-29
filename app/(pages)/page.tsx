@@ -4,7 +4,7 @@ import LastDestinations from '@/components/last-destinations';
 
 import Reviews from '@/components/review/reviews';
 import Banner from '@/components/banner';
-import Presentation from '@/components/presentation';
+import Presentation from '@/components/presentation/presentation';
 import MapContainer from '../../components/map/map-container';
 
 const reviews = [
