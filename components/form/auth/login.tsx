@@ -6,6 +6,7 @@ import React from 'react';
 import FormConfirmCode from './form-confirm-code';
 import FormResetPassword from './form-reset-password';
 import { ACTION } from '../../../@core/constants/action-auth';
+
 function Login() {
   const [data, setData] = useState({
     action: 'login',

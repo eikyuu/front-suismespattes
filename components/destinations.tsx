@@ -4,7 +4,6 @@ import Text from '@/components/ui/text/Text';
 import CardDestinations from './card-destinations';
 import { Fragment } from 'react';
 import { Button } from './ui/button';
-import { Input } from './ui/input';
 import PopoverCity from './popover-city';
 import Link from 'next/link';
 

@@ -5,7 +5,6 @@ import { useSession } from 'next-auth/react';
 import MapContainer from './map/map-container';
 import Link from 'next/link';
 import SwiperContainer from '@/components/swiper-container';
-import { Country } from '../@core/enum/Country';
 import { Button } from '@/components/ui/button';
 import { deleteDestination, fetchDestinationBySlug } from '../@core/services/destinationService';
 import { useRouter } from 'next/navigation';

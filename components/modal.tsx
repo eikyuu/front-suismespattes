@@ -2,7 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import React from 'react';
 import { useHandleModal } from '../@core/hooks/useHandleModal';
 
-type ModalProps = {
+interface ModalProps  {
   children: React.ReactNode;
   isOpen: boolean;
   onOpenChange: any;
