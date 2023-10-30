@@ -3,7 +3,7 @@ import { Destination, DestinationFormPick } from '../types/DestinationForm';
 import toast from 'react-hot-toast';
 import { fetchDestinationBySlug, postDestination, updateDestination, deleteDestinationImage, uploadImages } from '../services/destinationService';
 import { useRouter } from 'next/navigation'
-import { formatSlug, userFromSession } from '../utils/utils';
+import { formatSlug, userFromSession } from '../lib/utils';
 import { useHandleChange } from './useHandleChange';
 import { fetchCityByCodePostal } from '../services/cityService';
 

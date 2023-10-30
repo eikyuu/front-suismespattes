@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/react';
 import ContentNavigation from '../components/content-navigation';
 import Headband from '../components/headband';
 import AuthProvider from '../@core/context/AuthProvider';
-import Provider from '../@core/utils/provider';
+import Provider from '../@core/lib/provider';
 import Footer from '../components/footer';
 
 const inter = Inter({ subsets: ['latin'] });

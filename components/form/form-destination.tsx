@@ -22,7 +22,7 @@ import { Textarea } from '@/components/ui/textarea';
 import toast from 'react-hot-toast';
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { cn } from '@/@core/utils/utils';
+import { cn } from '@/@core/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
   Command,

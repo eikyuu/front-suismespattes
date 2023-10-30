@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cn } from '@/@core/utils/utils';
+import { cn } from '@/@core/lib/utils';
 import { Eye, EyeOff } from 'lucide-react';
 
 export interface InputProps

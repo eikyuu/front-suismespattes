@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { API_URL } from '../constants/global';
-import { tokenFromSession } from '../utils/utils';
+import { tokenFromSession } from '../lib/utils';
 
 export const postDestination = async (form: any) => {
 
