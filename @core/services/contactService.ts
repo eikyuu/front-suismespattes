@@ -5,7 +5,7 @@ import { API_URL } from '../constants/global';
  * @param form - The form data to be sent in the request.
  * @returns A Promise that resolves to the response data from the API.
  */
-export const postMessage = async (form: FormData): Promise<any> => {
+export const postMessage = async (form: { message: string; email: string; subject: string; }): Promise<any> => {
     try {
         const response = await fetch(`${API_URL}contact`, {
             method: 'POST',
