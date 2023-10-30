@@ -1,9 +1,9 @@
-import type { AuthOptions, Session, User } from "next-auth"
+import type { NextAuthOptions, Session, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { authenticate } from '@/@core/services/authService'
 import { JWT } from 'next-auth/jwt'
 
-export const authOptions: AuthOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
       CredentialsProvider({
         name: 'Credentials',
