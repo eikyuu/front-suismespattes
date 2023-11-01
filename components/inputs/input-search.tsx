@@ -1,7 +1,5 @@
 function InputSearch() {
-    return ( 
-        <input className='rounded-md' type="search" />
-     );
+  return <input className="rounded-md" type="search" />
 }
 
-export default InputSearch;
+export default InputSearch

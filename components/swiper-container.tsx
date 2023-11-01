@@ -1,23 +1,25 @@
-import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/navigation';
-import 'swiper/css/thumbs';
-import { FreeMode, Navigation, Thumbs } from 'swiper';
-import { Swiper as S } from 'swiper';
-import Image from 'next/image';
-import BlurImage from './blurImage/blur-image';
+import { useState } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+
+import "swiper/css"
+import "swiper/css/free-mode"
+import "swiper/css/navigation"
+import "swiper/css/thumbs"
+
+import Image from "next/image"
+import { FreeMode, Navigation, Swiper as S, Thumbs } from "swiper"
+
+import BlurImage from "./blurImage/blur-image"
 
 function SwiperContainer({ data }: { data: any }): JSX.Element {
-  const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<S | null>(null)
   return (
-    <div className='w-11/12 mx-auto md:m-0 md:w-1/2'>
+    <div className="mx-auto w-11/12 md:m-0 md:w-1/2">
       <Swiper
         style={
           {
-            '--swiper-navigation-color': '#fff',
-            '--swiper-pagination-color': '#fff',
+            "--swiper-navigation-color": "#fff",
+            "--swiper-pagination-color": "#fff",
           } as React.CSSProperties
         }
         loop={true}
@@ -25,13 +27,13 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Thumbs, Navigation]}
-        className='mySwiper2 w-full'
+        className="mySwiper2 w-full"
       >
         {data && data.length > 0 ? (
           data.map((data: any) => (
-            <SwiperSlide key={data.id} className='w-full'>
+            <SwiperSlide key={data.id} className="w-full">
               <BlurImage
-                height='h-144'
+                height="h-144"
                 alt={data.name}
                 image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
               />
@@ -39,11 +41,11 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
           ))
         ) : (
           <Image
-            className='rounded-md object-cover h-144 w-full'
-            src={'/images/placeholder.webp'}
+            className="h-144 w-full rounded-md object-cover"
+            src={"/images/placeholder.webp"}
             width={500}
             height={500}
-            alt='Picture of the author'
+            alt="Picture of the author"
           />
         )}
       </Swiper>
@@ -55,13 +57,13 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Thumbs, Navigation]}
-        className='mySwiper mt-2'
+        className="mySwiper mt-2"
       >
         {data && data.length > 0 ? (
           data.map((data: any) => (
             <SwiperSlide key={data.id}>
               <BlurImage
-                height='h-40'
+                height="h-40"
                 alt={data.name}
                 image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
               />
@@ -69,16 +71,16 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
           ))
         ) : (
           <Image
-            className='rounded-md object-cover h-36'
-            src={'/images/placeholder.webp'}
+            className="h-36 rounded-md object-cover"
+            src={"/images/placeholder.webp"}
             width={500}
             height={500}
-            alt='Une image par défaut'
+            alt="Une image par défaut"
           />
         )}
       </Swiper>
     </div>
-  );
+  )
 }
 
-export default SwiperContainer;
+export default SwiperContainer

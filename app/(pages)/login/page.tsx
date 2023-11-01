@@ -1,15 +1,15 @@
-'use client';
+"use client"
 
-import Login from '@/components/form/auth/login';
+import Login from "@/components/form/auth/login"
 
 export default function Page() {
   return (
-    <section className='container mx-auto w-11/12 mt-10'>
-      <div className='w-full h-full flex items-center justify-center'>
-        <div className=' text-white bg-primary rounded-md w-11/12 md:w-96 h-auto p-10'>
+    <section className="container mx-auto mt-10 w-11/12">
+      <div className="flex h-full w-full items-center justify-center">
+        <div className=" h-auto w-11/12 rounded-md bg-primary p-10 text-white md:w-96">
           <Login />
         </div>
       </div>
     </section>
-  );
+  )
 }

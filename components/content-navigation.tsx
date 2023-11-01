@@ -1,109 +1,113 @@
-'use client';
+"use client"
 
-import Link from 'next/link';
-import LiNav from '@/components/li-nav';
-import { useEffect, useRef, useState } from 'react';
-import { useSession } from 'next-auth/react';
-import Modal from '@/components/modal';
-import Login from './form/auth/login';
-import { useHandleModal } from '../@core/hooks/useHandleModal';
-import Image from 'next/image';
-import LoginBtn from '@/components/login-btn';
+import { useEffect, useRef, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { useSession } from "next-auth/react"
+
+import LiNav from "@/components/li-nav"
+import LoginBtn from "@/components/login-btn"
+import Modal from "@/components/modal"
+
+import { useHandleModal } from "../@core/hooks/useHandleModal"
+import Login from "./form/auth/login"
 
 function ContentNavigation() {
-  const { data: session } = useSession();
-  const [navbar, setNavbar] = useState(false);
+  const { data: session } = useSession()
+  const [navbar, setNavbar] = useState(false)
 
-  const {isOpen, toggle} = useHandleModal();
+  const { isOpen, toggle } = useHandleModal()
 
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    document.addEventListener('mousedown', clickOutside);
+    document.addEventListener("mousedown", clickOutside)
     return () => {
-      document.removeEventListener('mousedown', clickOutside);
-    };
+      document.removeEventListener("mousedown", clickOutside)
+    }
   })
 
   const handleMenuClick = () => {
-    setNavbar(!navbar);
-  };
+    setNavbar(!navbar)
+  }
 
   const clickOutside = (e: any) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      setNavbar(false);
+      setNavbar(false)
     }
-  };
-  
+  }
+
   return (
     <header ref={ref}>
-      <nav className='bg-primary border-gray-200'>
-        <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
-          <div className='flex items-center flex-shrink-0'>
-            <Link href='/'>
-              <Image width={40} height={40} src='/images/logo.webp' alt='logo du site Suis mes pattes' />
+      <nav className="border-gray-200 bg-primary">
+        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
+          <div className="flex flex-shrink-0 items-center">
+            <Link href="/">
+              <Image
+                width={40}
+                height={40}
+                src="/images/logo.webp"
+                alt="logo du site Suis mes pattes"
+              />
             </Link>
           </div>
           <Link
-            href='/'
-            className='flex items-center focus:ring-4 focus:ring-tertiary focus:outline-none'
+            href="/"
+            className="flex items-center focus:outline-none focus:ring-4 focus:ring-tertiary"
           >
-            <span className='self-center text-white text-2xl font-extrabold tracking-tight whitespace-nowrap'>
+            <span className="self-center whitespace-nowrap text-2xl font-extrabold tracking-tight text-white">
               Suis mes pattes
             </span>
           </Link>
-          <div className='flex lg:order-2'>
+          <div className="flex lg:order-2">
             <button
               onClick={handleMenuClick}
-              data-collapse-toggle='navbar'
-              type='button'
-              className='inline-flex items-center p-2 text-white rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200'
-              aria-controls='navbar'
-              aria-expanded='false'
+              data-collapse-toggle="navbar"
+              type="button"
+              className="inline-flex items-center rounded-lg p-2 text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
+              aria-controls="navbar"
+              aria-expanded="false"
             >
-              <span className='sr-only'>Menu ouvert</span>
+              <span className="sr-only">Menu ouvert</span>
               <svg
-                className='w-6 h-6'
-                aria-hidden='true'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
+                className="h-6 w-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fillRule='evenodd'
-                  d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z'
-                  clipRule='evenodd'
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
                 ></path>
               </svg>
             </button>
           </div>
           <div
-            className={`items-center justify-between w-full lg:flex lg:w-auto lg:order-1 ${
-              navbar ? '' : 'hidden'
+            className={`w-full items-center justify-between lg:order-1 lg:flex lg:w-auto ${
+              navbar ? "" : "hidden"
             }`}
-            id='navbar'
+            id="navbar"
           >
-            <ul className='flex flex-col items-center p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-primary'>
-              <LiNav text='Accueil' href='/' />
-              <LiNav
-                text='Destinations'
-                href='/destinations-chien-accepte'
-              />
+            <ul className="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 lg:mt-0 lg:flex-row lg:space-x-8 lg:border-0 lg:bg-primary lg:p-0">
+              <LiNav text="Accueil" href="/" />
+              <LiNav text="Destinations" href="/destinations-chien-accepte" />
 
               <LiNav
-                text='Partager une destination'
-                href='/partager-une-destination'
+                text="Partager une destination"
+                href="/partager-une-destination"
                 prefetch={false}
                 onClick={(e: any) => {
                   if (!session?.user) {
-                    e.preventDefault();
-                    toggle();
-                    return;
+                    e.preventDefault()
+                    toggle()
+                    return
                   }
                 }}
               />
-              <LiNav text='Boutique' href='/a-venir' />
-              <LiNav text='Contact' href='/contact' />
+              <LiNav text="Boutique" href="/a-venir" />
+              <LiNav text="Contact" href="/contact" />
               <LoginBtn />
             </ul>
           </div>
@@ -113,9 +117,8 @@ function ContentNavigation() {
       <Modal isOpen={isOpen} onOpenChange={toggle}>
         <Login />
       </Modal>
-
     </header>
-  );
+  )
 }
 
-export default ContentNavigation;
+export default ContentNavigation

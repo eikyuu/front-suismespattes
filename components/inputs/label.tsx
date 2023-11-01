@@ -1,10 +1,24 @@
-function Label({label, name, required, color} : {label: string, name: string, required?: boolean, color?: string}): JSX.Element {
+function Label({
+  label,
+  name,
+  required,
+  color,
+}: {
+  label: string
+  name: string
+  required?: boolean
+  color?: string
+}): JSX.Element {
+  color = color ? color : "white"
 
-    color = color ? color : "white";
-    
-    return ( 
-        <label htmlFor={name} className={`block mb-2 mt-5 text-sm font-medium text-${color}`}>{label} {required && '*'}</label>
-     );
+  return (
+    <label
+      htmlFor={name}
+      className={`text- mb-2 mt-5 block text-sm font-medium${color}`}
+    >
+      {label} {required && "*"}
+    </label>
+  )
 }
 
-export default Label;
+export default Label
