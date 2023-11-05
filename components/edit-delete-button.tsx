@@ -43,7 +43,7 @@ export default function EditDeleteButton({ slug }: Props) {
   return (
     <Fragment>
       {session?.user?.roles?.includes("ROLE_ADMIN") && (
-        <div className="md:top-50 mt-5 flex md:fixed md:right-10 md:mt-0 md:block md:space-y-2">
+        <div className="lg:top-50 mt-5 flex lg:absolute lg:right-10 lg:mt-0 lg:block lg:space-y-2">
           <Link
             className="relative right-0 top-0 mr-2 block"
             href={`/destination-chien-accepte/${slug}/edit`}
