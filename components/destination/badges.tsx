@@ -40,7 +40,7 @@ export default function Badges({
         return "TRÈS POSITIF"
     }
   }
-  console.log(note)
+
   function handleObligatoryLeash(obligatoryLeash: "RECOMANDED" | "YES" | "NO") {
     switch (obligatoryLeash) {
       case "RECOMANDED":
