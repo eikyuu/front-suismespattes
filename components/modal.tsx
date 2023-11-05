@@ -23,12 +23,12 @@ function Modal({ children, isOpen, onOpenChange }: ModalProps): JSX.Element {
         <>
           <div
             onClick={onOpenChange}
-            className="fixed left-0 top-0 z-40 !-ml-0 h-full w-full  bg-black bg-opacity-40"
+            className="fixed left-0 top-0 z-[1000] !-ml-0 h-full w-full  bg-black bg-opacity-40"
           />
 
           <div
             id="modal"
-            className="fixed left-1/2 top-1/2 z-50 h-auto w-11/12 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-primary p-10 text-white md:w-96"
+            className="fixed left-1/2 top-1/2 z-[1000] h-auto w-11/12 -translate-x-1/2 -translate-y-1/2 transform rounded-md bg-primary p-10 text-white md:w-96"
           >
             <div
               className="ease absolute -ml-12 -mt-12 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-tertiary text-white shadow transition duration-300 hover:scale-110 hover:bg-tertiary hover:text-black"

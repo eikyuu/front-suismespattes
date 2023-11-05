@@ -39,11 +39,11 @@ function LastDestinations(): JSX.Element {
   return (
     <>
       {isMobile ? (
-        <section className="h-full pb-10 pt-10">
+        <section className="h-full py-10">
           <Title className="text-center" balise="h2">
             Les dernières destinations
           </Title>
-          <div className="mx-auto flex w-11/12 flex-col flex-wrap justify-between pb-10 pt-10 md:flex-row">
+          <div className="mx-auto flex w-11/12 flex-col flex-wrap justify-between py-10 md:flex-row">
             {isLoading && <LoaderDestinations />}
 
             <Swiper
@@ -70,7 +70,7 @@ function LastDestinations(): JSX.Element {
           </div>
         </section>
       ) : (
-        <section className="container mx-auto flex h-full w-11/12 flex-col flex-wrap justify-center bg-opacity-80 bg-map bg-cover bg-center bg-no-repeat pb-10 pt-10 md:w-full xl:h-166">
+        <section className="/80 container mx-auto flex h-full w-11/12 flex-col flex-wrap justify-center bg-map bg-cover bg-center bg-no-repeat py-10 md:w-full xl:h-166">
           <Title balise="h2" className="mb-10 text-center">
             Les dernières destinations
           </Title>

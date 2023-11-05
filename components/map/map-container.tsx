@@ -32,15 +32,17 @@ function MapContainer({
   if (error) return <p>Une erreur est survenue</p>
 
   return (
-    <section className="mx-auto flex flex-col bg-primary pb-10 pt-10">
+    <section className="mx-auto flex flex-col bg-primary py-10">
       <div className="container mx-auto ">
         <Title className="mb-10 text-center text-white" balise="h2">
           {title}
         </Title>
         {isLoading && <Skeleton className="mb-4 h-[600px] w-full" />}
-        <MapContent
-          destinations={destination ? [destination] : data?.destinations}
-        />
+        <div className="h-[600px] w-full">
+          <MapContent
+            destinations={destination ? [destination] : data?.destinations}
+          />
+        </div>
       </div>
     </section>
   )

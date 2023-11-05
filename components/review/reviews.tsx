@@ -7,7 +7,7 @@ import Review from "./review"
 
 function Reviews({ reviews }: any): JSX.Element {
   return (
-    <section className="flex h-full flex-col justify-center bg-primary pb-10 pt-10 xl:h-100">
+    <section className="flex h-full flex-col justify-center bg-primary pb-10 pt-10 xl:h-[600px]">
       <Title className="mb-10 text-center text-white" balise="h2">
         L&apos;avis des canipotes
       </Title>

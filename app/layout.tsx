@@ -37,7 +37,7 @@ export default function RootLayout({
       </head>
       <body
         suppressHydrationWarning={true}
-        className={inter.className + " font-sans leading-relaxed"}
+        className={`${inter.className} + font-sans leading-relaxed antialiased`}
       >
         <Provider>
           <AuthProvider>

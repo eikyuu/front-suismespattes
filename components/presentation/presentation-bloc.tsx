@@ -25,7 +25,7 @@ function PresentationBloc({
       <Image
         src={image}
         alt="Logo en forme de tête de chien"
-        className="mb-10 mt-10 self-center"
+        className="my-10 self-center"
         loading="eager"
         width={width}
         height={height}

@@ -12,7 +12,7 @@ export default function NotFound() {
         &#128561; 404 Page non trouvée &#128561;
       </Title>
 
-      <Text type="gray" className="mb-10 mt-10">
+      <Text type="gray" className="my-10">
         Pourquoi les chiens détestent-ils les pages 404 ? Parce qu&apos;ils
         préfèrent les pages &quot;au poil&quot; ! 🐶📄
       </Text>

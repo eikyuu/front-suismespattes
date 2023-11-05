@@ -14,7 +14,7 @@ function Label({
   return (
     <label
       htmlFor={name}
-      className={`text- mb-2 mt-5 block text-sm font-medium${color}`}
+      className={`text-${color} mb-2 mt-5 block text-sm font-medium`}
     >
       {label} {required && "*"}
     </label>

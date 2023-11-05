@@ -4,7 +4,7 @@ import PresentationBloc from "./presentation-bloc"
 
 function Presentation() {
   return (
-    <section className="container mx-auto mb-10 mt-10 flex h-full w-11/12 flex-col justify-center md:w-full">
+    <section className="container mx-auto my-10 flex h-full w-11/12 flex-col justify-center md:w-full xl:h-[600px]">
       <Title balise="h1" className="text-center">
         Suis mes pattes, une plateforme collaborative gratuite pour voyager avec
         ton chien !

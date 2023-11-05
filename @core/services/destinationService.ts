@@ -107,7 +107,7 @@ export const fetchDestinationBySlug = async (slug: string) => {
   }
 }
 
-export const uploadImages = async (files: any, form : any) => {
+export const uploadImages = async (files: any, form: any) => {
   try {
     const uploadPromises = files.map((file: any) => postImages(file, form.name.trim()));
     await Promise.all(uploadPromises);
@@ -142,7 +142,7 @@ export const postDestinationImage = async (formData: any) => {
   }
 };
 
-export const deleteDestinationImage = async (slug : string) => {
+export const deleteDestinationImage = async (slug: string) => {
   const token = await tokenFromSession();
   try {
     const response = await fetch(`${API_URL}destination/images/${slug}`, {
@@ -173,7 +173,7 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
     return queryString ? `${queryString}` : '';
   };
 
-  
+
   const url = `${createQueryString(queries)}`;
 
 
