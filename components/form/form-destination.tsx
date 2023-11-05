@@ -438,23 +438,25 @@ function FormDestination({ slug }: { slug?: string }) {
           </SelectContent>
         </Select>
 
-        <Text className="mb-4 mt-4 text-white">
+        <Text className="my-4 text-white">
           Vérifiez la localisation de votre destination. Repositionnez la
           localisation si besoin.
         </Text>
 
         <div className="flex h-full  w-full flex-col md:flex-row">
-          <LeafletMap
-            center={
-              form.latitude
-                ? [form.latitude, form.longitude]
-                : [anchor.lat, anchor.lng]
-            }
-            zoom={13}
-          >
-            <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
-            <RecenterAutomatically lat={anchor.lat} lng={anchor.lng} />
-          </LeafletMap>
+          <div className="h-[600px] w-full">
+            <LeafletMap
+              center={
+                form.latitude
+                  ? [form.latitude, form.longitude]
+                  : [anchor.lat, anchor.lng]
+              }
+              zoom={13}
+            >
+              <DraggableMarker setAnchor={setAnchor} anchor={anchor} />
+              <RecenterAutomatically lat={anchor.lat} lng={anchor.lng} />
+            </LeafletMap>
+          </div>
 
           <div className="md:ml-5">
             <Button

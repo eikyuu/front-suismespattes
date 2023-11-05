@@ -38,11 +38,9 @@ export default function Badges({
         return "POSITIF"
       case 4:
         return "TRÈS POSITIF"
-      default:
-        return "NEUTRE"
     }
   }
-
+  console.log(note)
   function handleObligatoryLeash(obligatoryLeash: "RECOMANDED" | "YES" | "NO") {
     switch (obligatoryLeash) {
       case "RECOMANDED":
@@ -64,12 +62,10 @@ export default function Badges({
       >
         {category.name}
       </Link>
-      {isFavorite && <Badge>COUP DE COEUR</Badge>}{" "}
-      {waterPoint && <Badge>POINT D&#039;EAU</Badge>}
-      {note && <Badge>&#9733; {handleNote(note)}</Badge>}
-      {obligatoryLeash && (
-        <Badge>{handleObligatoryLeash(obligatoryLeash)}</Badge>
-      )}
+      <Badge>COUP DE COEUR</Badge>
+      <Badge>POINT D&#039;EAU</Badge>
+      <Badge>&#9733; {handleNote(note)}</Badge>
+      <Badge>{handleObligatoryLeash(obligatoryLeash)}</Badge>
       {processionaryCaterpillarAlert && (
         <Badge variant={"destructive"}>&#9888; CHENILLE PROCESSIONNAIRE</Badge>
       )}
