@@ -135,3 +135,7 @@
   border: unset !important;
   box-shadow: unset !important;
 }
+
+.leaflet-popup-close-button {
+  display: none !important;
+}
