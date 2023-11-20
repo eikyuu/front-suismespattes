@@ -20,6 +20,7 @@ export const MapOneContent = dynamic(() => import("../map/map-one-content"), {
 })
 
 export default function DestinationContainer({ slug }: { slug: string }) {
+  
   const { error, data, isLoading } = useQuery({
     queryKey: ["destinationBySlug", slug],
     queryFn: async () => await fetchDestinationBySlug(slug),

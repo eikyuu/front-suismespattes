@@ -3,116 +3,123 @@ import { API_URL } from '../constants/global';
 import { tokenFromSession } from '../lib/utils';
 
 export const postDestination = async (form: any) => {
-
   const token = await tokenFromSession();
 
-  try {
-    const response = await fetch(`${API_URL}destination`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify(form),
-    });
+  const response = await fetch(`${API_URL}destination`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  });
 
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 }
 
 export const updateDestination = async (form: any, slug: string) => {
   const token = await tokenFromSession();
 
-  try {
-    const response = await fetch(`${API_URL}destination/${slug}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-      body: JSON.stringify(form),
-    });
+  const response = await fetch(`${API_URL}destination/${slug}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  });
 
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 };
 
 export const deleteDestination = async (slug: string) => {
   const token = await tokenFromSession();
 
-  try {
-    const response = await fetch(`${API_URL}destination/${slug}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+  const response = await fetch(`${API_URL}destination/${slug}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  });
 
-    toast.success('La destination a été supprimé avec succès');
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 }
 
 export const fetchDestination = async (page: number, limit: number) => {
-  try {
-    const response = await fetch(`${API_URL}destination?page=${page}&limit=${limit}`, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
 
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+  const response = await fetch(`${API_URL}destination?page=${page}&limit=${limit}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 };
 
 export const fetchDestinations = async () => {
-  try {
-    const response = await fetch(`${API_URL}destination`, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+
+  const response = await fetch(`${API_URL}destination`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 }
 
 export const fetchDestinationBySlug = async (slug: string) => {
   const token = await tokenFromSession();
 
-  try {
-    const response = await fetch(`${API_URL}destination/${slug}`, {
-      method: 'get',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-      },
-    });
+  const response = await fetch(`${API_URL}destination/${slug}`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  });
 
-    return response.json();
-  } catch (err) {
-    console.error(err);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
+
 }
 
-export const uploadImages = async (files: any, form: any) => {
+export const uploadImages = async (files: any, name: string) => {
   try {
-    const uploadPromises = files.map((file: any) => postImages(file, form.name.trim()));
+    const uploadPromises = files.map((file: any) => postImages(file, name));
     await Promise.all(uploadPromises);
   } catch (err) {
-    console.error(err);
     throw new Error('une erreur est survenue lors de l\'upload des images');
   }
 };
@@ -127,19 +134,20 @@ export const postImages = async (file: File, slug: string) => {
 export const postDestinationImage = async (formData: any) => {
   const token = await tokenFromSession();
 
-  try {
-    const response = await fetch(`${API_URL}destination/images`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      body: formData,
-    });
+  const response = await fetch(`${API_URL}destination/images`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+    body: formData,
+  });
 
-    return await response.json();
-  } catch (err) {
-    console.error(err);
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
   }
+
+  return response.json();
 };
 
 export const deleteDestinationImage = async (slug: string) => {
@@ -179,6 +187,21 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
 
   try {
     const response = await fetch(`${API_URL}search?${url}`);
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export const fetchAnchorLocation = async (formBody: any) => {
+  try {
+    const response = await fetch(`${API_URL}destination/geocode`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formBody),
+    })
     return await response.json();
   } catch (err) {
     console.error(err);

@@ -2,6 +2,7 @@ import { Metadata } from "next"
 
 import Title from "@/components/ui/text/Title"
 import FormDestination from "@/components/form/form-destination"
+import { DestinationForm } from '../../../components/form/destination-form'
 
 export const metadata: Metadata = {
   title: "Partage une destination testée avec mon chien - suismespattes.com",
@@ -18,7 +19,7 @@ export default function Page() {
         <b>
           Les moments partagés avec nos fidèles compagnons à quatre pattes sont
           parmi les plus précieux de nos vies.
-        </b>{" "}
+        </b>
         Chaque sortie devient une aventure, chaque promenade un voyage au
         royaume de la nature, de la découverte et du plaisir. Si vous avez eu la
         chance de découvrir un lieu de sortie extraordinaire en compagnie de
@@ -36,7 +37,7 @@ export default function Page() {
         pourraient inspirer un autre propriétaire de chien à sortir et à
         explorer le monde avec son meilleur ami.
       </p>
-      <FormDestination />
+      <DestinationForm />
     </section>
   )
 }

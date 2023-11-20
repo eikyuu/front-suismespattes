@@ -1,9 +1,9 @@
-import { MapOptions } from "leaflet"
+import L, { MapOptions } from "leaflet"
 import { MapContainer, TileLayer } from "react-leaflet"
 
 import "leaflet/dist/leaflet.css"
 
-import { Fragment } from "react"
+import { Fragment, useEffect, useLayoutEffect, useState } from "react"
 
 function LeafletMap({
   center,
@@ -16,8 +16,19 @@ function LeafletMap({
   zoom: number
   mapOptions?: MapOptions
 }) {
+
+  const [unmountMap, setunmountMap] = useState(false);
+  //to prevent map re-initialization
+  useLayoutEffect(() => {
+  setunmountMap(false);
+  return () => {
+  setunmountMap(true);
+  };
+  }, []);
+
   return (
-    <Fragment>
+    unmountMap ? null : (
+      <Fragment>
       <MapContainer maxZoom={18} center={center} zoom={zoom} {...mapOptions}>
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/cope2yright">OpenStreetMap</a> contributors'
@@ -26,6 +37,7 @@ function LeafletMap({
         {children}
       </MapContainer>
     </Fragment>
+    )
   )
 }
 

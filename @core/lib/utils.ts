@@ -28,3 +28,9 @@ export const userIdFromSession = async () => {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
+
+
+export const getUser = async () => {
+    const user = await userFromSession()
+    return user?.email
+  }
