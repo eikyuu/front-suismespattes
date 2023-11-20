@@ -1,5 +1,4 @@
 import Title from "@/components/ui/text/Title"
-import FormDestination from "@/components/form/form-destination"
 import { DestinationForm } from '../../../../../components/form/destination-form'
 
 function Page({ params }: { params: { slug: string } }): JSX.Element {
