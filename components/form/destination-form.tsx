@@ -236,7 +236,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
     setImages(newImages)
   }
 
-  const mutationUpload = useMutation({
+  const { mutate: mutationUpload, isPending: isPendingUpload }  = useMutation({
     mutationFn: (formUploadImage: z.infer<typeof imageSchema>) => {
       return uploadImages(formUploadImage, form.getValues("name"))
     },
@@ -262,7 +262,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
       return postDestination(form)
     },
     onSuccess: () => {
-      mutationUpload.mutate(images)
+      mutationUpload(images)
     },
     onError: (error: any) => {
       if (error) {
@@ -273,6 +273,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
 
   const {
     mutate: update,
+    isPending: isPendingUpdate,
     error: updateError,
   } = useMutation({
     mutationFn: (form: z.infer<typeof destinationSchema>) => {
@@ -280,7 +281,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
     },
     onSuccess: () => {
       deleteImageMutation
-      mutationUpload.mutate(images)
+      mutationUpload(images)
     },
     onError: (error: any) => {
       if (error) {
@@ -913,10 +914,11 @@ async function onSubmit(values: z.infer<typeof destinationSchema>) {
           )}
         </GreenContainer>
 
-        <Button variant={"tertiary"} type="submit">
-          {isPending ? <Loader /> : "Envoyer"}
+        <Button variant={"default"} type="submit">
+          {isPending || isPendingUpdate || isPendingUpload ? <Loader /> : "Envoyer"}
         </Button>
       </form>
     </Form>
   )
 }
+ 

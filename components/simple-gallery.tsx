@@ -13,8 +13,8 @@ function SimpleGallery({ images }: { images: any[] }) {
             key={image.id}
             original={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
             thumbnail={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
-            width="1600"
-            height="1066"
+            width={image.width || 1600}
+            height={image.height || 1000}
           >
             {({ ref, open }) => (
               <Image
@@ -26,7 +26,7 @@ function SimpleGallery({ images }: { images: any[] }) {
                 ref={ref as React.MutableRefObject<HTMLImageElement>}
                 width="600"
                 height="600"
-                className="cursor-pointer rounded-md"
+                className="h-[100px] w-[150px] cursor-pointer rounded-md object-cover"
                 sizes="(max-width: 600px) 100vw, 600px"
               />
             )}
