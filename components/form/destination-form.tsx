@@ -46,7 +46,9 @@ import {
   fetchAnchorLocation,
   fetchDestinationBySlug,
   postDestination,
+  updateDestination,
   uploadImages,
+  deleteDestinationImage,
 } from "../../@core/services/destinationService"
 import GreenContainer from "../green-container"
 import Loader from "../loader/loader"
@@ -189,11 +191,36 @@ export function DestinationForm({ slug }: { slug?: string }) {
       form.setValue("longitude", destination.longitude)
       form.setValue("user", destination.user.pseudo)
       form.setValue("country", destination.country)
+
+      fetchImages()
     }
     if (cities) {
       form.setValue("city", destination.city.id)
     }
+
   }, [destination, cities, form])
+
+
+ async function fetchImages() {
+
+    const imageFiles: File[] = await Promise.all(destination.images.map(async (image: any) => {
+      const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
+      return await transformFile(imageUrl);
+    }));
+    setImages(imageFiles);
+  }
+
+  async function transformFile (url: string): Promise<File> {
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob();
+      const file = new File([blob], 'image.png', { type: 'image/png' });
+      return file;
+    } catch (error) {
+      console.error('Erreur lors de la récupération de l\'image:', error);
+      throw error;
+    }
+  }
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files
@@ -244,11 +271,51 @@ export function DestinationForm({ slug }: { slug?: string }) {
     },
   })
 
-  async function onSubmit(values: z.infer<typeof destinationSchema>) {
-    const userEmail = await getUser()
-    values.user = userEmail || ""
+  const {
+    mutate: update,
+    error: updateError,
+  } = useMutation({
+    mutationFn: (form: z.infer<typeof destinationSchema>) => {
+      return updateDestination(form, slug as string)
+    },
+    onSuccess: () => {
+      deleteImageMutation
+      mutationUpload.mutate(images)
+    },
+    onError: (error: any) => {
+      if (error) {
+        toast.error(error.message)
+      }
+    },
+  })
+
+  const {
+    mutate: deleteImageMutation,
+    error: deleteImageMutationError,
+  } = useMutation({
+    mutationFn: (form: z.infer<typeof destinationSchema>) => {
+      return deleteDestinationImage(formatSlug(form.name))
+    },
+    onError: (error: any) => {
+      if (error) {
+        toast.error(error.message)
+      }
+    },
+  })
+
+async function onSubmit(values: z.infer<typeof destinationSchema>) {
+  const userEmail = await getUser()
+  values.user = userEmail || ""
+
+  if (slug) {
+    await Promise.all([
+      deleteImageMutation(values),
+      update(values)
+    ])
+  } else {
     mutate(values)
   }
+}
 
   if (isLoadingDestination || isLoading) {
     return <LoaderFormDestination />
@@ -799,7 +866,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
                   <Input
                     type="file"
                     multiple
-                    required
+                    required={!slug || images.length === 0 ? true : false}
                     accept="image/png, image/jpeg, image/jpg"
                     id="fileInput"
                     onBlur={field.onBlur}
