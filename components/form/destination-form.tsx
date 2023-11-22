@@ -303,8 +303,6 @@ export function DestinationForm({ slug }: { slug?: string }) {
       }
     },
   })
-  console.log(destination)
-
 
 async function onSubmit(values: z.infer<typeof destinationSchema>) {
   const userEmail = await getUser()
