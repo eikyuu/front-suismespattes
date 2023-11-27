@@ -43,20 +43,20 @@ import { imageSchema } from "../../@core/lib/validations/image"
 import { fetchCategories } from "../../@core/services/categoryService"
 import { fetchCityByCodePostal } from "../../@core/services/cityService"
 import {
+  deleteDestinationImage,
   fetchAnchorLocation,
   fetchDestinationBySlug,
   postDestination,
   updateDestination,
   uploadImages,
-  deleteDestinationImage,
 } from "../../@core/services/destinationService"
+import { RecenterAutomatically as RecenterAutomaticallyType } from "../../@core/types/recenter-automatically"
 import GreenContainer from "../green-container"
 import Loader from "../loader/loader"
+import LoaderFormDestination from "../loader/loader-form-destination"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import Text from "../ui/text/Text"
 import TitleUnderline from "../ui/text/TitleUnderline"
-import { RecenterAutomatically as RecenterAutomaticallyType } from '../../@core/types/recenter-automatically'
-import LoaderFormDestination from '../loader/loader-form-destination'
 
 export const LeafletMap = dynamic(
   () => import("@/components/map/leaflet-map"),
@@ -193,32 +193,32 @@ export function DestinationForm({ slug }: { slug?: string }) {
       form.setValue("country", destination.country)
 
       fetchImages()
-    }
-    if (cities) {
-      form.setValue("city", destination.city.id)
+      if (cities) {
+        form.setValue("city", destination.city.id)
+      }
     }
 
   }, [destination, cities, form])
 
-
- async function fetchImages() {
-
-    const imageFiles: File[] = await Promise.all(destination.images.map(async (image: any) => {
-      const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`;
-      return await transformFile(imageUrl);
-    }));
-    setImages(imageFiles);
+  async function fetchImages() {
+    const imageFiles: File[] = await Promise.all(
+      destination.images.map(async (image: any) => {
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`
+        return await transformFile(imageUrl)
+      })
+    )
+    setImages(imageFiles)
   }
 
-  async function transformFile (url: string): Promise<File> {
+  async function transformFile(url: string): Promise<File> {
     try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const file = new File([blob], 'image.png', { type: 'image/png' });
-      return file;
+      const response = await fetch(url)
+      const blob = await response.blob()
+      const file = new File([blob], "image.png", { type: "image/png" })
+      return file
     } catch (error) {
-      console.error('Erreur lors de la récupération de l\'image:', error);
-      throw error;
+      console.error("Erreur lors de la récupération de l'image:", error)
+      throw error
     }
   }
 
@@ -236,7 +236,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
     setImages(newImages)
   }
 
-  const { mutate: mutationUpload, isPending: isPendingUpload }  = useMutation({
+  const { mutate: mutationUpload, isPending: isPendingUpload } = useMutation({
     mutationFn: (formUploadImage: z.infer<typeof imageSchema>) => {
       return uploadImages(formUploadImage, form.getValues("name"))
     },
@@ -290,41 +290,38 @@ export function DestinationForm({ slug }: { slug?: string }) {
     },
   })
 
-  const {
-    mutate: deleteImageMutation,
-    error: deleteImageMutationError,
-  } = useMutation({
-    mutationFn: (form: z.infer<typeof destinationSchema>) => {
-      return deleteDestinationImage(formatSlug(form.name))
-    },
-    onError: (error: any) => {
-      if (error) {
-        toast.error(error.message)
-      }
-    },
-  })
+  const { mutate: deleteImageMutation, error: deleteImageMutationError } =
+    useMutation({
+      mutationFn: (form: z.infer<typeof destinationSchema>) => {
+        return deleteDestinationImage(formatSlug(form.name))
+      },
+      onError: (error: any) => {
+        if (error) {
+          toast.error(error.message)
+        }
+      },
+    })
 
-async function onSubmit(values: z.infer<typeof destinationSchema>) {
-  const userEmail = await getUser()
-  values.user = userEmail || ""
+  async function onSubmit(values: z.infer<typeof destinationSchema>) {
+    const userEmail = await getUser()
+    values.user = userEmail || ""
 
-  if (slug) {
-    values.user = destination.user.email
-    await Promise.all([
-      deleteImageMutation(values),
-      update(values)
-    ])
-  } else {
-    mutate(values)
+    if (slug) {
+      values.user = destination.user.email
+      await Promise.all([deleteImageMutation(values), update(values)])
+    } else {
+      mutate(values)
+    }
   }
-}
 
   if (isLoadingDestination || isLoading) {
     return <LoaderFormDestination />
   }
 
   if (errorDestination || errorCategories || errorCities || errorAnchor) {
-    return toast.error("Une erreur est survenue si cela persiste contactez l'administrateur")
+    return toast.error(
+      "Une erreur est survenue si cela persiste contactez l'administrateur"
+    )
   }
 
   return (
@@ -781,7 +778,7 @@ async function onSubmit(values: z.infer<typeof destinationSchema>) {
             Vérifier la localisation
           </Button>
 
-          <div className="h-[600px] w-full">
+          <div className="flex h-[600px] w-full flex-col justify-center space-x-0 md:flex-row md:space-x-4">
             <LeafletMap
               center={
                 form.watch("latitude") && form.watch("longitude")
@@ -810,41 +807,41 @@ async function onSubmit(values: z.infer<typeof destinationSchema>) {
                 lng={Number(form.watch("longitude")) || 0.6897129358274583}
               />
             </LeafletMap>
+
+            <FormField
+              control={form.control}
+              name="latitude"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">Latitude</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="text" required />
+                  </FormControl>
+                  <FormDescription className="sr-only text-white">
+                    Latitude
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="longitude"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="text-white">Longitude</FormLabel>
+                  <FormControl>
+                    <Input {...field} type="text" required />
+                  </FormControl>
+                  <FormDescription className="sr-only text-white">
+                    Longitude
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
-
-          <FormField
-            control={form.control}
-            name="latitude"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Latitude</FormLabel>
-                <FormControl>
-                  <Input {...field} type="text" required />
-                </FormControl>
-                <FormDescription className="sr-only text-white">
-                  Latitude
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="longitude"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-white">Longitude</FormLabel>
-                <FormControl>
-                  <Input {...field} type="text" required />
-                </FormControl>
-                <FormDescription className="sr-only text-white">
-                  Longitude
-                </FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
         </GreenContainer>
 
         <GreenContainer className="space-y-6">
@@ -916,10 +913,13 @@ async function onSubmit(values: z.infer<typeof destinationSchema>) {
         </GreenContainer>
 
         <Button variant={"default"} type="submit">
-          {isPending || isPendingUpdate || isPendingUpload ? <Loader /> : "Envoyer"}
+          {isPending || isPendingUpdate || isPendingUpload ? (
+            <Loader />
+          ) : (
+            "Envoyer"
+          )}
         </Button>
       </form>
     </Form>
   )
 }
- 
