@@ -67,7 +67,7 @@ function FormRegister() {
       <Title className="text-white" balise="h3">
         Inscription
       </Title>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="pseudo"

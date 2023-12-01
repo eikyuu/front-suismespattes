@@ -76,7 +76,7 @@ function FormForgetPassword() {
         d&apos;abord nous assurer qu&apos;il s&apos;agit bien de vous.Commencez
         par choisir où recevoir un code de confirmation.
       </Text>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="email"

@@ -82,7 +82,7 @@ function FormResetPassword() {
         Pour disposer d&apos;un mot de passe fort, essayez d&apos;inclure des
         chiffres, des lettres et des signes de ponctuation.
       </Text>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="password"

@@ -73,7 +73,7 @@ function FormConfirmCode() {
         devez demander un nouveau code, revenez en arrière et sélectionnez de
         nouveau une méthode de confirmation.
       </Text>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="resetToken"

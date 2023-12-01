@@ -64,7 +64,7 @@ function FormLogin() {
       <Title className="text-white" balise="h2">
         Connexion
       </Title>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="email"
@@ -100,7 +100,7 @@ function FormLogin() {
 
         <Button
           variant={"default"}
-          className="mb-1 mt-5 !w-full bg-tertiary"
+          className="!w-full bg-tertiary"
           type="submit"
         >
           {mutation.isPending ? <Loader /> : "Connexion"}
