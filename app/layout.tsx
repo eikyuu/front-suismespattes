@@ -23,11 +23,7 @@ export const metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Layout(props: { children: React.ReactNode, modal: React.ReactNode }) {
   return (
     <html lang="fr">
       <head>
@@ -43,7 +39,7 @@ export default function RootLayout({
           <AuthProvider>
             <Headband />
             <ContentNavigation />
-            <main>{children}</main>
+            <main>{props.children} {props.modal} </main>
             <Analytics />
             <Footer />
             <Toaster />

@@ -1,12 +1,13 @@
 "use client"
 
-import FormLogin from '../../../components/form/auth/form-login'
+import FormConfirmCode from '../../../../components/form/auth/form-confirm-code'
 
-export default function LoginPage() {
+
+export default function ConfirmCodePage() {
   return (
     <div className="container mx-auto my-10">
       <div className="mx-auto rounded-md bg-primary p-10  text-white md:w-96">
-        <FormLogin />
+        <FormConfirmCode />
       </div>
     </div>
   )

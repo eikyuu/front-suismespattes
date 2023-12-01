@@ -7,16 +7,13 @@ import { useSession } from "next-auth/react"
 
 import LiNav from "@/components/li-nav"
 import LoginBtn from "@/components/login-btn"
-import Modal from "@/components/modal"
-
-import { useHandleModal } from "../@core/hooks/useHandleModal"
-import Login from "./form/auth/login"
+import { useRouter } from 'next/navigation'
 
 function ContentNavigation() {
   const { data: session } = useSession()
   const [navbar, setNavbar] = useState(false)
 
-  const { isOpen, toggle } = useHandleModal()
+  const router = useRouter()
 
   const ref = useRef<HTMLDivElement>(null)
 
@@ -101,7 +98,7 @@ function ContentNavigation() {
                 onClick={(e: any) => {
                   if (!session?.user) {
                     e.preventDefault()
-                    toggle()
+                    router.push("/login")
                     return
                   }
                 }}
@@ -113,10 +110,6 @@ function ContentNavigation() {
           </div>
         </div>
       </nav>
-
-      <Modal isOpen={isOpen} onOpenChange={toggle}>
-        <Login />
-      </Modal>
     </header>
   )
 }

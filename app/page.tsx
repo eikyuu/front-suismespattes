@@ -5,7 +5,8 @@ import LastDestinations from "@/components/last-destinations"
 import Presentation from "@/components/presentation/presentation"
 import Reviews from "@/components/review/reviews"
 
-import MapContainer from "../../components/map/map-container"
+import MapContainer from "../components/map/map-container"
+import Link from 'next/link'
 
 const reviews = [
   {

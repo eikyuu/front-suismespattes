@@ -1,14 +1,10 @@
 import { Fragment } from "react"
+import Link from "next/link"
 import { signOut, useSession } from "next-auth/react"
-
 import { Button } from "@/components/ui/button"
-
-import { useHandleModal } from "../@core/hooks/useHandleModal"
 
 export default function Component() {
   const { data: session } = useSession()
-
-  const { isOpen, toggle } = useHandleModal()
 
   return (
     <Fragment>
@@ -21,12 +17,11 @@ export default function Component() {
         </Button>
       )}
       {!session && (
-        <Button
-          className="bg-primary text-white hover:bg-secondary md:bg-tertiary md:hover:bg-secondary"
-          onClick={toggle}
-        >
-          Connexion
-        </Button>
+        <Link href={`/login`}>
+          <Button className="bg-primary text-white hover:bg-secondary md:bg-tertiary md:hover:bg-secondary">
+            Connexion
+          </Button>
+        </Link>
       )}
     </Fragment>
   )
