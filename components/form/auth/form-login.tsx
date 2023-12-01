@@ -113,11 +113,11 @@ function FormLogin() {
         </p>
       </Link>
 
-      <Link href="/register">
+      {/* <Link href="/register">
         <p className="mt-2 block cursor-pointer text-right text-sm">
           Vous n&apos;avez pas de compte ? Inscrivez-vous
         </p>
-      </Link>
+      </Link> */}
     </Form>
   )
 }
