@@ -9,13 +9,13 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 ]
 
 export const imageSchema = z.object({
-    multipleFiles: z
-      .any()
-      .refine((files) => {
-        return files?.[0]?.size <= MAX_FILE_SIZE
-      }, `Max image size is 5MB.`)
-      .refine(
-        (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
-        "Only .jpg, .jpeg, .png and .webp formats are supported."
-      ),
-  })
+  multipleFiles: z
+    .any()
+    .refine((files) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE
+    }, `Max image size is 5MB.`)
+    .refine(
+      (files) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
+})

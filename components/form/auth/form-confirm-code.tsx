@@ -21,23 +21,20 @@ import Title from "@/components/ui/text/Title"
 import { confirmCode } from "../../../@core/services/authService"
 import Loader from "../../loader/loader"
 import Text from "../../ui/text/Text"
-
-const formSchema = z.object({
-  resetToken: z.string(),
-})
+import { confirmCodeSchema } from '../../../@core/lib/validations/confirmCode'
 
 function FormConfirmCode() {
   const router = useRouter()
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof confirmCodeSchema>>({
+    resolver: zodResolver(confirmCodeSchema),
     defaultValues: {
       resetToken: "",
     },
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof confirmCodeSchema>) => {
       return confirmCode(form)
     },
     onSuccess: () => {
@@ -48,7 +45,7 @@ function FormConfirmCode() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof confirmCodeSchema>) {
     mutation.mutate(values)
   }
 

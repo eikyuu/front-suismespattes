@@ -21,12 +21,7 @@ import Title from "@/components/ui/text/Title"
 
 import { resetPassword } from "../../../@core/services/authService"
 import Loader from "../../loader/loader"
-
-const formSchema = z.object({
-  password: z.string().min(6, {
-    message: "Le mot de passe doit contenir au moins 6 caractères",
-  }),
-})
+import { resetPasswordSchema } from '../../../@core/lib/validations/resetPassword'
 
 function FormResetPassword() {
   const searchParams = useSearchParams()
@@ -35,15 +30,15 @@ function FormResetPassword() {
 
   const router = useRouter()
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof resetPasswordSchema>>({
+    resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: "",
     },
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof resetPasswordSchema>) => {
       return resetPassword(form, resetToken)
     },
     onSuccess: () => {
@@ -57,7 +52,7 @@ function FormResetPassword() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof resetPasswordSchema>) {
     mutation.mutate(values)
   }
 

@@ -21,22 +21,13 @@ import Title from "@/components/ui/text/Title"
 import { register } from "../../../@core/services/authService"
 import Loader from "../../loader/loader"
 import Text from "../../ui/text/Text"
-
-const formSchema = z.object({
-  pseudo: z.string().min(3),
-  email: z.string().email(),
-  password: z.string()
-  .min(8)
-  .refine((value) => /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value), {
-    message: 'Le mot de passe doit contenir au moins huit caractères avec des chiffres, des lettres et des caractères spéciaux.',
-  }),
-})
+import { registerSchema } from '../../../@core/lib/validations/register'
 
 function FormRegister() {
   const router = useRouter()
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof registerSchema>>({
+    resolver: zodResolver(registerSchema),
     defaultValues: {
       pseudo: "",
       email: "",
@@ -45,7 +36,7 @@ function FormRegister() {
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof registerSchema>) => {
       return register(form)
     },
     onSuccess: () => {
@@ -58,7 +49,7 @@ function FormRegister() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof registerSchema>) {
     mutation.mutate(values)
   }
 

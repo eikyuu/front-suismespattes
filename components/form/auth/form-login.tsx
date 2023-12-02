@@ -21,17 +21,13 @@ import { Input } from "@/components/ui/input"
 import Title from "@/components/ui/text/Title"
 
 import Loader from "../../loader/loader"
-
-const formSchema = z.object({
-  email: z.string().email({ message: "Email invalide" }),
-  password: z.string().min(8, { message: "Mot de passe invalide" }),
-})
+import { loginSchema } from '../../../@core/lib/validations/login'
 
 function FormLogin() {
   const router = useRouter()
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -39,7 +35,7 @@ function FormLogin() {
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof loginSchema>) => {
       return signIn("credentials", {
         email: form.email,
         password: form.password,
@@ -55,7 +51,7 @@ function FormLogin() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof loginSchema>) {
     mutation.mutate(values)
   }
 
@@ -88,7 +84,7 @@ function FormLogin() {
             <FormItem>
               <FormLabel className="text-white">Mot de passe</FormLabel>
               <FormControl>
-                <Input type="password" {...field} />
+                <Input type="password" autoComplete='on' {...field} />
               </FormControl>
               <FormDescription className="sr-only text-white">
                 Mot de passe de votre compte

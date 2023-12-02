@@ -21,25 +21,11 @@ import { Input } from "@/components/ui/input"
 import { postMessage } from "../../@core/services/contactService"
 import Loader from "../loader/loader"
 import { Textarea } from "../ui/textarea"
-
-const formSchema = z.object({
-  email: z.string().email({ message: "Email invalide" }),
-  subject: z
-    .string()
-    .min(3, { message: "Le sujet doit contenir au moins 3 caractères" }),
-  message: z
-    .string()
-    .min(10, {
-      message: "Le message doit contenir au moins 10 caractères.",
-    })
-    .max(500, {
-      message: "Le message doit contenir au plus 500 caractères.",
-    }),
-})
+import { contactSchema } from '../../@core/lib/validations/contact'
 
 export function ContactForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof contactSchema>>({
+    resolver: zodResolver(contactSchema),
     defaultValues: {
       email: "",
       subject: "",
@@ -48,7 +34,7 @@ export function ContactForm() {
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof contactSchema>) => {
       return postMessage(form)
     },
     onSuccess: () => {
@@ -60,7 +46,7 @@ export function ContactForm() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof contactSchema>) {
     mutation.mutate(values)
   }
 

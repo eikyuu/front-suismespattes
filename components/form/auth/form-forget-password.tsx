@@ -21,23 +21,20 @@ import Title from "@/components/ui/text/Title"
 
 import { forgetPassword } from "../../../@core/services/authService"
 import Loader from "../../loader/loader"
-
-const formSchema = z.object({
-  email: z.string().email({ message: "Email invalide" }),
-})
+import { forgetPasswordSchema } from '../../../@core/lib/validations/forgetPassword'
 
 function FormForgetPassword() {
   const router = useRouter()
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof forgetPasswordSchema>>({
+    resolver: zodResolver(forgetPasswordSchema),
     defaultValues: {
       email: "",
     },
   })
 
   const mutation = useMutation({
-    mutationFn: (form: z.infer<typeof formSchema>) => {
+    mutationFn: (form: z.infer<typeof forgetPasswordSchema>) => {
       return forgetPassword(form)
     },
     onSuccess: () => {
@@ -51,7 +48,7 @@ function FormForgetPassword() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof forgetPasswordSchema>) {
     mutation.mutate(values)
   }
 
