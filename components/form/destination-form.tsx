@@ -847,10 +847,8 @@ export function DestinationForm({ slug }: { slug?: string }) {
         <GreenContainer className="space-y-6">
           <TitleUnderline title="Photos" balise="h2" className="!mt-0" />
           <Text className="text-white">
-            Vous pouvez ajouter jusqu&apos;à 5 photos.
-          </Text>
-          <Text className="text-white">
-            Les photos doivent être au format PNG, JPEG ou JPG.
+            Les photos doivent être au format PNG, JPEG ou JPG et ne doivent pas
+            dépasser 5 Mo.
           </Text>
 
           <FormField

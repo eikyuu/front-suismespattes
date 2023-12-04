@@ -119,8 +119,8 @@ export const uploadImages = async (files: any, name: string) => {
   try {
     const uploadPromises = files.map((file: any) => postImages(file, name));
     await Promise.all(uploadPromises);
-  } catch (err) {
-    throw new Error('une erreur est survenue lors de l\'upload des images');
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 };
 
