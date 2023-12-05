@@ -10,23 +10,25 @@ import { useHandleAuth } from "../@core/hooks/useHandleAuth"
 import { cn } from "../@core/lib/utils"
 import { UserAccountNav } from "./user-account-nav"
 
-export default function LoginBtn({ user }: any) {
+export default function LoginBtn() {
   const [userSession, setUserSession] = useState<any>(null)
   const { isAuth, toggle } = useHandleAuth()
   const { data: session } = useSession()
 
   useEffect(() => {
-    console.log(session?.user)
+    if (session) {
+      setUserSession(session?.user)
+    }
   }, [session])
 
   return (
     <Fragment>
-      {isAuth && user && (
+      {isAuth && userSession && (
         <UserAccountNav
           user={{
-            name: user.pseudo,
+            name: userSession.pseudo,
             // image: "user.image",
-            email: user.email,
+            email: userSession.email,
           }}
         />
       )}

@@ -22,13 +22,8 @@ export const metadata = {
 
 export default async function Layout(props: {
   children: React.ReactNode
-  // modal: React.ReactNode
 }) {
   const user = await getCurrentUser()
-
-  // if (!user) {
-  //   return notFound()
-  // }
 
   return (
     <div
@@ -40,7 +35,7 @@ export default async function Layout(props: {
       <header className=" z-40 bg-primary">
         <div className="flex h-20 items-center justify-between px-6">
           <MainNav items={globalConfig.mainNav} />
-          <LoginBtn user={user} />
+          <LoginBtn />
         </div>
       </header>
 
