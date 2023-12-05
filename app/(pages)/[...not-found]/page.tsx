@@ -2,8 +2,7 @@ import Link from "next/link"
 
 import Text from "@/components/ui/text/Text"
 import Title from "@/components/ui/text/Title"
-
-import BlurImage from "../components/blurImage/blur-image"
+import BlurImage from '../../../components/blurImage/blur-image'
 
 export default function NotFound() {
   return (

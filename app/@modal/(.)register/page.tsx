@@ -1,6 +1,6 @@
 "use client"
 
-import FormRegister from '../../../components/form/auth/form-register'
+import FormRegister from "../../../components/form/auth/form-register"
 import Modal from "../../../components/modal"
 
 export default function PageRegister() {

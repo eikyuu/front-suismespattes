@@ -1,12 +1,13 @@
 import "leaflet/dist/leaflet.css"
 
+import { Fragment } from "react"
+
 import Banner from "@/components/banner"
 import LastDestinations from "@/components/last-destinations"
 import Presentation from "@/components/presentation/presentation"
 import Reviews from "@/components/review/reviews"
 
-import MapContainer from "../components/map/map-container"
-import Link from 'next/link'
+import MapContainer from "../../components/map/map-container"
 
 const reviews = [
   {
@@ -33,12 +34,12 @@ const reviews = [
 
 export default function Home() {
   return (
-    <>
+    <Fragment>
       <Banner />
       <Presentation />
       <Reviews reviews={reviews} />
       <LastDestinations />
       <MapContainer title="Retrouve toutes les destinations autours de chez toi !" />
-    </>
+    </Fragment>
   )
 }

@@ -28,7 +28,6 @@ function DraggableMarker({
   const eventHandlers = useMemo(
     () => ({
       dragend(e: any) {
-        console.log(e.target.getLatLng().lat.toString())
         form.setValue("latitude", e.target.getLatLng().lat.toString())
         form.setValue("longitude", e.target.getLatLng().lng.toString())
       },

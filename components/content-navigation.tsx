@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 
 import LiNav from "@/components/li-nav"
-import LoginBtn from "@/components/login-btn"
-import { useRouter } from 'next/navigation'
 
 function ContentNavigation() {
   const { data: session } = useSession()
@@ -37,17 +36,15 @@ function ContentNavigation() {
   return (
     <header ref={ref}>
       <nav className="border-gray-200 bg-primary">
-        <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-          <div className="flex flex-shrink-0 items-center">
-            <Link href="/">
-              <Image
-                width={40}
-                height={40}
-                src="/images/logo.webp"
-                alt="logo du site Suis mes pattes"
-              />
-            </Link>
-          </div>
+        <div className="flex gap-6 md:gap-10">
+          <Link href="/">
+            <Image
+              width={40}
+              height={40}
+              src="/images/logo.webp"
+              alt="logo du site Suis mes pattes"
+            />
+          </Link>
           <Link
             href="/"
             className="flex items-center focus:outline-none focus:ring-4 focus:ring-tertiary"
@@ -99,13 +96,11 @@ function ContentNavigation() {
                   if (!session?.user) {
                     e.preventDefault()
                     router.push("/login")
-                    return
                   }
                 }}
               />
               <LiNav text="Boutique" href="/a-venir" />
               <LiNav text="Contact" href="/contact" />
-              <LoginBtn />
             </ul>
           </div>
         </div>

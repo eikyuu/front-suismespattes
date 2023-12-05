@@ -1,6 +1,7 @@
 "use client"
 
-import FormLogin from '../../../components/form/auth/form-login'
+
+import FormLogin from "../../../components/form/auth/form-login"
 import Modal from "../../../components/modal"
 
 export default function PageLogin() {

@@ -1,7 +1,7 @@
 "use client"
 
-import FormConfirmCode from '../../../../components/form/auth/form-confirm-code'
-import Modal from '../../../../components/modal'
+import FormConfirmCode from "../../../../components/form/auth/form-confirm-code"
+import Modal from "../../../../components/modal"
 
 export default function ConfirmCodePage() {
   return (

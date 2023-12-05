@@ -6,42 +6,79 @@ import { Toaster } from "react-hot-toast"
 
 import AuthProvider from "../@core/context/AuthProvider"
 import Provider from "../@core/lib/provider"
-import ContentNavigation from "../components/content-navigation"
-import Footer from "../components/footer"
-import Headband from "../components/headband"
+import { cn } from '../@core/lib/utils'
+import { siteConfig } from '../@core/config/site'
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Suismespattes.com : une plateforme pour voyager avec ton chien !",
-  description:
-    "Suis mes pattes, une plateforme collaborative gratuite pour voyager avec ton chien ! Trouve ta destination idéale. Que ce soit pour une sortie en forêt, en ville ou à la campagne, nous avons ce qu’il te faut.",
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
   viewport: {
     width: "device-width",
     initialScale: 1,
     maximumScale: 1,
   },
+  authors: [
+    {
+      name: "Vincent Duguet",
+      url: "https://github.com/eikyuu",
+    },
+  ],
+  creator: "Vincent Duguet",
+  publisher: "Vincent Duguet",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  icons : {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
-export default function Layout(props: { children: React.ReactNode, modal: React.ReactNode }) {
+
+export default async function RootLayout(props: {
+  children: React.ReactNode
+  modal: React.ReactNode
+}) {
+
   return (
-    <html lang="fr">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.webp" />
-        <link rel="manifest" href="/site.webmanifest" />
-      </head>
+    <html lang="fr" suppressHydrationWarning>
+      <head/>
       <body
         suppressHydrationWarning={true}
-        className={`${inter.className} + font-sans leading-relaxed antialiased`}
+        className={cn(
+          inter.className,
+          "min-h-screen font-sans leading-relaxed antialiased"
+        )}
       >
         <Provider>
           <AuthProvider>
-            <Headband />
-            <ContentNavigation />
-            <main>{props.children} {props.modal} </main>
+            <main>
+              {props.children} {props.modal}
+            </main>
             <Analytics />
-            <Footer />
             <Toaster />
           </AuthProvider>
         </Provider>

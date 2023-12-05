@@ -14,6 +14,7 @@ import LoaderDestination from "../loader/loader-destination"
 import SimpleGallery from "../simple-gallery"
 import Badges from "./badges"
 import PraticalInformation from "./pratical-information"
+import NotFound from '../not-fount'
 
 export const MapOneContent = dynamic(() => import("../map/map-one-content"), {
   ssr: false,
@@ -27,7 +28,9 @@ export default function DestinationContainer({ slug }: { slug: string }) {
   })
 
   if (isLoading) return <LoaderDestination />
-  if (error) toast.error("Une erreur est survenue")
+  if (error) toast.error("Destination introuvable")
+
+  if (!data) return <NotFound />;
 
   return (
     <div className="container">

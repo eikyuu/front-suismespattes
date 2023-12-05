@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
-export const useHandleModal = create<{
-    isOpen: boolean;
+export const useHandleAuth = create<{
+    isAuth: boolean;
     toggle: () => void;
 }>((set) => ({
-    isOpen: false,
+    isAuth: false,
     toggle: () => set((state) => ({
-        isOpen: !state.isOpen
+        isAuth: !state.isAuth
     }))
 }))

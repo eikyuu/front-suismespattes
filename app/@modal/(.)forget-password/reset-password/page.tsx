@@ -1,7 +1,7 @@
 "use client"
 
-import FormResetPassword from '../../../../components/form/auth/form-reset-password'
-import Modal from '../../../../components/modal'
+import FormResetPassword from "../../../../components/form/auth/form-reset-password"
+import Modal from "../../../../components/modal"
 
 export default function ResetPasswordPage() {
   return (

@@ -1,7 +1,8 @@
 import { Metadata } from "next"
 
 import Title from "@/components/ui/text/Title"
-import { DestinationForm } from '../../../components/form/destination-form'
+
+import { DestinationForm } from "../../../components/form/destination-form"
 
 export const metadata: Metadata = {
   title: "Partage une destination testée avec mon chien - suismespattes.com",

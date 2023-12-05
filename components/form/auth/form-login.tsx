@@ -22,9 +22,12 @@ import Title from "@/components/ui/text/Title"
 
 import Loader from "../../loader/loader"
 import { loginSchema } from '../../../@core/lib/validations/login'
+import { use } from 'react'
+import { useHandleAuth } from '../../../@core/hooks/useHandleAuth'
 
 function FormLogin() {
   const router = useRouter()
+  const { toggle } = useHandleAuth()
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -44,6 +47,7 @@ function FormLogin() {
     },
     onSuccess: () => {
       router.back()
+      toggle()
       toast.success("Vous avez bien été connecté")
     },
     onError: () => {
