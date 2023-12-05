@@ -21,15 +21,15 @@ export const metadata = {
   },
 }
 
-export default async function Layout(props: {
+interface LayoutProps {
   children: React.ReactNode
-  modal: React.ReactNode
-}) {
-  const user = await getCurrentUser()
+  // modal: React.ReactNode
+}
 
-  // if (!user) {
-  //   return notFound()
-  // }
+export default function Layout({
+  children,
+  // modal,
+}: LayoutProps) {
 
   return (
     <div
@@ -38,15 +38,8 @@ export default async function Layout(props: {
         "flex min-h-screen flex-col font-sans leading-relaxed antialiased"
       )}
     >
-      {/* <header className=" z-40 bg-primary">
-        <div className="flex h-20 items-center justify-between px-6">
-          <MainNav items={globalConfig.mainNav} />
-          <LoginBtn user={user} />
-        </div>
-      </header> */}
-
       <main>
-        {props.children} {props.modal}
+        {children}
       </main>
       <Footer />
     </div>

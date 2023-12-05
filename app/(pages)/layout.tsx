@@ -3,12 +3,9 @@ import { Inter } from "next/font/google"
 import { globalConfig } from "../../@core/config/global"
 import { getCurrentUser } from "../../@core/lib/session"
 import { cn } from "../../@core/lib/utils"
-import ContentNavigation from "../../components/content-navigation"
 import Footer from "../../components/footer"
-import Headband from "../../components/headband"
 import LoginBtn from "../../components/login-btn"
 import { MainNav } from "../../components/main-nav"
-import { notFound } from 'next/navigation'
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -25,7 +22,7 @@ export const metadata = {
 
 export default async function Layout(props: {
   children: React.ReactNode
-  modal: React.ReactNode
+  // modal: React.ReactNode
 }) {
   const user = await getCurrentUser()
 
@@ -48,7 +45,7 @@ export default async function Layout(props: {
       </header>
 
       <main>
-        {props.children} {props.modal}
+        {props.children}
       </main>
       <Footer />
     </div>

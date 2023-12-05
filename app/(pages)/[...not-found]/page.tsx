@@ -21,7 +21,6 @@ export default function NotFound() {
         image={"/images/corgi.jpg"}
         alt="Une image de corgi"
       />
-
       <Link className="mt-10" href="/">
         Retour à l&apos;accueil
       </Link>

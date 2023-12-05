@@ -25,7 +25,7 @@ export const metadata = {
 
 export default async function Layout(props: {
   children: React.ReactNode
-  modal: React.ReactNode
+  // modal: React.ReactNode
 }) {
   const user = await getCurrentUser()
 
@@ -54,7 +54,7 @@ export default async function Layout(props: {
       </header>
 
       <main>
-        {props.children} {props.modal}
+        {props.children} 
       </main>
       <Footer />
     </div>

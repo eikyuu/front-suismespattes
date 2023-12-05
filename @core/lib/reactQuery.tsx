@@ -20,7 +20,7 @@ export function ReactQuery({ dehydratedState, children }: Props) {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialisAuth={false} />
+        <ReactQueryDevtools/>
         <HydrationBoundary state={dehydratedState}>
           {children}
         </HydrationBoundary>

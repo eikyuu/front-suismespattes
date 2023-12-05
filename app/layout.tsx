@@ -58,7 +58,7 @@ export const metadata = {
 }
 
 
-export default async function RootLayout(props: {
+export default function RootLayout(props: {
   children: React.ReactNode
   modal: React.ReactNode
 }) {
