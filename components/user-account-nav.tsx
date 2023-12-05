@@ -42,9 +42,7 @@ export function UserAccountNav({ user }: { user: any }) {
             className="cursor-pointer"
             onSelect={(event) => {
               event.preventDefault()
-              signOut({
-                callbackUrl: `${window.location.origin}/login`,
-              })
+              signOut({ callbackUrl: "/" })
             }}
           >
             Se deconnecter
