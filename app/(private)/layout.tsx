@@ -4,9 +4,7 @@ import { notFound } from "next/navigation"
 import { globalConfig } from "../../@core/config/global"
 import { getCurrentUser } from "../../@core/lib/session"
 import { cn } from "../../@core/lib/utils"
-import ContentNavigation from "../../components/content-navigation"
 import Footer from "../../components/footer"
-import Headband from "../../components/headband"
 import { MainNav } from "../../components/main-nav"
 import { UserAccountNav } from "../../components/user-account-nav"
 
@@ -25,7 +23,6 @@ export const metadata = {
 
 export default async function Layout(props: {
   children: React.ReactNode
-  // modal: React.ReactNode
 }) {
   const user = await getCurrentUser()
 

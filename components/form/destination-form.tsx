@@ -57,6 +57,7 @@ import LoaderFormDestination from "../loader/loader-form-destination"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import Text from "../ui/text/Text"
 import TitleUnderline from "../ui/text/TitleUnderline"
+import { useHandleAuth } from '../../@core/hooks/useHandleAuth'
 
 export const LeafletMap = dynamic(
   () => import("@/components/map/leaflet-map"),
@@ -78,6 +79,14 @@ const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyType) => {
 }
 
 export function DestinationForm({ slug }: { slug?: string }) {
+  const { isAuth, toggle } = useHandleAuth()
+
+  useEffect(() => {
+    if (!isAuth) {
+      toggle()
+    }
+  }, [isAuth, toggle])
+
   const router = useRouter()
 
   const [images, setImages] = useState<FileList | any>([])

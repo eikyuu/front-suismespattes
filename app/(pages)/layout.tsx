@@ -23,7 +23,6 @@ export const metadata = {
 export default async function Layout(props: {
   children: React.ReactNode
 }) {
-  const user = await getCurrentUser()
 
   return (
     <div
