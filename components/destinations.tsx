@@ -14,7 +14,7 @@ export default function Destinations() {
   return (
     <Fragment>
       <section className="container">
-        <Title balise="h1" className="mb-10 mt-10 text-center">
+        <Title balise="h1" className="my-10 text-center">
           Toutes les destinations
         </Title>
         <Text className="text-black">
@@ -22,7 +22,7 @@ export default function Destinations() {
           fidèle compagnon canin lors de vos prochaines vacances ? Vous êtes au
           bon endroit.
         </Text>
-        <Text className="mb-5 mt-5">
+        <Text className="my-5">
           &#128021; &#x26FA; &#x2705; Que vous soyez amateurs de plein air,
           d&apos;exploration ou de découvertes culturelles, il existe une
           myriade d&apos;options pour vous et votre chien. Dites adieu à

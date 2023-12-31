@@ -25,11 +25,7 @@ export default function LoginBtn() {
     <Fragment>
       {isAuth && userSession && (
         <UserAccountNav
-          user={{
-            name: userSession.pseudo,
-            // image: "user.image",
-            email: userSession.email,
-          }}
+          userId={session?.user?.id}
         />
       )}
 

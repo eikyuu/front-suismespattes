@@ -41,11 +41,7 @@ export default async function Layout(props: {
         <div className="flex h-20 items-center justify-between  px-6">
           <MainNav items={globalConfig.mainNav} />
           <UserAccountNav
-            user={{
-              name: user?.pseudo,
-              // image: "user.image",
-              email: user?.email,
-            }}
+            userId={user?.id}
           />
         </div>
       </header>

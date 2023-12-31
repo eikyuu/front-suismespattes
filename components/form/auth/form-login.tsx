@@ -22,10 +22,12 @@ import Title from "@/components/ui/text/Title"
 
 import Loader from "../../loader/loader"
 import { loginSchema } from '../../../@core/lib/validations/login'
-import { use } from 'react'
+import { use, useState } from 'react'
 import { useHandleAuth } from '../../../@core/hooks/useHandleAuth'
 
 function FormLogin() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+
   const router = useRouter()
   const { toggle } = useHandleAuth()
 
@@ -55,8 +57,26 @@ function FormLogin() {
     },
   })
 
-  function onSubmit(values: z.infer<typeof loginSchema>) {
-    mutation.mutate(values)
+ async function onSubmit(values: z.infer<typeof loginSchema>) {
+    setIsLoading(true)
+
+    const signInResult = await signIn("credentials", {
+      email: values.email,
+      password: values.password,
+      redirect: false,
+    })
+
+    setIsLoading(false)
+
+    if (!signInResult?.ok) {
+      return toast.error("Une erreur est survenue lors de la connexion")
+    }
+
+    router.back()
+    toggle()
+
+    return toast.success("Vous avez bien été connecté")
+
   }
 
   return (
@@ -103,7 +123,7 @@ function FormLogin() {
           className="!w-full bg-tertiary"
           type="submit"
         >
-          {mutation.isPending ? <Loader /> : "Connexion"}
+          {isLoading ? <Loader /> : "Connexion"}
         </Button>
       </form>
 
