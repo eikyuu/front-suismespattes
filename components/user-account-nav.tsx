@@ -19,6 +19,8 @@ export function UserAccountNav({ userId }: { userId: any }) {
     queryFn: async () => await getUser(userId),
   })
 
+  if (isLoading) return null
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
