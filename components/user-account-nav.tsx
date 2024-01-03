@@ -25,7 +25,7 @@ export function UserAccountNav({ userId }: { userId: any }) {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <UserAvatar
-          user={{ name: user?.pseudo || null, image: `${process.env.NEXT_PUBLIC_API_URL}user/${user?.id}/picture`|| null }}
+          userId={user?.id}
           className="h-8 w-8"
         />
       </DropdownMenuTrigger>

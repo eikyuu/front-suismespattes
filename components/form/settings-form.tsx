@@ -36,10 +36,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { i } from '@tanstack/query-core/build/legacy/queryClient-5b892aba'
 
 function SettingsForm({ user }: { user: any }) {
 
   const [open, setOpen] = useState(false);
+  const [imageUrl, setImageUrl] = useState<string>(
+    `${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture`
+  )
 
   const form = useForm<z.infer<typeof settingsSchema>>({
     resolver: zodResolver(settingsSchema),
@@ -49,12 +54,12 @@ function SettingsForm({ user }: { user: any }) {
     },
   })
 
-  // const formUploadImage = useForm<z.infer<typeof imageSchema>>({
-  //   resolver: zodResolver(imageSchema),
-  //   defaultValues: {
-  //     multipleFiles: undefined,
-  //   },
-  // })
+  const formUploadImage = useForm<z.infer<typeof imageSchema>>({
+    resolver: zodResolver(imageSchema),
+    defaultValues: {
+      multipleFiles: undefined,
+    },
+  })
 
   const {
     error,
@@ -89,9 +94,13 @@ function SettingsForm({ user }: { user: any }) {
     }
   }, [data])
 
-
   function onSubmit(values: z.infer<typeof settingsSchema>) {
     mutation.mutate(values)
+  }
+
+  function handleFileChange(e: any) {
+    formUploadImage.setValue("multipleFiles", e.target.files)
+    setImageUrl(URL.createObjectURL(e.target.files[0]))
   }
 
   return (
@@ -103,9 +112,12 @@ function SettingsForm({ user }: { user: any }) {
           onSubmit={form.handleSubmit(onSubmit)}
           className="mt-5 w-1/2 space-y-4"
         >
-          {/* <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-3">
             <Avatar className="h-40 w-40">
-              <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture`} />
+
+              <AvatarImage src={imageUrl} />
+
+             {/* <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture` } /> */}
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
 
@@ -126,7 +138,7 @@ function SettingsForm({ user }: { user: any }) {
                       name={field.name}
                       onChange={(e) => {
                         field.onChange(e.target.files)
-                        //   handleFileChange(e)
+                        handleFileChange(e)
                       }}
                       ref={field.ref}
                       className="cursor-pointer"
@@ -139,7 +151,7 @@ function SettingsForm({ user }: { user: any }) {
                 </FormItem>
               )}
             />  
-          </div> */}
+          </div>
 
           <FormField
             control={form.control}
