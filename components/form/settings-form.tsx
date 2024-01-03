@@ -22,12 +22,24 @@ import Title from "@/components/ui/text/Title"
 import { imageSchema } from "../../@core/lib/validations/image"
 import { settingsSchema } from "../../@core/lib/validations/settings"
 import { getUser, updateUser } from "../../@core/services/authService"
-import Loader from "../loader/loader"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import Text from "../ui/text/Text"
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 function SettingsForm({ user }: { user: any }) {
+
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof settingsSchema>>({
     resolver: zodResolver(settingsSchema),
@@ -37,12 +49,12 @@ function SettingsForm({ user }: { user: any }) {
     },
   })
 
-  const formUploadImage = useForm<z.infer<typeof imageSchema>>({
-    resolver: zodResolver(imageSchema),
-    defaultValues: {
-      multipleFiles: undefined,
-    },
-  })
+  // const formUploadImage = useForm<z.infer<typeof imageSchema>>({
+  //   resolver: zodResolver(imageSchema),
+  //   defaultValues: {
+  //     multipleFiles: undefined,
+  //   },
+  // })
 
   const {
     error,
@@ -58,6 +70,10 @@ function SettingsForm({ user }: { user: any }) {
   const mutation = useMutation({
     mutationFn: (form: z.infer<typeof settingsSchema>) => {
       return updateUser(form, user.id)
+    },
+    onSuccess: () => {
+      toast.success("Paramètres mis à jour avec succès")
+      setOpen(false)
     },
     onError: () => {
       toast.error(
@@ -159,13 +175,35 @@ function SettingsForm({ user }: { user: any }) {
             )}
           />
 
-          <Button
-            variant={"default"}
-            className="mb-1 mt-5 bg-tertiary"
-            type="submit"
-          >
-            {mutation.isPending ? <Loader /> : "Sauvegarder"}
-          </Button>
+          <AlertDialog open={open} onOpenChange={setOpen}> 
+            <AlertDialogTrigger asChild>
+              <Button
+                variant={"default"}
+                className="relative right-0 top-0 block"
+              >
+                SAUVERGARDER
+              </Button>
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Etes-vous sur de vouloir modifier vos informations ?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  Si vous cliquez sur OK, vos informations seront mis à jour
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Annuler</AlertDialogCancel>
+                <AlertDialogAction
+                  variant={"default"}
+                  onClick={form.handleSubmit(onSubmit)}
+                >
+                 Ok
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </form>
       </div>
     </Form>
