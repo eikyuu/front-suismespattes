@@ -82,7 +82,7 @@ function SettingsForm({ user }: { user: any }) {
     },
     onError: () => {
       toast.error(
-        "Une erreur est survenue lors de l'inscription veuillez réessayer ou contactez l'administrateur"
+        "Une erreur est survenue veuillez réessayer ou contactez l'administrateur"
       )
     },
   })
