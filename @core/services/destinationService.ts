@@ -95,6 +95,24 @@ export const fetchDestinations = async () => {
   return response.json();
 }
 
+export const fetchDestinationsByUser = async (id: string) => {
+  
+
+  const response = await fetch(`${API_URL}user/${id}/destinations`, {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
+  }
+
+  return response.json();
+}
+
 export const fetchDestinationBySlug = async (slug: string) => {
   const token = await tokenFromSession();
 
