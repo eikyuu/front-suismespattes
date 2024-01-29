@@ -1,4 +1,5 @@
 import { API_URL } from '../constants/global';
+import { tokenFromSession } from '../lib/utils';
 
 export const authenticate = async (email: string, password: string) => {
   try {
@@ -82,10 +83,13 @@ export const register = async (form: any) => {
 }
 
 export const updateUser = async (form: any, id: string) => {
+  const token = await tokenFromSession();
+
   const response = await fetch(`${API_URL}user/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({ ...form }),
   });
@@ -120,6 +124,28 @@ export const getUserPicture = async (id: string) => {
     headers: {
       'Content-Type': 'application/json',
     },
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.error.message);
+  }
+
+  return response.json();
+}
+
+export const uploadPicture = async (form: any, id: string) => {
+  const token = await tokenFromSession();
+
+    const formData = new FormData();
+    formData.append('image', form[0]);
+
+  const response = await fetch(`${API_URL}user/${id}/picture`, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+    body: formData,
   });
 
   if (!response.ok) {

@@ -1,11 +1,23 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { keepPreviousData, useMutation, useQuery } from "@tanstack/react-query"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { z } from "zod"
 
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import {
   Form,
@@ -21,27 +33,17 @@ import Title from "@/components/ui/text/Title"
 
 import { imageSchema } from "../../@core/lib/validations/image"
 import { settingsSchema } from "../../@core/lib/validations/settings"
-import { getUser, updateUser } from "../../@core/services/authService"
-import Text from "../ui/text/Text"
-import { useEffect, useState } from 'react'
-
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { i } from '@tanstack/query-core/build/legacy/queryClient-5b892aba'
+  getUser,
+  updateUser,
+  uploadPicture,
+} from "../../@core/services/authService"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import Text from "../ui/text/Text"
+import UploadPictureUser from "../upload-picture-user"
 
 function SettingsForm({ user }: { user: any }) {
-
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
   const [imageUrl, setImageUrl] = useState<string>(
     `${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture`
   )
@@ -61,11 +63,7 @@ function SettingsForm({ user }: { user: any }) {
     },
   })
 
-  const {
-    error,
-    data,
-    isLoading,
-  } = useQuery({
+  const { error, data, isLoading } = useQuery({
     queryKey: ["user", user.id],
     queryFn: async () => await getUser(user.id),
     placeholderData: keepPreviousData,
@@ -78,7 +76,24 @@ function SettingsForm({ user }: { user: any }) {
     },
     onSuccess: () => {
       toast.success("Paramètres mis à jour avec succès")
+      if (formUploadImage.getValues("multipleFiles")) {
+        mutationImage.mutate(formUploadImage.getValues("multipleFiles"))
+      }
       setOpen(false)
+    },
+    onError: () => {
+      toast.error(
+        "Une erreur est survenue veuillez réessayer ou contactez l'administrateur"
+      )
+    },
+  })
+
+  const mutationImage = useMutation({
+    mutationFn: (form: z.infer<typeof imageSchema>) => {
+      return uploadPicture(form, user.id)
+    },
+    onSuccess: () => {
+      toast.success("Image mis à jour avec succès")
     },
     onError: () => {
       toast.error(
@@ -110,48 +125,14 @@ function SettingsForm({ user }: { user: any }) {
         <Text type="gray">Gérer les paramètres du compte et du site Web.</Text>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="mt-5 w-1/2 space-y-4"
+          className="mt-5 w-full space-y-4 md:w-1/2"
         >
-          <div className="flex items-center space-x-3">
-            <Avatar className="h-40 w-40">
-
-              <AvatarImage src={imageUrl} />
-
-             {/* <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture` } /> */}
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-
-             <FormField
-              control={formUploadImage.control}
-              name="multipleFiles"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Modifier ou ajouter une image de profil</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="file"
-                      multiple
-                      // required={!slug || images.length === 0 ? true : false}
-                      accept="image/png, image/jpeg, image/jpg"
-                      id="fileInput"
-                      onBlur={field.onBlur}
-                      name={field.name}
-                      onChange={(e) => {
-                        field.onChange(e.target.files)
-                        handleFileChange(e)
-                      }}
-                      ref={field.ref}
-                      className="cursor-pointer"
-                    />
-                  </FormControl>
-                  <FormDescription className="sr-only">
-                    Choisir une image
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />  
-          </div>
+          <UploadPictureUser
+            id={user.id}
+            formUploadImage={formUploadImage}
+            setImageUrl={setImageUrl}
+            imageUrl={imageUrl}
+          />
 
           <FormField
             control={form.control}
@@ -187,7 +168,7 @@ function SettingsForm({ user }: { user: any }) {
             )}
           />
 
-          <AlertDialog open={open} onOpenChange={setOpen}> 
+          <AlertDialog open={open} onOpenChange={setOpen}>
             <AlertDialogTrigger asChild>
               <Button
                 variant={"default"}
@@ -211,7 +192,7 @@ function SettingsForm({ user }: { user: any }) {
                   variant={"default"}
                   onClick={form.handleSubmit(onSubmit)}
                 >
-                 Ok
+                  Ok
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>

@@ -181,9 +181,7 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
     return queryString ? `${queryString}` : '';
   };
 
-
   const url = `${createQueryString(queries)}`;
-
 
   try {
     const response = await fetch(`${API_URL}search?${url}`);
