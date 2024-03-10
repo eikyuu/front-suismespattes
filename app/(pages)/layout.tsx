@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google"
 
 import { globalConfig } from "../../@core/config/global"
-import { getCurrentUser } from "../../@core/lib/session"
 import { cn } from "../../@core/lib/utils"
 import Footer from "../../components/footer"
 import LoginBtn from "../../components/login-btn"

@@ -174,7 +174,7 @@ function SettingsForm({ user }: { user: any }) {
                 variant={"default"}
                 className="relative right-0 top-0 block"
               >
-                SAUVERGARDER
+                SAUVEGARDER
               </Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
