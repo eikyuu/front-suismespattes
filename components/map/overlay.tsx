@@ -12,7 +12,7 @@ function Overlay({ destination }: { destination: any }) {
         <BlurImage
           height="h-40"
           alt={destination.name}
-          image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${destination.images[0].name}`}
+          image={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${destination.images[0].name}`}
         />
       </div>
 

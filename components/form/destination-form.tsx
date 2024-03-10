@@ -212,7 +212,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
   async function fetchImages() {
     const imageFiles: File[] = await Promise.all(
       destination.images.map(async (image: any) => {
-        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destinations/images/${image.name}`
         return await transformFile(imageUrl)
       })
     )
