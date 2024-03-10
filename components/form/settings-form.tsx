@@ -45,7 +45,7 @@ import UploadPictureUser from "../upload-picture-user"
 function SettingsForm({ user }: { user: any }) {
   const [open, setOpen] = useState(false)
   const [imageUrl, setImageUrl] = useState<string>(
-    `${process.env.NEXT_PUBLIC_API_URL}user/${user.id}/picture`
+    `${process.env.NEXT_PUBLIC_API_URL}users/${user.id}/picture`
   )
 
   const form = useForm<z.infer<typeof settingsSchema>>({

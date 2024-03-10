@@ -2,7 +2,7 @@ import { API_URL } from '../constants/global';
 
 export const fetchCityByCodePostal = async (codePostal: string) => {
     try {
-        const response = await fetch(`${API_URL}city/${codePostal}`, {
+        const response = await fetch(`${API_URL}cities/${codePostal}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ export const fetchCityByCodePostal = async (codePostal: string) => {
 
 export const fetchCitiesBySearch = async (search: string) => {
   try {
-    const response = await fetch(`${API_URL}city?q=${search}`, {
+    const response = await fetch(`${API_URL}cities?q=${search}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
