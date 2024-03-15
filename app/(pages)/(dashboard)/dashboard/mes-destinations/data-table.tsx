@@ -24,7 +24,6 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -63,7 +62,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="rounded-md border mt-5">
+      <div className="mt-5 rounded-md border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -74,9 +73,9 @@ export function DataTable<TData, TValue>({
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                     </TableHead>
                   )
                 })}
