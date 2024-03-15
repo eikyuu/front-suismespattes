@@ -14,13 +14,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { cn } from '../../../../../@core/lib/utils'
+import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { deleteDestination } from "@/@core/services/destinationService"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
 export type Destination = {
   id: string
-  status: "pending" | "published" | "rejected"
+  status: "PENDING" | "PUBLISHED" | "REJECTED"
   name: string
+  slug: string
   createdAt: string
   updatedAt: string
   category: {
@@ -59,22 +62,32 @@ export const columns: ColumnDef<Destination>[] = [
   },
   {
     accessorKey: "status",
-    header: () => <span>Status</span>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Status
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
     cell: ({ row }) => {
       const status = row.getValue<string>("status")
-     
-     const statusText = status === "published" ? "Publié" : status === "pending" ? "En attente" : "Rejeté"
-      
+
+      const statusText = status === "PUBLISHED" ? "Publié" : status === "PENDING" ? "En attente" : "Rejeté"
+
       return (
         <div className="flex items-center space-x-2">
           <span
             className={cn(
               "h-2.5 w-2.5 rounded-full",
-              status === "published"
+              status === "PUBLISHED"
                 ? "bg-green-500"
-                : status === "pending"
-                ? "bg-yellow-500"
-                : "bg-red-500"
+                : status === "PENDING"
+                  ? "bg-yellow-500"
+                  : "bg-red-500"
             )}
           />
           <span>{statusText}</span>
@@ -99,20 +112,61 @@ export const columns: ColumnDef<Destination>[] = [
 
   {
     accessorKey: "category.name",
-    header: "Catégorie",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Catégorie
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "createdAt",
-    header: "Date de création",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date de création
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "updatedAt",
-    header: "Date de modification",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Date de modification
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
   },
   {
     id: "actions",
     cell: ({ row }) => {
+      const router = useRouter()
       const payment = row.original
+      const queryClient = useQueryClient()
+
+      const mutation = useMutation({
+        mutationFn: (slug: string) => {
+          return deleteDestination(slug)
+        },
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["getUserDestinations"] })
+        },
+      })
 
       return (
         <DropdownMenu>
@@ -125,13 +179,25 @@ export const columns: ColumnDef<Destination>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => {
+                mutation.mutate(payment.slug)
+              }
+              }
             >
-              Copy payment ID
+              Supprimer
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push(`/destination-chien-accepte/${payment.slug}/edit`)
+              }}
+            >Modifier
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                router.push(`/destination-chien-accepte/${payment.slug}`)
+              }}
+            >Voir</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
