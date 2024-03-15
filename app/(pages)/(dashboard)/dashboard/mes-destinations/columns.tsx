@@ -18,6 +18,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { deleteDestination } from "@/@core/services/destinationService"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import MenuItem from "./menu-item"
 
 export type Destination = {
   id: string
@@ -155,18 +156,8 @@ export const columns: ColumnDef<Destination>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const router = useRouter()
-      const payment = row.original
-      const queryClient = useQueryClient()
 
-      const mutation = useMutation({
-        mutationFn: (slug: string) => {
-          return deleteDestination(slug)
-        },
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["getUserDestinations"] })
-        },
-      })
+      const payment = row.original
 
       return (
         <DropdownMenu>
@@ -176,29 +167,7 @@ export const columns: ColumnDef<Destination>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => {
-                mutation.mutate(payment.slug)
-              }
-              }
-            >
-              Supprimer
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() => {
-                router.push(`/destination-chien-accepte/${payment.slug}/edit`)
-              }}
-            >Modifier
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                router.push(`/destination-chien-accepte/${payment.slug}`)
-              }}
-            >Voir</DropdownMenuItem>
-          </DropdownMenuContent>
+          <MenuItem slug={payment.slug} />
         </DropdownMenu>
       )
     },
