@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useMutation, useQuery } from "@tanstack/react-query"
 import { Check, ChevronsUpDown, TrashIcon } from "lucide-react"
+import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { useMap } from "react-leaflet"
@@ -37,6 +38,7 @@ import {
 } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 
+import { useHandleAuth } from "../../@core/hooks/useHandleAuth"
 import { cn, formatSlug, getUser, userFromSession } from "../../@core/lib/utils"
 import { destinationSchema } from "../../@core/lib/validations/destination"
 import { imageSchema } from "../../@core/lib/validations/image"
@@ -57,8 +59,6 @@ import LoaderFormDestination from "../loader/loader-form-destination"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import Text from "../ui/text/Text"
 import TitleUnderline from "../ui/text/TitleUnderline"
-import { useHandleAuth } from '../../@core/hooks/useHandleAuth'
-import { useSession } from 'next-auth/react'
 
 export const LeafletMap = dynamic(
   () => import("@/components/map/leaflet-map"),
@@ -182,25 +182,23 @@ export function DestinationForm({ slug }: { slug?: string }) {
   })
 
   useEffect(() => {
-
     const userRoles = session?.user?.roles
     const userEmail = session?.user?.email
 
     if (status === "authenticated" && destination) {
       // si l'utilisateur est admin ou le propriétaire de la destination alors on peut modifier
+      const hasPermission =
+        userRoles?.includes("ROLE_ADMIN") ||
+        userEmail === destination?.user?.email
 
-      if (userRoles?.includes("ROLE_ADMIN") || userEmail === destination?.user?.email) {
-        console.log("ok")
-      } else {
+      if (!hasPermission) {
         router.push("/")
       }
     }
   }, [session, status, destination])
 
-
   useEffect(() => {
     if (destination) {
-
       form.setValue("name", destination.name)
       form.setValue("description", destination.description)
       form.setValue("category", destination.category.id)
@@ -227,7 +225,6 @@ export function DestinationForm({ slug }: { slug?: string }) {
         form.setValue("city", destination.city.id)
       }
     }
-
   }, [destination, cities, form])
 
   async function fetchImages() {
@@ -251,7 +248,6 @@ export function DestinationForm({ slug }: { slug?: string }) {
       throw error
     }
   }
-
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files
