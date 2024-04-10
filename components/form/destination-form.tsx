@@ -182,8 +182,16 @@ export function DestinationForm({ slug }: { slug?: string }) {
   })
 
   useEffect(() => {
+
+    const userRoles = session?.user?.roles
+    const userEmail = session?.user?.email
+
     if (status === "authenticated" && destination) {
-      if (destination.user.email !== session?.user?.email) {
+      // si l'utilisateur est admin ou le propriétaire de la destination alors on peut modifier
+
+      if (userRoles?.includes("ROLE_ADMIN") || userEmail === destination?.user?.email) {
+        console.log("ok")
+      } else {
         router.push("/")
       }
     }
