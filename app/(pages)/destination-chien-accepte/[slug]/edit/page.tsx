@@ -1,7 +1,8 @@
 import Title from "@/components/ui/text/Title"
 import { DestinationForm } from '../../../../../components/form/destination-form'
 
-function Page({ params }: { params: { slug: string } }): JSX.Element {
+async function Page({ params }: { params: { slug: string } }) {
+  
   return (
     <section className="container mx-auto mt-10">
       <Title className="text-center" balise="h1">

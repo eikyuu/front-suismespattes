@@ -6,18 +6,9 @@ import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+  DropdownMenu, DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
 import { cn } from '../../../../../@core/lib/utils'
-import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { deleteDestination } from "@/@core/services/destinationService"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
 import MenuItem from "./menu-item"
 
 export type Destination = {

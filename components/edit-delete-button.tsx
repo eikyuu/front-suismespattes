@@ -2,7 +2,6 @@ import { Fragment } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-import { useSession } from "next-auth/react"
 
 import {
   AlertDialog,
@@ -28,8 +27,6 @@ export default function EditDeleteButton({ slug }: Props) {
 
   const router = useRouter()
 
-  const { data: session } = useSession()
-
   const mutation = useMutation({
     mutationFn: (slug: string) => {
       return deleteDestination(slug)
@@ -42,7 +39,6 @@ export default function EditDeleteButton({ slug }: Props) {
 
   return (
     <Fragment>
-      {session?.user?.roles?.includes("ROLE_ADMIN") && (
         <div className=" mt-5 flex justify-end">
           <Link
             className="relative right-0 top-0 mr-2 block"
@@ -84,7 +80,6 @@ export default function EditDeleteButton({ slug }: Props) {
             </AlertDialogContent>
           </AlertDialog>
         </div>
-      )}
     </Fragment>
   )
 }

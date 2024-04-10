@@ -58,6 +58,7 @@ import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import Text from "../ui/text/Text"
 import TitleUnderline from "../ui/text/TitleUnderline"
 import { useHandleAuth } from '../../@core/hooks/useHandleAuth'
+import { useSession } from 'next-auth/react'
 
 export const LeafletMap = dynamic(
   () => import("@/components/map/leaflet-map"),
@@ -80,6 +81,8 @@ const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyType) => {
 
 export function DestinationForm({ slug }: { slug?: string }) {
   const { isAuth, toggle } = useHandleAuth()
+
+  const { data: session, status } = useSession()
 
   useEffect(() => {
     if (!isAuth) {
@@ -179,7 +182,17 @@ export function DestinationForm({ slug }: { slug?: string }) {
   })
 
   useEffect(() => {
+    if (status === "authenticated" && destination) {
+      if (destination.user.email !== session?.user?.email) {
+        router.push("/")
+      }
+    }
+  }, [session, status, destination])
+
+
+  useEffect(() => {
     if (destination) {
+
       form.setValue("name", destination.name)
       form.setValue("description", destination.description)
       form.setValue("category", destination.category.id)
@@ -230,6 +243,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
       throw error
     }
   }
+
 
   function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files

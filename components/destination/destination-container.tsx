@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic"
 import { useQuery } from "@tanstack/react-query"
+import { useSession } from "next-auth/react"
 import toast from "react-hot-toast"
 
 import Text from "@/components/ui/text/Text"
@@ -11,17 +12,18 @@ import { fetchDestinationBySlug } from "../../@core/services/destinationService"
 import AddBy from "../add-by"
 import EditDeleteButton from "../edit-delete-button"
 import LoaderDestination from "../loader/loader-destination"
+import NotFound from "../not-fount"
 import SimpleGallery from "../simple-gallery"
 import Badges from "./badges"
 import PraticalInformation from "./pratical-information"
-import NotFound from '../not-fount'
 
 export const MapOneContent = dynamic(() => import("../map/map-one-content"), {
   ssr: false,
 })
 
 export default function DestinationContainer({ slug }: { slug: string }) {
-  
+  const { data: session } = useSession()
+
   const { error, data, isLoading } = useQuery({
     queryKey: ["destinationBySlug", slug],
     queryFn: async () => await fetchDestinationBySlug(slug),
@@ -30,11 +32,14 @@ export default function DestinationContainer({ slug }: { slug: string }) {
   if (isLoading) return <LoaderDestination />
   if (error) toast.error("Destination introuvable")
 
-  if (!data) return <NotFound />;
+  if (!data) return <NotFound />
 
   return (
     <div className="container">
-      <EditDeleteButton slug={data?.slug} />
+      {session?.user?.roles?.includes("ROLE_ADMIN") ||
+        (session?.user?.email === data.user.email && (
+          <EditDeleteButton slug={data?.slug} />
+        ))}
 
       <Title balise="h1" className="my-5">
         {data?.name}
