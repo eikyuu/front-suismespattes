@@ -34,12 +34,18 @@ export default function DestinationContainer({ slug }: { slug: string }) {
 
   if (!data) return <NotFound />
 
+  const userRoles = session?.user?.roles
+  const userEmail = session?.user?.email
+
+  function displayEditDeleteButton() {
+    if (userRoles?.includes("ROLE_ADMIN") || userEmail === data?.user?.email) {
+      return <EditDeleteButton slug={data?.slug} />
+    }
+  }
+
   return (
     <div className="container">
-      {session?.user?.roles?.includes("ROLE_ADMIN") ||
-        (session?.user?.email === data.user.email && (
-          <EditDeleteButton slug={data?.slug} />
-        ))}
+      {displayEditDeleteButton()}
 
       <Title balise="h1" className="my-5">
         {data?.name}
