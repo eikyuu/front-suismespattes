@@ -37,6 +37,8 @@ export default function DestinationContainer({ slug }: { slug: string }) {
   const userRoles = session?.user?.roles
   const userEmail = session?.user?.email
 
+  console.log(session)
+
   function displayEditDeleteButton() {
     if (userRoles?.includes("ROLE_ADMIN") || userEmail === data?.user?.email) {
       return <EditDeleteButton slug={data?.slug} />
@@ -64,6 +66,7 @@ export default function DestinationContainer({ slug }: { slug: string }) {
 
       <AddBy
         pseudo={data?.user.pseudo}
+        userId={session?.user?.id!}
         updatedAt={data?.updatedAt}
         className="mt-5"
       />

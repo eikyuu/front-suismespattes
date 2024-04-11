@@ -81,7 +81,8 @@ const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyType) => {
 
 export function DestinationForm({ slug }: { slug?: string }) {
   const { isAuth, toggle } = useHandleAuth()
-
+  const [open, setOpen] = useState(false)
+  const [openCity, setOpenCity] = useState(false)
   const { data: session, status } = useSession()
 
   useEffect(() => {
@@ -400,7 +401,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
                 <FormLabel className="text-white">
                   Categorie de la destination
                 </FormLabel>
-                <Popover>
+                <Popover open={open} onOpenChange={setOpen}>
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
@@ -433,6 +434,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
                               key={category.id}
                               onSelect={() => {
                                 form.setValue("category", category.id)
+                                setOpen(false)
                               }}
                             >
                               <Check
@@ -735,7 +737,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
             render={({ field }) => (
               <FormItem className="flex flex-col">
                 <FormLabel className="text-white">Ville</FormLabel>
-                <Popover>
+                <Popover open={openCity} onOpenChange={setOpenCity}>
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
@@ -767,6 +769,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
                               key={city.id}
                               onSelect={() => {
                                 form.setValue("city", city.id)
+                                setOpenCity(false)
                               }}
                             >
                               {city.label}

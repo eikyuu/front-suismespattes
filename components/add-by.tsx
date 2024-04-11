@@ -5,11 +5,13 @@ import Text from "./ui/text/Text"
 
 interface AddByProps {
   pseudo: string
+  userId: string
   updatedAt: string
   className?: string
 }
 
-export default function AddBy({ pseudo, updatedAt, className }: AddByProps) {
+export default function AddBy({ pseudo, userId, updatedAt, className }: AddByProps) {
+  console.log('AddByProps', userId)
   return (
     <div className={cn(className)}>
       <Text type="gray">
@@ -17,8 +19,8 @@ export default function AddBy({ pseudo, updatedAt, className }: AddByProps) {
       </Text>
       <div className="flex items-center space-x-2">
         <Avatar>
-          <AvatarImage src="https://avatars.githubusercontent.com/u/49157786?s=400&u=d0292f91b205bfa2030feec971afd1aaeb0fc1f2&v=4" />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}users/${userId}/picture`} />
+          <AvatarFallback>NO</AvatarFallback>
         </Avatar>
         <Text type="gray">Ajouté par {pseudo}</Text>
       </div>
