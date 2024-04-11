@@ -10,6 +10,7 @@ import { cn } from "../@core/lib/utils"
 import { MainNavItem } from "../@core/types"
 import { Icons } from "./icons"
 import { MobileNav } from "./mobile-nav"
+import { useEffect } from "react"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -19,6 +20,18 @@ interface MainNavProps {
 export function MainNav({ items, children }: MainNavProps) {
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
+
+  useEffect(() => {
+    if (showMobileMenu) {
+      const handleClick = (e: MouseEvent) => {
+        if (e.target instanceof Element && !e.target.closest("#mobile-nav")) {
+          setShowMobileMenu(false)
+        }
+      }
+      document.addEventListener("click", handleClick)
+      return () => document.removeEventListener("click", handleClick)
+    }
+  }, [showMobileMenu])
 
   return (
     <div className="flex gap-6 text-white md:gap-10">
