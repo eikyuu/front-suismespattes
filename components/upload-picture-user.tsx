@@ -36,7 +36,7 @@ export default function UploadPictureUser({
     <div className="flex-col items-center md:flex-row">
       <Avatar className="h-40 w-40">
         <AvatarImage src={imageUrl} />
-        <AvatarFallback>CN</AvatarFallback>
+        <AvatarFallback>NO</AvatarFallback>
       </Avatar>
 
       <FormField

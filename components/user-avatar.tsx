@@ -13,7 +13,7 @@ export function UserAvatar({ userId, ...props }: any) {
 
         <AvatarImage alt="Picture" src={`${process.env.NEXT_PUBLIC_API_URL}users/${userId}/picture`} />
 
-      <AvatarFallback>CN</AvatarFallback>
+      <AvatarFallback>NO</AvatarFallback>
 
     </Avatar>
   )
