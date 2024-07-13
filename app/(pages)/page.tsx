@@ -37,7 +37,7 @@ export default function Home() {
     <Fragment>
       <Banner />
       <Presentation />
-      <Reviews reviews={reviews} />
+      {/* <Reviews reviews={reviews} /> */}
       <LastDestinations />
       <MapContainer title="Retrouve toutes les destinations autours de chez toi !" />
     </Fragment>

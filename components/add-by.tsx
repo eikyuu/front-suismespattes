@@ -11,7 +11,6 @@ interface AddByProps {
 }
 
 export default function AddBy({ pseudo, userId, updatedAt, className }: AddByProps) {
-  console.log('AddByProps', userId)
   return (
     <div className={cn(className)}>
       <Text type="gray">
