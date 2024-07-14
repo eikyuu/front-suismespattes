@@ -67,10 +67,7 @@ export function MainNav({ items, children }: MainNavProps) {
               onClick={(e: any) => {
                 if (!session?.user) {
                   e.preventDefault()
-                  console.log("user not connected")
                   router.push("/login")
-                } else {
-                  console.log("user connected")
                 }
               }}
             >
