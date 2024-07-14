@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useSelectedLayoutSegment } from "next/navigation"
+import { useRouter, useSelectedLayoutSegment } from "next/navigation"
 
 import { siteConfig } from "../@core/config/site"
 import { cn } from "../@core/lib/utils"
@@ -11,6 +11,7 @@ import { MainNavItem } from "../@core/types"
 import { Icons } from "./icons"
 import { MobileNav } from "./mobile-nav"
 import { useEffect } from "react"
+import { useSession } from "next-auth/react"
 
 interface MainNavProps {
   items?: MainNavItem[]
@@ -18,6 +19,9 @@ interface MainNavProps {
 }
 
 export function MainNav({ items, children }: MainNavProps) {
+  const { data: session } = useSession()
+  const router = useRouter()
+
   const segment = useSelectedLayoutSegment()
   const [showMobileMenu, setShowMobileMenu] = React.useState<boolean>(false)
 
@@ -59,6 +63,16 @@ export function MainNav({ items, children }: MainNavProps) {
                   : "text-white",
                 item.disabled && "cursor-not-allowed opacity-80"
               )}
+
+              onClick={(e: any) => {
+                if (!session?.user) {
+                  e.preventDefault()
+                  console.log("user not connected")
+                  router.push("/login")
+                } else {
+                  console.log("user connected")
+                }
+              }}
             >
               {item.title}
             </Link>

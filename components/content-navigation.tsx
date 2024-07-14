@@ -95,8 +95,12 @@ function ContentNavigation() {
                 onClick={(e: any) => {
                   if (!session?.user) {
                     e.preventDefault()
+                    console.log("user not connected")
                     router.push("/login")
+                  } else {
+                    console.log("user connected")
                   }
+                  console.log("user connected")
                 }}
               />
               <LiNav text="Boutique" href="/a-venir" />
