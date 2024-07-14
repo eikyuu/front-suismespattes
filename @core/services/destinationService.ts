@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { API_URL } from '../constants/global';
 import { tokenFromSession } from '../lib/utils';
+import { d } from '@tanstack/query-core/build/legacy/queryClient-5b892aba';
 
 export const postDestination = async (form: any) => {
   const token = await tokenFromSession();
@@ -203,7 +204,20 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
 
   try {
     const response = await fetch(`${API_URL}search?${url}`);
-    return await response.json();
+
+    if (!response.ok) {
+      return {
+        destinations: [],
+        pagination: {
+          total: 0,
+          totalPages: 0,
+          page: 0,
+          limit: 0,
+        },
+      }
+    } 
+
+   return await response.json();
   } catch (err) {
     console.error(err);
   }

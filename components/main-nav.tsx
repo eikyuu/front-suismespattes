@@ -65,7 +65,10 @@ export function MainNav({ items, children }: MainNavProps) {
               )}
 
               onClick={(e: any) => {
-                if (!session?.user) {
+                // SI LA ROUTE EST UNE ROUTE PRIVÉE ET QUE L'UTILISATEUR N'EST PAS CONNECTÉ
+                // ON REDIRIGE VERS LA PAGE DE CONNEXION
+              
+                if (item.private && !session?.user) {
                   e.preventDefault()
                   router.push("/login")
                 }
