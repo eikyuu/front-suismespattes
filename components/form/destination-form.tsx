@@ -334,6 +334,15 @@ export function DestinationForm({ slug }: { slug?: string }) {
     const userEmail = await getUser()
     values.user = userEmail || ""
 
+    /// check if category is not empty
+    if (values.category === "") {
+      return toast.error("Veuillez choisir une catégorie")
+    }
+    //checj if city is not empty
+    if (values.city === "") {
+      return toast.error("Veuillez choisir une ville")
+    }
+
     if (slug) {
       values.user = destination.user.email
       await Promise.all([deleteImageMutation(values), update(values)])
@@ -940,7 +949,11 @@ export function DestinationForm({ slug }: { slug?: string }) {
           )}
         </GreenContainer>
 
-        <Button variant={"default"} type="submit" disabled={isPending || isPendingUpdate || isPendingUpload}>
+        <Button
+          variant={"default"}
+          type="submit"
+          disabled={isPending || isPendingUpdate || isPendingUpload}
+        >
           {isPending || isPendingUpdate || isPendingUpload ? (
             <Loader />
           ) : (
