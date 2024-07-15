@@ -5,6 +5,7 @@ import { cn } from "../../@core/lib/utils"
 import Footer from "../../components/footer"
 import LoginBtn from "../../components/login-btn"
 import { MainNav } from "../../components/main-nav"
+import { useRouter } from "next/navigation"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -30,7 +31,7 @@ export default async function Layout(props: {
         "flex min-h-screen flex-col font-sans leading-relaxed antialiased"
       )}
     >
-      <header className=" z-40 bg-primary">
+      <header className="z-40 bg-primary">
         <div className="flex h-20 items-center justify-between px-6">
           <MainNav items={globalConfig.mainNav} />
           <LoginBtn />
