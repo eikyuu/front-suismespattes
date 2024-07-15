@@ -940,7 +940,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
           )}
         </GreenContainer>
 
-        <Button variant={"default"} type="submit">
+        <Button variant={"default"} type="submit" disabled={isPending || isPendingUpdate || isPendingUpload}>
           {isPending || isPendingUpdate || isPendingUpload ? (
             <Loader />
           ) : (
