@@ -22,7 +22,7 @@ import Title from "@/components/ui/text/Title"
 
 import Loader from "../../loader/loader"
 import { loginSchema } from '../../../@core/lib/validations/login'
-import { use, useState } from 'react'
+import { useState } from 'react'
 import { useHandleAuth } from '../../../@core/hooks/useHandleAuth'
 
 function FormLogin() {
@@ -133,11 +133,11 @@ function FormLogin() {
         </p>
       </Link>
 
-      {/* <Link href="/register">
+      <Link href="/register">
         <p className="mt-2 block cursor-pointer text-right text-sm">
           Vous n&apos;avez pas de compte ? Inscrivez-vous
         </p>
-      </Link> */}
+      </Link>
     </Form>
   )
 }

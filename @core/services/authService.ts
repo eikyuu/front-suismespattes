@@ -76,7 +76,7 @@ export const register = async (form: any) => {
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.error.message);
+    throw new Error(errorData.error);
   }
 
   return response.json();

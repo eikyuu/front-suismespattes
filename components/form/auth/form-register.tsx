@@ -35,22 +35,24 @@ function FormRegister() {
     },
   })
 
-  const mutation = useMutation({
+  const {mutate, isPending, isError } = useMutation({
     mutationFn: (form: z.infer<typeof registerSchema>) => {
       return register(form)
     },
     onSuccess: () => {
       router.back()
     },
-    onError: () => {
-      toast.error(
-        "Une erreur est survenue lors de l'inscription veuillez réessayer ou contactez l'administrateur"
-      )
+    onError: (error) => {
+      // Vous pouvez gérer les erreurs ici ou utiliser mutation.error pour les afficher
+      console.error('Error:', error.message);
+
+      toast.error(error.message || "Une erreur est survenue lors de l'inscription")
+      
     },
   })
 
   function onSubmit(values: z.infer<typeof registerSchema>) {
-    mutation.mutate(values)
+    mutate(values)
   }
 
   return (
@@ -121,7 +123,7 @@ function FormRegister() {
           className="mb-1 mt-5 !w-full bg-tertiary"
           type="submit"
         >
-          {mutation.isPending ? <Loader /> : "Inscription"}
+          {isPending ? <Loader /> : "Inscription"}
         </Button>
       </form>
     </Form>
