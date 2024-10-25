@@ -8,7 +8,6 @@ import { useCreateQueryString } from "@/@core/hooks/useCreateQueryString"
 import banner from "@/public/images/banner.webp"
 import PopoverCity from "./popover-city"
 import { Button } from "./ui/button"
-import Text from "./ui/text/Text"
 import Title from "./ui/text/Title"
 
 function Banner() {
