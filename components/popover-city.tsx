@@ -1,3 +1,5 @@
+'use client';
+
 import { Fragment, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { useQuery } from "@tanstack/react-query"
@@ -79,7 +81,7 @@ export default function PopoverCity(): JSX.Element {
                   onClick={(currentValue) => {
                     setValueCities(city.label === valueCities ? "" : city.label)
                     router.push(
-                      pathname + "?" + createQueryString("city", city.label)
+                      "destinations-chien-accepte" + "?" + createQueryString("city", city.label)
                     )
                     setOpenCities(false)
                   }}
