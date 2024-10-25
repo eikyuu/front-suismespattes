@@ -16,9 +16,9 @@ function Banner() {
         priority={true}
       />
     </Link>
-    <div className="md:container relative -top-40">
+    {/* <div className="md:container relative -top-40">
         <div className="flex flex-col justify-between bg-tertiary p-4 md:flex-row md:rounded-md">
-          <PopoverCity />
+          <PopoverCity /> */}
           {/* <Text className='text-white'>+ de filtres</Text> */}
           {/* <Link
             className="mt-5 md:mt-0 "
@@ -27,8 +27,8 @@ function Banner() {
           >
             <Button className="w-full md:w-auto">Rénitialiser</Button>
           </Link> */}
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </>
   )
 }
