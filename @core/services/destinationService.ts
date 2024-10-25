@@ -6,7 +6,7 @@ import { d } from '@tanstack/query-core/build/legacy/queryClient-5b892aba';
 export const postDestination = async (form: any) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}destinations`, {
+  const response = await fetch(`${API_URL}destination`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const postDestination = async (form: any) => {
 export const updateDestination = async (form: any, slug: string) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}destinations/${slug}`, {
+  const response = await fetch(`${API_URL}destination/${slug}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export const updateDestination = async (form: any, slug: string) => {
 export const deleteDestination = async (slug: string) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}destinations/${slug}`, {
+  const response = await fetch(`${API_URL}destination/${slug}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ export const deleteDestination = async (slug: string) => {
 
 export const fetchDestination = async (page: number, limit: number) => {
 
-  const response = await fetch(`${API_URL}destinations?page=${page}&limit=${limit}`, {
+  const response = await fetch(`${API_URL}destination?page=${page}&limit=${limit}`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ export const fetchDestination = async (page: number, limit: number) => {
 
 export const fetchDestinations = async () => {
 
-  const response = await fetch(`${API_URL}destinations`, {
+  const response = await fetch(`${API_URL}destination`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export const fetchDestinations = async () => {
 export const fetchDestinationsByUser = async (id: string) => {
   
 
-  const response = await fetch(`${API_URL}users/${id}/destinations`, {
+  const response = await fetch(`${API_URL}users/${id}/destination`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ export const fetchDestinationsByUser = async (id: string) => {
 export const fetchDestinationBySlug = async (slug: string) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}destinations/${slug}`, {
+  const response = await fetch(`${API_URL}destination/${slug}`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export const postImages = async (file: File, slug: string) => {
 export const postDestinationImage = async (formData: any) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}destinations/images`, {
+  const response = await fetch(`${API_URL}destination/images`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -172,7 +172,7 @@ export const postDestinationImage = async (formData: any) => {
 export const deleteDestinationImage = async (slug: string) => {
   const token = await tokenFromSession();
   try {
-    const response = await fetch(`${API_URL}destinations/images/${slug}`, {
+    const response = await fetch(`${API_URL}destination/images/${slug}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
@@ -225,7 +225,7 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
 
 export const fetchAnchorLocation = async (formBody: any) => {
   try {
-    const response = await fetch(`${API_URL}destinations/geocode`, {
+    const response = await fetch(`${API_URL}destination/geocode`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

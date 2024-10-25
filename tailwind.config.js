@@ -98,6 +98,9 @@ module.exports = {
         128: "32rem",
         144: "36rem",
         160: "40rem",
+        166: "45rem",
+        170: "50rem",
+        176: "55rem",
       },
       backgroundImage: {
         map: 'linear-gradient( rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url("../public/images/map.webp")',

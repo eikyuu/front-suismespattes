@@ -18,7 +18,11 @@ import { fetchCitiesBySearch } from "../@core/services/cityService"
 import Loader from "./loader/loader"
 import { Button } from "./ui/button"
 
-export default function PopoverCity(): JSX.Element {
+interface PopoverCityProps {
+  sendCityToParent: (data: string) => void;
+}
+
+export default function PopoverCity({ sendCityToParent }: PopoverCityProps): JSX.Element {
   const router = useRouter()
   const [openCities, setOpenCities] = useState(false)
   const [valueCities, setValueCities] = useState("")
@@ -61,14 +65,14 @@ export default function PopoverCity(): JSX.Element {
             aria-expanded={openCities}
             className="w-full justify-between md:w-[260px]"
           >
-            {valueCities ? valueCities : "Rechercher par ville"}
+            {valueCities ? valueCities : "Où allez-vous ?"}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
         <PopoverContent className="max-h-[20rem] overflow-auto p-0 md:w-[260px]">
           <Command>
             <CommandInput
-              placeholder="Rechercher une ville"
+              placeholder="Où allez-vous ?"
               onValueChange={(e) => handleChange(e)}
             />
             {isLoading && <Loader />}
@@ -80,9 +84,12 @@ export default function PopoverCity(): JSX.Element {
                   key={city.id}
                   onClick={(currentValue) => {
                     setValueCities(city.label === valueCities ? "" : city.label)
-                    router.push(
-                      "destinations-chien-accepte" + "?" + createQueryString("city", city.label)
-                    )
+                    // router.push(
+                    //   "destinations-chien-accepte" + "?" + createQueryString("city", city.label)
+                    // )
+
+                    sendCityToParent(city.label);
+
                     setOpenCities(false)
                   }}
                 >
