@@ -35,6 +35,19 @@ export default function CardDestinations() {
   const { status, data, error, isLoading, isPlaceholderData } = useQuery({
     queryKey: ["getDestinations", page, cityParam],
     queryFn: () => {
+      // if (cityParam) {
+      //   return getDestinationsByQueries(page, totalItems, cityParam)
+      // } else {
+      //   return fetchDestination(page, totalItems)
+      // }
+      if (cityParam && categoryParam) {
+        return getDestinationsByQueries(
+          page,
+          totalItems,
+          cityParam,
+          categoryParam
+        )
+      }
       if (categoryParam) {
         return getDestinationsByQueries(page, totalItems, "", categoryParam)
       }

@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/popover"
 
 import { Button } from "./ui/button"
-import { FormControl } from "./ui/form"
 import { useCreateQueryString } from "@/@core/hooks/useCreateQueryString"
 
 export default function PopoverCategory({ sendCategoryToParent }: any) {
