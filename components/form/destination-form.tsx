@@ -56,6 +56,7 @@ import { RecenterAutomatically as RecenterAutomaticallyType } from "../../@core/
 import GreenContainer from "../green-container"
 import Loader from "../loader/loader"
 import LoaderFormDestination from "../loader/loader-form-destination"
+import PopoverCategory from "../popover-category"
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group"
 import Text from "../ui/text/Text"
 import TitleUnderline from "../ui/text/TitleUnderline"
@@ -84,6 +85,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
   const [open, setOpen] = useState(false)
   const [openCity, setOpenCity] = useState(false)
   const { data: session, status } = useSession()
+  const [dataFromChild, setCategoryFromChild] = useState("")
 
   useEffect(() => {
     if (!isAuth) {
@@ -231,7 +233,7 @@ export function DestinationForm({ slug }: { slug?: string }) {
   async function fetchImages() {
     const imageFiles: File[] = await Promise.all(
       destination.images.map(async (image: any) => {
-        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destinations/images/${image.name}`
+        const imageUrl = `${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`
         return await transformFile(imageUrl)
       })
     )
@@ -410,57 +412,12 @@ export function DestinationForm({ slug }: { slug?: string }) {
                 <FormLabel className="text-white">
                   Categorie de la destination
                 </FormLabel>
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
-                    <FormControl>
-                      <Button
-                        variant="outline"
-                        role="combobox"
-                        className={cn(
-                          "w-full justify-between capitalize md:w-[260px]",
-                          !field.value && "text-muted-foreground"
-                        )}
-                      >
-                        {field.value
-                          ? categories.find(
-                              (category: any) => category.id === field.value
-                            )?.name
-                          : "Choissisez une categorie"}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                      </Button>
-                    </FormControl>
-                  </PopoverTrigger>
-                  <PopoverContent className="max-h-[20rem] w-full overflow-auto p-0 md:w-[260px]">
-                    <Command>
-                      <CommandInput placeholder="Rechercher une catégorie" />
-                      <CommandEmpty>Aucune catégorie trouvé.</CommandEmpty>
-                      <CommandGroup>
-                        {categories &&
-                          categories.map((category: any) => (
-                            <CommandItem
-                              className="capitalize"
-                              value={category.name}
-                              key={category.id}
-                              onSelect={() => {
-                                form.setValue("category", category.id)
-                                setOpen(false)
-                              }}
-                            >
-                              <Check
-                                className={cn(
-                                  "mr-2 h-4 w-4",
-                                  category.name === field.value
-                                    ? "opacity-100"
-                                    : "opacity-0"
-                                )}
-                              />
-                              {category.name}
-                            </CommandItem>
-                          ))}
-                      </CommandGroup>
-                    </Command>
-                  </PopoverContent>
-                </Popover>
+
+                <PopoverCategory
+                  sendCategoryToParent={(data: string) => {
+                    form.setValue("category", data)
+                  }}
+                />
                 <FormDescription className="sr-only text-white">
                   Categorie de la destination
                 </FormDescription>

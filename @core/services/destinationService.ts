@@ -184,12 +184,13 @@ export const deleteDestinationImage = async (slug: string) => {
   }
 }
 
-export const getDestinationsByQueries = async (page: number, totalItems: number, cityParam?: string) => {
+export const getDestinationsByQueries = async (page: number, totalItems: number, cityParam: string = '', categoryParam:string = '') => {
 
   const queries = {
     page: page,
     limit: totalItems,
     city: cityParam ? cityParam : '',
+    category: categoryParam ? categoryParam : '',
   };
 
   const createQueryString = (queries: any) => {

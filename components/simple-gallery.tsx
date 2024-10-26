@@ -11,15 +11,15 @@ function SimpleGallery({ images }: { images: any[] }) {
         {images.map((image) => (
           <Item
             key={image.id}
-            original={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${image.name}`}
-            thumbnail={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${image.name}`}
+            original={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
+            thumbnail={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
             width={image.width || 1600}
             height={image.height || 1000}
           >
             {({ ref, open }) => (
               <Image
                 onClick={open}
-                src={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${image.name}`}
+                src={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${image.name}`}
                 alt="kitten"
                 priority={true}
                 loading="eager"

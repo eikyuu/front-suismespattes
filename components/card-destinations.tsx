@@ -24,7 +24,10 @@ export default function CardDestinations() {
 
   const { pathname, searchParam, createQueryString } =
     useCreateQueryString("page")
+
   const { searchParam: cityParam } = useCreateQueryString("city")
+
+  const { searchParam: categoryParam } = useCreateQueryString("category")
 
   const [page, setPage] = useState(1)
   const totalItems = 12
@@ -32,11 +35,15 @@ export default function CardDestinations() {
   const { status, data, error, isLoading, isPlaceholderData } = useQuery({
     queryKey: ["getDestinations", page, cityParam],
     queryFn: () => {
+      if (categoryParam) {
+        return getDestinationsByQueries(page, totalItems, "", categoryParam)
+      }
+
       if (cityParam) {
         return getDestinationsByQueries(page, totalItems, cityParam)
-      } else {
-        return fetchDestination(page, totalItems)
       }
+
+      return fetchDestination(page, totalItems)
     },
     placeholderData: keepPreviousData,
     staleTime: 5000,
