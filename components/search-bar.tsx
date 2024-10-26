@@ -29,34 +29,38 @@ export default function SearchBar() {
     }
   
     const handleDestination = () => {
- 
-      if (dataFromChild && dataFromChildCategory) {
-        router.push(
-          "destinations-chien-accepte" +
-            "?" +
-            createQueryString("city", dataFromChild) +
-            "&" +
-            createQueryStringCategory("category", dataFromChildCategory)
-        )
-      } 
-      else if (dataFromChild) {
-        router.push(
-          "destinations-chien-accepte" +
-            "?" +
-            createQueryString("city", dataFromChild)
-        )
-      } 
-      else if (dataFromChildCategory) {
-        router.push(
-          "destinations-chien-accepte" +
-            "?" +
-            createQueryStringCategory("category", dataFromChildCategory)
-        )
-      } 
-      else {
-        router.push("destinations-chien-accepte")
-      }
-    }
+      // Réinitialiser les valeurs de ville et de catégorie
+      setCityFromChild("");
+      setCategoryFromChild("");
+    
+      // Rediriger vers l'URL de base sans paramètres
+      router.push("destinations-chien-accepte");
+    
+      // Après un léger délai, ajouter les nouveaux paramètres
+      setTimeout(() => {
+        if (dataFromChild && dataFromChildCategory) {
+          router.push(
+            "destinations-chien-accepte" +
+              "?" +
+              createQueryString("city", dataFromChild) +
+              "&" +
+              createQueryStringCategory("category", dataFromChildCategory)
+          );
+        } else if (dataFromChild) {
+          router.push(
+            "destinations-chien-accepte" +
+              "?" +
+              createQueryString("city", dataFromChild)
+          );
+        } else if (dataFromChildCategory) {
+          router.push(
+            "destinations-chien-accepte" +
+              "?" +
+              createQueryStringCategory("category", dataFromChildCategory)
+          );
+        }
+      }, 0);
+    };
     
   return (
     <div className="mb-10 flex  h-full w-full flex-col justify-between gap-4 rounded-md bg-tertiary p-4 md:h-auto md:w-full md:flex-row ">
