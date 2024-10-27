@@ -193,19 +193,26 @@ export const getDestinationsByQueries = async (page: number, totalItems: number,
     category: categoryParam ? categoryParam : '',
   };
 
-  const createQueryString = (queries: any) => {
-    const queryString = Object.keys(queries)
-      .filter((key) => queries[key] !== null && queries[key] !== '')
-      .map((key) => `${key}=${queries[key]}`)
-      .join('&');
-    return queryString ? `${queryString}` : '';
-  };
+  // console.log(queries);
 
-  const url = `${createQueryString(queries)}`;
+  // const createQueryString = (queries: any) => {
+  //   console.log(queries);
+  //   const queryString = Object.keys(queries)
+  //     .filter((key) => queries[key] !== null && queries[key] !== '')
+  //     .map((key) => `${key}=${queries[key]}`)
+  //     .join('&');
+
+  //     console.log(queryString);
+  //   return queryString ? `${queryString}` : '';
+  // };
+
+  // const url = `${createQueryString(queries)}`;
+
+  // console.log(url);
 
   try {
-    const response = await fetch(`${API_URL}search?${url}`);
-
+    // const response = await fetch(`${API_URL}search?page=1&limit=12&city=Tours&category=plage`);
+    const response = await fetch(`${API_URL}search?page=${page}&limit=${totalItems}&city=${cityParam}&category=${categoryParam}`);
     if (!response.ok) {
       return {
         destinations: [],

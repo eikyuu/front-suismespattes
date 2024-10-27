@@ -1,20 +1,14 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import PopoverCity from "./popover-city"
 import { Button } from "./ui/button"
-import { useCreateQueryString } from "@/@core/hooks/useCreateQueryString"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import PopoverCategory from "./popover-category"
 
 export default function SearchBar() {
     const router = useRouter()
-
-    const { createQueryString } =
-    useCreateQueryString("city")
-
-    const  { createQueryString: createQueryStringCategory } = useCreateQueryString("category")
 
     const [dataFromChild, setCityFromChild] = useState("")
     const [dataFromChildCategory, setCategoryFromChild] = useState("")
@@ -29,11 +23,7 @@ export default function SearchBar() {
     }
   
     const handleDestination = () => {
-      // Réinitialiser les valeurs de ville et de catégorie
-      setCityFromChild("");
-      setCategoryFromChild("");
-    
-      // Rediriger vers l'URL de base sans paramètres
+
       router.push("destinations-chien-accepte");
     
       // Après un léger délai, ajouter les nouveaux paramètres
@@ -42,22 +32,21 @@ export default function SearchBar() {
           router.push(
             "destinations-chien-accepte" +
               "?" +
-              createQueryString("city", dataFromChild) +
+              "city=" + dataFromChild +
               "&" +
-              createQueryStringCategory("category", dataFromChildCategory)
+              "category=" + dataFromChildCategory
           );
         } else if (dataFromChild) {
           router.push(
             "destinations-chien-accepte" +
               "?" +
-              createQueryString("city", dataFromChild)
+              "city=" + dataFromChild
           );
         } else if (dataFromChildCategory) {
           router.push(
             "destinations-chien-accepte" +
               "?" +
-              createQueryStringCategory("category", dataFromChildCategory)
-          );
+              "category=" + dataFromChildCategory);
         }
       }, 0);
     };
