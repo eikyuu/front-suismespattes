@@ -27,6 +27,7 @@ export default async function Layout(props: {
   const user = await getCurrentUser()
 
   if (!user) {
+    console.error("No user found")
     return notFound()
   }
 

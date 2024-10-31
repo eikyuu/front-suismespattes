@@ -91,6 +91,8 @@ export function DestinationForm({ slug }: { slug?: string }) {
     if (!isAuth) {
       toggle()
     }
+    console.error("isAuth", isAuth)
+
   }, [isAuth, toggle])
 
   const router = useRouter()
