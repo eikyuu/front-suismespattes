@@ -55,6 +55,8 @@ export function UserAccountNav({ userId }: { userId: any }) {
           onSelect={(event) => {
             event.preventDefault()
             signOut({ callbackUrl: "/" })
+            //clear the local storage
+            localStorage.clear()
           }}
         >
           Se deconnecter

@@ -29,7 +29,7 @@ function FormLogin() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const router = useRouter()
-  const { isAuth, toggle } = useHandleAuth();
+  const { toggle } = useHandleAuth();
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),

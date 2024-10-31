@@ -12,8 +12,11 @@ import { UserAccountNav } from "./user-account-nav"
 
 export default function LoginBtn() {
   const [userSession, setUserSession] = useState<any>(null)
-  const { isAuth, toggle } = useHandleAuth()
+  const { toggle } = useHandleAuth()
   const { data: session } = useSession()
+
+  const authStorage = localStorage.getItem('auth-storage');
+  const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
 
   useEffect(() => {
     if (session) {
