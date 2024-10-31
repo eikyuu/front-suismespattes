@@ -15,36 +15,35 @@ export default function LoginBtn() {
   const { toggle } = useHandleAuth()
   const { data: session } = useSession()
 
-
   useEffect(() => {
     if (session) {
       setUserSession(session?.user)
     }
   }, [session])
 
-  
-  // const authStorage = localStorage.getItem('auth-storage');
-  // const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
-  const [isAuth, setIsAuthenticated] = useState(false);
+  const [isAuth, setIsAuthenticated] = useState(false)
+
+  // Fonction pour vérifier l'authentification dans le local storage
+  const checkAuthStatus = () => {
+    const authStorage = localStorage.getItem('auth-storage')
+    const isAuthenticated = authStorage ? JSON.parse(authStorage).state.isAuth : false
+    setIsAuthenticated(isAuthenticated)
+  }
 
   useEffect(() => {
-    // Récupérer la valeur de `isAuth` depuis le localStorage au chargement initial
+    // Initial check
+    checkAuthStatus()
 
-    const authStorage = localStorage.getItem('auth-storage');
-    const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
+    // Vérification périodique de l'état d'authentification toutes les secondes
+    const intervalId = setInterval(checkAuthStatus, 1000)
 
-    setIsAuthenticated(isAuth);
-  }, []);
+    // Nettoyage de l'intervalle lors du démontage du composant
+    return () => clearInterval(intervalId)
+  }, [])
 
   return (
     <Fragment>
-      {isAuth && (
-        <UserAccountNav
-          userId={session?.user?.id}
-        />
-      )}
-
-      {!isAuth && (
+      {!isAuth ? (
         <Link
           onClick={(e) => {
             if (session) {
@@ -61,6 +60,10 @@ export default function LoginBtn() {
         >
           CONNEXION
         </Link>
+      ) : (
+        <UserAccountNav
+          userId={session?.user?.id}
+        />
       )}
     </Fragment>
   )
