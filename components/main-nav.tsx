@@ -68,7 +68,7 @@ export function MainNav({ items, children }: MainNavProps) {
                 // SI LA ROUTE EST UNE ROUTE PRIVÉE ET QUE L'UTILISATEUR N'EST PAS CONNECTÉ
                 // ON REDIRIGE VERS LA PAGE DE CONNEXION
               
-                if (item.private && !session?.user) {
+                if (item.private && !localStorage.getItem('auth-storage')) {
                   e.preventDefault()
                   router.push("/login")
                 }

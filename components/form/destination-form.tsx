@@ -87,14 +87,6 @@ export function DestinationForm({ slug }: { slug?: string }) {
   const { data: session, status } = useSession()
   const [dataFromChild, setCategoryFromChild] = useState("")
 
-  useEffect(() => {
-    if (!isAuth) {
-      toggle()
-    }
-    console.error("isAuth", isAuth)
-
-  }, [isAuth, toggle])
-
   const router = useRouter()
 
   const [images, setImages] = useState<FileList | any>([])
