@@ -15,14 +15,26 @@ export default function LoginBtn() {
   const { toggle } = useHandleAuth()
   const { data: session } = useSession()
 
-  const authStorage = localStorage.getItem('auth-storage');
-  const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
 
   useEffect(() => {
     if (session) {
       setUserSession(session?.user)
     }
   }, [session])
+
+  
+  // const authStorage = localStorage.getItem('auth-storage');
+  // const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
+  const [isAuth, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Récupérer la valeur de `isAuth` depuis le localStorage au chargement initial
+    const authData = localStorage.getItem('auth-storage');
+    if (authData) {
+      const parsedAuthData = JSON.parse(authData);
+      setIsAuthenticated(parsedAuthData.state?.isAuth || false);
+    }
+  }, []);
 
   return (
     <Fragment>
