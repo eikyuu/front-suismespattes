@@ -67,8 +67,12 @@ export function MainNav({ items, children }: MainNavProps) {
               onClick={(e: any) => {
                 // SI LA ROUTE EST UNE ROUTE PRIVÉE ET QUE L'UTILISATEUR N'EST PAS CONNECTÉ
                 // ON REDIRIGE VERS LA PAGE DE CONNEXION
-              
-                if (item.private && !localStorage.getItem('auth-storage')) {
+              console.log("item.private", item.private)
+              const authStorage = localStorage.getItem('auth-storage');
+              const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
+              console.log("localStorage.getItem('auth-storage')", isAuth);
+                if (item.private && !isAuth) {
+                  console.log("private route")
                   e.preventDefault()
                   router.push("/login")
                 }
