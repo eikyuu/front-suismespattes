@@ -38,7 +38,7 @@ export default function LoginBtn() {
 
   return (
     <Fragment>
-      {isAuth && userSession && (
+      {isAuth && (
         <UserAccountNav
           userId={session?.user?.id}
         />
