@@ -29,11 +29,11 @@ export default function LoginBtn() {
 
   useEffect(() => {
     // Récupérer la valeur de `isAuth` depuis le localStorage au chargement initial
-    const authData = localStorage.getItem('auth-storage');
-    if (authData) {
-      const parsedAuthData = JSON.parse(authData);
-      setIsAuthenticated(parsedAuthData.state?.isAuth || false);
-    }
+
+    const authStorage = localStorage.getItem('auth-storage');
+    const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
+
+    setIsAuthenticated(isAuth);
   }, []);
 
   return (
