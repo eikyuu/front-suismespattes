@@ -35,7 +35,7 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
               <BlurImage
                 height="h-144"
                 alt={data.name}
-                image={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${data.name}`}
+                image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
               />
             </SwiperSlide>
           ))
@@ -65,7 +65,7 @@ function SwiperContainer({ data }: { data: any }): JSX.Element {
               <BlurImage
                 height="h-40"
                 alt={data.name}
-                image={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${data.name}`}
+                image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${data.name}`}
               />
             </SwiperSlide>
           ))

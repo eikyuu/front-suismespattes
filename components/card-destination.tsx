@@ -68,7 +68,7 @@ function CardDestination({
         <BlurImage
           height={height}
           alt={`Image de la destination ${destination.name} a ${destination.city}`}
-          image={`${process.env.NEXT_PUBLIC_API_URL}destinations/images/${destination.images[0]?.name}`}
+          image={`${process.env.NEXT_PUBLIC_API_URL}destination/images/${destination.images[0]?.name}`}
         />
       </picture>
       <div className="mb-1">

@@ -70,10 +70,10 @@ export default function PopoverCategory({ sendCategoryToParent }: any) {
               categories.map((category: any) => (
                 <CommandItem
                   className="capitalize"
-                  value={category.name}
+                  value={category.id}
                   key={category.id}
                   onSelect={() => {
-                    sendCategoryToParent(category.name)
+                    sendCategoryToParent(category.id)
                     setValueCategories(category.id)
                     setOpen(false)
                   }}
