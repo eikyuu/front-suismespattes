@@ -4,10 +4,10 @@ import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import { Toaster } from "react-hot-toast"
 
-import AuthProvider from "../@core/context/AuthProvider"
-import Provider from "../@core/lib/provider"
-import { cn } from '../@core/lib/utils'
-import { siteConfig } from '../@core/config/site'
+import AuthProvider from "../core/context/AuthProvider"
+import Provider from "../core/lib/provider"
+import { cn } from '../core/lib/utils'
+import { siteConfig } from '../core/config/site'
 
 const inter = Inter({ subsets: ["latin"] })
 

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import Text from "@/components/ui/text/Text"
 
-import { Country } from "../@core/enum/Country"
+import { Country } from "../core/enum/Country"
 import BlurImage from "./blurImage/blur-image"
 
 //import { HeartIcon } from '@heroicons/react/24/outline';

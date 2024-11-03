@@ -9,11 +9,11 @@ import {
 } from "@tanstack/react-query"
 import toast from "react-hot-toast"
 
-import { useCreateQueryString } from "../@core/hooks/useCreateQueryString"
+import { useCreateQueryString } from "../core/hooks/useCreateQueryString"
 import {
   fetchDestination,
   getDestinationsByQueries,
-} from "../@core/services/destinationService"
+} from "../core/services/destinationService"
 import CardDestination from "./card-destination"
 import LoaderDestinations from "./loader/loader-destinations"
 import { Button } from "./ui/button"

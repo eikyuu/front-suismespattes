@@ -4,10 +4,10 @@ import Link from "next/link"
 
 import { Icons } from "@/components/icons"
 
-import { siteConfig } from "../@core/config/site"
-import { useLockBody } from "../@core/hooks/use-lock-body"
-import { cn } from "../@core/lib/utils"
-import { MainNavItem } from "../@core/types"
+import { siteConfig } from "../core/config/site"
+import { useLockBody } from "../core/hooks/use-lock-body"
+import { cn } from "../core/lib/utils"
+import { MainNavItem } from "../core/types"
 
 interface MobileNavProps {
   items: MainNavItem[]

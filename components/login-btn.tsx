@@ -6,8 +6,8 @@ import { useSession } from "next-auth/react"
 
 import { buttonVariants } from "@/components/ui/button"
 
-import { useHandleAuth } from "../@core/hooks/useHandleAuth"
-import { cn } from "../@core/lib/utils"
+import { useHandleAuth } from "../core/hooks/useHandleAuth"
+import { cn } from "../core/lib/utils"
 import { UserAccountNav } from "./user-account-nav"
 
 export default function LoginBtn() {

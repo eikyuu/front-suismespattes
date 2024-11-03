@@ -1,6 +1,6 @@
 "use client"
 
-import { fetchDestinationsByUser } from "@/@core/services/destinationService"
+import { fetchDestinationsByUser } from "@/core/services/destinationService"
 import { keepPreviousData } from "@tanstack/query-core"
 import { useQuery } from "@tanstack/react-query"
 

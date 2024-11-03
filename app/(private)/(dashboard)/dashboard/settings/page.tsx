@@ -1,5 +1,5 @@
 
-import { getCurrentUser } from '../../../../../@core/lib/session'
+import { getCurrentUser } from '../../../../../core/lib/session'
 import SettingsForm from "../../../../../components/form/settings-form"
 
 export default async function SettingsPage() {

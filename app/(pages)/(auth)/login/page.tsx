@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 
-import { useHandleAuth } from "../../../../@core/hooks/useHandleAuth"
+import { useHandleAuth } from "../../../../core/hooks/useHandleAuth"
 import FormLogin from "../../../../components/form/auth/form-login"
 
 export default function LoginPage() {

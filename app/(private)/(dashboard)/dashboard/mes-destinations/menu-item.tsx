@@ -1,8 +1,8 @@
 
-import { getCurrentUser } from "@/@core/lib/session"
+import { getCurrentUser } from "@/core/lib/session"
 import { MesDestinations } from "./mes-destinations"
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteDestination } from "@/@core/services/destinationService";
+import { deleteDestination } from "@/core/services/destinationService";
 import { useRouter } from "next/navigation";
 import { DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from "@/components/ui/dropdown-menu";
 

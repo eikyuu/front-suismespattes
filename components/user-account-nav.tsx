@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { UserAvatar } from "@/components/user-avatar"
 import { useQuery } from '@tanstack/react-query'
-import { getUser } from '../@core/services/authService'
+import { getUser } from '../core/services/authService'
 
 export function UserAccountNav({ userId }: { userId: any }) {
 

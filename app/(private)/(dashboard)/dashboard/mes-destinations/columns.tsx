@@ -8,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu, DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu"
-import { cn } from '../../../../../@core/lib/utils'
+import { cn } from '../../../../../core/lib/utils'
 import MenuItem from "./menu-item"
 
 export type Destination = {

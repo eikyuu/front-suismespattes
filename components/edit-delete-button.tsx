@@ -15,7 +15,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-import { deleteDestination } from "../@core/services/destinationService"
+import { deleteDestination } from "../core/services/destinationService"
 import { Button } from "./ui/button"
 
 interface Props {

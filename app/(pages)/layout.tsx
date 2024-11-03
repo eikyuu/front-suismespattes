@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google"
 
-import { globalConfig } from "../../@core/config/global"
-import { cn } from "../../@core/lib/utils"
+import { globalConfig } from "../../core/config/global"
+import { cn } from "../../core/lib/utils"
 import Footer from "../../components/footer"
 import LoginBtn from "../../components/login-btn"
 import { MainNav } from "../../components/main-nav"

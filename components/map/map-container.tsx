@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"
 
 import Title from "@/components/ui/text/Title"
 
-import { fetchDestinations } from "../../@core/services/destinationService"
+import { fetchDestinations } from "../../core/services/destinationService"
 import { Skeleton } from "../ui/skeleton"
 
 export const MapContent = dynamic(() => import("./map-content"), {

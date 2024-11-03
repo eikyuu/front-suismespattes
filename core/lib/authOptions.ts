@@ -1,6 +1,6 @@
 import type { NextAuthOptions, Session, User } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
-import { authenticate } from '@/@core/services/authService'
+import { authenticate } from '@/core/services/authService'
 import { JWT } from 'next-auth/jwt'
 
 export const authOptions: NextAuthOptions = {

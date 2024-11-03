@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { useCreateQueryString } from "@/@core/hooks/useCreateQueryString"
+import { useCreateQueryString } from "@/core/hooks/useCreateQueryString"
 import banner from "@/public/images/banner.webp"
 import Title from "./ui/text/Title"
 import SearchBar from "./search-bar"

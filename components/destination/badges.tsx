@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { cn } from "@/@core/lib/utils"
+import { cn } from "@/core/lib/utils"
 
 import { Badge, badgeVariants } from "@/components/ui/badge"
 

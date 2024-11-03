@@ -3,7 +3,7 @@ import dynamic from "next/dynamic"
 import { divIcon, point } from "leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
 
-import { Destination } from "../../@core/types/DestinationForm"
+import { Destination } from "../../core/types/DestinationForm"
 import Overlay from "./overlay"
 
 export const LeafletMap = dynamic(() => import("./leaflet-map"), { ssr: false })

@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
-import { cn } from "../@core/lib/utils"
+import { cn } from "../core/lib/utils"
 import Text from "./ui/text/Text"
 
 interface AddByProps {

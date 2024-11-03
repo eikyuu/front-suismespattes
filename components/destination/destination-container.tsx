@@ -8,7 +8,7 @@ import toast from "react-hot-toast"
 import Text from "@/components/ui/text/Text"
 import Title from "@/components/ui/text/Title"
 
-import { fetchDestinationBySlug } from "../../@core/services/destinationService"
+import { fetchDestinationBySlug } from "../../core/services/destinationService"
 import AddBy from "../add-by"
 import EditDeleteButton from "../edit-delete-button"
 import LoaderDestination from "../loader/loader-destination"

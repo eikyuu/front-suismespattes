@@ -38,12 +38,12 @@ import {
 } from "@/components/ui/popover"
 import { Textarea } from "@/components/ui/textarea"
 
-import { useHandleAuth } from "../../@core/hooks/useHandleAuth"
-import { cn, formatSlug, getUser, userFromSession } from "../../@core/lib/utils"
-import { destinationSchema } from "../../@core/lib/validations/destination"
-import { imageSchema } from "../../@core/lib/validations/image"
-import { fetchCategories } from "../../@core/services/categoryService"
-import { fetchCityByCodePostal } from "../../@core/services/cityService"
+import { useHandleAuth } from "@/core/hooks/useHandleAuth"
+import { cn, formatSlug, getUser} from "@/core/lib/utils"
+import { destinationSchema } from "@/core/lib/validations/destination"
+import { imageSchema } from "@/core/lib/validations/image"
+import { fetchCategories } from "@/core/services/categoryService"
+import { fetchCityByCodePostal } from "@/core/services/cityService"
 import {
   deleteDestinationImage,
   fetchAnchorLocation,
@@ -51,8 +51,8 @@ import {
   postDestination,
   updateDestination,
   uploadImages,
-} from "../../@core/services/destinationService"
-import { RecenterAutomatically as RecenterAutomaticallyType } from "../../@core/types/recenter-automatically"
+} from "@/core/services/destinationService"
+import { RecenterAutomatically as RecenterAutomaticallyType } from "@/core/types/recenter-automatically"
 import GreenContainer from "../green-container"
 import Loader from "../loader/loader"
 import LoaderFormDestination from "../loader/loader-form-destination"

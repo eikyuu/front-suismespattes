@@ -13,7 +13,7 @@ import toast from "react-hot-toast"
 import { Button } from "@/components/ui/button"
 import Title from "@/components/ui/text/Title"
 
-import { fetchDestination } from "../@core/services/destinationService"
+import { fetchDestination } from "../core/services/destinationService"
 import CardDestination from "./card-destination"
 import LoaderDestinations from "./loader/loader-destinations"
 

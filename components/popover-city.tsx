@@ -12,9 +12,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-import { useCreateQueryString } from "../@core/hooks/useCreateQueryString"
-import { useDebounce } from "../@core/hooks/useDebounce"
-import { fetchCitiesBySearch } from "../@core/services/cityService"
+import { useCreateQueryString } from "../core/hooks/useCreateQueryString"
+import { useDebounce } from "../core/hooks/useDebounce"
+import { fetchCitiesBySearch } from "../core/services/cityService"
 import Loader from "./loader/loader"
 import { Button } from "./ui/button"
 

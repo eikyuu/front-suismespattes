@@ -1,5 +1,5 @@
 
-import { getCurrentUser } from "@/@core/lib/session"
+import { getCurrentUser } from "@/core/lib/session"
 import { MesDestinations } from "./mes-destinations"
 
 export default async function DemoPage() {

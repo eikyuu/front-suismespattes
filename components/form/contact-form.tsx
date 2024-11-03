@@ -18,10 +18,10 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-import { postMessage } from "../../@core/services/contactService"
+import { postMessage } from "../../core/services/contactService"
 import Loader from "../loader/loader"
 import { Textarea } from "../ui/textarea"
-import { contactSchema } from '../../@core/lib/validations/contact'
+import { contactSchema } from '../../core/lib/validations/contact'
 
 export function ContactForm() {
   const form = useForm<z.infer<typeof contactSchema>>({

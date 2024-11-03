@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { cn } from "@/@core/lib/utils"
-import { fetchCategories } from "@/@core/services/categoryService"
+import { cn } from "@/core/lib/utils"
+import { fetchCategories } from "@/core/services/categoryService"
 import { useQuery } from "@tanstack/react-query"
 import { Check, ChevronsUpDown, TrashIcon } from "lucide-react"
 
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/popover"
 
 import { Button } from "./ui/button"
-import { useCreateQueryString } from "@/@core/hooks/useCreateQueryString"
+import { useCreateQueryString } from "@/core/hooks/useCreateQueryString"
 
 export default function PopoverCategory({ sendCategoryToParent }: any) {
   const [open, setOpen] = useState(false)

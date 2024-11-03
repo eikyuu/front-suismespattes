@@ -19,9 +19,9 @@ import { Input } from "@/components/ui/input"
 import Text from "@/components/ui/text/Text"
 import Title from "@/components/ui/text/Title"
 
-import { resetPassword } from "../../../@core/services/authService"
+import { resetPassword } from "../../../core/services/authService"
 import Loader from "../../loader/loader"
-import { resetPasswordSchema } from '../../../@core/lib/validations/resetPassword'
+import { resetPasswordSchema } from '../../../core/lib/validations/resetPassword'
 
 function FormResetPassword() {
   const searchParams = useSearchParams()

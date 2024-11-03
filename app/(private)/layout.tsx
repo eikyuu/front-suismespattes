@@ -1,9 +1,9 @@
 import { Inter } from "next/font/google"
 import { notFound } from "next/navigation"
 
-import { globalConfig } from "../../@core/config/global"
-import { getCurrentUser } from "../../@core/lib/session"
-import { cn } from "../../@core/lib/utils"
+import { globalConfig } from "../../core/config/global"
+import { getCurrentUser } from "../../core/lib/session"
+import { cn } from "../../core/lib/utils"
 import Footer from "../../components/footer"
 import { MainNav } from "../../components/main-nav"
 import { UserAccountNav } from "../../components/user-account-nav"
