@@ -186,30 +186,6 @@ export const deleteDestinationImage = async (slug: string) => {
 
 export const getDestinationsByQueries = async (page: number, totalItems: number, cityParam: string = '', categoryParam:string = '') => {
 
-  const queries = {
-    page: page,
-    limit: totalItems,
-    city: cityParam ? cityParam : '',
-    category: categoryParam ? categoryParam : '',
-  };
-
-  // console.log(queries);
-
-  // const createQueryString = (queries: any) => {
-  //   console.log(queries);
-  //   const queryString = Object.keys(queries)
-  //     .filter((key) => queries[key] !== null && queries[key] !== '')
-  //     .map((key) => `${key}=${queries[key]}`)
-  //     .join('&');
-
-  //     console.log(queryString);
-  //   return queryString ? `${queryString}` : '';
-  // };
-
-  // const url = `${createQueryString(queries)}`;
-
-  // console.log(url);
-
   try {
     // const response = await fetch(`${API_URL}search?page=1&limit=12&city=Tours&category=plage`);
     const response = await fetch(`${API_URL}search?page=${page}&limit=${totalItems}&city=${cityParam}&category=${categoryParam}`);

@@ -91,16 +91,8 @@ export function DestinationForm({ slug }: { slug?: string }) {
   const [images, setImages] = useState<FileList | any>([])
 
   useEffect(() => {
-
     const authStorage = localStorage.getItem('auth-storage');
     const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
-    console.log("localStorage.getItem('auth-storage')", isAuth);
-      if (!isAuth) {
-        console.log("private route")
-        // router.push("/login")
-      }
-  
-
   }, [isAuth, toggle])
 
 
