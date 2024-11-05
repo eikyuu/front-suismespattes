@@ -81,19 +81,18 @@ const RecenterAutomatically = ({ lat, lng }: RecenterAutomaticallyType) => {
 }
 
 export function DestinationForm({ slug }: { slug?: string }) {
-  const { isAuth, toggle } = useHandleAuth()
-  const [open, setOpen] = useState(false)
+  // const { isAuth, toggle } = useHandleAuth()
   const [openCity, setOpenCity] = useState(false)
   const { data: session, status } = useSession()
-  const [dataFromChild, setCategoryFromChild] = useState("")
+  // const [dataFromChild, setCategoryFromChild] = useState("")
   const router = useRouter()
 
   const [images, setImages] = useState<FileList | any>([])
 
-  useEffect(() => {
-    const authStorage = localStorage.getItem('auth-storage');
-    const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
-  }, [isAuth, toggle])
+  // useEffect(() => {
+  //   const authStorage = localStorage.getItem('auth-storage');
+  //   const isAuth = authStorage ? JSON.parse(authStorage).state.isAuth : false;
+  // }, [isAuth, toggle])
 
 
   const formUploadImage = useForm<z.infer<typeof imageSchema>>({
@@ -414,8 +413,10 @@ export function DestinationForm({ slug }: { slug?: string }) {
 
                 <PopoverCategory
                   sendCategoryToParent={(data: string) => {
+                    console.error(destination)
                     form.setValue("category", data)
                   }}
+                  valueCategory={form.getValues("category")}
                 />
                 <FormDescription className="sr-only text-white">
                   Categorie de la destination

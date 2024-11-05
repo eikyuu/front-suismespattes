@@ -22,10 +22,10 @@ import {
 import { Button } from "./ui/button"
 import { useCreateQueryString } from "@/core/hooks/useCreateQueryString"
 
-export default function PopoverCategory({ sendCategoryToParent }: any) {
+export default function PopoverCategory({ sendCategoryToParent, valueCategory }: any) {
   const [open, setOpen] = useState(false)
   const [valueCategories, setValueCategories] = useState("")
-  const { pathname, searchParam, createQueryString } =
+  const { searchParam } =
     useCreateQueryString("category")
 
   const {
@@ -34,14 +34,20 @@ export default function PopoverCategory({ sendCategoryToParent }: any) {
     isLoading,
   } = useQuery({
     queryKey: ["category"],
-    queryFn: async () => await fetchCategories(),
+    queryFn: () => fetchCategories(),
   })
 
   useEffect(() => {
-    if (searchParam === null) {
+    if (searchParam == null) {
       setValueCategories("")
     }
   }, [searchParam])
+
+  useEffect(() => {
+    if (valueCategory !== valueCategories) {
+      setValueCategories(valueCategory);
+    }
+  }, [valueCategory]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
