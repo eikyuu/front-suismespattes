@@ -38,10 +38,12 @@ function MapContainer({
           {title}
         </Title>
         {isLoading && <Skeleton className="mb-4 h-[600px] w-full" />}
+
         <div className="h-[600px] w-full">
-          <MapContent
-            destinations={destination ? [destination] : data?.destinations}
-          />
+        <MapContent
+  destinations={destination ? [destination] : data?.destinations || []}
+/>
+
         </div>
       </div>
     </section>

@@ -77,13 +77,13 @@ function LastDestinations(): JSX.Element {
           <div className="grid grid-cols-1 place-items-center items-center md:grid-cols-2 xl:grid-cols-4">
             {isLoading && <LoaderDestinations />}
             {!isLoading &&
-              data.destinations.length > 0 &&
+              data.destinations.length > 0 ?
               data.destinations.map((destination: any) => (
                 <CardDestination
                   key={destination.id}
                   destination={destination}
                 />
-              ))}
+              )) : <p>Pas de destination</p>}
           </div>
           <div className="mt-5 text-center">
             <Link className="outline-none" href="/destinations-chien-accepte">

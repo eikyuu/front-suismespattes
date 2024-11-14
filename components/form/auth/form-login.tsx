@@ -21,9 +21,9 @@ import { Input } from "@/components/ui/input"
 import Title from "@/components/ui/text/Title"
 
 import Loader from "../../loader/loader"
-import { loginSchema } from '../../../core/lib/validations/login'
+import { loginSchema } from '@/core/lib/validations/login'
 import { useState } from 'react'
-import { useHandleAuth } from '../../../core/hooks/useHandleAuth'
+import { useHandleAuth } from '@/core/hooks/useHandleAuth'
 
 function FormLogin() {
   const [isLoading, setIsLoading] = useState<boolean>(false)

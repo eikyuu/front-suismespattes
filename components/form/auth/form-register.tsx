@@ -18,10 +18,10 @@ import {
 import { Input } from "@/components/ui/input"
 import Title from "@/components/ui/text/Title"
 
-import { register } from "../../../core/services/authService"
+import { register } from "@/core/services/authService"
 import Loader from "../../loader/loader"
 import Text from "../../ui/text/Text"
-import { registerSchema } from '../../../core/lib/validations/register'
+import { registerSchema } from '@/core/lib/validations/register'
 
 function FormRegister() {
   const router = useRouter()

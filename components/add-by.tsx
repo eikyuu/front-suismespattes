@@ -18,7 +18,7 @@ export default function AddBy({ pseudo, userId, updatedAt, className }: AddByPro
       </Text>
       <div className="flex items-center space-x-2">
         <Avatar>
-          <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}users/${userId}/picture`} />
+          <AvatarImage src={`${process.env.NEXT_PUBLIC_API_URL}user/${userId}/picture`} />
           <AvatarFallback>NO</AvatarFallback>
         </Avatar>
         <Text type="gray">Ajouté par {pseudo}</Text>

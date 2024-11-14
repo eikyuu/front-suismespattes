@@ -11,7 +11,7 @@ export function UserAvatar({ userId, ...props }: any) {
   return (
     <Avatar {...props}>
 
-        <AvatarImage alt="Picture" src={`${process.env.NEXT_PUBLIC_API_URL}users/${userId}/picture`} />
+        <AvatarImage alt="Picture" src={`${process.env.NEXT_PUBLIC_API_URL}user/${userId}/picture`} />
 
       <AvatarFallback>NO</AvatarFallback>
 

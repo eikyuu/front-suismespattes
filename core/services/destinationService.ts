@@ -99,7 +99,7 @@ export const fetchDestinations = async () => {
 export const fetchDestinationsByUser = async (id: string) => {
   
 
-  const response = await fetch(`${API_URL}users/${id}/destination`, {
+  const response = await fetch(`${API_URL}user/${id}/destination`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',

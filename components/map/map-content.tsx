@@ -38,12 +38,12 @@ function MapContent({ destinations }: { destinations: Destination[] }) {
     <Fragment>
       <LeafletMap
         center={
-          destinations
+          destinations && destinations.length > 0
             ? [
                 Number(destinations[0].latitude),
                 Number(destinations[0].longitude),
               ]
-            : [47.39235495962892, 0.6897129358274583]
+            : [47.39235495962892, 0.6897129358274583] // Coordonnées par défaut
         }
         zoom={13}
       >
@@ -53,23 +53,25 @@ function MapContent({ destinations }: { destinations: Destination[] }) {
           showCoverageOnHover={false}
         >
           {destinations &&
-            destinations.map((destination) => (
-              <Marker
-                key={destination.name}
-                position={[
-                  Number(destination.latitude),
-                  Number(destination.longitude),
-                ]}
-                icon={divIcon({
-                  html: ico,
-                  iconSize: [40, 40],
-                })}
-              >
-                <Popup>
-                  <Overlay destination={destination} />
-                </Popup>
-              </Marker>
-            ))}
+            destinations
+              .filter(destination => destination.latitude && destination.longitude) // Vérifie que chaque destination a une latitude et une longitude valides
+              .map((destination) => (
+                <Marker
+                  key={destination.name}
+                  position={[
+                    Number(destination.latitude),
+                    Number(destination.longitude),
+                  ]}
+                  icon={divIcon({
+                    html: ico,
+                    iconSize: [40, 40],
+                  })}
+                >
+                  <Popup>
+                    <Overlay destination={destination} />
+                  </Popup>
+                </Marker>
+              ))}
         </MarkerClusterGroup>
       </LeafletMap>
     </Fragment>

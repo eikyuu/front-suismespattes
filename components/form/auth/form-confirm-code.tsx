@@ -18,10 +18,10 @@ import {
 import { Input } from "@/components/ui/input"
 import Title from "@/components/ui/text/Title"
 
-import { confirmCode } from "../../../core/services/authService"
+import { confirmCode } from "@/core/services/authService"
 import Loader from "../../loader/loader"
 import Text from "../../ui/text/Text"
-import { confirmCodeSchema } from '../../../core/lib/validations/confirmCode'
+import { confirmCodeSchema } from '@/core/lib/validations/confirmCode'
 
 function FormConfirmCode() {
   const router = useRouter()

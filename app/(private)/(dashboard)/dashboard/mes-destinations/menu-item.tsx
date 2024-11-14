@@ -1,6 +1,4 @@
 
-import { getCurrentUser } from "@/core/lib/session"
-import { MesDestinations } from "./mes-destinations"
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteDestination } from "@/core/services/destinationService";
 import { useRouter } from "next/navigation";

@@ -66,7 +66,7 @@ export const resetPassword = async (form: any, resetToken: string) => {
   return response.json();
 }
 export const register = async (form: any) => {
-  const response = await fetch(`${API_URL}users`, {
+  const response = await fetch(`${API_URL}user`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export const register = async (form: any) => {
 export const updateUser = async (form: any, id: string) => {
   const token = await tokenFromSession();
 
-  const response = await fetch(`${API_URL}users/${id}`, {
+  const response = await fetch(`${API_URL}user/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ export const updateUser = async (form: any, id: string) => {
 }
 
 export const getUser = async (id: string) => {
-  const response = await fetch(`${API_URL}users/${id}`, {
+  const response = await fetch(`${API_URL}user/${id}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ export const getUser = async (id: string) => {
 }
 
 export const getUserPicture = async (id: string) => {
-  const response = await fetch(`${API_URL}users/${id}/picture`, {
+  const response = await fetch(`${API_URL}user/${id}/picture`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -140,7 +140,7 @@ export const uploadPicture = async (form: any, id: string) => {
     const formData = new FormData();
     formData.append('image', form[0]);
 
-  const response = await fetch(`${API_URL}users/${id}/picture`, {
+  const response = await fetch(`${API_URL}user/${id}/picture`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
