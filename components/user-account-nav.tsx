@@ -12,16 +12,14 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { UserAvatar } from "@/components/user-avatar"
 import { useQuery } from '@tanstack/react-query'
-import { getUser } from '../core/services/authService'
+import { getUser } from "@/core/lib/utils"
 
-export function UserAccountNav({ userId }: { userId: any }) {
+export function UserAccountNav() {
 
   const { error, data: user, isLoading } = useQuery({
-    queryKey: ["user", userId],
-    queryFn: async () => await getUser(userId),
+    queryKey: ["user"],
+    queryFn: async () => await getUser(),
   })
-
-  if (isLoading) return null
 
   return (
     <DropdownMenu>

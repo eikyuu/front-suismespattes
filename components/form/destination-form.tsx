@@ -331,8 +331,8 @@ export function DestinationForm({ slug }: { slug?: string }) {
     })
 
   async function onSubmit(values: z.infer<typeof destinationSchema>) {
-    const userEmail = await getUser()
-    values.user = userEmail || ""
+    const user = await getUser()
+    values.user = user?.email || ""
 
     /// check if category is not empty
     if (values.category === "") {

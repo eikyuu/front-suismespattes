@@ -102,22 +102,6 @@ export const updateUser = async (form: any, id: string) => {
   return response.json();
 }
 
-export const getUser = async (id: string) => {
-  const response = await fetch(`${API_URL}user/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.error.message);
-  }
-
-  return response.json();
-}
-
 export const getUserPicture = async (id: string) => {
   const response = await fetch(`${API_URL}user/${id}/picture`, {
     method: 'GET',

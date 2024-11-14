@@ -34,13 +34,12 @@ import Title from "@/components/ui/text/Title"
 import { imageSchema } from "../../core/lib/validations/image"
 import { settingsSchema } from "../../core/lib/validations/settings"
 import {
-  getUser,
   updateUser,
   uploadPicture,
 } from "../../core/services/authService"
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import Text from "../ui/text/Text"
 import UploadPictureUser from "../upload-picture-user"
+import { getUser } from "@/core/lib/utils"
 
 function SettingsForm({ user }: { user: any }) {
   const [open, setOpen] = useState(false)
@@ -65,7 +64,7 @@ function SettingsForm({ user }: { user: any }) {
 
   const { error, data, isLoading } = useQuery({
     queryKey: ["user", user.id],
-    queryFn: async () => await getUser(user.id),
+    queryFn: async () => await getUser(),
     placeholderData: keepPreviousData,
     staleTime: 5000,
   })

@@ -62,7 +62,6 @@ export default function LoginBtn() {
         </Link>
       ) : (
         <UserAccountNav
-          userId={session?.user?.id}
         />
       )}
     </Fragment>

@@ -32,5 +32,5 @@ export function cn(...inputs: ClassValue[]) {
 
 export const getUser = async () => {
     const user = await userFromSession()
-    return user?.email
+    return user
   }

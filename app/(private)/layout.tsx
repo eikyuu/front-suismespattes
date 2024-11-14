@@ -1,5 +1,4 @@
 import { Inter } from "next/font/google"
-import { notFound } from "next/navigation"
 
 import { globalConfig } from "../../core/config/global"
 import { getCurrentUser } from "../../core/lib/session"
@@ -24,7 +23,7 @@ export const metadata = {
 export default async function Layout(props: {
   children: React.ReactNode
 }) {
-  const user = await getCurrentUser()
+  // const user = await getCurrentUser()
 
   return (
     <div
@@ -36,9 +35,7 @@ export default async function Layout(props: {
       <header className=" z-40 bg-primary">
         <div className="flex h-20 items-center justify-between  px-6">
           <MainNav items={globalConfig.mainNav} />
-          <UserAccountNav
-            userId={user?.id}
-          />
+          <UserAccountNav/>
         </div>
       </header>
 
