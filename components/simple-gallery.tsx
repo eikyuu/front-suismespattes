@@ -7,7 +7,7 @@ import { Gallery, Item } from "react-photoswipe-gallery"
 function SimpleGallery({ images }: { images: any[] }) {
   return (
     <Gallery>
-      <div className="grid grid-cols-2 gap-4 text-center md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 text-center md:grid-cols-4 justify-items-center	">
         {images.map((image) => (
           <Item
             key={image.id}
