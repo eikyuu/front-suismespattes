@@ -41,16 +41,16 @@ function JoinUs() {
                     className="mb-10 scroll-m-20 break-words text-center text-3xl uppercase tracking-tight text-primary md:text-4xl lg:text-5xl"
                 >REJOIGNEZ-NOUS !</Title>
                 <Text className="mb-5">
-                    Suismespattes est une communauté en pleine croissance, avec de nouveaux emprunteurs et de nouveaux toutous inscrits tous les jours.
+                    Suismespattes est une communauté en pleine croissance, avec de nouveaux voyaueur et de nouveaux toutous inscrits tous les jours.
                 </Text>
                 <Text className="mb-5">
-                    Vous avez la possibilité de partager du bonheur près de chez vous, que ce soit pour faire garder votre chien ou pour trouver un toutou avec qui partager des moments de joie.
+                    Vous avez la possibilité de partager du bonheur près de chez vous, que ce soit pour voyager avec votre chien ou pour trouver un canipotes avec qui partager des moments de joie.
                 </Text>
                 <Text className="mb-5">
                     Et les toutous ne sont pas en reste : plus de sorties, plus de caresses, plus de jeux… tout ce dont rêve un toutou !
                 </Text>
                 <Text className="mb-5">
-                    Notre communauté est basée sur le respect des chiens, la confiance et l'entraide entre les membres. Le bien-être des toutous est tout aussi important pour nous que celui des humains. Alors, si cela sonne juste à votre oreille, rejoignez la toutousphère !
+                    Notre communauté est basée sur le respect des chiens, la confiance et l&apos;entraide entre les membres. Le bien-être des toutous est tout aussi important pour nous que celui des humains. Alors, si cela sonne juste à votre oreille, rejoignez nous !
                 </Text>
                 <Link href="/register">
                     <Button
@@ -59,7 +59,8 @@ function JoinUs() {
                         type="submit"
                     >
                         CREER MON COMPTE
-                    </Button></Link>
+                    </Button>
+                </Link>
             </div>
 
 
