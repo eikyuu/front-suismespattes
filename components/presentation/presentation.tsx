@@ -24,7 +24,7 @@ function Presentation() {
           title="Partage tes destinations"
           text="Tu as trouvé une super destination ? Partage-la avec la communauté ! Tu peux aussi noter les destinations que tu as faites."
           image="/images/head-dog-2.webp"
-          next={true}
+          next={false}
           width={60}
           height={60}
         />
