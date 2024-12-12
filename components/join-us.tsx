@@ -9,7 +9,7 @@ import Link from "next/link"
 
 function JoinUs() {
     return (
-        <div className="container mt-10 flex h-128 flex-col md:flex-row">
+        <div className="container mt-10 flex flex-col md:h-128 md:flex-row">
 
             <div className="md:mr-10 md:grid md:w-6/12 md:max-w-5xl md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-4">
 
@@ -40,7 +40,7 @@ function JoinUs() {
             <div className="flex flex-col items-center justify-center md:w-6/12">
                 <Title
                     balise="h3"
-                    className="mb-10 scroll-m-20 break-words text-center text-3xl uppercase tracking-tight text-primary md:text-4xl lg:text-5xl"
+                    className="my-10 scroll-m-20 break-words text-center text-3xl uppercase tracking-tight text-primary md:text-4xl lg:text-5xl"
                 >REJOIGNEZ-NOUS !</Title>
                 <Text className="mb-5">
                     Suismespattes est une communauté en pleine croissance, avec de nouveaux voyaueur et de nouveaux toutous inscrits tous les jours.
