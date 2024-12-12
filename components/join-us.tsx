@@ -1,7 +1,9 @@
 import Title from "./ui/text/Title"
 import Text from "./ui/text/Text"
 import Image from "next/image"
-import banner from "@/public/images/banner.webp"
+import image from "@/public/images/dog-5964181_1280.jpg"
+import imageUn from "@/public/images/dog-7395306_1280.jpg"
+import imageDeux from "@/public/images/woman-7308033_1280.jpg"
 import { Button } from "./ui/button"
 import Link from "next/link"
 
@@ -13,21 +15,21 @@ function JoinUs() {
 
                 <Image
                     className="col-span-1 row-span-2 h-full rounded-lg object-cover"
-                    src={banner}
+                    src={image}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
                 />
                 <Image
                     className="hidden h-full rounded-lg object-cover md:block"
-                    src={banner}
+                    src={imageUn}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
                 />
                 <Image
                     className="hidden h-full rounded-lg object-cover md:block"
-                    src={banner}
+                    src={imageDeux}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
