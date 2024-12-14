@@ -74,7 +74,7 @@ function LastDestinations(): JSX.Element {
           <Title balise="h2" className="mb-10 text-center">
             Les dernières destinations
           </Title>
-          <div className="grid grid-cols-1 place-items-center items-center md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid-col-1 flex flex-wrap place-items-center items-center justify-between md:grid-cols-2 xl:grid-cols-4">
             {isLoading && <LoaderDestinations />}
             {!isLoading &&
               data.destinations.length > 0 ?

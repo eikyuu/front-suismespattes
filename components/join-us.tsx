@@ -9,7 +9,7 @@ import Link from "next/link"
 
 function JoinUs() {
     return (
-        <div className="container mt-10 flex flex-col md:h-128 md:flex-row">
+        <div className="container mt-10 flex flex-col md:flex-row xl:h-128">
 
             <div className="md:mr-10 md:grid md:w-6/12 md:max-w-5xl md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-4">
 
