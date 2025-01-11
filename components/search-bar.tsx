@@ -52,24 +52,24 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="mb-10 flex  h-full w-full flex-col justify-between gap-4 rounded-md bg-tertiary p-4 md:h-auto md:w-full md:flex-row ">
-      <div className="flex flex-col gap-4 md:flex-row">
+    <div className="mb-10 flex  h-full w-full flex-col justify-between gap-4 rounded-md bg-tertiary p-4 lg:h-auto lg:w-full lg:flex-row ">
+      <div className="flex flex-col gap-4 lg:flex-row">
         <PopoverCity sendCityToParent={handleCityFormChild} />
 
         <PopoverCategory
           sendCategoryToParent={handleCategoryFormChild}
         />
       </div>
-      <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-4 lg:flex-row">
         <Button onClick={handleDestination} className="w-full md:w-auto">
           Chercher
         </Button>
         <Link
-          className="md:mt-0 "
+          className="lg:mt-0 "
           href="/destinations-chien-accepte"
           title="Remettre les filtres à leur valeur par défaut"
         >
-          <Button className="w-full md:w-auto">Rénitialiser</Button>
+          <Button className="w-full lg:w-auto">Rénitialiser</Button>
         </Link>
       </div>
     </div>

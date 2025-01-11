@@ -10,11 +10,11 @@ function LoaderDestination() {
           <Skeleton className="h-[40px] w-full md:w-[500px]" />
         </div>
         <div className="mt-3 flex w-full items-center space-x-3">
-          <Skeleton className="h-[20px] w-full rounded-lg md:w-[120px]" />
-          <Skeleton className="h-[20px] w-full rounded-lg md:w-[120px]" />
-          <Skeleton className="h-[20px] w-full rounded-lg md:w-[120px]" />
-          <Skeleton className="h-[20px] w-full rounded-lg md:w-[120px]" />
-          <Skeleton className="h-[20px] w-full rounded-lg md:w-[120px]" />
+          <Skeleton className="h-[20px] w-full rounded-md md:w-[120px]" />
+          <Skeleton className="h-[20px] w-full rounded-md md:w-[120px]" />
+          <Skeleton className="h-[20px] w-full rounded-md md:w-[120px]" />
+          <Skeleton className="h-[20px] w-full rounded-md md:w-[120px]" />
+          <Skeleton className="h-[20px] w-full rounded-md md:w-[120px]" />
         </div>
         <div>
           <Skeleton className="mt-3 h-[20px] w-full rounded-full md:w-[200px]" />

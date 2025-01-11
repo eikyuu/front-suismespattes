@@ -14,28 +14,27 @@ function JoinUs() {
             <div className="md:mr-10 md:grid md:w-6/12 md:max-w-5xl md:grid-cols-[2fr_1fr] md:grid-rows-2 md:gap-4">
 
                 <Image
-                    className="col-span-1 row-span-2 h-full rounded-lg object-cover"
+                    className="col-span-1 row-span-2 h-full rounded-md object-cover"
                     src={image}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
                 />
                 <Image
-                    className="hidden h-full rounded-lg object-cover md:block"
+                    className="hidden h-full rounded-md object-cover md:block"
                     src={imageUn}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
                 />
                 <Image
-                    className="hidden h-full rounded-lg object-cover md:block"
+                    className="hidden h-full rounded-md object-cover md:block"
                     src={imageDeux}
                     alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
                     loading="eager"
                     priority={true}
                 />
             </div>
-
 
             <div className="flex flex-col items-center justify-center md:w-6/12">
                 <Title

@@ -63,13 +63,13 @@ export default function PopoverCity({ sendCityToParent }: PopoverCityProps): JSX
             variant="outline"
             role="combobox"
             aria-expanded={openCities}
-            className="w-full justify-between md:w-[260px]"
+            className="w-full justify-between lg:w-[260px]"
           >
             {valueCities ? valueCities : "Où allez-vous ?"}
             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="max-h-[20rem] overflow-auto p-0 md:w-[260px]">
+        <PopoverContent className="max-h-[20rem] overflow-auto p-0 lg:w-[260px]">
           <Command>
             <CommandInput
               placeholder="Où allez-vous ?"

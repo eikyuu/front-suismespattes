@@ -2,16 +2,13 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
 import { useCreateQueryString } from "@/core/hooks/useCreateQueryString"
 import banner from "@/public/images/banner.webp"
 import Title from "./ui/text/Title"
 import SearchBar from "./search-bar"
 
 function Banner() {
-  const router = useRouter()
 
-  const { pathname, searchParam, createQueryString } =
     useCreateQueryString("city")
 
   return (
@@ -19,7 +16,7 @@ function Banner() {
       <div className="container relative flex content-center items-center justify-center">
         <Link href="/" role="bannière">
           <Image
-            className="mt-10 h-160 object-cover p-0 md:h-96 lg:h-1/2 lg:rounded-lg"
+            className="mt-10 h-160 object-cover p-0 md:h-96 lg:h-1/2 lg:rounded-md"
             src={banner}
             alt="Un chien debout sur un banc en bois, regardant au loin avec un arrière plan de montagnes et de forêts."
             loading="eager"

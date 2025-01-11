@@ -58,7 +58,7 @@ function ContentNavigation() {
               onClick={handleMenuClick}
               data-collapse-toggle="navbar"
               type="button"
-              className="inline-flex items-center rounded-lg p-2 text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
+              className="inline-flex items-center rounded-md p-2 text-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
               aria-controls="navbar"
               aria-expanded="false"
             >
@@ -84,7 +84,7 @@ function ContentNavigation() {
             }`}
             id="navbar"
           >
-            <ul className="mt-4 flex flex-col items-center rounded-lg border border-gray-100 bg-gray-50 p-4 lg:mt-0 lg:flex-row lg:space-x-8 lg:border-0 lg:bg-primary lg:p-0">
+            <ul className="mt-4 flex flex-col items-center rounded-md border border-gray-100 bg-gray-50 p-4 lg:mt-0 lg:flex-row lg:space-x-8 lg:border-0 lg:bg-primary lg:p-0">
               <LiNav text="Accueil" href="/" />
               <LiNav text="Destinations" href="/destinations-chien-accepte" />
 

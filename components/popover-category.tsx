@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { cn } from "@/core/lib/utils"
 import { fetchCategories } from "@/core/services/categoryService"
 import { useQuery } from "@tanstack/react-query"
-import { Check, ChevronsUpDown, TrashIcon } from "lucide-react"
+import { Check, ChevronsUpDown } from "lucide-react"
 
 import {
   Command,
@@ -56,7 +56,7 @@ export default function PopoverCategory({ sendCategoryToParent, valueCategory }:
             variant="outline"
             role="combobox"
             className={cn(
-              "w-full justify-between capitalize md:w-[260px]",
+              "w-full justify-between capitalize lg:w-[260px]",
               !valueCategories && "text-muted-foreground"
             )}
           >
